@@ -1,0 +1,23 @@
+# Выдуманные источники для тестов freetext. Настоящие — в knowledge/sources/manifest.yaml.
+sources:
+  - id: test-guideline
+    title: "Тестовые клинические рекомендации"
+    kind: clinical_guideline
+    publisher: "Тестовый издатель"
+    url: https://example.org/guideline
+    version: "1"
+    date: 2024-01-15
+    license: "только ссылка"
+    file: null
+    supplementary: false
+    icd10: [F41.1]
+  - id: grls
+    title: "Тестовый снимок ГРЛС"
+    kind: drug_registry
+    publisher: "Тестовый издатель"
+    url: https://example.org/grls
+    version: "2026-10-16"
+    date: 2026-10-16
+    license: "только для тестов"
+    file: files/grls.csv
+    supplementary: false

@@ -1,0 +1,19 @@
+id: example-severe-routing
+version: 1
+status: reviewed
+kind: routing
+level: desirable
+title: "Тяжёлая симптоматика без мыслей о самоповреждении"
+when:
+  all:
+    - {scale: example-mood, score: total, op: ">=", value: 7}
+    - any:
+        - {scale: example-mood, item: q3, op: "==", value: 0}
+doctor_actions:
+  - "Предложить консультацию психиатра"
+sources:
+  - {source: example-guideline, locator: "раздел 3"}
+cases:
+  - {given: {example-mood: {total: 7, q3: 0}}, fires: true, source: {source: example-guideline, locator: "раздел 3"}}
+  - {given: {example-mood: {total: 9, q3: 3}}, fires: false, source: {source: example-guideline, locator: "раздел 3"}}
+  - {given: {}, fires: false, source: {source: example-guideline, locator: "раздел 3"}}

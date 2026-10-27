@@ -1,0 +1,339 @@
+[project]
+name = "clin-compass-api"
+version = "0.1.0"
+description = "Клинический компас: бэкенд (FastAPI, модульный монолит + worker)"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "alembic>=1.20.0",
+    "anyio>=4.15.1",
+    "argon2-cffi>=25.1.0",
+    "av==19.0.1",
+    "asyncpg>=0.32.0",
+    "boto3==1.43.115",
+    "clin-compass-knowledge",
+    "email-validator>=2.3.0",
+    "fastapi>=0.143.2",
+    "httpx2>=2.13.1",
+    "openai>=3.31",
+    "pgqueuer>=1.6.0",
+    "pgvector>=0.5.0",
+    "pillow>=13.0.0",
+    "prometheus-client==0.26.0",
+    "pydantic-ai-slim[openai]>=2.55",
+    "pydantic-settings>=2.16.0",
+    "pypdfium2>=5.13.0",
+    "python-multipart==0.0.32",
+    "sqlalchemy[asyncio]>=2.1.4",
+    "structlog>=26.1.0",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[tool.uv.sources]
+clin-compass-knowledge = { workspace = true }
+
+[build-system]
+requires = ["uv_build>=0.13.0,<0.14"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "clin_compass"
+
+[dependency-groups]
+dev = [
+    "asgi-lifespan>=2.1.0",
+    "httpx>=0.28.1",
+    "import-linter>=2.15",
+    "mypy>=2.4.0",
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+    "ruff>=0.17.1",
+    "testcontainers[postgres]>=4.15.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF", "ASYNC", "N", "BLE", "T20", "PTH"]
+# Кириллица в строках и комментариях — норма для проекта, а не «похожие символы».
+ignore = ["RUF001", "RUF002", "RUF003"]
+
+[tool.ruff.lint.per-file-ignores]
+# __table_args__ = {"schema": ...} — штатная запись SQLAlchemy.
+"**/models.py" = ["RUF012"]
+# Автогенерация Alembic: длинные строки и заголовок с пробелом в конце.
+"migrations/versions/*.py" = ["E501", "W291"]
+# Тесты опрашивают внешнее состояние (сервер, pg_stat_activity) циклом с паузой.
+"tests/**" = ["ASYNC110"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+plugins = ["pydantic.mypy"]
+mypy_path = "src"
+packages = ["clin_compass"]
+
+[[tool.mypy.overrides]]
+module = ["asyncpg.*", "boto3.*", "botocore.*", "pgqueuer.*", "testcontainers.*"]
+ignore_missing_imports = true
+
+# В пакете knowledge/ пока нет маркера py.typed; аннотации в нём есть, проверяем по ним.
+[[tool.mypy.overrides]]
+module = ["clin_compass_knowledge", "clin_compass_knowledge.*"]
+follow_untyped_imports = true
+
+# У pypdfium2 нет маркера py.typed.
+[[tool.mypy.overrides]]
+module = ["pypdfium2", "pypdfium2.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
+testpaths = ["tests"]
+
+# Границы модулей (спека фундамента, 3.2). Новый модуль добавляет свой protected-контракт:
+# снаружи модуля доступны только service.py, schemas.py и deps.py.
+[tool.importlinter]
+root_package = "clin_compass"
+
+[[tool.importlinter.contracts]]
+name = "core не зависит от модулей"
+type = "forbidden"
+source_modules = ["clin_compass.core"]
+forbidden_modules = ["clin_compass.modules"]
+
+[[tool.importlinter.contracts]]
+name = "identity: внутренности модуля закрыты"
+type = "protected"
+protected_modules = [
+    "clin_compass.modules.identity.models",
+    "clin_compass.modules.identity.security",
+    "clin_compass.modules.identity.throttle",
+    "clin_compass.modules.identity.api",
+]
+allowed_importers = ["clin_compass.modules.identity", "clin_compass.schema", "clin_compass.main"]
+
+[[tool.importlinter.contracts]]
+name = "patients: внутренности модуля закрыты"
+type = "protected"
+protected_modules = [
+    "clin_compass.modules.patients.models",
+    "clin_compass.modules.patients.api",
+    "clin_compass.modules.patients.preferences",
+    "clin_compass.modules.patients.access",
+]
+allowed_importers = ["clin_compass.modules.patients", "clin_compass.schema", "clin_compass.main"]
+
+[[tool.importlinter.contracts]]
+name = "proposals: внутренности модуля закрыты"
+type = "protected"
+protected_modules = [
+    "clin_compass.modules.proposals.models",
+    "clin_compass.modules.proposals.api",
+]
+allowed_importers = ["clin_compass.modules.proposals", "clin_compass.schema", "clin_compass.main"]
+
+[[tool.importlinter.contracts]]
+name = "adherence: внутренности модуля закрыты"
+type = "protected"
+protected_modules = [
+    "clin_compass.modules.adherence.models",
+    "clin_compass.modules.adherence.api",
+    "clin_compass.modules.adherence.doses",
+]
+allowed_importers = ["clin_compass.modules.adherence", "clin_compass.schema", "clin_compass.main"]
+
+[[tool.importlinter.contracts]]
+name = "alerts: внутренности модуля закрыты"
+type = "protected"
+protected_modules = [
+    "clin_compass.modules.alerts.models",
+    "clin_compass.modules.alerts.rules",
+    "clin_compass.modules.alerts.api",
+    "clin_compass.modules.alerts.handling",
+    "clin_compass.modules.alerts.lifecycle",
+    "clin_compass.modules.alerts.referral",
+    "clin_compass.modules.alerts.store",
+    "clin_compass.modules.alerts.escalation",
+    "clin_compass.modules.alerts.chain",
+    "clin_compass.modules.alerts.deputies",
+    "clin_compass.modules.alerts.admin",
+    "clin_compass.modules.alerts.admin_api",
+]
+allowed_importers = ["clin_compass.modules.alerts", "clin_compass.schema", "clin_compass.main"]
+
+[[tool.importlinter.contracts]]
+name = "assessments: внутренности модуля закрыты"
+type = "protected"
+protected_modules = [
+    "clin_compass.modules.assessments.models",
+    "clin_compass.modules.assessments.api",
+    "clin_compass.modules.assessments.catalog",
+    "clin_compass.modules.assessments.recording",
+    "clin_compass.modules.assessments.schedule",
+]
+allowed_importers = ["clin_compass.modules.assessments", "clin_compass.schema", "clin_compass.main"]
+
+[[tool.importlinter.contracts]]
+name = "freetext: внутренности модуля закрыты"
+type = "protected"
+protected_modules = [
+    "clin_compass.modules.freetext.models",
+    "clin_compass.modules.freetext.analysis",
+    "clin_compass.modules.freetext.signals",
+    "clin_compass.modules.freetext.tasks",
+]
+# worker собирает задачи модуля из tasks.py.
+allowed_importers = [
+    "clin_compass.modules.freetext",
+    "clin_compass.schema",
+    "clin_compass.main",
+    "clin_compass.worker",
+]
+
+[[tool.importlinter.contracts]]
+name = "ingestion: внутренности модуля закрыты"
+type = "protected"
+protected_modules = [
+    "clin_compass.modules.ingestion.models",
+    "clin_compass.modules.ingestion.api",
+    "clin_compass.modules.ingestion.analysis",
+    "clin_compass.modules.ingestion.appliers",
+    "clin_compass.modules.ingestion.dates",
+    "clin_compass.modules.ingestion.document",
+    "clin_compass.modules.ingestion.files",
+    "clin_compass.modules.ingestion.payloads",
+    "clin_compass.modules.ingestion.tasks",
+]
+# worker собирает задачи модуля из tasks.py.
+allowed_importers = [
+    "clin_compass.modules.ingestion",
+    "clin_compass.schema",
+    "clin_compass.main",
+    "clin_compass.worker",
+]
+
+[[tool.importlinter.contracts]]
+name = "knowledge: внутренности модуля закрыты"
+type = "protected"
+# Снаружи доступны service, schemas, deps и общий тип фрагмента после нарезки (fragments).
+protected_modules = [
+    "clin_compass.modules.knowledge.models",
+    "clin_compass.modules.knowledge.api",
+    "clin_compass.modules.knowledge.search",
+    "clin_compass.modules.knowledge.answering",
+    "clin_compass.modules.knowledge.sentences",
+    "clin_compass.modules.knowledge.rewriting",
+    "clin_compass.modules.knowledge.verification",
+    "clin_compass.modules.knowledge.questions",
+    "clin_compass.modules.knowledge.indexing",
+    "clin_compass.modules.knowledge.blocks",
+    "clin_compass.modules.knowledge.guidelines",
+    "clin_compass.modules.knowledge.label",
+    "clin_compass.modules.knowledge.transfer",
+    "clin_compass.modules.knowledge.sections",
+    "clin_compass.modules.knowledge.sources",
+]
+allowed_importers = ["clin_compass.modules.knowledge", "clin_compass.schema", "clin_compass.main"]
+
+[[tool.importlinter.contracts]]
+name = "realtime: внутренности модуля закрыты"
+type = "protected"
+protected_modules = ["clin_compass.modules.realtime.api"]
+allowed_importers = ["clin_compass.modules.realtime", "clin_compass.main"]
+
+[[tool.importlinter.contracts]]
+name = "messaging: внутренности модуля закрыты"
+type = "protected"
+protected_modules = [
+    "clin_compass.modules.messaging.api",
+    "clin_compass.modules.messaging.errors",
+    "clin_compass.modules.messaging.models",
+    "clin_compass.modules.messaging.presence",
+    "clin_compass.modules.messaging.tasks",
+    "clin_compass.modules.messaging.views",
+    "clin_compass.modules.messaging.voice",
+    "clin_compass.modules.messaging.voice_api",
+    "clin_compass.modules.messaging.voice_playback",
+]
+allowed_importers = [
+    "clin_compass.modules.messaging",
+    "clin_compass.schema",
+    "clin_compass.main",
+    "clin_compass.worker",
+]
+
+[[tool.importlinter.contracts]]
+name = "therapy: внутренности модуля закрыты"
+type = "protected"
+protected_modules = [
+    "clin_compass.modules.therapy.models",
+    "clin_compass.modules.therapy.api",
+    "clin_compass.modules.therapy.appliers",
+    "clin_compass.modules.therapy.checks",
+    "clin_compass.modules.therapy.views",
+    "clin_compass.modules.therapy.safety",
+    "clin_compass.modules.therapy.reactions",
+    "clin_compass.modules.therapy.guidance",
+    "clin_compass.modules.therapy.tasks",
+]
+# worker собирает задачу справки по КР из tasks.py.
+allowed_importers = [
+    "clin_compass.modules.therapy",
+    "clin_compass.schema",
+    "clin_compass.main",
+    "clin_compass.worker",
+]
+
+[[tool.importlinter.contracts]]
+name = "diary: внутренности модуля закрыты"
+type = "protected"
+protected_modules = [
+    "clin_compass.modules.diary.models",
+    "clin_compass.modules.diary.api",
+    "clin_compass.modules.diary.access",
+    "clin_compass.modules.diary.errors",
+    "clin_compass.modules.diary.entry_commands",
+    "clin_compass.modules.diary.intake_commands",
+    "clin_compass.modules.diary.intake_snapshot",
+    "clin_compass.modules.diary.operations",
+    "clin_compass.modules.diary.queries",
+    "clin_compass.modules.diary.doctor_queries",
+    "clin_compass.modules.diary.hide_commands",
+    "clin_compass.modules.diary.voice",
+    "clin_compass.modules.diary.voice_api",
+    "clin_compass.modules.diary.voice_commands",
+    "clin_compass.modules.diary.audio_access",
+    "clin_compass.modules.diary.audio_api",
+    "clin_compass.modules.diary.audio_format",
+    "clin_compass.modules.diary.tasks",
+]
+allowed_importers = [
+    "clin_compass.modules.diary",
+    "clin_compass.schema",
+    "clin_compass.main",
+    "clin_compass.worker",
+]
+
+[[tool.importlinter.contracts]]
+name = "summary: внутренности модуля закрыты"
+type = "protected"
+protected_modules = [
+    "clin_compass.modules.summary.models",
+    "clin_compass.modules.summary.api",
+    "clin_compass.modules.summary.facts",
+    "clin_compass.modules.summary.drafting",
+    "clin_compass.modules.summary.verification",
+    "clin_compass.modules.summary.tasks",
+]
+# worker собирает задачу черновика из tasks.py.
+allowed_importers = [
+    "clin_compass.modules.summary",
+    "clin_compass.schema",
+    "clin_compass.main",
+    "clin_compass.worker",
+]

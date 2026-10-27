@@ -1,0 +1,33 @@
+id: test-mood
+version: 1
+title: "Тестовая шкала test-mood"
+purpose: monitoring
+respondent: patient
+status: reviewed
+license:
+  terms: "свободное использование"
+  allowed: true
+  source: {source: test-validation, locator: "с. 1"}
+validation:
+  - {source: test-validation, locator: "табл. 1"}
+instruction: "Отметьте, как часто за последние две недели…"
+items:
+  - id: q1
+    text: "Пункт q1"
+    options: &freq
+      - {value: 0, text: "Ни разу"}
+      - {value: 1, text: "Несколько дней"}
+      - {value: 2, text: "Больше половины дней"}
+      - {value: 3, text: "Почти каждый день"}
+  - id: q2
+    text: "Пункт q2"
+    options: *freq
+  - id: q3
+    text: "Пункт q3"
+    options: *freq
+scores:
+  - id: total
+    items: [q1, q2, q3]
+    bands:
+      - {min: 0, max: 3, code: low, label: "Низкий", source: {source: test-validation, locator: "табл. 2"}}
+      - {min: 4, max: 9, code: high, label: "Высокий", source: {source: test-validation, locator: "табл. 2"}}

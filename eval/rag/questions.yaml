@@ -1,0 +1,2377 @@
+# Набор вопросов для оценки RAG, v2 (спека #70, раздел 3). Вопросы пишет LLM (`draft.py`),
+# разметку — судья по объединённой выдаче поиска (`tune.py label`), выборку проверяет AI-контур,
+# набор ревьюит медик. Набор v1 из 44 вопросов заменён; его результат —
+# `results/2026-10-18-knowledge.answer-3777ec45.json`.
+#
+# Формат — список вопросов:
+#   - id: q-001
+#     question: "…"              # вопрос врача своими словами
+#     kind: single               # замысел генератора: single, multi или none
+#     split: dev                 # dev — подбор, test — контроль (прогоняется один раз)
+#     origin: [kr-gad-2024/doc_diag_2_4/2]   # фрагменты, по которым писался вопрос; у none — []
+#     relevant:                  # оценки судьи 2 (отвечает) и 1 (частично); оценка 0 не хранится
+#       - {key: kr-gad-2024/doc_diag_2_4/2, fingerprint: "0123456789ab", grade: 2}
+#     note: "…"                  # необязательно
+#
+# Текста фрагментов здесь нет: условия копирования рекомендаций не указаны.
+- id: q-001
+  question: Для каких состояний у взрослых назначают Авиандр?
+  kind: single
+  split: test
+  origin: [aviandr-ohlp/4.1/1]
+  relevant:
+  - {key: aviandr-ohlp/4.1/1, fingerprint: f1bcbd30c133, grade: 2}
+  - {key: aviandr-ohlp/5.1/1, fingerprint: 8e1590d4d1c9, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 2}
+  - {key: aviandr-ohlp/5.3/1, fingerprint: 40bd2db4b2cb, grade: 2}
+  - {key: aviandr-ohlp/4.2/1, fingerprint: f1faaf4ce289, grade: 1}
+  - {key: aviandr-ohlp/5.1/2, fingerprint: 69b5d0fd0c1b, grade: 1}
+  - {key: aviandr-ohlp/4.8/1, fingerprint: 3d991b70c68b, grade: 1}
+- id: q-002
+  question: 'Как правильно принимать Авиандр при тревожных состояниях после перенесенного ковида: какая длительность курса и что делать при пропуске дозы?'
+  kind: single
+  split: test
+  origin: [aviandr-ohlp/4.2/1]
+  relevant:
+  - {key: aviandr-ohlp/4.2/1, fingerprint: f1faaf4ce289, grade: 2}
+  - {key: kr-depression-2024/doc_v/1, fingerprint: 0952b6d33d5a, grade: 2}
+- id: q-003
+  question: При каких состояниях и сопутствующих заболеваниях нельзя назначать Авиандр?
+  kind: single
+  split: dev
+  origin: [aviandr-ohlp/4.3/1]
+  relevant:
+  - {key: aviandr-ohlp/4.3/1, fingerprint: 3e8821a8afca, grade: 2}
+  - {key: aviandr-ohlp/4.2/1, fingerprint: f1faaf4ce289, grade: 2}
+  - {key: aviandr-ohlp/4.6/1, fingerprint: 7cb693c1639b, grade: 1}
+  - {key: aviandr-ohlp/4.4/1, fingerprint: be08af5cb9a7, grade: 1}
+  - {key: aviandr-ohlp/4.5/1, fingerprint: 26491090dfd3, grade: 1}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 1}
+  - {key: aviandr-ohlp/5.2/2, fingerprint: e186feab02ce, grade: 2}
+- id: q-004
+  question: Есть ли у Авияндра влияние на интервал QT и уровень пролактина?
+  kind: single
+  split: test
+  origin: [aviandr-ohlp/4.4/1]
+  relevant:
+  - {key: aviandr-ohlp/4.4/1, fingerprint: be08af5cb9a7, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 1}
+  - {key: aviandr-ohlp/5.3/1, fingerprint: 40bd2db4b2cb, grade: 1}
+  - {key: cipralex-ohlp/4.8/4, fingerprint: 2ba3edaa01de, grade: 2}
+- id: q-005
+  question: С какими группами препаратов и веществами маритупирдин может давать нежелательные взаимодействия, и какие ограничения по их совместному приёму существуют?
+  kind: single
+  split: dev
+  origin: [aviandr-ohlp/4.5/1]
+  relevant:
+  - {key: aviandr-ohlp/4.5/1, fingerprint: 26491090dfd3, grade: 2}
+  - {key: aviandr-ohlp/4.5/2, fingerprint: dac1149970ef, grade: 2}
+  - {key: aviandr-ohlp/4.5/3, fingerprint: 99162db16d68, grade: 1}
+  - {key: aviandr-ohlp/4.3/1, fingerprint: 3e8821a8afca, grade: 1}
+  - {key: aviandr-ohlp/5.2/2, fingerprint: e186feab02ce, grade: 1}
+- id: q-006
+  question: Пациентка 58 лет, принимает дулоксетин по поводу депрессии. Можно ли назначить ей Авиандр, не будет ли конфликта из-за влияния на ферменты печени?
+  kind: single
+  split: dev
+  origin: [aviandr-ohlp/4.5/2]
+  relevant:
+  - {key: aviandr-ohlp/4.5/2, fingerprint: dac1149970ef, grade: 2}
+  - {key: aviandr-ohlp/4.5/1, fingerprint: 26491090dfd3, grade: 2}
+  - {key: aviandr-ohlp/5.2/2, fingerprint: e186feab02ce, grade: 2}
+  - {key: aviandr-ohlp/4.2/1, fingerprint: f1faaf4ce289, grade: 1}
+- id: q-007
+  question: Пациентке 45 лет, принимает Авиандр. Совместимо ли это с флувоксамином или ципрофлоксацином? Влияют ли эти препараты на концентрацию маритупирдина в крови?
+  kind: single
+  split: test
+  origin: [aviandr-ohlp/4.5/3]
+  relevant:
+  - {key: aviandr-ohlp/4.5/3, fingerprint: 99162db16d68, grade: 2}
+  - {key: aviandr-ohlp/4.5/2, fingerprint: dac1149970ef, grade: 1}
+  - {key: aviandr-ohlp/4.5/1, fingerprint: 26491090dfd3, grade: 1}
+  - {key: aviandr-ohlp/5.2/2, fingerprint: e186feab02ce, grade: 1}
+- id: q-008
+  question: Женщина 35 лет, кормящая грудью, с подтверждённым диагнозом. Можно ли ей назначать Авиандр, или придётся прервать лактацию?
+  kind: single
+  split: dev
+  origin: [aviandr-ohlp/4.6/1]
+  relevant:
+  - {key: aviandr-ohlp/4.6/1, fingerprint: 7cb693c1639b, grade: 2}
+  - {key: afobazol-ohlp/4.6/1, fingerprint: 073e33792a5b, grade: 2}
+  - {key: cipralex-ohlp/4.6/1, fingerprint: eeba8a7846cf, grade: 2}
+  - {key: lyrica-ohlp/4.6/1, fingerprint: d00cb8c8f38f, grade: 2}
+- id: q-009
+  question: Мужчина, 58 лет, принимает Авиандр. Скажите, можно ли ему садиться за руль, если у него периодически возникает головокружение?
+  kind: single
+  split: dev
+  origin: [aviandr-ohlp/4.7/1]
+  relevant:
+  - {key: aviandr-ohlp/4.7/1, fingerprint: 3dcff5a9d624, grade: 2}
+  - {key: aviandr-ohlp/5.1/1, fingerprint: 8e1590d4d1c9, grade: 2}
+  - {key: aviandr-ohlp/4.8/2, fingerprint: 6b99dd561ebb, grade: 1}
+  - {key: aviandr-ohlp/4.8/3, fingerprint: 0f0228656bc0, grade: 1}
+  - {key: aviandr-ohlp/4.8/1, fingerprint: 3d991b70c68b, grade: 1}
+  - {key: kr-gad-2024/doc_3/27, fingerprint: feb0f5177d42, grade: 1}
+  - {key: kr-depression-2024/doc_v/1, fingerprint: 0952b6d33d5a, grade: 1}
+  - {key: aviandr-ohlp/4.4/1, fingerprint: be08af5cb9a7, grade: 1}
+  - {key: aviandr-ohlp/4.5/1, fingerprint: 26491090dfd3, grade: 1}
+  - {key: lyrica-ohlp/4.7/1, fingerprint: 1a0b318dafe0, grade: 2}
+- id: q-010
+  question: Какие побочные эффекты чаще всего беспокоят пациентов на старте терапии маритупирдином и требуют ли они отмены препарата?
+  kind: single
+  split: dev
+  origin: [aviandr-ohlp/4.8/1]
+  relevant:
+  - {key: aviandr-ohlp/4.8/1, fingerprint: 3d991b70c68b, grade: 2}
+  - {key: aviandr-ohlp/4.8/3, fingerprint: 0f0228656bc0, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 2}
+  - {key: aviandr-ohlp/4.8/2, fingerprint: 6b99dd561ebb, grade: 1}
+  - {key: kr-gad-2024/doc_3/15, fingerprint: 2fb26170ba7b, grade: 1}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 1}
+  - {key: aviandr-ohlp/4.4/1, fingerprint: be08af5cb9a7, grade: 2}
+- id: q-011
+  question: Женщина 65 лет, принимает маритупирдин. Какие побочные эффекты со стороны нервной системы и ЖКТ могут беспокоить пациента чаще всего?
+  kind: single
+  split: dev
+  origin: [aviandr-ohlp/4.8/2]
+  relevant:
+  - {key: aviandr-ohlp/4.8/2, fingerprint: 6b99dd561ebb, grade: 2}
+  - {key: aviandr-ohlp/4.8/1, fingerprint: 3d991b70c68b, grade: 1}
+  - {key: kr-gad-2024/doc_3/15, fingerprint: 2fb26170ba7b, grade: 1}
+  - {key: aviandr-ohlp/4.2/1, fingerprint: f1faaf4ce289, grade: 1}
+  - {key: aviandr-ohlp/4.8/3, fingerprint: 0f0228656bc0, grade: 2}
+  - {key: cipralex-ohlp/4.8/3, fingerprint: 8f50a2bcad5e, grade: 2}
+- id: q-012
+  question: Куда в России нужно направлять сообщения о нежелательных реакциях на Авиандр и какие контакты для этого предусмотрены?
+  kind: single
+  split: test
+  origin: [aviandr-ohlp/4.8/3]
+  relevant:
+  - {key: aviandr-ohlp/4.8/3, fingerprint: 0f0228656bc0, grade: 2}
+  - {key: aviandr-ohlp/0/1, fingerprint: ce12b4c3983c, grade: 1}
+  - {key: aviandr-ohlp/7.1/1, fingerprint: 43264d682ae3, grade: 2}
+  - {key: cipralex-ohlp/4.8/5, fingerprint: cc5b34ec274d, grade: 2}
+- id: q-013
+  question: Что делать при случайном приёме большой дозы маритупирдина?
+  kind: single
+  split: dev
+  origin: [aviandr-ohlp/4.9/1]
+  relevant:
+  - {key: aviandr-ohlp/4.9/1, fingerprint: b75571b10250, grade: 2}
+  - {key: aviandr-ohlp/4.2/1, fingerprint: f1faaf4ce289, grade: 2}
+- id: q-014
+  question: Каким образом маритупирдин воздействует на рецепторы нейромедиаторов и какие его свойства отличают от бензодиазепинов?
+  kind: single
+  split: dev
+  origin: [aviandr-ohlp/5.1/1]
+  relevant:
+  - {key: aviandr-ohlp/5.1/1, fingerprint: 8e1590d4d1c9, grade: 2}
+  - {key: kr-gad-2024/doc_3/15, fingerprint: 2fb26170ba7b, grade: 1}
+- id: q-015
+  question: Как маритупирдин влияет на соматические и психические проявления тревоги, а также на длительность нетрудоспособности и качество жизни?
+  kind: single
+  split: dev
+  origin: [aviandr-ohlp/5.1/2]
+  relevant:
+  - {key: aviandr-ohlp/5.1/2, fingerprint: 69b5d0fd0c1b, grade: 2}
+  - {key: aviandr-ohlp/5.1/1, fingerprint: 8e1590d4d1c9, grade: 1}
+  - {key: kr-gad-2024/doc_3/15, fingerprint: 2fb26170ba7b, grade: 1}
+  - {key: aviandr-ohlp/4.2/1, fingerprint: f1faaf4ce289, grade: 1}
+  - {key: kr-gad-2024/doc_3/25, fingerprint: 9ad41dd268e4, grade: 1}
+  - {key: aviandr-ohlp/4.8/1, fingerprint: 3d991b70c68b, grade: 1}
+- id: q-016
+  question: Как быстро достигается пиковая концентрация маритупирдина в плазме после однократного приёма и как меняется этот показатель при регулярном приёме?
+  kind: single
+  split: dev
+  origin: [aviandr-ohlp/5.2/1]
+  relevant:
+  - {key: aviandr-ohlp/5.2/1, fingerprint: de17f6ebb99e, grade: 2}
+  - {key: aviandr-ohlp/5.2/2, fingerprint: e186feab02ce, grade: 1}
+- id: q-017
+  question: Как влияет полиморфизм CYP2D6 на концентрацию маритупирдина в крови у медленных метаболизаторов?
+  kind: single
+  split: test
+  origin: [aviandr-ohlp/5.2/2]
+  relevant:
+  - {key: aviandr-ohlp/5.2/2, fingerprint: e186feab02ce, grade: 2}
+  - {key: aviandr-ohlp/4.5/2, fingerprint: dac1149970ef, grade: 1}
+- id: q-018
+  question: Пациентка 58 лет с эпилепсией, принимает Авиандр. Есть ли у маритупирдина зависимость-формирующий эффект или выраженное угнетение ЦНС?
+  kind: single
+  split: dev
+  origin: [aviandr-ohlp/5.3/1]
+  relevant:
+  - {key: aviandr-ohlp/5.3/1, fingerprint: 40bd2db4b2cb, grade: 2}
+  - {key: aviandr-ohlp/4.4/1, fingerprint: be08af5cb9a7, grade: 2}
+  - {key: aviandr-ohlp/5.1/2, fingerprint: 69b5d0fd0c1b, grade: 2}
+  - {key: aviandr-ohlp/4.5/1, fingerprint: 26491090dfd3, grade: 1}
+  - {key: aviandr-ohlp/5.1/1, fingerprint: 8e1590d4d1c9, grade: 1}
+  - {key: aviandr-ohlp/4.8/1, fingerprint: 3d991b70c68b, grade: 1}
+  - {key: aviandr-ohlp/4.7/1, fingerprint: 3dcff5a9d624, grade: 1}
+  - {key: aviandr-ohlp/4.8/2, fingerprint: 6b99dd561ebb, grade: 1}
+  - {key: aviandr-ohlp/4.2/1, fingerprint: f1faaf4ce289, grade: 2}
+- id: q-019
+  question: Женщина, 45 лет, у нее депрессия, которая не поддалась лечению на первых трех этапах. Что теперь по протоколу? И если и это не сработает, что делать?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/45]
+  relevant:
+  - {key: kr-depression-2024/doc_3/45, fingerprint: 3718686f4276, grade: 2}
+  - {key: kr-depression-2024/doc_3/39, fingerprint: f14c2d0238d4, grade: 2}
+  - {key: kr-depression-2024/doc_3/31, fingerprint: 5788f4fbdbd2, grade: 2}
+  - {key: kr-depression-2024/doc_3/38, fingerprint: f06f674e8251, grade: 1}
+  - {key: kr-depression-2024/doc_3/46, fingerprint: 91035081d6d5, grade: 1}
+  - {key: kr-depression-2024/doc_3/44, fingerprint: cd92a2d2ce53, grade: 1}
+  - {key: kr-depression-2024/doc_3/42, fingerprint: 381b29cc4f6d, grade: 1}
+  - {key: kr-gad-2024/doc_3/16, fingerprint: 4f1e34a57d09, grade: 1}
+  - {key: kr-depression-2024/doc_3/43, fingerprint: c8183b00c8c1, grade: 1}
+  - {key: kr-depression-2024/doc_3/41, fingerprint: 524db19e1ccc, grade: 1}
+  - {key: kr-depression-2024/doc_3/27, fingerprint: 36c40cc544b0, grade: 1}
+  - {key: kr-depression-2024/doc_3/1, fingerprint: 8e5cc598338f, grade: 1}
+  - {key: kr-depression-2024/doc_3/21, fingerprint: 5dd21744b89d, grade: 1}
+  - {key: kr-depression-2024/doc_3/23, fingerprint: 961052c08a6b, grade: 1}
+  - {key: kr-depression-2024/doc_3/40, fingerprint: 94912af2e0ee, grade: 1}
+  - {key: kr-depression-2024/doc_3/24, fingerprint: 5329ce737f56, grade: 1}
+  - {key: kr-depression-2024/doc_3/52, fingerprint: fea4e08cb7ba, grade: 1}
+  - {key: kr-depression-2024/doc_3/55, fingerprint: 333796ccc9f7, grade: 1}
+  - {key: kr-depression-2024/doc_3/30, fingerprint: 8f97c938c2ab, grade: 2}
+  - {key: kr-depression-2024/doc_3/35, fingerprint: a352aed52574, grade: 2}
+  - {key: kr-depression-2024/doc_3/63, fingerprint: 76c283e2cab8, grade: 2}
+  - {key: kr-depression-2024/doc_3/29, fingerprint: 7953bde9a5db, grade: 2}
+- id: q-020
+  question: Какие показатели функции щитовидной железы нужно сдать пациенту с впервые выявленной депрессией?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_diag_2_3/5]
+  relevant:
+  - {key: kr-depression-2024/doc_diag_2_3/5, fingerprint: c77ae72da208, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_3/5, fingerprint: 808ef4dc45ad, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_2/3, fingerprint: e6e0f10cd873, grade: 1}
+- id: q-021
+  question: Что по части профилактики и ЗОЖ рекомендуют всем пациентам с ГТР?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_5/2]
+  relevant:
+  - {key: kr-gad-2024/doc_5/2, fingerprint: a846777e0a41, grade: 2}
+  - {key: kr-gad-2024/doc_v/2, fingerprint: 49b149b37512, grade: 2}
+  - {key: kr-gad-2024/doc_5/1, fingerprint: 7bf1ca60c1e0, grade: 2}
+  - {key: kr-gad-2024/doc_5/5, fingerprint: fde3168b64a0, grade: 1}
+  - {key: kr-gad-2024/doc_5/3, fingerprint: 19c677a154a7, grade: 1}
+- id: q-022
+  question: Какие методы психотерапии рекомендуются при ГТР для ускорения возвращения к работе и улучшения качества жизни?
+  kind: single
+  split: test
+  origin: [kr-gad-2024/doc_4/2]
+  relevant:
+  - {key: kr-gad-2024/doc_4/2, fingerprint: ad8b60aa476f, grade: 2}
+  - {key: kr-gad-2024/doc_3/36, fingerprint: 75d88f5300f2, grade: 2}
+  - {key: kr-gad-2024/doc_3/39, fingerprint: 2751c971c7c4, grade: 2}
+  - {key: kr-gad-2024/doc_4/3, fingerprint: 77ba580d4113, grade: 1}
+  - {key: kr-gad-2024/doc_3/34, fingerprint: b0e34f7cf036, grade: 1}
+  - {key: kr-gad-2024/doc_3/35, fingerprint: b08f7dadf16b, grade: 1}
+  - {key: kr-gad-2024/doc_4/4, fingerprint: df7f5ce43521, grade: 1}
+  - {key: kr-gad-2024/doc_3/37, fingerprint: 832a9ed5ac95, grade: 1}
+  - {key: kr-gad-2024/doc_4/1, fingerprint: 7b0db42aae0e, grade: 1}
+  - {key: kr-gad-2024/doc_3/38, fingerprint: dc7fb51d73c8, grade: 1}
+  - {key: kr-gad-2024/doc_3/32, fingerprint: 1c0953bfc1df, grade: 1}
+  - {key: kr-gad-2024/doc_v/2, fingerprint: 49b149b37512, grade: 1}
+  - {key: kr-gad-2024/doc_3/1, fingerprint: cde760ff2ece, grade: 1}
+- id: q-023
+  question: Что по протоколу показан при легком депрессивном эпизоде, если пациент отказывается от классических антидепрессантов?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/5]
+  relevant:
+  - {key: kr-depression-2024/doc_3/5, fingerprint: 32bd949c97ce, grade: 2}
+  - {key: kr-depression-2024/doc_3/52, fingerprint: fea4e08cb7ba, grade: 1}
+  - {key: kr-depression-2024/doc_3/57, fingerprint: 65434b6049f1, grade: 1}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 2}
+- id: q-024
+  question: Женщина, 45 лет, с генерализованным тревожным расстройством. СИОЗС и прегабалин не дали эффекта. Что делать дальше?
+  kind: single
+  split: test
+  origin: [kr-gad-2024/doc_3/10]
+  relevant:
+  - {key: kr-gad-2024/doc_3/10, fingerprint: 2e85eee878a2, grade: 2}
+  - {key: kr-gad-2024/doc_3/11, fingerprint: 019d01959f48, grade: 2}
+  - {key: aviandr-ohlp/4.2/1, fingerprint: f1faaf4ce289, grade: 2}
+  - {key: kr-gad-2024/doc_3/40, fingerprint: 91e5a4ff04dc, grade: 2}
+  - {key: kr-gad-2024/doc_3/16, fingerprint: 4f1e34a57d09, grade: 1}
+  - {key: kr-gad-2024/doc_3/18, fingerprint: 3b6c7a5fef68, grade: 1}
+  - {key: kr-gad-2024/doc_3/17, fingerprint: 0015b131c67c, grade: 1}
+  - {key: kr-gad-2024/doc_3/22, fingerprint: d6b6fc3faad2, grade: 1}
+  - {key: kr-gad-2024/doc_3/24, fingerprint: c4bfb4b6bb0d, grade: 1}
+  - {key: kr-gad-2024/doc_3/20, fingerprint: 1eabb9d52e6a, grade: 1}
+  - {key: kr-gad-2024/doc_3/21, fingerprint: 4bc64241acb5, grade: 1}
+  - {key: kr-gad-2024/doc_v/1, fingerprint: 5ab87474d912, grade: 1}
+  - {key: kr-gad-2024/doc_3/6, fingerprint: bd9cbf8cfd20, grade: 1}
+  - {key: kr-gad-2024/doc_3/5, fingerprint: f4ea712bf22d, grade: 2}
+  - {key: kr-gad-2024/doc_3/8, fingerprint: 72b0b50b1d7a, grade: 1}
+  - {key: kr-gad-2024/doc_3/9, fingerprint: 4ae295176503, grade: 2}
+  - {key: kr-gad-2024/doc_b/2, fingerprint: 5c630e4c322f, grade: 1}
+- id: q-025
+  question: У меня пациентка 45 лет с рекуррентным депрессивным расстройством, у которой не сработали препараты первых трёх линий. Что по протоколу делать дальше, чтобы преодолеть резистентность?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/42]
+  relevant:
+  - {key: kr-depression-2024/doc_3/42, fingerprint: 381b29cc4f6d, grade: 2}
+  - {key: kr-depression-2024/doc_3/45, fingerprint: 3718686f4276, grade: 2}
+  - {key: kr-depression-2024/doc_3/44, fingerprint: cd92a2d2ce53, grade: 2}
+  - {key: kr-depression-2024/doc_3/39, fingerprint: f14c2d0238d4, grade: 2}
+  - {key: kr-depression-2024/doc_3/46, fingerprint: 91035081d6d5, grade: 2}
+  - {key: kr-depression-2024/doc_3/65, fingerprint: 66ea1db0c22f, grade: 2}
+  - {key: kr-depression-2024/doc_3/31, fingerprint: 5788f4fbdbd2, grade: 2}
+  - {key: kr-depression-2024/doc_3/64, fingerprint: bc2983d8722f, grade: 2}
+  - {key: kr-depression-2024/doc_3/43, fingerprint: c8183b00c8c1, grade: 2}
+  - {key: kr-depression-2024/doc_3/38, fingerprint: f06f674e8251, grade: 1}
+  - {key: kr-gad-2024/doc_3/16, fingerprint: 4f1e34a57d09, grade: 1}
+  - {key: kr-depression-2024/doc_3/27, fingerprint: 36c40cc544b0, grade: 1}
+  - {key: kr-depression-2024/doc_3/24, fingerprint: 5329ce737f56, grade: 1}
+  - {key: kr-depression-2024/doc_3/29, fingerprint: 7953bde9a5db, grade: 1}
+  - {key: kr-depression-2024/doc_3/30, fingerprint: 8f97c938c2ab, grade: 1}
+  - {key: kr-depression-2024/doc_3/35, fingerprint: a352aed52574, grade: 1}
+  - {key: kr-depression-2024/doc_3/40, fingerprint: 94912af2e0ee, grade: 1}
+  - {key: kr-depression-2024/doc_3/36, fingerprint: 7b7265cc15b4, grade: 2}
+- id: q-026
+  question: Когда психотерапию лучше назначить в сочетании с антидепрессантами, а когда она может быть основным методом лечения?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/57]
+  relevant:
+  - {key: kr-depression-2024/doc_3/57, fingerprint: 65434b6049f1, grade: 2}
+  - {key: kr-depression-2024/doc_3/55, fingerprint: 333796ccc9f7, grade: 2}
+  - {key: kr-gad-2024/doc_3/34, fingerprint: b0e34f7cf036, grade: 2}
+  - {key: kr-depression-2024/doc_3/9, fingerprint: 702384b65e74, grade: 2}
+  - {key: kr-depression-2024/doc_3/7, fingerprint: 36665ebb6735, grade: 2}
+  - {key: kr-gad-2024/doc_3/1, fingerprint: cde760ff2ece, grade: 2}
+  - {key: kr-depression-2024/doc_3/5, fingerprint: 32bd949c97ce, grade: 2}
+  - {key: kr-depression-2024/doc_3/56, fingerprint: ff279805d513, grade: 1}
+  - {key: kr-depression-2024/doc_3/58, fingerprint: 4d753e9bbae9, grade: 1}
+  - {key: kr-depression-2024/doc_3/60, fingerprint: bcf1f902a3f1, grade: 1}
+  - {key: kr-depression-2024/doc_4/1, fingerprint: 6e6c9395f337, grade: 1}
+  - {key: kr-gad-2024/doc_3/32, fingerprint: 1c0953bfc1df, grade: 1}
+  - {key: kr-gad-2024/doc_3/36, fingerprint: 75d88f5300f2, grade: 1}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 1}
+- id: q-027
+  question: Что из немедикаментозных методов можно назначить дополнительно к антидепрессантам при депрессии для ускорения эффекта?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/74]
+  relevant:
+  - {key: kr-depression-2024/doc_3/74, fingerprint: 5c493194b0ba, grade: 2}
+  - {key: kr-depression-2024/doc_3/70, fingerprint: 3b1f040deec2, grade: 2}
+  - {key: kr-depression-2024/doc_3/69, fingerprint: d6ef53ed3c4c, grade: 2}
+  - {key: kr-depression-2024/doc_3/68, fingerprint: 10405a2868d6, grade: 2}
+  - {key: kr-depression-2024/doc_3/55, fingerprint: 333796ccc9f7, grade: 2}
+  - {key: kr-depression-2024/doc_3/75, fingerprint: 23acaaa1fed8, grade: 2}
+  - {key: kr-depression-2024/doc_3/73, fingerprint: b3a76054456f, grade: 2}
+  - {key: kr-depression-2024/doc_3/77, fingerprint: c9215238a136, grade: 2}
+  - {key: kr-depression-2024/doc_3/76, fingerprint: 7cbd47dca904, grade: 2}
+  - {key: kr-depression-2024/doc_3/72, fingerprint: edc479026a44, grade: 2}
+  - {key: kr-depression-2024/doc_3/67, fingerprint: 17aae1cd335f, grade: 2}
+  - {key: kr-depression-2024/doc_3/71, fingerprint: 6eed26343448, grade: 2}
+  - {key: kr-depression-2024/doc_3/57, fingerprint: 65434b6049f1, grade: 2}
+  - {key: kr-depression-2024/doc_3/7, fingerprint: 36665ebb6735, grade: 2}
+  - {key: kr-depression-2024/doc_3/39, fingerprint: f14c2d0238d4, grade: 2}
+  - {key: kr-depression-2024/doc_3/43, fingerprint: c8183b00c8c1, grade: 2}
+  - {key: kr-depression-2024/doc_3/5, fingerprint: 32bd949c97ce, grade: 1}
+- id: q-028
+  question: Женщина 42 лет, диагноз ГТР. При беседе выяснилось, что у неё есть выраженный внутриличностный конфликт. Какой вариант психотерапии мне в этом случае рекомендовать?
+  kind: single
+  split: test
+  origin: [kr-gad-2024/doc_3/37]
+  relevant:
+  - {key: kr-gad-2024/doc_3/37, fingerprint: 832a9ed5ac95, grade: 2}
+  - {key: kr-gad-2024/doc_4/4, fingerprint: df7f5ce43521, grade: 2}
+  - {key: kr-gad-2024/doc_4/3, fingerprint: 77ba580d4113, grade: 2}
+  - {key: kr-gad-2024/doc_3/32, fingerprint: 1c0953bfc1df, grade: 1}
+  - {key: kr-gad-2024/doc_3/35, fingerprint: b08f7dadf16b, grade: 2}
+  - {key: kr-gad-2024/doc_3/36, fingerprint: 75d88f5300f2, grade: 1}
+  - {key: kr-gad-2024/doc_3/38, fingerprint: dc7fb51d73c8, grade: 2}
+  - {key: kr-gad-2024/doc_4/2, fingerprint: ad8b60aa476f, grade: 1}
+- id: q-029
+  question: Какие нежелательные явления нужно отслеживать у пациента с ГТР на фоне приёма психотропных средств?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/27]
+  relevant:
+  - {key: kr-gad-2024/doc_3/27, fingerprint: feb0f5177d42, grade: 2}
+  - {key: kr-gad-2024/doc_3/4, fingerprint: cb97a80d852d, grade: 2}
+  - {key: aviandr-ohlp/4.8/1, fingerprint: 3d991b70c68b, grade: 2}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 1}
+  - {key: kr-gad-2024/doc_3/23, fingerprint: 6664a7720bf3, grade: 1}
+  - {key: kr-gad-2024/doc_3/31, fingerprint: d7201bc74d74, grade: 1}
+  - {key: kr-gad-2024/doc_3/12, fingerprint: 580091505ec7, grade: 1}
+  - {key: aviandr-ohlp/4.2/1, fingerprint: f1faaf4ce289, grade: 1}
+  - {key: kr-depression-2024/doc_v/1, fingerprint: 0952b6d33d5a, grade: 1}
+  - {key: kr-gad-2024/doc_3/6, fingerprint: bd9cbf8cfd20, grade: 1}
+  - {key: kr-gad-2024/doc_3/8, fingerprint: 72b0b50b1d7a, grade: 1}
+- id: q-030
+  question: Женщина 42 года, после купирования депрессивного эпизода. Какие методы психотерапии показаны на этапе профилактики для снижения риска рецидивов?
+  kind: single
+  split: test
+  origin: [kr-depression-2024/doc_4/1]
+  relevant:
+  - {key: kr-depression-2024/doc_4/1, fingerprint: 6e6c9395f337, grade: 2}
+  - {key: kr-depression-2024/doc_4/2, fingerprint: cdcf15d2f937, grade: 2}
+  - {key: kr-depression-2024/doc_3/55, fingerprint: 333796ccc9f7, grade: 1}
+  - {key: kr-depression-2024/doc_3/58, fingerprint: 4d753e9bbae9, grade: 1}
+  - {key: kr-depression-2024/doc_5/1, fingerprint: afd0b68bb4e5, grade: 1}
+  - {key: kr-depression-2024/doc_3/57, fingerprint: 65434b6049f1, grade: 1}
+  - {key: kr-depression-2024/doc_3/56, fingerprint: ff279805d513, grade: 1}
+  - {key: kr-depression-2024/doc_3/54, fingerprint: 18a47974b1d2, grade: 1}
+- id: q-031
+  question: Женщина 35 лет, у неё ГТР. Стоит ли назначать ей только психотерапию или обязательно комбинировать с таблетками?
+  kind: single
+  split: test
+  origin: [kr-gad-2024/doc_3/34]
+  relevant:
+  - {key: kr-gad-2024/doc_3/34, fingerprint: b0e34f7cf036, grade: 2}
+  - {key: kr-gad-2024/doc_3/1, fingerprint: cde760ff2ece, grade: 2}
+  - {key: kr-gad-2024/doc_3/32, fingerprint: 1c0953bfc1df, grade: 2}
+  - {key: kr-gad-2024/doc_3/4, fingerprint: cb97a80d852d, grade: 1}
+  - {key: kr-gad-2024/doc_3/28, fingerprint: a0a2344ffbf0, grade: 1}
+  - {key: kr-gad-2024/doc_v/1, fingerprint: 5ab87474d912, grade: 1}
+  - {key: kr-gad-2024/doc_4/4, fingerprint: df7f5ce43521, grade: 1}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 1}
+  - {key: kr-gad-2024/doc_3/35, fingerprint: b08f7dadf16b, grade: 1}
+  - {key: kr-gad-2024/doc_3/36, fingerprint: 75d88f5300f2, grade: 2}
+  - {key: kr-gad-2024/doc_5/3, fingerprint: 19c677a154a7, grade: 1}
+- id: q-032
+  question: Какие нейролептики и в каких дозах назначают для усиления эффекта антидепрессантов при терапевтически резистентной депрессии?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/31]
+  relevant:
+  - {key: kr-depression-2024/doc_3/31, fingerprint: 5788f4fbdbd2, grade: 2}
+  - {key: kr-depression-2024/doc_3/29, fingerprint: 7953bde9a5db, grade: 2}
+  - {key: kr-depression-2024/doc_3/30, fingerprint: 8f97c938c2ab, grade: 2}
+  - {key: kr-gad-2024/doc_3/17, fingerprint: 0015b131c67c, grade: 1}
+  - {key: kr-gad-2024/doc_3/19, fingerprint: 1fcf92bb7b82, grade: 1}
+  - {key: kr-gad-2024/doc_3/22, fingerprint: d6b6fc3faad2, grade: 1}
+  - {key: kr-gad-2024/doc_3/18, fingerprint: 3b6c7a5fef68, grade: 1}
+  - {key: kr-gad-2024/doc_a3/2, fingerprint: cd785714a683, grade: 1}
+  - {key: kr-depression-2024/doc_3/33, fingerprint: 24cededbfd10, grade: 1}
+  - {key: kr-depression-2024/doc_3/34, fingerprint: 27656646aab1, grade: 1}
+  - {key: kr-gad-2024/doc_3/16, fingerprint: 4f1e34a57d09, grade: 1}
+  - {key: kr-depression-2024/doc_terms/1, fingerprint: 36fbe360049d, grade: 1}
+- id: q-033
+  question: Что важно уточнить в анамнезе при подозрении на ГТР, кроме симптомов тревоги?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_diag_2_1/8]
+  relevant:
+  - {key: kr-gad-2024/doc_diag_2_1/8, fingerprint: 5e3a971bdbae, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_1/7, fingerprint: 9778845f5247, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_1/4, fingerprint: 69b19890a64a, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_1/6, fingerprint: 8d766ec405b7, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_1/10, fingerprint: 2bc474b52393, grade: 2}
+  - {key: kr-gad-2024/doc_crat_info_1_2/1, fingerprint: 9da984823638, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_1/9, fingerprint: dddcc98311f8, grade: 1}
+  - {key: kr-gad-2024/doc_crat_info_1_6/3, fingerprint: 41c3563e9b2e, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/2, fingerprint: 10d545a92543, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/5, fingerprint: 1a770d92fbb9, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2/1, fingerprint: 18c9123e763a, grade: 1}
+  - {key: kr-gad-2024/doc_3/4, fingerprint: cb97a80d852d, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/3, fingerprint: 04fcf74e2612, grade: 1}
+- id: q-034
+  question: Какие плюсы и минусы есть у психотерапии и медикаментов при лечении тревожного расстройства?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/1]
+  relevant:
+  - {key: kr-gad-2024/doc_3/1, fingerprint: cde760ff2ece, grade: 2}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 2}
+  - {key: kr-gad-2024/doc_3/4, fingerprint: cb97a80d852d, grade: 2}
+  - {key: kr-gad-2024/doc_3/35, fingerprint: b08f7dadf16b, grade: 2}
+  - {key: kr-depression-2024/doc_3/57, fingerprint: 65434b6049f1, grade: 2}
+  - {key: kr-gad-2024/doc_3/40, fingerprint: 91e5a4ff04dc, grade: 2}
+  - {key: kr-gad-2024/doc_3/32, fingerprint: 1c0953bfc1df, grade: 1}
+  - {key: kr-gad-2024/doc_b/2, fingerprint: 5c630e4c322f, grade: 1}
+  - {key: kr-gad-2024/doc_3/39, fingerprint: 2751c971c7c4, grade: 1}
+  - {key: kr-gad-2024/doc_3/37, fingerprint: 832a9ed5ac95, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_5/1, fingerprint: 4cdcbfbfbd7e, grade: 1}
+  - {key: kr-gad-2024/doc_3/34, fingerprint: b0e34f7cf036, grade: 2}
+  - {key: kr-gad-2024/doc_3/36, fingerprint: 75d88f5300f2, grade: 1}
+  - {key: kr-gad-2024/doc_v/1, fingerprint: 5ab87474d912, grade: 1}
+- id: q-035
+  question: Пациентка, 45 лет, госпитализирована с повторным депрессивным эпизодом. Как часто и кто должен проводить осмотр и оценку эффективности лечения в условиях стационара?
+  kind: single
+  split: test
+  origin: [kr-depression-2024/doc_diag_2_1/8]
+  relevant:
+  - {key: kr-depression-2024/doc_diag_2_1/8, fingerprint: 83c279b84a73, grade: 2}
+  - {key: kr-depression-2024/doc_criteria/4, fingerprint: 4df0fe461905, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_1/7, fingerprint: 1117e3e54d2c, grade: 1}
+  - {key: kr-depression-2024/doc_criteria/2, fingerprint: 808889527c1f, grade: 1}
+  - {key: kr-depression-2024/doc_3/1, fingerprint: 8e5cc598338f, grade: 1}
+  - {key: kr-gad-2024/doc_criteria/4, fingerprint: f951a12bff35, grade: 2}
+- id: q-036
+  question: Какой препарат из четвертой линии терапии рекомендуют при ГТР, если пациент не отвечает на другие схемы лечения и есть риск зависимости?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/26]
+  relevant:
+  - {key: kr-gad-2024/doc_3/26, fingerprint: 5f9b2da8fb76, grade: 2}
+  - {key: kr-gad-2024/doc_3/25, fingerprint: 9ad41dd268e4, grade: 2}
+  - {key: kr-gad-2024/doc_3/17, fingerprint: 0015b131c67c, grade: 1}
+  - {key: kr-gad-2024/doc_3/22, fingerprint: d6b6fc3faad2, grade: 1}
+  - {key: kr-gad-2024/doc_3/18, fingerprint: 3b6c7a5fef68, grade: 1}
+  - {key: kr-gad-2024/doc_3/21, fingerprint: 4bc64241acb5, grade: 1}
+  - {key: kr-gad-2024/doc_3/19, fingerprint: 1fcf92bb7b82, grade: 1}
+  - {key: kr-gad-2024/doc_3/23, fingerprint: 6664a7720bf3, grade: 1}
+  - {key: kr-gad-2024/doc_3/20, fingerprint: 1eabb9d52e6a, grade: 1}
+  - {key: kr-gad-2024/doc_3/24, fingerprint: c4bfb4b6bb0d, grade: 1}
+  - {key: kr-gad-2024/doc_3/4, fingerprint: cb97a80d852d, grade: 1}
+  - {key: kr-gad-2024/doc_3/8, fingerprint: 72b0b50b1d7a, grade: 1}
+  - {key: kr-gad-2024/doc_3/27, fingerprint: feb0f5177d42, grade: 1}
+  - {key: kr-gad-2024/doc_3/28, fingerprint: a0a2344ffbf0, grade: 1}
+- id: q-037
+  question: Зачем назначают реабилитацию при генерализованном тревожном расстройстве?
+  kind: single
+  split: test
+  origin: [kr-gad-2024/doc_4/1]
+  relevant:
+  - {key: kr-gad-2024/doc_4/1, fingerprint: 7b0db42aae0e, grade: 2}
+  - {key: kr-depression-2024/doc_4/2, fingerprint: cdcf15d2f937, grade: 2}
+  - {key: kr-gad-2024/doc_4/3, fingerprint: 77ba580d4113, grade: 1}
+  - {key: kr-gad-2024/doc_4/4, fingerprint: df7f5ce43521, grade: 1}
+  - {key: kr-gad-2024/doc_4/2, fingerprint: ad8b60aa476f, grade: 1}
+  - {key: kr-gad-2024/doc_3/39, fingerprint: 2751c971c7c4, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_5/1, fingerprint: 4cdcbfbfbd7e, grade: 1}
+  - {key: kr-gad-2024/doc_v/2, fingerprint: 49b149b37512, grade: 1}
+  - {key: kr-gad-2024/doc_3/32, fingerprint: 1c0953bfc1df, grade: 1}
+  - {key: kr-gad-2024/doc_3/34, fingerprint: b0e34f7cf036, grade: 2}
+  - {key: kr-gad-2024/doc_3/35, fingerprint: b08f7dadf16b, grade: 2}
+  - {key: kr-gad-2024/doc_3/36, fingerprint: 75d88f5300f2, grade: 2}
+  - {key: kr-gad-2024/doc_5/3, fingerprint: 19c677a154a7, grade: 1}
+  - {key: kr-gad-2024/doc_criteria/2, fingerprint: bf0372d003e0, grade: 2}
+  - {key: kr-gad-2024/doc_v/1, fingerprint: 5ab87474d912, grade: 1}
+- id: q-038
+  question: Какой протокол и длительность курса ТМС рекомендуют при ГТР с сопутствующей депрессией, если стандартная терапия не помогла?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/40]
+  relevant:
+  - {key: kr-gad-2024/doc_3/40, fingerprint: 91e5a4ff04dc, grade: 2}
+  - {key: kr-depression-2024/doc_3/43, fingerprint: c8183b00c8c1, grade: 1}
+  - {key: kr-gad-2024/doc_3/12, fingerprint: 580091505ec7, grade: 1}
+  - {key: kr-gad-2024/doc_3/10, fingerprint: 2e85eee878a2, grade: 1}
+  - {key: kr-gad-2024/doc_3/5, fingerprint: f4ea712bf22d, grade: 1}
+- id: q-039
+  question: Что делать, если при ДЭ со смешанными чертами не помогли луразидон, зипрасидон или карипразин?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/25]
+  relevant:
+  - {key: kr-depression-2024/doc_3/25, fingerprint: 38cec1c89959, grade: 2}
+  - {key: kr-depression-2024/doc_3/46, fingerprint: 91035081d6d5, grade: 1}
+  - {key: kr-depression-2024/doc_3/26, fingerprint: d9ef7859a814, grade: 1}
+  - {key: kr-depression-2024/doc_3/37, fingerprint: 1e974f2d9980, grade: 1}
+  - {key: kr-depression-2024/doc_3/20, fingerprint: d5814462605f, grade: 1}
+- id: q-040
+  question: Пациентка 45 лет, у которой при увеличении дозы антидепрессанта выявлена плохая переносимость. По критериям современной практики, сколько последовательных курсов адекватной монотерапии разными АД считаются неэффективными для постановки диагноза терапевтически резистентной депрессии?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/24]
+  relevant:
+  - {key: kr-depression-2024/doc_3/24, fingerprint: 5329ce737f56, grade: 2}
+  - {key: kr-depression-2024/doc_terms/1, fingerprint: 36fbe360049d, grade: 2}
+  - {key: kr-depression-2024/doc_3/21, fingerprint: 5dd21744b89d, grade: 1}
+- id: q-041
+  question: Что назначают при депрессии со смешанными чертами, если пациент не принимает никаких лекарств?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/16]
+  relevant:
+  - {key: kr-depression-2024/doc_3/16, fingerprint: dbd6037af841, grade: 2}
+  - {key: kr-depression-2024/doc_3/17, fingerprint: 0878d5c6f544, grade: 2}
+  - {key: kr-depression-2024/doc_3/15, fingerprint: c9eec3f3b465, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 2}
+  - {key: kr-depression-2024/doc_3/13, fingerprint: 14cbc39d28d8, grade: 1}
+  - {key: kr-depression-2024/doc_3/57, fingerprint: 65434b6049f1, grade: 1}
+  - {key: kr-depression-2024/doc_3/46, fingerprint: 91035081d6d5, grade: 1}
+  - {key: kr-depression-2024/doc_3/20, fingerprint: d5814462605f, grade: 1}
+  - {key: kr-depression-2024/doc_3/37, fingerprint: 1e974f2d9980, grade: 2}
+- id: q-042
+  question: Когда у беременных с депрессией оправдано назначение антидепрессантов?
+  kind: single
+  split: test
+  origin: [kr-depression-2024/doc_7/2]
+  relevant:
+  - {key: kr-depression-2024/doc_7/2, fingerprint: 18c0a626faf0, grade: 2}
+  - {key: aviandr-ohlp/4.6/1, fingerprint: 7cb693c1639b, grade: 2}
+  - {key: kr-depression-2024/doc_3/57, fingerprint: 65434b6049f1, grade: 1}
+  - {key: kr-depression-2024/doc_7/1, fingerprint: 8e7685eb0489, grade: 2}
+- id: q-043
+  question: Какой метод психотерапии, сочетающий КПТ и техники осознанности, советуют применять при депрессии для улучшения результатов лечения?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/62]
+  relevant:
+  - {key: kr-depression-2024/doc_3/62, fingerprint: c03c3342a6cc, grade: 2}
+  - {key: kr-gad-2024/doc_3/36, fingerprint: 75d88f5300f2, grade: 2}
+  - {key: kr-depression-2024/doc_3/56, fingerprint: ff279805d513, grade: 1}
+  - {key: kr-depression-2024/doc_3/61, fingerprint: c4baa444a00d, grade: 1}
+  - {key: kr-depression-2024/doc_3/55, fingerprint: 333796ccc9f7, grade: 1}
+  - {key: kr-depression-2024/doc_3/58, fingerprint: 4d753e9bbae9, grade: 1}
+- id: q-044
+  question: Какие антидепрессанты рекомендуются на этапе профилактической терапии при РДР для улучшения когнитивных функций?
+  kind: single
+  split: test
+  origin: [kr-depression-2024/doc_3/51]
+  relevant:
+  - {key: kr-depression-2024/doc_3/51, fingerprint: cf51ab822691, grade: 2}
+  - {key: kr-depression-2024/doc_3/50, fingerprint: 7b50a1ff5752, grade: 1}
+  - {key: kr-depression-2024/doc_3/47, fingerprint: d18ae93ef6f2, grade: 1}
+  - {key: kr-depression-2024/doc_5/1, fingerprint: afd0b68bb4e5, grade: 1}
+  - {key: kr-depression-2024/doc_3/48, fingerprint: 9026817feb69, grade: 1}
+  - {key: kr-depression-2024/doc_3/1, fingerprint: 8e5cc598338f, grade: 1}
+  - {key: kr-depression-2024/doc_3/49, fingerprint: f41bb636c773, grade: 1}
+  - {key: kr-depression-2024/doc_3/52, fingerprint: fea4e08cb7ba, grade: 2}
+- id: q-045
+  question: Какие нейролептики и в каких дозах добавляют к антидепрессанту, если у пациента с депрессией не сработала монотерапия?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/30]
+  relevant:
+  - {key: kr-depression-2024/doc_3/30, fingerprint: 8f97c938c2ab, grade: 2}
+  - {key: kr-depression-2024/doc_3/31, fingerprint: 5788f4fbdbd2, grade: 2}
+  - {key: kr-depression-2024/doc_3/29, fingerprint: 7953bde9a5db, grade: 2}
+  - {key: kr-gad-2024/doc_3/12, fingerprint: 580091505ec7, grade: 2}
+  - {key: kr-depression-2024/doc_3/25, fingerprint: 38cec1c89959, grade: 1}
+  - {key: kr-depression-2024/doc_3/33, fingerprint: 24cededbfd10, grade: 1}
+  - {key: kr-gad-2024/doc_3/17, fingerprint: 0015b131c67c, grade: 1}
+  - {key: kr-depression-2024/doc_3/34, fingerprint: 27656646aab1, grade: 1}
+  - {key: kr-depression-2024/doc_3/37, fingerprint: 1e974f2d9980, grade: 1}
+  - {key: kr-depression-2024/doc_3/13, fingerprint: 14cbc39d28d8, grade: 1}
+  - {key: kr-gad-2024/doc_3/18, fingerprint: 3b6c7a5fef68, grade: 2}
+- id: q-046
+  question: Женщина 35 лет, у нее депрессивный эпизод с тревожностью и бессонницей, антидепрессанты не принимала. Какой препарат и в какой дозе назначить для купирования состояния?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/15]
+  relevant:
+  - {key: kr-depression-2024/doc_3/15, fingerprint: c9eec3f3b465, grade: 2}
+  - {key: kr-depression-2024/doc_a3/3, fingerprint: 16fb64458a24, grade: 2}
+  - {key: aviandr-ohlp/4.2/1, fingerprint: f1faaf4ce289, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 1}
+  - {key: kr-depression-2024/doc_3/7, fingerprint: 36665ebb6735, grade: 1}
+  - {key: kr-gad-2024/doc_a3/2, fingerprint: cd785714a683, grade: 1}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 1}
+  - {key: kr-depression-2024/doc_3/5, fingerprint: 32bd949c97ce, grade: 1}
+  - {key: kr-gad-2024/doc_3/4, fingerprint: cb97a80d852d, grade: 1}
+  - {key: kr-depression-2024/doc_3/16, fingerprint: dbd6037af841, grade: 2}
+  - {key: kr-depression-2024/doc_3/17, fingerprint: 0878d5c6f544, grade: 2}
+  - {key: kr-depression-2024/doc_3/9, fingerprint: 702384b65e74, grade: 1}
+- id: q-047
+  question: Сколько минимум по времени нужно продолжать антидепрессант пациенту с РДР после ремиссии, чтобы снизить риск рецидива?
+  kind: single
+  split: test
+  origin: [kr-depression-2024/doc_3/49]
+  relevant:
+  - {key: kr-depression-2024/doc_3/49, fingerprint: f41bb636c773, grade: 2}
+  - {key: kr-depression-2024/doc_3/47, fingerprint: d18ae93ef6f2, grade: 1}
+  - {key: kr-depression-2024/doc_3/52, fingerprint: fea4e08cb7ba, grade: 1}
+  - {key: kr-depression-2024/doc_3/1, fingerprint: 8e5cc598338f, grade: 1}
+  - {key: cipralex-ohlp/4.2/1, fingerprint: f7fed8287f68, grade: 2}
+  - {key: kr-gad-2024/doc_3/30, fingerprint: d37f8be1f94d, grade: 1}
+- id: q-048
+  question: Какой нелекарственный метод можно добавить к терапии при единичном депрессивном эпизоде для ускорения эффекта?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/76]
+  relevant:
+  - {key: kr-depression-2024/doc_3/76, fingerprint: 7cbd47dca904, grade: 2}
+  - {key: kr-depression-2024/doc_3/69, fingerprint: d6ef53ed3c4c, grade: 2}
+  - {key: kr-depression-2024/doc_3/70, fingerprint: 3b1f040deec2, grade: 2}
+  - {key: kr-depression-2024/doc_3/68, fingerprint: 10405a2868d6, grade: 2}
+  - {key: kr-depression-2024/doc_3/74, fingerprint: 5c493194b0ba, grade: 2}
+  - {key: kr-depression-2024/doc_3/73, fingerprint: b3a76054456f, grade: 2}
+  - {key: kr-depression-2024/doc_3/75, fingerprint: 23acaaa1fed8, grade: 2}
+  - {key: kr-depression-2024/doc_3/77, fingerprint: c9215238a136, grade: 2}
+  - {key: kr-depression-2024/doc_3/72, fingerprint: edc479026a44, grade: 2}
+  - {key: kr-depression-2024/doc_3/67, fingerprint: 17aae1cd335f, grade: 2}
+  - {key: kr-depression-2024/doc_3/71, fingerprint: 6eed26343448, grade: 2}
+  - {key: kr-depression-2024/doc_3/55, fingerprint: 333796ccc9f7, grade: 2}
+  - {key: kr-depression-2024/doc_3/57, fingerprint: 65434b6049f1, grade: 2}
+  - {key: kr-depression-2024/doc_3/7, fingerprint: 36665ebb6735, grade: 2}
+  - {key: kr-depression-2024/doc_3/66, fingerprint: 4483b2102521, grade: 1}
+  - {key: kr-depression-2024/doc_4/1, fingerprint: 6e6c9395f337, grade: 2}
+- id: q-049
+  question: Что нужно искать при сборе анамнеза у пациента с ГТР, чтобы правильно подобрать терапию?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_diag_2_1/7]
+  relevant:
+  - {key: kr-gad-2024/doc_diag_2_1/7, fingerprint: 9778845f5247, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_1/6, fingerprint: 8d766ec405b7, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_1/2, fingerprint: 10d545a92543, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_1/5, fingerprint: 1a770d92fbb9, grade: 2}
+  - {key: kr-gad-2024/doc_3/37, fingerprint: 832a9ed5ac95, grade: 2}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 2}
+  - {key: kr-gad-2024/doc_3/4, fingerprint: cb97a80d852d, grade: 2}
+  - {key: kr-gad-2024/doc_3/8, fingerprint: 72b0b50b1d7a, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_1/8, fingerprint: 5e3a971bdbae, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/10, fingerprint: 2bc474b52393, grade: 1}
+  - {key: kr-gad-2024/doc_3/1, fingerprint: cde760ff2ece, grade: 1}
+  - {key: kr-gad-2024/doc_3/39, fingerprint: 2751c971c7c4, grade: 1}
+  - {key: kr-gad-2024/doc_3/36, fingerprint: 75d88f5300f2, grade: 1}
+  - {key: kr-gad-2024/doc_crat_info_1_6/1, fingerprint: 475a81529409, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/3, fingerprint: 04fcf74e2612, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_1/4, fingerprint: 69b19890a64a, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_1/9, fingerprint: dddcc98311f8, grade: 1}
+- id: q-050
+  question: Как часто нужно оценивать эффективность и переносимость терапии при ГТР и по какому критерию HARS считается, что пациент ответил на лечение?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/28]
+  relevant:
+  - {key: kr-gad-2024/doc_3/28, fingerprint: a0a2344ffbf0, grade: 2}
+  - {key: kr-gad-2024/doc_3/29, fingerprint: 0df45c764eae, grade: 1}
+  - {key: kr-gad-2024/doc_3/27, fingerprint: feb0f5177d42, grade: 1}
+  - {key: kr-gad-2024/doc_criteria/2, fingerprint: bf0372d003e0, grade: 1}
+  - {key: kr-gad-2024/doc_5/3, fingerprint: 19c677a154a7, grade: 1}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 1}
+  - {key: kr-gad-2024/doc_3/31, fingerprint: d7201bc74d74, grade: 1}
+  - {key: kr-gad-2024/doc_criteria/4, fingerprint: f951a12bff35, grade: 1}
+- id: q-051
+  question: Мужчине 45 лет с ГТР, который плохо справляется с гневом и имеет травматический опыт взаимодействия с родителями. Подойдёт ли ему STPP?
+  kind: single
+  split: test
+  origin: [kr-gad-2024/doc_3/38]
+  relevant:
+  - {key: kr-gad-2024/doc_3/38, fingerprint: dc7fb51d73c8, grade: 2}
+  - {key: kr-gad-2024/doc_3/33, fingerprint: 2bb2a3e57e3a, grade: 2}
+  - {key: kr-gad-2024/doc_crat_info_1_2/2, fingerprint: a77e17e9e13b, grade: 1}
+  - {key: kr-gad-2024/doc_3/36, fingerprint: 75d88f5300f2, grade: 1}
+  - {key: kr-gad-2024/doc_3/37, fingerprint: 832a9ed5ac95, grade: 2}
+  - {key: kr-gad-2024/doc_4/3, fingerprint: 77ba580d4113, grade: 2}
+  - {key: kr-gad-2024/doc_4/4, fingerprint: df7f5ce43521, grade: 2}
+- id: q-052
+  question: Какие антипсихотики и в каких дозах добавляют к антидепрессантам при неэффективности монотерапии?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/29]
+  relevant:
+  - {key: kr-depression-2024/doc_3/29, fingerprint: 7953bde9a5db, grade: 2}
+  - {key: kr-depression-2024/doc_3/31, fingerprint: 5788f4fbdbd2, grade: 2}
+  - {key: kr-depression-2024/doc_3/30, fingerprint: 8f97c938c2ab, grade: 2}
+  - {key: kr-gad-2024/doc_3/12, fingerprint: 580091505ec7, grade: 2}
+  - {key: kr-gad-2024/doc_3/17, fingerprint: 0015b131c67c, grade: 2}
+  - {key: kr-gad-2024/doc_3/19, fingerprint: 1fcf92bb7b82, grade: 2}
+  - {key: kr-gad-2024/doc_3/18, fingerprint: 3b6c7a5fef68, grade: 2}
+  - {key: kr-gad-2024/doc_3/23, fingerprint: 6664a7720bf3, grade: 2}
+  - {key: kr-gad-2024/doc_3/22, fingerprint: d6b6fc3faad2, grade: 2}
+  - {key: kr-gad-2024/doc_3/21, fingerprint: 4bc64241acb5, grade: 2}
+  - {key: kr-depression-2024/doc_3/25, fingerprint: 38cec1c89959, grade: 1}
+  - {key: kr-depression-2024/doc_3/33, fingerprint: 24cededbfd10, grade: 1}
+  - {key: kr-depression-2024/doc_3/34, fingerprint: 27656646aab1, grade: 1}
+  - {key: kr-gad-2024/doc_a3/2, fingerprint: cd785714a683, grade: 1}
+  - {key: kr-depression-2024/doc_terms/1, fingerprint: 36fbe360049d, grade: 1}
+  - {key: kr-gad-2024/doc_3/16, fingerprint: 4f1e34a57d09, grade: 1}
+- id: q-053
+  question: Что по протоколу нужно сделать в первую очередь при подозрении на депрессивный эпизод, чтобы оценить психопатологию и суицидальный риск?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_diag_2_1/1]
+  relevant:
+  - {key: kr-depression-2024/doc_diag_2_1/1, fingerprint: db0a5cd907fb, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2_5/1, fingerprint: 06deef317895, grade: 2}
+  - {key: kr-depression-2024/doc_criteria/2, fingerprint: 808889527c1f, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2_1/3, fingerprint: 5650a51cbc78, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_1/2, fingerprint: bc6347af6292, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2/1, fingerprint: fa6894b8e3dc, grade: 1}
+  - {key: kr-depression-2024/doc_3/1, fingerprint: 8e5cc598338f, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/10, fingerprint: 2bc474b52393, grade: 1}
+  - {key: kr-depression-2024/doc_crat_info_1_6/1, fingerprint: 5d5274ea4d02, grade: 1}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 1}
+  - {key: kr-depression-2024/doc_6/1, fingerprint: 29914359d363, grade: 1}
+- id: q-054
+  question: Что из осмотра щитовидной железы нужно сделать у человека с ГТР?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_diag_2_2/3]
+  relevant:
+  - {key: kr-gad-2024/doc_diag_2_2/3, fingerprint: e6e0f10cd873, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_3/5, fingerprint: 808ef4dc45ad, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_2/1, fingerprint: 5cfa97d6f569, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_2/2, fingerprint: 9f4381736fb2, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_3/5, fingerprint: c77ae72da208, grade: 2}
+  - {key: kr-gad-2024/doc_crat_info_1_6/3, fingerprint: 41c3563e9b2e, grade: 2}
+- id: q-055
+  question: Какой объём и состав комплексной медико-психологической программы (количество сессий, длительность, методы) назначается при ГТР с сопутствующей бессонницей?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/39]
+  relevant:
+  - {key: kr-gad-2024/doc_3/39, fingerprint: 2751c971c7c4, grade: 2}
+  - {key: kr-gad-2024/doc_3/35, fingerprint: b08f7dadf16b, grade: 1}
+  - {key: kr-gad-2024/doc_3/32, fingerprint: 1c0953bfc1df, grade: 1}
+  - {key: kr-gad-2024/doc_3/36, fingerprint: 75d88f5300f2, grade: 1}
+- id: q-056
+  question: У меня пациентка 35 лет с ГТР, которая не отреагировала на СИОЗС и диазепам. Какой антипсихотик второго поколения и в каких дозах мне добавить для снижения тревоги?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/19]
+  relevant:
+  - {key: kr-gad-2024/doc_3/19, fingerprint: 1fcf92bb7b82, grade: 2}
+  - {key: kr-gad-2024/doc_3/18, fingerprint: 3b6c7a5fef68, grade: 2}
+  - {key: kr-gad-2024/doc_3/17, fingerprint: 0015b131c67c, grade: 2}
+  - {key: kr-gad-2024/doc_3/12, fingerprint: 580091505ec7, grade: 2}
+  - {key: kr-gad-2024/doc_a3/2, fingerprint: cd785714a683, grade: 2}
+  - {key: kr-depression-2024/doc_3/31, fingerprint: 5788f4fbdbd2, grade: 1}
+  - {key: kr-gad-2024/doc_3/23, fingerprint: 6664a7720bf3, grade: 2}
+- id: q-057
+  question: Какие лабораторные показатели нужно сдать при первичном осмотре и динамическом наблюдении пациента с ГТР?
+  kind: single
+  split: test
+  origin: [kr-gad-2024/doc_diag_2_3/2]
+  relevant:
+  - {key: kr-gad-2024/doc_diag_2_3/2, fingerprint: ccf04b78367a, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_3/3, fingerprint: ecf64b5fe654, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_3/5, fingerprint: 808ef4dc45ad, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_3/4, fingerprint: 319d2e20b5bd, grade: 2}
+  - {key: kr-gad-2024/doc_5/11, fingerprint: b9d1c71362d1, grade: 2}
+  - {key: kr-gad-2024/doc_5/7, fingerprint: 9f17d1116503, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_3/1, fingerprint: d2e46b71e922, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_2/2, fingerprint: 9f4381736fb2, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_3/2, fingerprint: 6b5d4ac01c80, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_3/3, fingerprint: 47a1898118a0, grade: 1}
+- id: q-058
+  question: Если у пациента с депрессивным эпизодом со смешанными чертами не наступает эффект от антидепрессантов, что делать с ними и чем заменить?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/20]
+  relevant:
+  - {key: kr-depression-2024/doc_3/20, fingerprint: d5814462605f, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 2}
+  - {key: kr-depression-2024/doc_3/26, fingerprint: d9ef7859a814, grade: 1}
+  - {key: kr-depression-2024/doc_3/46, fingerprint: 91035081d6d5, grade: 1}
+  - {key: kr-depression-2024/doc_3/25, fingerprint: 38cec1c89959, grade: 1}
+  - {key: kr-depression-2024/doc_3/19, fingerprint: 3b0d82f40b6f, grade: 1}
+  - {key: kr-depression-2024/doc_3/13, fingerprint: 14cbc39d28d8, grade: 1}
+  - {key: kr-depression-2024/doc_3/37, fingerprint: 1e974f2d9980, grade: 1}
+  - {key: kr-depression-2024/doc_3/28, fingerprint: 0435b101f378, grade: 1}
+  - {key: kr-depression-2024/doc_3/15, fingerprint: c9eec3f3b465, grade: 2}
+  - {key: kr-depression-2024/doc_3/16, fingerprint: dbd6037af841, grade: 2}
+  - {key: kr-depression-2024/doc_3/17, fingerprint: 0878d5c6f544, grade: 2}
+- id: q-059
+  question: При каких состояниях у пациента с ГТР нужно назначить регулярное наблюдение у психиатра?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_5/4]
+  relevant:
+  - {key: kr-gad-2024/doc_5/4, fingerprint: 9041dbe36862, grade: 2}
+  - {key: kr-gad-2024/doc_3/31, fingerprint: d7201bc74d74, grade: 2}
+  - {key: kr-gad-2024/doc_5/3, fingerprint: 19c677a154a7, grade: 1}
+  - {key: kr-gad-2024/doc_5/11, fingerprint: b9d1c71362d1, grade: 1}
+  - {key: kr-gad-2024/doc_5/7, fingerprint: 9f17d1116503, grade: 1}
+  - {key: kr-gad-2024/doc_3/29, fingerprint: 0df45c764eae, grade: 1}
+  - {key: kr-gad-2024/doc_5/8, fingerprint: 194ab20b8e53, grade: 1}
+  - {key: kr-gad-2024/doc_5/9, fingerprint: 1c3b18659b61, grade: 1}
+  - {key: kr-gad-2024/doc_5/10, fingerprint: 3589b85edb00, grade: 1}
+  - {key: kr-gad-2024/doc_3/27, fingerprint: feb0f5177d42, grade: 1}
+  - {key: kr-gad-2024/doc_5/6, fingerprint: ca81e45f8338, grade: 1}
+- id: q-060
+  question: Что делать, если у пациента с депрессией не помогает ни один консервативный метод? Есть ли хирургические варианты?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/64]
+  relevant:
+  - {key: kr-depression-2024/doc_3/64, fingerprint: bc2983d8722f, grade: 2}
+  - {key: kr-depression-2024/doc_3/65, fingerprint: 66ea1db0c22f, grade: 2}
+  - {key: kr-depression-2024/doc_3/63, fingerprint: 76c283e2cab8, grade: 1}
+  - {key: kr-depression-2024/doc_3/45, fingerprint: 3718686f4276, grade: 1}
+  - {key: kr-depression-2024/doc_3/39, fingerprint: f14c2d0238d4, grade: 2}
+  - {key: kr-depression-2024/doc_3/46, fingerprint: 91035081d6d5, grade: 2}
+- id: q-061
+  question: Мужчина 58 лет, гипертония. Поставили рекуррентное депрессивное расстройство. Что обязательно уточнить в анамнезе, чтобы исключить соматические причины и влияние лекарств?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_diag_2_1/6]
+  relevant:
+  - {key: kr-depression-2024/doc_diag_2_1/6, fingerprint: 9814ff7c0718, grade: 2}
+  - {key: kr-gad-2024/doc_crat_info_1_6/3, fingerprint: 41c3563e9b2e, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2_2/1, fingerprint: d14375118546, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_5/4, fingerprint: f590fe8387d2, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_5/3, fingerprint: 8760ef2b6bd0, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_3/2, fingerprint: 6b5d4ac01c80, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_4/2, fingerprint: 0aa7fdd55826, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_3/3, fingerprint: 47a1898118a0, grade: 1}
+- id: q-062
+  question: Какой метод стимуляции мозга назначают при депрессии, если не помогли первые три линии терапии, и чем он отличается от ЭСТ по влиянию на память?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/44]
+  relevant:
+  - {key: kr-depression-2024/doc_3/44, fingerprint: cd92a2d2ce53, grade: 2}
+  - {key: kr-depression-2024/doc_3/45, fingerprint: 3718686f4276, grade: 1}
+  - {key: kr-depression-2024/doc_3/43, fingerprint: c8183b00c8c1, grade: 1}
+  - {key: kr-depression-2024/doc_3/39, fingerprint: f14c2d0238d4, grade: 1}
+  - {key: kr-depression-2024/doc_3/65, fingerprint: 66ea1db0c22f, grade: 2}
+- id: q-063
+  question: Какие инструментальные исследования нужно сделать перед лечением при депрессии?
+  kind: single
+  split: test
+  origin: [kr-depression-2024/doc_diag_2_4/2]
+  relevant:
+  - {key: kr-depression-2024/doc_diag_2_4/2, fingerprint: 0aa7fdd55826, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2_4/1, fingerprint: 8d5144f988db, grade: 1}
+- id: q-064
+  question: Если на фоне приёма антидепрессанта за месяц симптоматика ушла лишь наполовину, что делать с трициклическим препаратом?
+  kind: single
+  split: test
+  origin: [kr-depression-2024/doc_3/23]
+  relevant:
+  - {key: kr-depression-2024/doc_3/23, fingerprint: 961052c08a6b, grade: 2}
+  - {key: kr-gad-2024/doc_3/11, fingerprint: 019d01959f48, grade: 2}
+  - {key: kr-gad-2024/doc_3/7, fingerprint: 9012b2889b39, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 1}
+  - {key: kr-depression-2024/doc_3/24, fingerprint: 5329ce737f56, grade: 1}
+  - {key: kr-depression-2024/doc_3/21, fingerprint: 5dd21744b89d, grade: 1}
+  - {key: kr-depression-2024/doc_3/22, fingerprint: 6c66f9d51b64, grade: 1}
+  - {key: kr-depression-2024/doc_3/35, fingerprint: a352aed52574, grade: 1}
+  - {key: kr-depression-2024/doc_3/31, fingerprint: 5788f4fbdbd2, grade: 1}
+  - {key: kr-depression-2024/doc_3/29, fingerprint: 7953bde9a5db, grade: 1}
+  - {key: kr-depression-2024/doc_3/30, fingerprint: 8f97c938c2ab, grade: 1}
+  - {key: kr-depression-2024/doc_3/34, fingerprint: 27656646aab1, grade: 1}
+  - {key: kr-depression-2024/doc_3/36, fingerprint: 7b7265cc15b4, grade: 1}
+  - {key: kr-depression-2024/doc_3/33, fingerprint: 24cededbfd10, grade: 1}
+  - {key: kr-depression-2024/doc_3/7, fingerprint: 36665ebb6735, grade: 2}
+- id: q-065
+  question: Если на фоне приёма антидепрессанта у пациента с депрессивным эпизодом усиливаются гипоманиакальные симптомы, что делать с препаратом, чтобы не допустить инверсии фазы?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/19]
+  relevant:
+  - {key: kr-depression-2024/doc_3/19, fingerprint: 3b0d82f40b6f, grade: 2}
+  - {key: kr-depression-2024/doc_3/20, fingerprint: d5814462605f, grade: 2}
+  - {key: kr-depression-2024/doc_3/13, fingerprint: 14cbc39d28d8, grade: 2}
+  - {key: kr-depression-2024/doc_3/14, fingerprint: b4f2127d88a0, grade: 2}
+  - {key: kr-depression-2024/doc_b/2, fingerprint: 56604cae17d4, grade: 1}
+  - {key: kr-gad-2024/doc_b/3, fingerprint: b58d5d694b12, grade: 1}
+  - {key: kr-depression-2024/doc_3/53, fingerprint: d107d77db7ab, grade: 1}
+  - {key: kr-depression-2024/doc_3/26, fingerprint: d9ef7859a814, grade: 1}
+  - {key: kr-depression-2024/doc_3/31, fingerprint: 5788f4fbdbd2, grade: 1}
+  - {key: kr-depression-2024/doc_3/28, fingerprint: 0435b101f378, grade: 1}
+  - {key: cipralex-ohlp/4.4/1, fingerprint: a61924d3a689, grade: 2}
+  - {key: kr-depression-2024/doc_3/18, fingerprint: 725e53ee8a01, grade: 2}
+- id: q-066
+  question: Нужно ли при постановке диагноза депрессивного эпизода проверять наличие симптомов, указывающих на смешанное состояние?
+  kind: single
+  split: test
+  origin: [kr-depression-2024/doc_diag_2_1/4]
+  relevant:
+  - {key: kr-depression-2024/doc_diag_2_1/4, fingerprint: 48e79be56328, grade: 2}
+  - {key: kr-depression-2024/doc_crat_info_1_1/1, fingerprint: 4aab0f772db4, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2_1/5, fingerprint: f1759e17a35a, grade: 1}
+  - {key: kr-depression-2024/doc_crat_info_1_6/2, fingerprint: 5fba78c69026, grade: 1}
+  - {key: kr-depression-2024/doc_crat_info_1_6/1, fingerprint: 5d5274ea4d02, grade: 1}
+  - {key: kr-depression-2024/doc_3/14, fingerprint: b4f2127d88a0, grade: 1}
+- id: q-067
+  question: Женщина 35 лет, умеренная депрессия. Какие антидепрессанты назначают в первую очередь, а какие считаются препаратами второго выбора из-за плохой переносимости?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/7]
+  relevant:
+  - {key: kr-depression-2024/doc_3/7, fingerprint: 36665ebb6735, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 1}
+  - {key: kr-depression-2024/doc_3/9, fingerprint: 702384b65e74, grade: 1}
+  - {key: kr-depression-2024/doc_a3/3, fingerprint: 16fb64458a24, grade: 1}
+  - {key: kr-depression-2024/doc_3/21, fingerprint: 5dd21744b89d, grade: 1}
+  - {key: kr-depression-2024/doc_a3/5, fingerprint: 093f2f500c6b, grade: 1}
+  - {key: kr-depression-2024/doc_3/24, fingerprint: 5329ce737f56, grade: 1}
+  - {key: kr-depression-2024/doc_3/5, fingerprint: 32bd949c97ce, grade: 2}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 1}
+  - {key: kr-gad-2024/doc_3/5, fingerprint: f4ea712bf22d, grade: 1}
+  - {key: kr-gad-2024/doc_3/9, fingerprint: 4ae295176503, grade: 1}
+- id: q-068
+  question: У меня ГТР, в анамнезе была ЧМТ. Когда мне нужно делать МРТ головного мозга?
+  kind: single
+  split: test
+  origin: [kr-gad-2024/doc_diag_2_4/4]
+  relevant:
+  - {key: kr-gad-2024/doc_diag_2_4/4, fingerprint: 823d9394378a, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2_4/2, fingerprint: 0aa7fdd55826, grade: 1}
+  - {key: kr-gad-2024/doc_crat_info_1_6/3, fingerprint: 41c3563e9b2e, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_2/1, fingerprint: 5cfa97d6f569, grade: 1}
+- id: q-069
+  question: Женщина 35 лет, у неё депрессивный эпизод с тревожностью и бессонницей, антидепрессанты не принимала. Какой препарат и в какой дозе назначить для купирования?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/17]
+  relevant:
+  - {key: kr-depression-2024/doc_3/17, fingerprint: 0878d5c6f544, grade: 2}
+  - {key: kr-depression-2024/doc_3/16, fingerprint: dbd6037af841, grade: 2}
+  - {key: kr-depression-2024/doc_a3/3, fingerprint: 16fb64458a24, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 1}
+  - {key: kr-depression-2024/doc_3/7, fingerprint: 36665ebb6735, grade: 1}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 1}
+  - {key: kr-gad-2024/doc_a3/2, fingerprint: cd785714a683, grade: 1}
+  - {key: kr-depression-2024/doc_3/5, fingerprint: 32bd949c97ce, grade: 1}
+  - {key: kr-depression-2024/doc_3/9, fingerprint: 702384b65e74, grade: 2}
+  - {key: kr-gad-2024/doc_3/4, fingerprint: cb97a80d852d, grade: 1}
+- id: q-070
+  question: Какие антидепрессанты и в каких дозах назначают при резистентном ГТР, если стандартная терапия не дала эффекта?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/24]
+  relevant:
+  - {key: kr-gad-2024/doc_3/24, fingerprint: c4bfb4b6bb0d, grade: 2}
+  - {key: kr-gad-2024/doc_3/11, fingerprint: 019d01959f48, grade: 2}
+  - {key: kr-gad-2024/doc_3/17, fingerprint: 0015b131c67c, grade: 1}
+  - {key: kr-gad-2024/doc_3/18, fingerprint: 3b6c7a5fef68, grade: 1}
+  - {key: kr-gad-2024/doc_3/22, fingerprint: d6b6fc3faad2, grade: 1}
+  - {key: kr-gad-2024/doc_3/12, fingerprint: 580091505ec7, grade: 1}
+  - {key: kr-gad-2024/doc_3/19, fingerprint: 1fcf92bb7b82, grade: 1}
+  - {key: kr-gad-2024/doc_3/21, fingerprint: 4bc64241acb5, grade: 1}
+  - {key: kr-gad-2024/doc_3/10, fingerprint: 2e85eee878a2, grade: 1}
+  - {key: kr-gad-2024/doc_3/16, fingerprint: 4f1e34a57d09, grade: 1}
+  - {key: kr-gad-2024/doc_3/20, fingerprint: 1eabb9d52e6a, grade: 1}
+  - {key: kr-gad-2024/doc_3/23, fingerprint: 6664a7720bf3, grade: 1}
+  - {key: kr-depression-2024/doc_3/31, fingerprint: 5788f4fbdbd2, grade: 1}
+  - {key: kr-gad-2024/doc_3/6, fingerprint: bd9cbf8cfd20, grade: 1}
+- id: q-071
+  question: Мужчина 45 лет, поставлен диагноз генерализованное тревожное расстройство. Какие анализы на инфекции нужно сдать при первичном обследании и как часто повторять их в дальнейшем?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_diag_2_3/4]
+  relevant:
+  - {key: kr-gad-2024/doc_diag_2_3/4, fingerprint: 319d2e20b5bd, grade: 2}
+  - {key: kr-gad-2024/doc_5/7, fingerprint: 9f17d1116503, grade: 1}
+  - {key: kr-gad-2024/doc_a3/1, fingerprint: 80da83b09fb3, grade: 1}
+  - {key: kr-gad-2024/doc_5/11, fingerprint: b9d1c71362d1, grade: 1}
+  - {key: kr-gad-2024/doc_5/10, fingerprint: 3589b85edb00, grade: 1}
+- id: q-072
+  question: Что именно нужно проверить при осмотре пациента с генерализованной тревогой, чтобы исключить соматические причины и оценить его состояние?
+  kind: single
+  split: test
+  origin: [kr-gad-2024/doc_diag_2_2/2]
+  relevant:
+  - {key: kr-gad-2024/doc_diag_2_2/2, fingerprint: 9f4381736fb2, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_2/1, fingerprint: 5cfa97d6f569, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_2/3, fingerprint: e6e0f10cd873, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_4/5, fingerprint: 4b8652e93254, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_3/2, fingerprint: ccf04b78367a, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_2/4, fingerprint: 5203ac4cdc15, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_3/5, fingerprint: 808ef4dc45ad, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_2/5, fingerprint: 75ae07ff9eb8, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_3/3, fingerprint: ecf64b5fe654, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_4/3, fingerprint: 00352272fbd3, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_5/1, fingerprint: 4cdcbfbfbd7e, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_1/2, fingerprint: 10d545a92543, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/7, fingerprint: 9778845f5247, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/6, fingerprint: 8d766ec405b7, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/5, fingerprint: 1a770d92fbb9, grade: 1}
+  - {key: kr-gad-2024/doc_v/1, fingerprint: 5ab87474d912, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_4/2, fingerprint: 0a70d3ea00c9, grade: 1}
+  - {key: kr-gad-2024/doc_crat_info_1_6/3, fingerprint: 41c3563e9b2e, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_3/1, fingerprint: d2e46b71e922, grade: 1}
+- id: q-073
+  question: Женщина 32 года, без контрацепции, с РДР. Какие доп. консультации и тесты перед стартом терапии?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_diag_2_5/3]
+  relevant:
+  - {key: kr-depression-2024/doc_diag_2_5/3, fingerprint: 8760ef2b6bd0, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2_5/4, fingerprint: f590fe8387d2, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2_4/2, fingerprint: 0aa7fdd55826, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_3/3, fingerprint: 47a1898118a0, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_3/2, fingerprint: 6b5d4ac01c80, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_3/5, fingerprint: c77ae72da208, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_3/4, fingerprint: 9d817046137d, grade: 1}
+  - {key: kr-depression-2024/doc_3/1, fingerprint: 8e5cc598338f, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_5/2, fingerprint: 172551e07a89, grade: 1}
+- id: q-074
+  question: Какие конкретные техники и направления КПТ рекомендуются для терапии ГТР, и как обстоят дела с дистанционными форматами?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/36]
+  relevant:
+  - {key: kr-gad-2024/doc_3/36, fingerprint: 75d88f5300f2, grade: 2}
+  - {key: kr-gad-2024/doc_3/39, fingerprint: 2751c971c7c4, grade: 2}
+  - {key: kr-depression-2024/doc_3/55, fingerprint: 333796ccc9f7, grade: 1}
+  - {key: kr-depression-2024/doc_3/58, fingerprint: 4d753e9bbae9, grade: 1}
+  - {key: kr-gad-2024/doc_3/1, fingerprint: cde760ff2ece, grade: 1}
+  - {key: kr-gad-2024/doc_3/34, fingerprint: b0e34f7cf036, grade: 1}
+  - {key: kr-gad-2024/doc_3/38, fingerprint: dc7fb51d73c8, grade: 2}
+- id: q-075
+  question: Если после курса СИОЗС или СИОЗСН у пациента с ГТР симптомы только частично снизились, что делать с дозировкой и сколько продолжать лечение?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/7]
+  relevant:
+  - {key: kr-gad-2024/doc_3/7, fingerprint: 9012b2889b39, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 2}
+  - {key: kr-gad-2024/doc_3/31, fingerprint: d7201bc74d74, grade: 1}
+  - {key: kr-gad-2024/doc_3/30, fingerprint: d37f8be1f94d, grade: 1}
+  - {key: kr-gad-2024/doc_b/2, fingerprint: 5c630e4c322f, grade: 1}
+  - {key: aviandr-ohlp/4.2/1, fingerprint: f1faaf4ce289, grade: 1}
+  - {key: kr-gad-2024/doc_3/1, fingerprint: cde760ff2ece, grade: 1}
+  - {key: kr-gad-2024/doc_3/28, fingerprint: a0a2344ffbf0, grade: 2}
+  - {key: kr-gad-2024/doc_3/29, fingerprint: 0df45c764eae, grade: 1}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 1}
+- id: q-076
+  question: Женщина 58 лет, у нее рекуррентное депрессивное расстройство, не отреагировала на три линии антидепрессантов. Есть ли у нее показания к ЭСТ на этом этапе, учитывая, что недавно перенесла инфаркт миокарда?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/39]
+  relevant:
+  - {key: kr-depression-2024/doc_3/39, fingerprint: f14c2d0238d4, grade: 2}
+  - {key: kr-depression-2024/doc_3/10, fingerprint: 841ca6bea3a8, grade: 1}
+  - {key: kr-depression-2024/doc_3/27, fingerprint: 36c40cc544b0, grade: 1}
+  - {key: kr-depression-2024/doc_3/41, fingerprint: 524db19e1ccc, grade: 1}
+  - {key: kr-depression-2024/doc_3/46, fingerprint: 91035081d6d5, grade: 2}
+- id: q-077
+  question: У меня рекуррентная депрессия, на фоне приёма антидепрессанта симптомы не ушли. Какую дозу карбоната лития и какой целевой уровень в крови нужно держать, чтобы усилить эффект? И что за побочки могут быть, если я ещё пью L-триптофан?
+  kind: single
+  split: test
+  origin: [kr-depression-2024/doc_3/32]
+  relevant:
+  - {key: kr-depression-2024/doc_3/32, fingerprint: e437155ee314, grade: 2}
+  - {key: kr-depression-2024/doc_3/26, fingerprint: d9ef7859a814, grade: 1}
+- id: q-078
+  question: Какие анализы на инфекции нужно сдать пациенту при постановке диагноза депрессии?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_diag_2_3/4]
+  relevant:
+  - {key: kr-depression-2024/doc_diag_2_3/4, fingerprint: 9d817046137d, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_3/4, fingerprint: 319d2e20b5bd, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_1/6, fingerprint: 9814ff7c0718, grade: 1}
+- id: q-079
+  question: Что назначать при ГТР, если антидепрессанты и бензодиазепины не помогли, и как выводить дозу кветиапина?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/12]
+  relevant:
+  - {key: kr-gad-2024/doc_3/12, fingerprint: 580091505ec7, grade: 2}
+  - {key: kr-gad-2024/doc_3/5, fingerprint: f4ea712bf22d, grade: 2}
+  - {key: kr-gad-2024/doc_3/17, fingerprint: 0015b131c67c, grade: 1}
+  - {key: kr-gad-2024/doc_3/18, fingerprint: 3b6c7a5fef68, grade: 1}
+  - {key: kr-gad-2024/doc_3/19, fingerprint: 1fcf92bb7b82, grade: 1}
+  - {key: kr-gad-2024/doc_3/22, fingerprint: d6b6fc3faad2, grade: 1}
+  - {key: kr-gad-2024/doc_3/21, fingerprint: 4bc64241acb5, grade: 1}
+  - {key: kr-gad-2024/doc_3/23, fingerprint: 6664a7720bf3, grade: 1}
+  - {key: kr-gad-2024/doc_3/24, fingerprint: c4bfb4b6bb0d, grade: 1}
+  - {key: kr-depression-2024/doc_3/31, fingerprint: 5788f4fbdbd2, grade: 1}
+  - {key: kr-gad-2024/doc_a3/2, fingerprint: cd785714a683, grade: 1}
+  - {key: kr-gad-2024/doc_3/9, fingerprint: 4ae295176503, grade: 2}
+- id: q-080
+  question: Что делать, если через месяц терапии антидепрессантом эффект неполный?
+  kind: single
+  split: test
+  origin: [kr-depression-2024/doc_3/22]
+  relevant:
+  - {key: kr-depression-2024/doc_3/22, fingerprint: 6c66f9d51b64, grade: 2}
+  - {key: kr-depression-2024/doc_3/23, fingerprint: 961052c08a6b, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 2}
+  - {key: kr-depression-2024/doc_3/24, fingerprint: 5329ce737f56, grade: 2}
+  - {key: kr-gad-2024/doc_3/7, fingerprint: 9012b2889b39, grade: 2}
+  - {key: kr-gad-2024/doc_b/2, fingerprint: 5c630e4c322f, grade: 2}
+  - {key: kr-gad-2024/doc_3/5, fingerprint: f4ea712bf22d, grade: 2}
+  - {key: kr-depression-2024/doc_3/31, fingerprint: 5788f4fbdbd2, grade: 2}
+  - {key: kr-depression-2024/doc_3/21, fingerprint: 5dd21744b89d, grade: 1}
+  - {key: kr-gad-2024/doc_3/6, fingerprint: bd9cbf8cfd20, grade: 1}
+  - {key: kr-depression-2024/doc_3/27, fingerprint: 36c40cc544b0, grade: 1}
+  - {key: kr-depression-2024/doc_3/34, fingerprint: 27656646aab1, grade: 1}
+  - {key: kr-depression-2024/doc_3/33, fingerprint: 24cededbfd10, grade: 1}
+  - {key: kr-depression-2024/doc_3/35, fingerprint: a352aed52574, grade: 1}
+  - {key: kr-depression-2024/doc_terms/1, fingerprint: 36fbe360049d, grade: 1}
+  - {key: kr-gad-2024/doc_3/11, fingerprint: 019d01959f48, grade: 2}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 1}
+- id: q-081
+  question: Женщина 58 лет, РДР. Не переносит литий и СИОЗС. Чем можно прикрыть от рецидивов?
+  kind: single
+  split: test
+  origin: [kr-depression-2024/doc_3/52]
+  relevant:
+  - {key: kr-depression-2024/doc_3/52, fingerprint: fea4e08cb7ba, grade: 2}
+  - {key: kr-depression-2024/doc_5/1, fingerprint: afd0b68bb4e5, grade: 1}
+  - {key: kr-depression-2024/doc_3/47, fingerprint: d18ae93ef6f2, grade: 1}
+  - {key: kr-depression-2024/doc_3/1, fingerprint: 8e5cc598338f, grade: 1}
+  - {key: kr-depression-2024/doc_3/55, fingerprint: 333796ccc9f7, grade: 1}
+  - {key: kr-depression-2024/doc_3/49, fingerprint: f41bb636c773, grade: 1}
+  - {key: kr-depression-2024/doc_3/7, fingerprint: 36665ebb6735, grade: 1}
+- id: q-082
+  question: Женщина 35 лет с ГТР. Что искать при физикальном осмотре, чтобы исключить влияние ПАВ на тревожную симптоматику?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_diag_2_2/5]
+  relevant:
+  - {key: kr-gad-2024/doc_diag_2_2/5, fingerprint: 75ae07ff9eb8, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2_2/1, fingerprint: d14375118546, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2/2, fingerprint: d48d288477c2, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_2/2, fingerprint: 9f4381736fb2, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/6, fingerprint: 8d766ec405b7, grade: 1}
+  - {key: kr-gad-2024/doc_crat_info_1_6/3, fingerprint: 41c3563e9b2e, grade: 1}
+  - {key: kr-gad-2024/doc_3/4, fingerprint: cb97a80d852d, grade: 2}
+  - {key: kr-gad-2024/doc_crat_info_1_6/2, fingerprint: 0d9bca1bebe0, grade: 1}
+- id: q-083
+  question: Если у пациента с депрессивным эпизодом со смешанными чертами не сработала монотерапия антидепрессантом, что по рекомендациям делать дальше для купирования?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/26]
+  relevant:
+  - {key: kr-depression-2024/doc_3/26, fingerprint: d9ef7859a814, grade: 2}
+  - {key: kr-depression-2024/doc_3/20, fingerprint: d5814462605f, grade: 2}
+  - {key: kr-depression-2024/doc_3/29, fingerprint: 7953bde9a5db, grade: 2}
+  - {key: kr-depression-2024/doc_3/36, fingerprint: 7b7265cc15b4, grade: 2}
+  - {key: kr-depression-2024/doc_3/25, fingerprint: 38cec1c89959, grade: 1}
+  - {key: kr-depression-2024/doc_3/46, fingerprint: 91035081d6d5, grade: 1}
+  - {key: kr-depression-2024/doc_3/37, fingerprint: 1e974f2d9980, grade: 1}
+  - {key: kr-depression-2024/doc_3/13, fingerprint: 14cbc39d28d8, grade: 1}
+  - {key: kr-depression-2024/doc_3/30, fingerprint: 8f97c938c2ab, grade: 2}
+  - {key: kr-depression-2024/doc_3/34, fingerprint: 27656646aab1, grade: 2}
+- id: q-084
+  question: Что назначают при ГТР, если не помогли средства первой и второй линии?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/15]
+  relevant:
+  - {key: kr-gad-2024/doc_3/15, fingerprint: 2fb26170ba7b, grade: 2}
+  - {key: kr-gad-2024/doc_3/9, fingerprint: 4ae295176503, grade: 2}
+  - {key: kr-gad-2024/doc_3/17, fingerprint: 0015b131c67c, grade: 2}
+  - {key: kr-gad-2024/doc_3/18, fingerprint: 3b6c7a5fef68, grade: 2}
+  - {key: kr-gad-2024/doc_3/13, fingerprint: 913fdf6ff5c9, grade: 2}
+  - {key: kr-gad-2024/doc_3/22, fingerprint: d6b6fc3faad2, grade: 2}
+  - {key: kr-gad-2024/doc_3/14, fingerprint: df64869d6fa4, grade: 2}
+  - {key: kr-gad-2024/doc_3/21, fingerprint: 4bc64241acb5, grade: 2}
+  - {key: kr-gad-2024/doc_3/19, fingerprint: 1fcf92bb7b82, grade: 2}
+  - {key: kr-gad-2024/doc_3/23, fingerprint: 6664a7720bf3, grade: 2}
+  - {key: kr-gad-2024/doc_3/26, fingerprint: 5f9b2da8fb76, grade: 2}
+  - {key: kr-gad-2024/doc_3/8, fingerprint: 72b0b50b1d7a, grade: 2}
+  - {key: kr-gad-2024/doc_3/6, fingerprint: bd9cbf8cfd20, grade: 1}
+  - {key: kr-gad-2024/doc_3/5, fingerprint: f4ea712bf22d, grade: 2}
+- id: q-085
+  question: Если у пациента с ГТР не наблюдается улучшения после первого курса лечения, что нужно проверить в первую очередь и как помочь ему с соблюдением режима приёма?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/6]
+  relevant:
+  - {key: kr-gad-2024/doc_3/6, fingerprint: bd9cbf8cfd20, grade: 2}
+  - {key: kr-depression-2024/doc_v/1, fingerprint: 0952b6d33d5a, grade: 2}
+  - {key: kr-gad-2024/doc_3/16, fingerprint: 4f1e34a57d09, grade: 2}
+  - {key: kr-gad-2024/doc_3/28, fingerprint: a0a2344ffbf0, grade: 1}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 1}
+  - {key: kr-depression-2024/doc_3/21, fingerprint: 5dd21744b89d, grade: 1}
+  - {key: kr-gad-2024/doc_3/7, fingerprint: 9012b2889b39, grade: 1}
+  - {key: kr-gad-2024/doc_v/2, fingerprint: 49b149b37512, grade: 1}
+  - {key: kr-gad-2024/doc_3/27, fingerprint: feb0f5177d42, grade: 1}
+  - {key: kr-gad-2024/doc_3/5, fingerprint: f4ea712bf22d, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_5/1, fingerprint: 4cdcbfbfbd7e, grade: 1}
+  - {key: aviandr-ohlp/4.2/1, fingerprint: f1faaf4ce289, grade: 1}
+  - {key: kr-gad-2024/doc_3/31, fingerprint: d7201bc74d74, grade: 1}
+  - {key: kr-gad-2024/doc_3/4, fingerprint: cb97a80d852d, grade: 1}
+- id: q-086
+  question: Какие показатели входят в общетерапевтический биохимический анализ крови, который назначают при ГТР?
+  kind: single
+  split: test
+  origin: [kr-gad-2024/doc_diag_2_3/3]
+  relevant:
+  - {key: kr-gad-2024/doc_diag_2_3/3, fingerprint: ecf64b5fe654, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_3/1, fingerprint: d2e46b71e922, grade: 2}
+- id: q-087
+  question: Когда при генерализованной тревоге назначают ТДДС сосудов головы?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_diag_2_4/3]
+  relevant:
+  - {key: kr-gad-2024/doc_diag_2_4/3, fingerprint: 00352272fbd3, grade: 2}
+- id: q-088
+  question: У меня ГТР, СИОЗС и бензодиазепины не помогли. Что назначить для быстрого снятия тревоги?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/13]
+  relevant:
+  - {key: kr-gad-2024/doc_3/13, fingerprint: 913fdf6ff5c9, grade: 2}
+  - {key: kr-gad-2024/doc_3/22, fingerprint: d6b6fc3faad2, grade: 2}
+  - {key: kr-gad-2024/doc_3/21, fingerprint: 4bc64241acb5, grade: 2}
+  - {key: kr-gad-2024/doc_3/23, fingerprint: 6664a7720bf3, grade: 2}
+  - {key: kr-gad-2024/doc_3/18, fingerprint: 3b6c7a5fef68, grade: 2}
+  - {key: kr-gad-2024/doc_3/17, fingerprint: 0015b131c67c, grade: 2}
+  - {key: kr-gad-2024/doc_3/19, fingerprint: 1fcf92bb7b82, grade: 2}
+  - {key: kr-gad-2024/doc_3/26, fingerprint: 5f9b2da8fb76, grade: 2}
+  - {key: kr-gad-2024/doc_3/12, fingerprint: 580091505ec7, grade: 2}
+  - {key: kr-gad-2024/doc_3/25, fingerprint: 9ad41dd268e4, grade: 2}
+  - {key: kr-gad-2024/doc_3/8, fingerprint: 72b0b50b1d7a, grade: 2}
+  - {key: kr-gad-2024/doc_3/4, fingerprint: cb97a80d852d, grade: 2}
+- id: q-089
+  question: Какие обязательные шаги нужно выполнить при выявлении депрессивной симптоматики для уточнения диагноза, и какие шкалы рекомендованы для оценки тяжести состояния?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_diag_2_1/3]
+  relevant:
+  - {key: kr-depression-2024/doc_diag_2_1/3, fingerprint: 5650a51cbc78, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2/1, fingerprint: fa6894b8e3dc, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_5/1, fingerprint: 06deef317895, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_1/6, fingerprint: 9814ff7c0718, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2/2, fingerprint: 1d472ce440a8, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_1/2, fingerprint: bc6347af6292, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_1/5, fingerprint: f1759e17a35a, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_2/1, fingerprint: d14375118546, grade: 1}
+- id: q-090
+  question: У меня пациентка 45 лет с ГТР. СИОЗС и бензодиазепины не помогли, тревога всё ещё сильная. Что можно добавить для быстрого снятия симптомов?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/21]
+  relevant:
+  - {key: kr-gad-2024/doc_3/21, fingerprint: 4bc64241acb5, grade: 2}
+  - {key: kr-gad-2024/doc_3/22, fingerprint: d6b6fc3faad2, grade: 2}
+  - {key: kr-gad-2024/doc_3/23, fingerprint: 6664a7720bf3, grade: 2}
+  - {key: kr-gad-2024/doc_3/18, fingerprint: 3b6c7a5fef68, grade: 2}
+  - {key: kr-gad-2024/doc_3/17, fingerprint: 0015b131c67c, grade: 2}
+  - {key: kr-gad-2024/doc_3/26, fingerprint: 5f9b2da8fb76, grade: 2}
+  - {key: kr-gad-2024/doc_3/19, fingerprint: 1fcf92bb7b82, grade: 2}
+  - {key: kr-gad-2024/doc_3/12, fingerprint: 580091505ec7, grade: 2}
+  - {key: kr-gad-2024/doc_3/25, fingerprint: 9ad41dd268e4, grade: 2}
+  - {key: kr-gad-2024/doc_3/13, fingerprint: 913fdf6ff5c9, grade: 2}
+  - {key: kr-gad-2024/doc_3/14, fingerprint: df64869d6fa4, grade: 2}
+  - {key: kr-gad-2024/doc_3/4, fingerprint: cb97a80d852d, grade: 2}
+- id: q-091
+  question: Какой минимальный срок эпизодов тревоги нужен для постановки диагноза генерализованного тревожного расстройства?
+  kind: single
+  split: test
+  origin: [kr-gad-2024/doc_diag_2_1/4]
+  relevant:
+  - {key: kr-gad-2024/doc_diag_2_1/4, fingerprint: 69b19890a64a, grade: 2}
+  - {key: kr-gad-2024/doc_crat_info_1_1/1, fingerprint: dca1004273c9, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2/1, fingerprint: 18c9123e763a, grade: 2}
+  - {key: kr-gad-2024/doc_crat_info_1_6/1, fingerprint: 475a81529409, grade: 2}
+- id: q-092
+  question: Как правильно титровать дозу антидепрессанта при решении завершить курс терапии, чтобы избежать синдрома отмены?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/31]
+  relevant:
+  - {key: kr-gad-2024/doc_3/31, fingerprint: d7201bc74d74, grade: 2}
+  - {key: kr-depression-2024/doc_3/53, fingerprint: d107d77db7ab, grade: 2}
+  - {key: kr-depression-2024/doc_b/2, fingerprint: 56604cae17d4, grade: 2}
+  - {key: kr-gad-2024/doc_b/3, fingerprint: b58d5d694b12, grade: 2}
+  - {key: kr-depression-2024/doc_3/52, fingerprint: fea4e08cb7ba, grade: 1}
+  - {key: cipralex-ohlp/4.2/2, fingerprint: 46898baeb3a9, grade: 2}
+  - {key: cipralex-ohlp/4.8/5, fingerprint: cc5b34ec274d, grade: 2}
+- id: q-093
+  question: Какова максимальная длительность курса при назначении бензодиазепинов при ГТР и в каких случаях её можно продлить?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/4]
+  relevant:
+  - {key: kr-gad-2024/doc_3/4, fingerprint: cb97a80d852d, grade: 2}
+  - {key: kr-gad-2024/doc_3/5, fingerprint: f4ea712bf22d, grade: 1}
+  - {key: kr-gad-2024/doc_3/29, fingerprint: 0df45c764eae, grade: 1}
+  - {key: kr-gad-2024/doc_b/2, fingerprint: 5c630e4c322f, grade: 1}
+- id: q-094
+  question: Женщина 45 лет, хронический гастрит. Жалуется на постоянную накрутку и неспособность расслабиться. Что мне искать в статусе при опросе, чтобы подтвердить именно ГТР и не спутать с чем-то другим?
+  kind: single
+  split: test
+  origin: [kr-gad-2024/doc_diag_2_1/3]
+  relevant:
+  - {key: kr-gad-2024/doc_diag_2_1/3, fingerprint: 04fcf74e2612, grade: 2}
+  - {key: kr-gad-2024/doc_crat_info_1_6/3, fingerprint: 41c3563e9b2e, grade: 2}
+  - {key: kr-gad-2024/doc_crat_info_1_6/1, fingerprint: 475a81529409, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2/1, fingerprint: 18c9123e763a, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_1/4, fingerprint: 69b19890a64a, grade: 2}
+  - {key: kr-gad-2024/doc_crat_info_1_1/1, fingerprint: dca1004273c9, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_1/7, fingerprint: 9778845f5247, grade: 1}
+  - {key: kr-gad-2024/doc_crat_info_1_6/2, fingerprint: 0d9bca1bebe0, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/6, fingerprint: 8d766ec405b7, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_3/1, fingerprint: d2e46b71e922, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/5, fingerprint: 1a770d92fbb9, grade: 1}
+  - {key: kr-gad-2024/doc_v/1, fingerprint: 5ab87474d912, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_5/1, fingerprint: 4cdcbfbfbd7e, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/8, fingerprint: 5e3a971bdbae, grade: 1}
+- id: q-095
+  question: Чем и в каких дозах можно усилить действие антидепрессанта при неэффективности монотерапии?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/36]
+  relevant:
+  - {key: kr-depression-2024/doc_3/36, fingerprint: 7b7265cc15b4, grade: 2}
+  - {key: kr-depression-2024/doc_3/28, fingerprint: 0435b101f378, grade: 2}
+  - {key: kr-depression-2024/doc_3/35, fingerprint: a352aed52574, grade: 2}
+  - {key: kr-depression-2024/doc_3/31, fingerprint: 5788f4fbdbd2, grade: 2}
+  - {key: kr-depression-2024/doc_3/29, fingerprint: 7953bde9a5db, grade: 2}
+  - {key: kr-depression-2024/doc_3/30, fingerprint: 8f97c938c2ab, grade: 2}
+  - {key: kr-depression-2024/doc_3/32, fingerprint: e437155ee314, grade: 2}
+  - {key: kr-gad-2024/doc_3/17, fingerprint: 0015b131c67c, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 2}
+  - {key: kr-gad-2024/doc_3/5, fingerprint: f4ea712bf22d, grade: 2}
+  - {key: kr-depression-2024/doc_3/34, fingerprint: 27656646aab1, grade: 1}
+  - {key: kr-depression-2024/doc_3/33, fingerprint: 24cededbfd10, grade: 1}
+  - {key: kr-gad-2024/doc_3/12, fingerprint: 580091505ec7, grade: 1}
+  - {key: kr-depression-2024/doc_3/24, fingerprint: 5329ce737f56, grade: 1}
+  - {key: kr-gad-2024/doc_3/18, fingerprint: 3b6c7a5fef68, grade: 2}
+- id: q-096
+  question: Женщина 45 лет, рекуррентное депрессивное расстройство, не отвечает на монотерапию. Какие комбинации препаратов с комплементарным механизмом действия показаны на третьем этапе купирующей терапии, и каких побочных эффектов следует ожидать при их совместном назначении?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/28]
+  relevant:
+  - {key: kr-depression-2024/doc_3/28, fingerprint: 0435b101f378, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 2}
+  - {key: kr-depression-2024/doc_3/32, fingerprint: e437155ee314, grade: 2}
+  - {key: kr-depression-2024/doc_3/37, fingerprint: 1e974f2d9980, grade: 1}
+  - {key: kr-depression-2024/doc_3/29, fingerprint: 7953bde9a5db, grade: 1}
+  - {key: kr-depression-2024/doc_3/31, fingerprint: 5788f4fbdbd2, grade: 1}
+  - {key: kr-depression-2024/doc_3/33, fingerprint: 24cededbfd10, grade: 1}
+  - {key: kr-depression-2024/doc_3/34, fingerprint: 27656646aab1, grade: 1}
+  - {key: kr-depression-2024/doc_3/30, fingerprint: 8f97c938c2ab, grade: 1}
+  - {key: kr-depression-2024/doc_3/26, fingerprint: d9ef7859a814, grade: 1}
+  - {key: kr-depression-2024/doc_3/41, fingerprint: 524db19e1ccc, grade: 1}
+  - {key: kr-depression-2024/doc_3/27, fingerprint: 36c40cc544b0, grade: 1}
+  - {key: kr-depression-2024/doc_3/35, fingerprint: a352aed52574, grade: 1}
+  - {key: kr-depression-2024/doc_3/36, fingerprint: 7b7265cc15b4, grade: 1}
+  - {key: aviandr-ohlp/4.5/1, fingerprint: 26491090dfd3, grade: 1}
+  - {key: kr-depression-2024/doc_3/42, fingerprint: 381b29cc4f6d, grade: 1}
+- id: q-097
+  question: Женщина 40 лет, у неё стабилизировалось состояние на фоне антидепрессанта. Сколько минимум месяцев после наступления эффекта нужно продолжать терапию, чтобы снизить риск рецидива?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/30]
+  relevant:
+  - {key: kr-gad-2024/doc_3/30, fingerprint: d37f8be1f94d, grade: 2}
+  - {key: kr-depression-2024/doc_3/47, fingerprint: d18ae93ef6f2, grade: 2}
+  - {key: kr-depression-2024/doc_3/45, fingerprint: 3718686f4276, grade: 2}
+  - {key: kr-depression-2024/doc_3/49, fingerprint: f41bb636c773, grade: 1}
+  - {key: kr-depression-2024/doc_3/52, fingerprint: fea4e08cb7ba, grade: 1}
+  - {key: kr-depression-2024/doc_3/1, fingerprint: 8e5cc598338f, grade: 1}
+  - {key: cipralex-ohlp/4.2/1, fingerprint: f7fed8287f68, grade: 2}
+- id: q-098
+  question: Женщина 45 лет с тяжёлой депрессией без психоза. Какие антидепрессанты назначить в первую очередь для купирования состояния и почему?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/9]
+  relevant:
+  - {key: kr-depression-2024/doc_3/9, fingerprint: 702384b65e74, grade: 2}
+  - {key: kr-depression-2024/doc_a3/3, fingerprint: 16fb64458a24, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 1}
+  - {key: kr-depression-2024/doc_3/51, fingerprint: cf51ab822691, grade: 1}
+  - {key: kr-depression-2024/doc_a3/5, fingerprint: 093f2f500c6b, grade: 1}
+- id: q-099
+  question: Какие группы антидепрессантов и в каких дозах назначают при ГТР как терапию первой линии?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/3]
+  relevant:
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 2}
+  - {key: kr-gad-2024/doc_a3/2, fingerprint: cd785714a683, grade: 1}
+  - {key: kr-gad-2024/doc_3/4, fingerprint: cb97a80d852d, grade: 1}
+- id: q-100
+  question: Какие основные симптомы депрессии нужно целенаправленно искать у пациента при первичном осмотре?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_diag_2_1/2]
+  relevant:
+  - {key: kr-depression-2024/doc_diag_2_1/2, fingerprint: bc6347af6292, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2/1, fingerprint: fa6894b8e3dc, grade: 2}
+  - {key: kr-depression-2024/doc_crat_info_1_6/1, fingerprint: 5d5274ea4d02, grade: 2}
+  - {key: kr-depression-2024/doc_crat_info_1_1/1, fingerprint: 4aab0f772db4, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2/3, fingerprint: a68bef0f4646, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2/4, fingerprint: 33aade2c68e4, grade: 1}
+- id: q-101
+  question: Показана ли психодинамическая терапия при депрессивном эпизоде или рекуррентном депрессивном расстройстве?
+  kind: single
+  split: test
+  origin: [kr-depression-2024/doc_3/60]
+  relevant:
+  - {key: kr-depression-2024/doc_3/60, fingerprint: bcf1f902a3f1, grade: 2}
+  - {key: kr-depression-2024/doc_3/55, fingerprint: 333796ccc9f7, grade: 2}
+  - {key: kr-depression-2024/doc_3/57, fingerprint: 65434b6049f1, grade: 1}
+  - {key: kr-depression-2024/doc_4/1, fingerprint: 6e6c9395f337, grade: 1}
+  - {key: kr-depression-2024/doc_3/7, fingerprint: 36665ebb6735, grade: 1}
+  - {key: kr-depression-2024/doc_3/59, fingerprint: 5ba20ed0ae50, grade: 2}
+- id: q-102
+  question: Женщина 45 лет, с жалобами на постоянную тревогу. Какое физикальное обследование нужно провести при первичном осмотре?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_diag_2_2/4]
+  relevant:
+  - {key: kr-gad-2024/doc_diag_2_2/4, fingerprint: 5203ac4cdc15, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_2/1, fingerprint: 5cfa97d6f569, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_2/2, fingerprint: 9f4381736fb2, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_2/3, fingerprint: e6e0f10cd873, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_2/5, fingerprint: 75ae07ff9eb8, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2_5/3, fingerprint: 8760ef2b6bd0, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_5/4, fingerprint: f590fe8387d2, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_2/1, fingerprint: d14375118546, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/2, fingerprint: 10d545a92543, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/3, fingerprint: 04fcf74e2612, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_3/2, fingerprint: ccf04b78367a, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_3/3, fingerprint: ecf64b5fe654, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_3/5, fingerprint: 808ef4dc45ad, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_4/4, fingerprint: 823d9394378a, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_4/5, fingerprint: 4b8652e93254, grade: 2}
+- id: q-103
+  question: Когда у пациента с рекуррентным депрессивным расстройством рассматривают хирургические методы терапии?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/63]
+  relevant:
+  - {key: kr-depression-2024/doc_3/63, fingerprint: 76c283e2cab8, grade: 2}
+  - {key: kr-depression-2024/doc_3/65, fingerprint: 66ea1db0c22f, grade: 2}
+  - {key: kr-depression-2024/doc_3/64, fingerprint: bc2983d8722f, grade: 2}
+  - {key: kr-depression-2024/doc_3/45, fingerprint: 3718686f4276, grade: 1}
+  - {key: kr-depression-2024/doc_3/39, fingerprint: f14c2d0238d4, grade: 1}
+  - {key: kr-depression-2024/doc_3/44, fingerprint: cd92a2d2ce53, grade: 2}
+  - {key: kr-depression-2024/doc_3/46, fingerprint: 91035081d6d5, grade: 1}
+- id: q-104
+  question: Когда пациента с депрессией можно выписать из психиатрической больницы и где он будет дальше лечиться?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_6/1]
+  relevant:
+  - {key: kr-depression-2024/doc_6/1, fingerprint: 29914359d363, grade: 2}
+  - {key: kr-gad-2024/doc_6/1, fingerprint: ea3936ae4ff5, grade: 2}
+  - {key: kr-depression-2024/doc_3/52, fingerprint: fea4e08cb7ba, grade: 1}
+  - {key: kr-depression-2024/doc_v/1, fingerprint: 0952b6d33d5a, grade: 1}
+  - {key: kr-depression-2024/doc_3/6, fingerprint: 74bc985f864a, grade: 2}
+  - {key: kr-depression-2024/doc_4/2, fingerprint: cdcf15d2f937, grade: 1}
+- id: q-105
+  question: Мужчина 42 лет, РДР, в анамнезе эпизоды с признаками мании. Планирую назначить монотерапию антидепрессантом. Можно ли так лечить депрессию со смешанными чертами?
+  kind: single
+  split: test
+  origin: [kr-depression-2024/doc_3/13]
+  relevant:
+  - {key: kr-depression-2024/doc_3/13, fingerprint: 14cbc39d28d8, grade: 2}
+  - {key: kr-depression-2024/doc_3/18, fingerprint: 725e53ee8a01, grade: 1}
+  - {key: kr-depression-2024/doc_3/20, fingerprint: d5814462605f, grade: 1}
+  - {key: kr-depression-2024/doc_3/19, fingerprint: 3b0d82f40b6f, grade: 1}
+  - {key: kr-depression-2024/doc_3/14, fingerprint: b4f2127d88a0, grade: 1}
+  - {key: kr-depression-2024/doc_3/26, fingerprint: d9ef7859a814, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2_1/4, fingerprint: 48e79be56328, grade: 1}
+- id: q-106
+  question: Женщина, 45 лет. Жалуется на постоянное беспокойство, которое длится больше полугода и мешает работе. Как отличить эти симптомы от панического расстройства или ОКР?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_crat_info_1_6/1]
+  relevant:
+  - {key: kr-gad-2024/doc_crat_info_1_6/1, fingerprint: 475a81529409, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2/1, fingerprint: 18c9123e763a, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_1/4, fingerprint: 69b19890a64a, grade: 1}
+  - {key: kr-gad-2024/doc_crat_info_1_6/3, fingerprint: 41c3563e9b2e, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/3, fingerprint: 04fcf74e2612, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/6, fingerprint: 8d766ec405b7, grade: 1}
+  - {key: kr-gad-2024/doc_crat_info_1_6/2, fingerprint: 0d9bca1bebe0, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/2, fingerprint: 10d545a92543, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2/2, fingerprint: d48d288477c2, grade: 1}
+  - {key: kr-gad-2024/doc_crat_info_1_1/1, fingerprint: dca1004273c9, grade: 2}
+- id: q-107
+  question: Какие дозы СИОЗС и антипсихотиков рекомендованы при ГТР?
+  kind: single
+  split: test
+  origin: [kr-gad-2024/doc_a3/2]
+  relevant:
+  - {key: kr-gad-2024/doc_a3/2, fingerprint: cd785714a683, grade: 2}
+  - {key: kr-gad-2024/doc_3/12, fingerprint: 580091505ec7, grade: 2}
+  - {key: kr-gad-2024/doc_3/17, fingerprint: 0015b131c67c, grade: 2}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 2}
+  - {key: kr-gad-2024/doc_3/22, fingerprint: d6b6fc3faad2, grade: 2}
+  - {key: kr-gad-2024/doc_3/18, fingerprint: 3b6c7a5fef68, grade: 2}
+  - {key: kr-gad-2024/doc_3/23, fingerprint: 6664a7720bf3, grade: 2}
+  - {key: kr-gad-2024/doc_3/19, fingerprint: 1fcf92bb7b82, grade: 2}
+  - {key: kr-gad-2024/doc_3/21, fingerprint: 4bc64241acb5, grade: 2}
+  - {key: kr-gad-2024/doc_3/27, fingerprint: feb0f5177d42, grade: 1}
+- id: q-108
+  question: Сколько по сроку годности хранится Авиандр?
+  kind: single
+  split: dev
+  origin: [aviandr-ohlp/6.3/1]
+  relevant:
+  - {key: aviandr-ohlp/6.3/1, fingerprint: 9dd2d20ab875, grade: 2}
+  - {key: aviandr-ohlp/6.4/1, fingerprint: d5fe334d6bb4, grade: 1}
+- id: q-109
+  question: Какие виды психотерапии и психокоррекции входят в план реабилитации при генерализованном тревожном расстройстве?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_4/3]
+  relevant:
+  - {key: kr-gad-2024/doc_4/3, fingerprint: 77ba580d4113, grade: 2}
+  - {key: kr-gad-2024/doc_4/4, fingerprint: df7f5ce43521, grade: 2}
+  - {key: kr-gad-2024/doc_3/36, fingerprint: 75d88f5300f2, grade: 2}
+  - {key: kr-gad-2024/doc_4/2, fingerprint: ad8b60aa476f, grade: 2}
+  - {key: kr-gad-2024/doc_3/37, fingerprint: 832a9ed5ac95, grade: 2}
+  - {key: kr-gad-2024/doc_3/35, fingerprint: b08f7dadf16b, grade: 2}
+  - {key: kr-gad-2024/doc_3/41, fingerprint: 2a9a073f2afe, grade: 2}
+  - {key: kr-gad-2024/doc_3/38, fingerprint: dc7fb51d73c8, grade: 2}
+  - {key: kr-gad-2024/doc_3/34, fingerprint: b0e34f7cf036, grade: 1}
+  - {key: kr-gad-2024/doc_4/1, fingerprint: 7b0db42aae0e, grade: 1}
+  - {key: kr-gad-2024/doc_3/32, fingerprint: 1c0953bfc1df, grade: 1}
+  - {key: kr-gad-2024/doc_3/1, fingerprint: cde760ff2ece, grade: 1}
+  - {key: kr-depression-2024/doc_3/55, fingerprint: 333796ccc9f7, grade: 1}
+  - {key: kr-gad-2024/doc_3/39, fingerprint: 2751c971c7c4, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_5/1, fingerprint: 4cdcbfbfbd7e, grade: 1}
+  - {key: kr-gad-2024/doc_v/1, fingerprint: 5ab87474d912, grade: 2}
+- id: q-110
+  question: Какие критерии по МКБ-10 нужно учитывать, чтобы поставить диагноз депрессивного эпизода (F32) и исключить другие причины?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_diag_2/1]
+  relevant:
+  - {key: kr-depression-2024/doc_diag_2/1, fingerprint: fa6894b8e3dc, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2_1/6, fingerprint: 9814ff7c0718, grade: 2}
+  - {key: kr-depression-2024/doc_crat_info_1_6/1, fingerprint: 5d5274ea4d02, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2/4, fingerprint: 33aade2c68e4, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2/5, fingerprint: c0ebf464390d, grade: 1}
+  - {key: kr-depression-2024/doc_crat_info_1_1/1, fingerprint: 4aab0f772db4, grade: 1}
+  - {key: kr-depression-2024/doc_crat_info_1_5/1, fingerprint: 6c4db2846d7c, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_1/3, fingerprint: 5650a51cbc78, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2/2, fingerprint: 1d472ce440a8, grade: 1}
+- id: q-111
+  question: Какие биологические механизмы и особенности наследственной предрасположенности лежат в основе развития генерализованного тревожного расстройства?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_crat_info_1_2/1]
+  relevant:
+  - {key: kr-gad-2024/doc_crat_info_1_2/1, fingerprint: 9da984823638, grade: 2}
+  - {key: kr-gad-2024/doc_crat_info_1_2/2, fingerprint: a77e17e9e13b, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_5/1, fingerprint: 4cdcbfbfbd7e, grade: 1}
+- id: q-112
+  question: У пациента 45 лет, первый эпизод депрессии. Какая цель терапии на первом этапе?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_3/2]
+  relevant:
+  - {key: kr-depression-2024/doc_3/2, fingerprint: d747e5dd73d2, grade: 2}
+  - {key: kr-depression-2024/doc_3/9, fingerprint: 702384b65e74, grade: 2}
+  - {key: kr-depression-2024/doc_3/7, fingerprint: 36665ebb6735, grade: 1}
+  - {key: kr-depression-2024/doc_3/1, fingerprint: 8e5cc598338f, grade: 1}
+  - {key: kr-depression-2024/doc_3/5, fingerprint: 32bd949c97ce, grade: 1}
+  - {key: kr-depression-2024/doc_3/18, fingerprint: 725e53ee8a01, grade: 1}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 1}
+  - {key: kr-depression-2024/doc_3/4, fingerprint: cfb406eab9e3, grade: 1}
+  - {key: kr-depression-2024/doc_3/57, fingerprint: 65434b6049f1, grade: 1}
+  - {key: kr-depression-2024/doc_3/55, fingerprint: 333796ccc9f7, grade: 1}
+- id: q-113
+  question: Мужчине 58 лет, на терапии АВИАНДР. В какой таре и с какими защитными элементами (крышка, влагопоглотитель) мне выдадут препарат, если я закажу 30 таблеток?
+  kind: single
+  split: dev
+  origin: [aviandr-ohlp/6.5/1]
+  relevant:
+  - {key: aviandr-ohlp/6.5/1, fingerprint: 8ae2f09e5984, grade: 2}
+- id: q-114
+  question: Пациентка, 42 года, у нее уже был депрессивный эпизод в прошлом. Сейчас снова ухудшение, но без бредовых расстройств, только умеренные симптомы. Какую коду МКБ-10 ставить?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_diag_2/6]
+  relevant:
+  - {key: kr-depression-2024/doc_diag_2/6, fingerprint: f33e2d72d067, grade: 2}
+  - {key: kr-depression-2024/doc_crat_info_1_4/1, fingerprint: b5dc1c3e5e87, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2/5, fingerprint: c0ebf464390d, grade: 2}
+  - {key: kr-depression-2024/doc_crat_info_1_5/1, fingerprint: 6c4db2846d7c, grade: 1}
+  - {key: kr-depression-2024/doc_crat_info_1_4/2, fingerprint: 8e2fe3edaff4, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2/1, fingerprint: fa6894b8e3dc, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2/4, fingerprint: 33aade2c68e4, grade: 1}
+  - {key: kr-depression-2024/doc_crat_info_1_1/1, fingerprint: 4aab0f772db4, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2/3, fingerprint: a68bef0f4646, grade: 1}
+  - {key: kr-depression-2024/doc_crat_info_1_6/1, fingerprint: 5d5274ea4d02, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_1/3, fingerprint: 5650a51cbc78, grade: 1}
+  - {key: kr-depression-2024/doc_criteria/1, fingerprint: 41579cbc70b8, grade: 2}
+  - {key: kr-depression-2024/doc_criteria/3, fingerprint: da152bb444f5, grade: 2}
+- id: q-115
+  question: Какие стартовые дозы и максимальные значения назначают при депрессии для СИОЗС, СИОЗСН и ТЦА?
+  kind: single
+  split: test
+  origin: [kr-depression-2024/doc_a3/3]
+  relevant:
+  - {key: kr-depression-2024/doc_a3/3, fingerprint: 16fb64458a24, grade: 2}
+  - {key: kr-gad-2024/doc_a3/2, fingerprint: cd785714a683, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 1}
+  - {key: cipralex-ohlp/4.2/1, fingerprint: f7fed8287f68, grade: 2}
+- id: q-116
+  question: Женщина 40 лет с постоянной тревогой. Какие формы течения ГТР выделяют?
+  kind: single
+  split: test
+  origin: [kr-gad-2024/doc_crat_info_1_5/1]
+  relevant:
+  - {key: kr-gad-2024/doc_crat_info_1_5/1, fingerprint: 3c285af3b0a1, grade: 2}
+  - {key: kr-gad-2024/doc_crat_info_1_1/1, fingerprint: dca1004273c9, grade: 1}
+  - {key: kr-gad-2024/doc_7/1, fingerprint: 9ce0dfac5961, grade: 1}
+- id: q-117
+  question: Как правильно утилизировать неиспользованные остатки Авияндра?
+  kind: single
+  split: dev
+  origin: [aviandr-ohlp/6.6/1]
+  relevant:
+  - {key: aviandr-ohlp/6.6/1, fingerprint: 750324456cb3, grade: 2}
+  - {key: cipralex-ohlp/6.6/1, fingerprint: 09910b077d8f, grade: 2}
+- id: q-118
+  question: Какие виды психотерапии доказали эффективность при депрессиях легкой и средней степени, а также как их комбинация с медикаментами влияет на исход лечения?
+  kind: single
+  split: test
+  origin: [kr-depression-2024/doc_3/55]
+  relevant:
+  - {key: kr-depression-2024/doc_3/55, fingerprint: 333796ccc9f7, grade: 2}
+  - {key: kr-depression-2024/doc_3/57, fingerprint: 65434b6049f1, grade: 2}
+  - {key: kr-depression-2024/doc_3/58, fingerprint: 4d753e9bbae9, grade: 1}
+  - {key: kr-depression-2024/doc_3/59, fingerprint: 5ba20ed0ae50, grade: 1}
+  - {key: kr-depression-2024/doc_3/56, fingerprint: ff279805d513, grade: 1}
+  - {key: kr-depression-2024/doc_3/7, fingerprint: 36665ebb6735, grade: 1}
+  - {key: kr-depression-2024/doc_3/5, fingerprint: 32bd949c97ce, grade: 1}
+  - {key: kr-depression-2024/doc_3/60, fingerprint: bcf1f902a3f1, grade: 1}
+  - {key: kr-depression-2024/doc_3/61, fingerprint: c4baa444a00d, grade: 1}
+  - {key: kr-depression-2024/doc_3/62, fingerprint: c03c3342a6cc, grade: 1}
+  - {key: kr-depression-2024/doc_4/1, fingerprint: 6e6c9395f337, grade: 1}
+- id: q-119
+  question: Какие критерии качества медицинской помощи учитываются при ведении пациента с депрессивным эпизодом?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_criteria/2]
+  relevant:
+  - {key: kr-depression-2024/doc_criteria/2, fingerprint: 808889527c1f, grade: 2}
+  - {key: kr-depression-2024/doc_criteria/4, fingerprint: 4df0fe461905, grade: 2}
+  - {key: kr-gad-2024/doc_criteria/2, fingerprint: bf0372d003e0, grade: 2}
+  - {key: kr-depression-2024/doc_criteria/3, fingerprint: da152bb444f5, grade: 1}
+  - {key: kr-depression-2024/doc_criteria/1, fingerprint: 41579cbc70b8, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_1/8, fingerprint: 83c279b84a73, grade: 1}
+  - {key: kr-depression-2024/doc_6/1, fingerprint: 29914359d363, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_1/7, fingerprint: 1117e3e54d2c, grade: 1}
+- id: q-120
+  question: Какие алгоритмы действий предусмотрены в приложении Б для ведения взрослых пациентов с депрессивным эпизодом и рекуррентным депрессивным расстройством?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_b/1]
+  relevant:
+  - {key: kr-depression-2024/doc_b/1, fingerprint: ea107594dfc3, grade: 2}
+  - {key: kr-depression-2024/doc_3/52, fingerprint: fea4e08cb7ba, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 2}
+  - {key: kr-depression-2024/doc_b/2, fingerprint: 56604cae17d4, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2/1, fingerprint: fa6894b8e3dc, grade: 2}
+- id: q-121
+  question: Что делать, если три курса антидепрессантов не помогли при ГТР и пациент не принимает препараты регулярно?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/16]
+  relevant:
+  - {key: kr-gad-2024/doc_3/16, fingerprint: 4f1e34a57d09, grade: 2}
+  - {key: kr-gad-2024/doc_3/6, fingerprint: bd9cbf8cfd20, grade: 2}
+  - {key: kr-gad-2024/doc_3/15, fingerprint: 2fb26170ba7b, grade: 2}
+  - {key: kr-gad-2024/doc_3/14, fingerprint: df64869d6fa4, grade: 1}
+  - {key: kr-gad-2024/doc_3/9, fingerprint: 4ae295176503, grade: 1}
+  - {key: kr-gad-2024/doc_3/13, fingerprint: 913fdf6ff5c9, grade: 1}
+  - {key: kr-gad-2024/doc_3/28, fingerprint: a0a2344ffbf0, grade: 1}
+  - {key: kr-gad-2024/doc_3/12, fingerprint: 580091505ec7, grade: 1}
+  - {key: kr-gad-2024/doc_3/19, fingerprint: 1fcf92bb7b82, grade: 1}
+  - {key: kr-gad-2024/doc_3/22, fingerprint: d6b6fc3faad2, grade: 1}
+  - {key: kr-gad-2024/doc_3/18, fingerprint: 3b6c7a5fef68, grade: 1}
+  - {key: kr-gad-2024/doc_3/24, fingerprint: c4bfb4b6bb0d, grade: 1}
+  - {key: kr-gad-2024/doc_3/21, fingerprint: 4bc64241acb5, grade: 1}
+  - {key: kr-gad-2024/doc_3/17, fingerprint: 0015b131c67c, grade: 1}
+  - {key: kr-depression-2024/doc_v/1, fingerprint: 0952b6d33d5a, grade: 1}
+  - {key: kr-gad-2024/doc_3/36, fingerprint: 75d88f5300f2, grade: 1}
+  - {key: kr-gad-2024/doc_3/31, fingerprint: d7201bc74d74, grade: 1}
+  - {key: kr-gad-2024/doc_3/39, fingerprint: 2751c971c7c4, grade: 1}
+  - {key: kr-gad-2024/doc_3/1, fingerprint: cde760ff2ece, grade: 1}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 1}
+- id: q-122
+  question: Если после двух ступеней терапии депрессии улучшение не наступило и я исключил ошибки в диагнозе и неуправляемость, на что мне ориентироваться при переходе к противорезистентным методам?
+  kind: single
+  split: test
+  origin: [kr-depression-2024/doc_3/27]
+  relevant:
+  - {key: kr-depression-2024/doc_3/27, fingerprint: 36c40cc544b0, grade: 2}
+  - {key: kr-depression-2024/doc_3/45, fingerprint: 3718686f4276, grade: 2}
+  - {key: kr-depression-2024/doc_3/39, fingerprint: f14c2d0238d4, grade: 2}
+  - {key: kr-depression-2024/doc_3/44, fingerprint: cd92a2d2ce53, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 2}
+  - {key: kr-depression-2024/doc_3/43, fingerprint: c8183b00c8c1, grade: 2}
+  - {key: kr-depression-2024/doc_3/24, fingerprint: 5329ce737f56, grade: 1}
+  - {key: kr-depression-2024/doc_3/38, fingerprint: f06f674e8251, grade: 1}
+  - {key: kr-gad-2024/doc_3/16, fingerprint: 4f1e34a57d09, grade: 1}
+  - {key: kr-depression-2024/doc_3/36, fingerprint: 7b7265cc15b4, grade: 1}
+  - {key: kr-depression-2024/doc_3/35, fingerprint: a352aed52574, grade: 1}
+  - {key: kr-depression-2024/doc_3/21, fingerprint: 5dd21744b89d, grade: 1}
+  - {key: kr-depression-2024/doc_3/28, fingerprint: 0435b101f378, grade: 1}
+  - {key: kr-depression-2024/doc_3/23, fingerprint: 961052c08a6b, grade: 1}
+  - {key: kr-depression-2024/doc_3/46, fingerprint: 91035081d6d5, grade: 1}
+  - {key: kr-depression-2024/doc_3/42, fingerprint: 381b29cc4f6d, grade: 1}
+  - {key: kr-gad-2024/doc_3/6, fingerprint: bd9cbf8cfd20, grade: 1}
+  - {key: kr-depression-2024/doc_3/40, fingerprint: 94912af2e0ee, grade: 1}
+  - {key: kr-depression-2024/doc_3/22, fingerprint: 6c66f9d51b64, grade: 1}
+  - {key: kr-depression-2024/doc_3/55, fingerprint: 333796ccc9f7, grade: 1}
+  - {key: kr-depression-2024/doc_3/57, fingerprint: 65434b6049f1, grade: 1}
+  - {key: kr-depression-2024/doc_3/31, fingerprint: 5788f4fbdbd2, grade: 1}
+- id: q-123
+  question: У меня пациентка 38 лет, жалоб на конкретные симптомы нет, но подозреваю у неё ГТР. Где посмотреть алгоритм ведения таких пациентов?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_diag_2_1/1]
+  relevant:
+  - {key: kr-gad-2024/doc_diag_2_1/1, fingerprint: 5efb735f979f, grade: 2}
+  - {key: kr-gad-2024/doc_b/1, fingerprint: b2b622920863, grade: 2}
+  - {key: kr-gad-2024/doc_3/2, fingerprint: 99c9aaaf8c5b, grade: 2}
+  - {key: kr-gad-2024/doc_a3/1, fingerprint: 80da83b09fb3, grade: 2}
+  - {key: kr-gad-2024/doc_v/1, fingerprint: 5ab87474d912, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_2/1, fingerprint: 5cfa97d6f569, grade: 1}
+  - {key: kr-gad-2024/doc_3/1, fingerprint: cde760ff2ece, grade: 1}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 1}
+  - {key: kr-gad-2024/doc_5/3, fingerprint: 19c677a154a7, grade: 1}
+- id: q-124
+  question: Женщина 35 лет, жалоб на тревогу. Нужно ли назначать ей МРТ или ЭЭГ для подтверждения ГТР?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_diag_2_4/1]
+  relevant:
+  - {key: kr-gad-2024/doc_diag_2_4/1, fingerprint: 309a93481ba0, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_5/1, fingerprint: 4cdcbfbfbd7e, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_4/4, fingerprint: 823d9394378a, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_4/2, fingerprint: 0a70d3ea00c9, grade: 1}
+  - {key: kr-gad-2024/doc_crat_info_1_6/3, fingerprint: 41c3563e9b2e, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_2/1, fingerprint: 5cfa97d6f569, grade: 1}
+- id: q-125
+  question: Женщина 42 лет, с ГТР и сопутствующей гипертонией. При каких условиях её можно выписать из стационара?
+  kind: single
+  split: test
+  origin: [kr-gad-2024/doc_6/1]
+  relevant:
+  - {key: kr-gad-2024/doc_6/1, fingerprint: ea3936ae4ff5, grade: 2}
+  - {key: kr-depression-2024/doc_3/6, fingerprint: 74bc985f864a, grade: 1}
+  - {key: kr-depression-2024/doc_6/1, fingerprint: 29914359d363, grade: 2}
+- id: q-126
+  question: Какова зарегистрированная в России распространенность униполярной депрессии на 100 тысяч населения по данным за 2022 год?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_crat_info_1_3/1]
+  relevant:
+  - {key: kr-depression-2024/doc_crat_info_1_3/1, fingerprint: a9924bc21654, grade: 2}
+- id: q-127
+  question: У пациента непереносимость лактозы. Какие вспомогательные вещества есть в Авиандре?
+  kind: single
+  split: dev
+  origin: [aviandr-ohlp/6.1/1]
+  relevant:
+  - {key: aviandr-ohlp/6.1/1, fingerprint: 5b07a994eb93, grade: 2}
+  - {key: aviandr-ohlp/4.4/1, fingerprint: be08af5cb9a7, grade: 2}
+  - {key: aviandr-ohlp/2/1, fingerprint: 3f9f16c48bed, grade: 1}
+- id: q-128
+  question: Если у пациента на фоне терапии антидепрессантом при ГТР наблюдается лишь частичное улучшение, сколько времени можно продолжать лечение до оценки полного эффекта?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_b/2]
+  relevant:
+  - {key: kr-gad-2024/doc_b/2, fingerprint: 5c630e4c322f, grade: 2}
+  - {key: kr-gad-2024/doc_3/7, fingerprint: 9012b2889b39, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 2}
+  - {key: kr-gad-2024/doc_3/28, fingerprint: a0a2344ffbf0, grade: 1}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 1}
+  - {key: kr-depression-2024/doc_3/23, fingerprint: 961052c08a6b, grade: 1}
+  - {key: kr-depression-2024/doc_3/21, fingerprint: 5dd21744b89d, grade: 1}
+  - {key: kr-gad-2024/doc_3/6, fingerprint: bd9cbf8cfd20, grade: 1}
+  - {key: cipralex-ohlp/4.2/1, fingerprint: f7fed8287f68, grade: 2}
+  - {key: kr-gad-2024/doc_3/30, fingerprint: d37f8be1f94d, grade: 1}
+- id: q-129
+  question: По МКБ-10, как классифицируются формы депрессивного эпизода по вариантам течения и какие степени тяжести выделяют для определения тактики лечения?
+  kind: single
+  split: dev
+  origin: [kr-depression-2024/doc_crat_info_1_5/1]
+  relevant:
+  - {key: kr-depression-2024/doc_crat_info_1_5/1, fingerprint: 6c4db2846d7c, grade: 2}
+  - {key: kr-depression-2024/doc_crat_info_1_4/1, fingerprint: b5dc1c3e5e87, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2/3, fingerprint: a68bef0f4646, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2/2, fingerprint: 1d472ce440a8, grade: 1}
+  - {key: kr-depression-2024/doc_3/9, fingerprint: 702384b65e74, grade: 1}
+  - {key: kr-depression-2024/doc_3/52, fingerprint: fea4e08cb7ba, grade: 1}
+  - {key: kr-depression-2024/doc_3/11, fingerprint: 462715e17df6, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2/1, fingerprint: fa6894b8e3dc, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2/4, fingerprint: 33aade2c68e4, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2/5, fingerprint: c0ebf464390d, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2/6, fingerprint: f33e2d72d067, grade: 2}
+- id: q-130
+  question: Что проверяют при диспансерном наблюдении группы Д-4 у пациентов с хроническим психическим расстройством?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_5/10]
+  relevant:
+  - {key: kr-gad-2024/doc_5/10, fingerprint: 3589b85edb00, grade: 2}
+  - {key: kr-gad-2024/doc_5/6, fingerprint: ca81e45f8338, grade: 1}
+  - {key: kr-depression-2024/doc_5/1, fingerprint: afd0b68bb4e5, grade: 1}
+  - {key: kr-depression-2024/doc_a3/1, fingerprint: 9b3fb01fb5d4, grade: 1}
+- id: q-131
+  question: Какие состояния нужно исключить при постановке диагноза генерализованного тревожного расстройства?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_diag_2/2]
+  relevant:
+  - {key: kr-gad-2024/doc_diag_2/2, fingerprint: d48d288477c2, grade: 2}
+  - {key: kr-gad-2024/doc_crat_info_1_6/3, fingerprint: 41c3563e9b2e, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_4/5, fingerprint: 4b8652e93254, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_4/3, fingerprint: 00352272fbd3, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_1/6, fingerprint: 8d766ec405b7, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_2/3, fingerprint: e6e0f10cd873, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_4/2, fingerprint: 0a70d3ea00c9, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_2/1, fingerprint: 5cfa97d6f569, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_3/5, fingerprint: 808ef4dc45ad, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_4/4, fingerprint: 823d9394378a, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/7, fingerprint: 9778845f5247, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_2/2, fingerprint: 9f4381736fb2, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_3/1, fingerprint: d2e46b71e922, grade: 2}
+  - {key: kr-gad-2024/doc_v/1, fingerprint: 5ab87474d912, grade: 1}
+- id: q-132
+  question: Что нужно учесть при составлении плана терапии и каковы основные этапы лечения при депрессивном эпизоде?
+  kind: single
+  split: test
+  origin: [kr-depression-2024/doc_3/1]
+  relevant:
+  - {key: kr-depression-2024/doc_3/1, fingerprint: 8e5cc598338f, grade: 2}
+  - {key: kr-depression-2024/doc_3/52, fingerprint: fea4e08cb7ba, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 2}
+  - {key: kr-depression-2024/doc_3/7, fingerprint: 36665ebb6735, grade: 2}
+  - {key: kr-depression-2024/doc_3/6, fingerprint: 74bc985f864a, grade: 1}
+  - {key: kr-depression-2024/doc_3/21, fingerprint: 5dd21744b89d, grade: 1}
+  - {key: kr-depression-2024/doc_3/57, fingerprint: 65434b6049f1, grade: 1}
+  - {key: kr-depression-2024/doc_3/11, fingerprint: 462715e17df6, grade: 1}
+  - {key: kr-depression-2024/doc_3/27, fingerprint: 36c40cc544b0, grade: 1}
+  - {key: kr-depression-2024/doc_3/10, fingerprint: 841ca6bea3a8, grade: 1}
+  - {key: kr-depression-2024/doc_3/2, fingerprint: d747e5dd73d2, grade: 1}
+  - {key: kr-depression-2024/doc_3/38, fingerprint: f06f674e8251, grade: 1}
+  - {key: kr-depression-2024/doc_3/41, fingerprint: 524db19e1ccc, grade: 1}
+  - {key: kr-depression-2024/doc_4/2, fingerprint: cdcf15d2f937, grade: 1}
+  - {key: kr-depression-2024/doc_3/54, fingerprint: 18a47974b1d2, grade: 1}
+  - {key: kr-depression-2024/doc_3/40, fingerprint: 94912af2e0ee, grade: 1}
+  - {key: kr-depression-2024/doc_3/9, fingerprint: 702384b65e74, grade: 1}
+  - {key: kr-depression-2024/doc_3/49, fingerprint: f41bb636c773, grade: 1}
+  - {key: kr-depression-2024/doc_crat_info_1_5/1, fingerprint: 6c4db2846d7c, grade: 1}
+  - {key: kr-depression-2024/doc_3/18, fingerprint: 725e53ee8a01, grade: 1}
+  - {key: kr-depression-2024/doc_3/39, fingerprint: f14c2d0238d4, grade: 1}
+  - {key: kr-depression-2024/doc_3/45, fingerprint: 3718686f4276, grade: 1}
+  - {key: kr-depression-2024/doc_3/56, fingerprint: ff279805d513, grade: 1}
+  - {key: kr-depression-2024/doc_3/55, fingerprint: 333796ccc9f7, grade: 1}
+  - {key: kr-depression-2024/doc_3/4, fingerprint: cfb406eab9e3, grade: 1}
+  - {key: kr-depression-2024/doc_3/8, fingerprint: c0d0c50b837d, grade: 1}
+  - {key: kr-depression-2024/doc_4/1, fingerprint: 6e6c9395f337, grade: 1}
+- id: q-133
+  question: Какие состояния или особенности личности считаются противопоказаниями к проведению психотерапии при тревожных расстройствах?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_3/32]
+  relevant:
+  - {key: kr-gad-2024/doc_3/32, fingerprint: 1c0953bfc1df, grade: 2}
+  - {key: kr-gad-2024/doc_3/33, fingerprint: 2bb2a3e57e3a, grade: 2}
+  - {key: kr-gad-2024/doc_3/1, fingerprint: cde760ff2ece, grade: 1}
+  - {key: kr-gad-2024/doc_3/36, fingerprint: 75d88f5300f2, grade: 2}
+- id: q-134
+  question: Пациентка, 45 лет, с ГТР. Какие факторы увеличивают риск хронического течения?
+  kind: single
+  split: dev
+  origin: [kr-gad-2024/doc_7/1]
+  relevant:
+  - {key: kr-gad-2024/doc_7/1, fingerprint: 9ce0dfac5961, grade: 2}
+  - {key: kr-gad-2024/doc_crat_info_1_6/2, fingerprint: 0d9bca1bebe0, grade: 2}
+  - {key: kr-gad-2024/doc_crat_info_1_6/1, fingerprint: 475a81529409, grade: 2}
+  - {key: kr-gad-2024/doc_crat_info_1_2/1, fingerprint: 9da984823638, grade: 2}
+- id: q-135
+  question: Пациентке 35 лет, у которой не удалось достичь ремиссии на фоне стандартной дозы СИОЗС, требуется аугментация. Какие варианты атипичных АВП и солей лития с указанием стартовых доз и ключевых рисков (в т.ч. по ЭКГ и анализам) мне предложить?
+  kind: multi
+  split: dev
+  origin: [kr-depression-2024/doc_3/31, kr-depression-2024/doc_3/32]
+  relevant:
+  - {key: kr-depression-2024/doc_3/31, fingerprint: 5788f4fbdbd2, grade: 2}
+  - {key: kr-depression-2024/doc_3/32, fingerprint: e437155ee314, grade: 2}
+  - {key: kr-depression-2024/doc_3/30, fingerprint: 8f97c938c2ab, grade: 1}
+  - {key: kr-depression-2024/doc_3/29, fingerprint: 7953bde9a5db, grade: 1}
+  - {key: kr-depression-2024/doc_terms/1, fingerprint: 36fbe360049d, grade: 1}
+  - {key: kr-depression-2024/doc_3/16, fingerprint: dbd6037af841, grade: 2}
+  - {key: kr-depression-2024/doc_3/26, fingerprint: d9ef7859a814, grade: 1}
+  - {key: kr-depression-2024/doc_3/35, fingerprint: a352aed52574, grade: 1}
+  - {key: kr-depression-2024/doc_3/36, fingerprint: 7b7265cc15b4, grade: 1}
+- id: q-136
+  question: Какие методы нелекарственного воздействия на кровь рекомендуются в качестве дополнения к терапии при депрессии?
+  kind: multi
+  split: test
+  origin: [kr-depression-2024/doc_3/72, kr-depression-2024/doc_3/73]
+  relevant:
+  - {key: kr-depression-2024/doc_3/72, fingerprint: edc479026a44, grade: 2}
+  - {key: kr-depression-2024/doc_3/73, fingerprint: b3a76054456f, grade: 2}
+  - {key: kr-depression-2024/doc_3/76, fingerprint: 7cbd47dca904, grade: 2}
+  - {key: kr-depression-2024/doc_3/57, fingerprint: 65434b6049f1, grade: 2}
+  - {key: kr-depression-2024/doc_3/67, fingerprint: 17aae1cd335f, grade: 2}
+  - {key: kr-depression-2024/doc_3/74, fingerprint: 5c493194b0ba, grade: 1}
+  - {key: kr-depression-2024/doc_3/55, fingerprint: 333796ccc9f7, grade: 1}
+  - {key: kr-depression-2024/doc_3/68, fingerprint: 10405a2868d6, grade: 2}
+  - {key: kr-depression-2024/doc_3/69, fingerprint: d6ef53ed3c4c, grade: 2}
+  - {key: kr-depression-2024/doc_3/70, fingerprint: 3b1f040deec2, grade: 2}
+  - {key: kr-depression-2024/doc_3/71, fingerprint: 6eed26343448, grade: 2}
+  - {key: kr-depression-2024/doc_3/75, fingerprint: 23acaaa1fed8, grade: 2}
+  - {key: kr-depression-2024/doc_3/77, fingerprint: c9215238a136, grade: 2}
+  - {key: kr-gad-2024/doc_3/40, fingerprint: 91e5a4ff04dc, grade: 1}
+- id: q-137
+  question: Какой алгоритм психофармакотерапии при ГТР следует применять и чем обусловлен выбор между медикаментами и психотерапией с учетом их преимуществ и недостатков?
+  kind: multi
+  split: dev
+  origin: [kr-gad-2024/doc_3/1, kr-gad-2024/doc_3/2]
+  relevant:
+  - {key: kr-gad-2024/doc_3/1, fingerprint: cde760ff2ece, grade: 2}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 2}
+  - {key: kr-gad-2024/doc_3/32, fingerprint: 1c0953bfc1df, grade: 2}
+  - {key: kr-gad-2024/doc_3/2, fingerprint: 99c9aaaf8c5b, grade: 1}
+  - {key: kr-gad-2024/doc_3/4, fingerprint: cb97a80d852d, grade: 1}
+  - {key: kr-gad-2024/doc_3/34, fingerprint: b0e34f7cf036, grade: 1}
+  - {key: kr-gad-2024/doc_3/30, fingerprint: d37f8be1f94d, grade: 1}
+  - {key: kr-gad-2024/doc_3/28, fingerprint: a0a2344ffbf0, grade: 1}
+  - {key: kr-gad-2024/doc_3/36, fingerprint: 75d88f5300f2, grade: 1}
+  - {key: kr-gad-2024/doc_3/7, fingerprint: 9012b2889b39, grade: 1}
+  - {key: kr-gad-2024/doc_3/27, fingerprint: feb0f5177d42, grade: 1}
+  - {key: kr-gad-2024/doc_3/37, fingerprint: 832a9ed5ac95, grade: 1}
+  - {key: kr-gad-2024/doc_3/38, fingerprint: dc7fb51d73c8, grade: 1}
+  - {key: kr-gad-2024/doc_3/35, fingerprint: b08f7dadf16b, grade: 1}
+  - {key: kr-gad-2024/doc_3/39, fingerprint: 2751c971c7c4, grade: 1}
+  - {key: kr-gad-2024/doc_3/31, fingerprint: d7201bc74d74, grade: 1}
+  - {key: kr-gad-2024/doc_3/8, fingerprint: 72b0b50b1d7a, grade: 1}
+  - {key: kr-gad-2024/doc_3/29, fingerprint: 0df45c764eae, grade: 1}
+  - {key: kr-gad-2024/doc_b/2, fingerprint: 5c630e4c322f, grade: 2}
+  - {key: kr-gad-2024/doc_v/1, fingerprint: 5ab87474d912, grade: 1}
+- id: q-138
+  question: Какие врачи должны осмотреть пациента с депрессией перед началом лечения и при повторной госпитализации, и есть ли разница в перечне специалистов для этих двух ситуаций?
+  kind: multi
+  split: dev
+  origin: [kr-depression-2024/doc_diag_2_5/3, kr-depression-2024/doc_diag_2_5/4]
+  relevant:
+  - {key: kr-depression-2024/doc_diag_2_5/3, fingerprint: 8760ef2b6bd0, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2_5/4, fingerprint: f590fe8387d2, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2/1, fingerprint: fa6894b8e3dc, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2_1/8, fingerprint: 83c279b84a73, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_1/7, fingerprint: 1117e3e54d2c, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_1/1, fingerprint: db0a5cd907fb, grade: 1}
+  - {key: kr-depression-2024/doc_criteria/2, fingerprint: 808889527c1f, grade: 1}
+  - {key: kr-depression-2024/doc_criteria/4, fingerprint: 4df0fe461905, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_5/2, fingerprint: 172551e07a89, grade: 1}
+- id: q-139
+  question: У пациентки 42 лет с рекуррентным депрессивным расстройством не удалось купировать симптомы на фоне антидепрессантов. Какие дозы ламотриджина и карбамазепина использовать при аугментации?
+  kind: multi
+  split: dev
+  origin: [kr-depression-2024/doc_3/35, kr-depression-2024/doc_3/36]
+  relevant:
+  - {key: kr-depression-2024/doc_3/35, fingerprint: a352aed52574, grade: 2}
+  - {key: kr-depression-2024/doc_3/36, fingerprint: 7b7265cc15b4, grade: 2}
+  - {key: kr-depression-2024/doc_3/52, fingerprint: fea4e08cb7ba, grade: 1}
+  - {key: kr-depression-2024/doc_3/26, fingerprint: d9ef7859a814, grade: 1}
+- id: q-140
+  question: Как выбирать препарат АД при тяжёлом ДЭ без психотических симптомов, если у пациента высокий суицидальный риск и требуется госпитализация?
+  kind: multi
+  split: dev
+  origin: [kr-depression-2024/doc_3/9, kr-depression-2024/doc_3/10]
+  relevant:
+  - {key: kr-depression-2024/doc_3/9, fingerprint: 702384b65e74, grade: 2}
+  - {key: kr-depression-2024/doc_3/10, fingerprint: 841ca6bea3a8, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 1}
+  - {key: kr-depression-2024/doc_3/8, fingerprint: c0d0c50b837d, grade: 1}
+  - {key: kr-depression-2024/doc_3/1, fingerprint: 8e5cc598338f, grade: 1}
+  - {key: kr-depression-2024/doc_6/1, fingerprint: 29914359d363, grade: 1}
+  - {key: kr-depression-2024/doc_3/39, fingerprint: f14c2d0238d4, grade: 1}
+- id: q-141
+  question: У женщины 35 лет с рекуррентным депрессивным расстройством не наступает ремиссия на фоне антидепрессанта. Какие атипичные антипсихотики и в каких дозах можно добавить к терапии для аугментации эффекта?
+  kind: multi
+  split: dev
+  origin: [kr-depression-2024/doc_3/29, kr-depression-2024/doc_3/30]
+  relevant:
+  - {key: kr-depression-2024/doc_3/29, fingerprint: 7953bde9a5db, grade: 2}
+  - {key: kr-depression-2024/doc_3/30, fingerprint: 8f97c938c2ab, grade: 2}
+  - {key: kr-depression-2024/doc_3/31, fingerprint: 5788f4fbdbd2, grade: 2}
+  - {key: kr-gad-2024/doc_3/12, fingerprint: 580091505ec7, grade: 2}
+  - {key: kr-depression-2024/doc_3/25, fingerprint: 38cec1c89959, grade: 2}
+  - {key: kr-depression-2024/doc_terms/1, fingerprint: 36fbe360049d, grade: 1}
+- id: q-142
+  question: Где обычно ведут пациентов с легкой депрессией и какие группы антидепрессантов назначают для купирования симптомов?
+  kind: multi
+  split: dev
+  origin: [kr-depression-2024/doc_3/4, kr-depression-2024/doc_3/5]
+  relevant:
+  - {key: kr-depression-2024/doc_3/4, fingerprint: cfb406eab9e3, grade: 2}
+  - {key: kr-depression-2024/doc_3/5, fingerprint: 32bd949c97ce, grade: 2}
+  - {key: kr-depression-2024/doc_6/1, fingerprint: 29914359d363, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 1}
+  - {key: kr-depression-2024/doc_3/57, fingerprint: 65434b6049f1, grade: 1}
+  - {key: kr-depression-2024/doc_crat_info_1_5/1, fingerprint: 6c4db2846d7c, grade: 1}
+  - {key: kr-depression-2024/doc_3/51, fingerprint: cf51ab822691, grade: 1}
+  - {key: kr-depression-2024/doc_3/55, fingerprint: 333796ccc9f7, grade: 1}
+  - {key: kr-depression-2024/doc_3/6, fingerprint: 74bc985f864a, grade: 1}
+- id: q-143
+  question: У меня пациентка 34 лет с ГТР, которая жалуется, что после 6 недель приёма СИОЗС тревога немного спала, но полностью не ушла. Она также признаётся, что часто забывает пить таблетки из-за побочных эффектов. Что мне нужно сделать в первую очередь, и как дальше вести терапию, если после коррекции режима она продолжит принимать препарат?
+  kind: multi
+  split: dev
+  origin: [kr-gad-2024/doc_3/6, kr-gad-2024/doc_3/7]
+  relevant:
+  - {key: kr-gad-2024/doc_3/6, fingerprint: bd9cbf8cfd20, grade: 2}
+  - {key: kr-gad-2024/doc_b/2, fingerprint: 5c630e4c322f, grade: 2}
+  - {key: kr-depression-2024/doc_v/1, fingerprint: 0952b6d33d5a, grade: 2}
+  - {key: kr-gad-2024/doc_3/7, fingerprint: 9012b2889b39, grade: 1}
+  - {key: kr-gad-2024/doc_3/28, fingerprint: a0a2344ffbf0, grade: 1}
+  - {key: kr-gad-2024/doc_3/31, fingerprint: d7201bc74d74, grade: 1}
+  - {key: kr-gad-2024/doc_3/29, fingerprint: 0df45c764eae, grade: 1}
+  - {key: kr-gad-2024/doc_v/2, fingerprint: 49b149b37512, grade: 1}
+  - {key: kr-gad-2024/doc_3/36, fingerprint: 75d88f5300f2, grade: 1}
+  - {key: kr-gad-2024/doc_5/3, fingerprint: 19c677a154a7, grade: 1}
+  - {key: kr-gad-2024/doc_3/27, fingerprint: feb0f5177d42, grade: 1}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 2}
+  - {key: kr-gad-2024/doc_3/30, fingerprint: d37f8be1f94d, grade: 1}
+- id: q-144
+  question: Какие методы психотерапии имеют доказанную эффективность при РДР и как их применение соотносится с необходимостью регулярного наблюдения за пациентом на фоне длительной профилактики?
+  kind: multi
+  split: test
+  origin: [kr-depression-2024/doc_3/54, kr-depression-2024/doc_3/55]
+  relevant:
+  - {key: kr-depression-2024/doc_3/54, fingerprint: 18a47974b1d2, grade: 2}
+  - {key: kr-depression-2024/doc_3/55, fingerprint: 333796ccc9f7, grade: 2}
+  - {key: kr-depression-2024/doc_4/1, fingerprint: 6e6c9395f337, grade: 2}
+  - {key: kr-depression-2024/doc_3/58, fingerprint: 4d753e9bbae9, grade: 2}
+  - {key: kr-depression-2024/doc_3/57, fingerprint: 65434b6049f1, grade: 2}
+  - {key: kr-depression-2024/doc_3/60, fingerprint: bcf1f902a3f1, grade: 2}
+  - {key: kr-gad-2024/doc_3/1, fingerprint: cde760ff2ece, grade: 2}
+  - {key: kr-gad-2024/doc_3/36, fingerprint: 75d88f5300f2, grade: 2}
+  - {key: kr-depression-2024/doc_3/62, fingerprint: c03c3342a6cc, grade: 2}
+  - {key: kr-depression-2024/doc_3/56, fingerprint: ff279805d513, grade: 2}
+  - {key: kr-depression-2024/doc_5/1, fingerprint: afd0b68bb4e5, grade: 1}
+  - {key: kr-gad-2024/doc_3/32, fingerprint: 1c0953bfc1df, grade: 1}
+  - {key: kr-gad-2024/doc_3/34, fingerprint: b0e34f7cf036, grade: 1}
+  - {key: kr-depression-2024/doc_4/2, fingerprint: cdcf15d2f937, grade: 1}
+  - {key: kr-depression-2024/doc_3/59, fingerprint: 5ba20ed0ae50, grade: 2}
+- id: q-145
+  question: 'Что именно нужно выявлять при опросе пациента с жалобами на тревогу: только соматические проявления или также психические симптомы, и для какой цели это делается?'
+  kind: multi
+  split: dev
+  origin: [kr-gad-2024/doc_diag_2_1/2, kr-gad-2024/doc_diag_2_1/3]
+  relevant:
+  - {key: kr-gad-2024/doc_diag_2_1/2, fingerprint: 10d545a92543, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2_1/2, fingerprint: bc6347af6292, grade: 2}
+  - {key: kr-gad-2024/doc_crat_info_1_6/1, fingerprint: 475a81529409, grade: 2}
+  - {key: kr-gad-2024/doc_diag_2_1/3, fingerprint: 04fcf74e2612, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/7, fingerprint: 9778845f5247, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/5, fingerprint: 1a770d92fbb9, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/6, fingerprint: 8d766ec405b7, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/8, fingerprint: 5e3a971bdbae, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/10, fingerprint: 2bc474b52393, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_5/1, fingerprint: 4cdcbfbfbd7e, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2/1, fingerprint: 18c9123e763a, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_2/1, fingerprint: 5cfa97d6f569, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_2/2, fingerprint: 9f4381736fb2, grade: 1}
+- id: q-146
+  question: Какие рекомендованные дозы и уровни клинической эффективности у СИОЗС, СИОЗСН и ТЦА при ГТР?
+  kind: multi
+  split: dev
+  origin: [kr-gad-2024/doc_a3/2, kr-gad-2024/doc_a3/3]
+  relevant:
+  - {key: kr-gad-2024/doc_a3/2, fingerprint: cd785714a683, grade: 2}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 2}
+  - {key: kr-gad-2024/doc_a3/3, fingerprint: abbf5ddcb598, grade: 1}
+  - {key: kr-gad-2024/doc_3/7, fingerprint: 9012b2889b39, grade: 1}
+  - {key: kr-gad-2024/doc_3/24, fingerprint: c4bfb4b6bb0d, grade: 1}
+  - {key: kr-gad-2024/doc_3/27, fingerprint: feb0f5177d42, grade: 1}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 1}
+  - {key: kr-depression-2024/doc_3/7, fingerprint: 36665ebb6735, grade: 1}
+  - {key: kr-depression-2024/doc_3/9, fingerprint: 702384b65e74, grade: 1}
+  - {key: kr-gad-2024/doc_3/30, fingerprint: d37f8be1f94d, grade: 1}
+- id: q-147
+  question: Что нужно уточнить в анамнезе при первичном или повторном депрессивном эпизоде, чтобы исключить биполярное аффективное расстройство и экзогенные причины состояния?
+  kind: multi
+  split: dev
+  origin: [kr-depression-2024/doc_diag_2_1/5, kr-depression-2024/doc_diag_2_1/6]
+  relevant:
+  - {key: kr-depression-2024/doc_diag_2_1/5, fingerprint: f1759e17a35a, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2_1/6, fingerprint: 9814ff7c0718, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2/1, fingerprint: fa6894b8e3dc, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2_1/4, fingerprint: 48e79be56328, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2_2/1, fingerprint: d14375118546, grade: 1}
+  - {key: kr-gad-2024/doc_diag_2_1/6, fingerprint: 8d766ec405b7, grade: 1}
+- id: q-148
+  question: У пациентки 45 лет с рекуррентным депрессивным расстройством выявлено 3 основных и 2 дополнительных симптома. Какую степень тяжести ДЭ я должен поставить по критериям и что это значит для маршрутизации?
+  kind: multi
+  split: dev
+  origin: [kr-depression-2024/doc_diag_2/2, kr-depression-2024/doc_diag_2/3]
+  relevant:
+  - {key: kr-depression-2024/doc_diag_2/3, fingerprint: a68bef0f4646, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2/4, fingerprint: 33aade2c68e4, grade: 2}
+  - {key: kr-depression-2024/doc_diag_2/2, fingerprint: 1d472ce440a8, grade: 1}
+  - {key: kr-depression-2024/doc_crat_info_1_5/1, fingerprint: 6c4db2846d7c, grade: 1}
+  - {key: kr-depression-2024/doc_3/1, fingerprint: 8e5cc598338f, grade: 1}
+  - {key: kr-depression-2024/doc_diag_2/1, fingerprint: fa6894b8e3dc, grade: 1}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 1}
+  - {key: kr-depression-2024/doc_3/8, fingerprint: c0d0c50b837d, grade: 1}
+- id: q-149
+  question: Женщина 34 лет с рекуррентным депрессивным расстройством. Какой психотерапевтический подход фокусируется на разрешении проблем в межличностной сфере, а какой — на углубленном самопознании и работе с защитными механизмами?
+  kind: multi
+  split: dev
+  origin: [kr-depression-2024/doc_3/59, kr-depression-2024/doc_3/60]
+  relevant:
+  - {key: kr-depression-2024/doc_3/59, fingerprint: 5ba20ed0ae50, grade: 2}
+  - {key: kr-depression-2024/doc_3/60, fingerprint: bcf1f902a3f1, grade: 2}
+  - {key: kr-depression-2024/doc_3/55, fingerprint: 333796ccc9f7, grade: 1}
+  - {key: kr-depression-2024/doc_3/57, fingerprint: 65434b6049f1, grade: 1}
+  - {key: kr-depression-2024/doc_4/1, fingerprint: 6e6c9395f337, grade: 1}
+- id: q-150
+  question: При каком условии устанавливается группа Д-1 диспансерного наблюдения и какие показатели здоровья контролируются в рамках этого наблюдения?
+  kind: multi
+  split: test
+  origin: [kr-gad-2024/doc_5/6, kr-gad-2024/doc_5/7]
+  relevant:
+  - {key: kr-gad-2024/doc_5/7, fingerprint: 9f17d1116503, grade: 2}
+  - {key: kr-gad-2024/doc_5/6, fingerprint: ca81e45f8338, grade: 1}
+  - {key: kr-depression-2024/doc_5/1, fingerprint: afd0b68bb4e5, grade: 1}
+  - {key: kr-depression-2024/doc_6/1, fingerprint: 29914359d363, grade: 1}
+  - {key: kr-depression-2024/doc_a3/1, fingerprint: 9b3fb01fb5d4, grade: 1}
+  - {key: kr-gad-2024/doc_5/4, fingerprint: 9041dbe36862, grade: 1}
+- id: q-151
+  question: Пациентка 35 лет с диагнозом ДЭ со смешанными чертами. На фоне монотерапии СИОЗС через 3 недели терапии эффект составил 30%, гипоманических симптомов нет. Нужно ли менять схему лечения, и если да, то на какой препарат перейти после отмены текущего?
+  kind: multi
+  split: test
+  origin: [kr-depression-2024/doc_3/20, kr-depression-2024/doc_3/21]
+  relevant:
+  - {key: kr-depression-2024/doc_3/20, fingerprint: d5814462605f, grade: 2}
+  - {key: kr-depression-2024/doc_3/22, fingerprint: 6c66f9d51b64, grade: 2}
+  - {key: kr-depression-2024/doc_3/17, fingerprint: 0878d5c6f544, grade: 2}
+  - {key: kr-depression-2024/doc_3/21, fingerprint: 5dd21744b89d, grade: 1}
+  - {key: kr-depression-2024/doc_3/24, fingerprint: 5329ce737f56, grade: 1}
+  - {key: kr-depression-2024/doc_3/13, fingerprint: 14cbc39d28d8, grade: 1}
+  - {key: kr-depression-2024/doc_3/31, fingerprint: 5788f4fbdbd2, grade: 1}
+  - {key: kr-gad-2024/doc_b/3, fingerprint: b58d5d694b12, grade: 1}
+  - {key: kr-gad-2024/doc_3/6, fingerprint: bd9cbf8cfd20, grade: 1}
+  - {key: kr-depression-2024/doc_3/15, fingerprint: c9eec3f3b465, grade: 1}
+  - {key: kr-depression-2024/doc_3/16, fingerprint: dbd6037af841, grade: 1}
+  - {key: kr-depression-2024/doc_3/18, fingerprint: 725e53ee8a01, grade: 2}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 1}
+- id: q-152
+  question: Девочка 10 лет, СДВГ. Какой препарат первой линии и дозировка?
+  kind: none
+  split: dev
+  origin: []
+  relevant: []
+- id: q-153
+  question: Как подбирать дозу метилфенидата при СДВГ у подростков?
+  kind: none
+  split: dev
+  origin: []
+  relevant: []
+- id: q-154
+  question: 'При ОКР с компульсиями: какой СИОЗС предпочтительнее, сертралин или пароксетин?'
+  kind: none
+  split: dev
+  origin: []
+  relevant:
+  - {key: kr-gad-2024/doc_a3/2, fingerprint: cd785714a683, grade: 1}
+  - {key: kr-depression-2024/doc_a3/3, fingerprint: 16fb64458a24, grade: 1}
+  - {key: kr-depression-2024/doc_3/3, fingerprint: fc05e9dc0fcd, grade: 1}
+  - {key: kr-depression-2024/doc_a3/5, fingerprint: 093f2f500c6b, grade: 1}
+  - {key: kr-gad-2024/doc_3/3, fingerprint: 293140c7776d, grade: 1}
+- id: q-155
+  question: Пациент с депрессией, 60 лет. Нужна ли ему вакцинация от гриппа и пневмококка?
+  kind: none
+  split: test
+  origin: []
+  relevant: []
+- id: q-156
+  question: Можно ли прививать пациента на терапии антидепрессантами?
+  kind: none
+  split: dev
+  origin: []
+  relevant: []
+- id: q-157
+  question: Входит ли арипипразол в список ЖНВЛП? Какая цена в аптеке?
+  kind: none
+  split: dev
+  origin: []
+  relevant:
+  - {key: kr-depression-2024/doc_3/25, fingerprint: 38cec1c89959, grade: 1}
+  - {key: kr-depression-2024/doc_3/29, fingerprint: 7953bde9a5db, grade: 1}
+  - {key: kr-depression-2024/doc_3/30, fingerprint: 8f97c938c2ab, grade: 1}
+  - {key: kr-depression-2024/doc_3/31, fingerprint: 5788f4fbdbd2, grade: 1}
+  - {key: kr-gad-2024/doc_3/17, fingerprint: 0015b131c67c, grade: 1}
+  - {key: kr-gad-2024/doc_3/18, fingerprint: 3b6c7a5fef68, grade: 1}
+  - {key: kr-gad-2024/doc_a3/2, fingerprint: cd785714a683, grade: 1}
+- id: q-158
+  question: Как оформить льготное обеспечение антидепрессантами при депрессии?
+  kind: none
+  split: dev
+  origin: []
+  relevant:
+  - {key: kr-depression-2024/doc_a3/1, fingerprint: 9b3fb01fb5d4, grade: 1}
+- id: q-159
+  question: Женщина 30 лет, биполярное расстройство, маниакальная фаза. Какой антипсихотик выбрать?
+  kind: none
+  split: dev
+  origin: []
+  relevant:
+  - {key: kr-depression-2024/doc_3/16, fingerprint: dbd6037af841, grade: 1}
+  - {key: kr-depression-2024/doc_3/17, fingerprint: 0878d5c6f544, grade: 1}
+  - {key: kr-depression-2024/doc_3/19, fingerprint: 3b0d82f40b6f, grade: 1}
+  - {key: kr-depression-2024/doc_3/20, fingerprint: d5814462605f, grade: 1}
+  - {key: kr-depression-2024/doc_3/25, fingerprint: 38cec1c89959, grade: 1}
+  - {key: kr-depression-2024/doc_3/26, fingerprint: d9ef7859a814, grade: 1}
+  - {key: kr-depression-2024/doc_3/37, fingerprint: 1e974f2d9980, grade: 1}
+- id: q-160
+  question: 'При маниакальном эпизоде: литий или вальпроат? С какого уровня лития начинать?'
+  kind: none
+  split: test
+  origin: []
+  relevant:
+  - {key: kr-depression-2024/doc_3/32, fingerprint: e437155ee314, grade: 1}
+  - {key: kr-depression-2024/doc_3/26, fingerprint: d9ef7859a814, grade: 1}
+- id: q-161
+  question: Мужчина 40 лет, шизофрения, резистентная к терапии. Какой атипичный антипсихотик подобрать?
+  kind: none
+  split: test
+  origin: []
+  relevant: []
+- id: q-162
+  question: 'При шизофрении с негативной симптоматикой: клозапин или арипипразол?'
+  kind: none
+  split: dev
+  origin: []
+  relevant:
+  - {key: kr-gad-2024/doc_3/18, fingerprint: 3b6c7a5fef68, grade: 1}
+- id: q-163
+  question: Пациентка 75 лет, бессонница без тревоги. Какой гипнотик безопаснее, мелатонин или зопиклон?
+  kind: none
+  split: dev
+  origin: []
+  relevant: []
+- id: q-164
+  question: Как подобрать дозу зопиклона для пожилой пациентки с инсомнией?
+  kind: none
+  split: dev
+  origin: []
+  relevant: []
+- id: q-165
+  question: Мужчина 45 лет, алкогольная зависимость, абстиненция. Какой препарат для детоксикации?
+  kind: none
+  split: dev
+  origin: []
+  relevant:
+  - {key: afobazol-ohlp/4.1/1, fingerprint: e90da07264e0, grade: 1}
+  - {key: afobazol-ohlp/4.2/1, fingerprint: d34d53b51e17, grade: 1}
+- id: q-166
+  question: 'При алкоголизме: нафопам или дисульфирам? Какой риск?'
+  kind: none
+  split: test
+  origin: []
+  relevant: []
+- id: q-167
+  question: Женщина 28 лет, послеродовой психоз. Какой антипсихотик и антиконвульсант выбрать?
+  kind: none
+  split: dev
+  origin: []
+  relevant:
+  - {key: kr-depression-2024/doc_3/12, fingerprint: 7c7e09cc0260, grade: 1}
+  - {key: kr-depression-2024/doc_3/26, fingerprint: d9ef7859a814, grade: 1}
+  - {key: kr-gad-2024/doc_a3/2, fingerprint: cd785714a683, grade: 1}
+- id: q-168
+  question: 'При послеродовой депрессии: можно ли кормить грудью при приеме сертралина?'
+  kind: none
+  split: dev
+  origin: []
+  relevant:
+  - {key: kr-depression-2024/doc_7/2, fingerprint: 18c0a626faf0, grade: 1}
+- id: q-169
+  question: Пациент 70 лет, болезнь Альцгеймера. Какой холинолитик и дозировка?
+  kind: none
+  split: test
+  origin: []
+  relevant: []
+- id: q-170
+  question: 'При деменции с психомоторным возбуждением: какой антипсихотик безопаснее?'
+  kind: none
+  split: dev
+  origin: []
+  relevant:
+  - {key: kr-depression-2024/doc_terms/1, fingerprint: 36fbe360049d, grade: 1}

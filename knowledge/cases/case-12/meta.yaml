@@ -1,0 +1,4 @@
+section_order: [header, diagnosis, complaints, history, mental_status, examination, treatment, recommendations]
+detail: standard
+style: "скан выписки психиатрического стационара после распознавания: переносы слов, слипшиеся слова, цифры 0 и l вместо букв"
+diagnosis_format: "после «Диагноз:» без пробела, текст с переносом слова и код в скобках"

@@ -1,0 +1,4 @@
+id: test-serotonergic
+title: "Тестовые серотонинергические"
+inn: ["суматриптан"]
+sources: [{source: test-label, locator: "4.5"}]

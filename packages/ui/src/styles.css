@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@import "./tokens.css";
+@import "./typography.css";
+@import "./components.css";
+@import "./components/chat/chat.css";
+@import "./components/chat/voice.css";
+@source "./";
+
+html {
+  color: var(--color-ink);
+  background: var(--color-canvas);
+  font-family: var(--font-sans);
+}

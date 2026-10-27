@@ -1,0 +1,28 @@
+# Маршрутизация (#8): тяжёлая депрессия — направление к психиатру «обязательно».
+# Суицидальный риск сюда не входит. Его покрывают отдельные алерты: phq9-suicidal-thoughts
+# (PHQ-9, пункт 9) и hamd17-suicidal-intent (HAMD-17, пункт 3).
+id: routing-depression-severe
+version: 2
+status: reviewed
+kind: routing
+level: mandatory
+title: "Тяжёлая депрессивная симптоматика: направление к психиатру обязательно"
+when:
+  any:
+    - {scale: phq-9, score: total, op: ">=", value: 20}
+    - {scale: hamd-17, score: total, op: ">=", value: 19}
+doctor_actions:
+  - "Направить к психиатру"
+  - "Обсудить с психиатром стационарное лечение"
+sources:
+  - {source: kr-depression-2024, locator: "раздел 2: первичная оценка депрессивного синдрома и диагноз — врачом-психиатром"}
+  - {source: kr-depression-2024, locator: "раздел 6: ДЭ тяжёлой степени — показание к стационарному лечению"}
+  - {source: zolotareva-gad7-2023, locator: "с. 35: PHQ-9 ≥ 20 — тяжёлая депрессия"}
+  - {source: kr-depression-2024, locator: "прил. Г1, ключ: HAMD-17 19–22 — тяжёлая степень"}
+cases:
+  - {given: {phq-9: {total: 20}}, fires: true, source: {source: zolotareva-gad7-2023, locator: "с. 35: граница тяжёлой степени"}}
+  - {given: {phq-9: {total: 19}}, fires: false, source: {source: zolotareva-gad7-2023, locator: "с. 35: 15–19 — умеренно тяжёлая"}}
+  - {given: {hamd-17: {total: 19}}, fires: true, source: {source: kr-depression-2024, locator: "прил. Г1, ключ: граница тяжёлой степени"}}
+  - {given: {hamd-17: {total: 18}}, fires: false, source: {source: kr-depression-2024, locator: "прил. Г1, ключ: 14–18 — средняя степень"}}
+  - {given: {phq-9: {total: 12}, hamd-17: {total: 25}}, fires: true, source: {source: kr-depression-2024, locator: "прил. Г1, ключ: достаточно одной шкалы"}}
+  - {given: {}, fires: false, source: {source: kr-depression-2024, locator: "раздел 2: без оценки по шкалам сигнала нет"}}

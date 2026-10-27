@@ -1,0 +1,30 @@
+# Решения по сигналам для тестов alerts (спека #95): структура как у knowledge/signal-decisions.yaml.
+version: 1
+status: reviewed
+safety:
+  decisions:
+    - id: risk-not-high
+      text: "Риск не высокий: наблюдение продолжается"
+      reason_hint: "план наблюдения"
+      sources:
+        - {source: test-guideline, locator: "раздел 2"}
+  no_contact:
+    text: "Не удалось связаться"
+    sources:
+      - {source: test-guideline, locator: "раздел 2"}
+therapy:
+  decisions:
+    - id: drug-stopped
+      text: "Препарат отменён"
+      reason_hint: "что сделано"
+      applies_to: [contraindication, caution, reaction]
+      sources:
+        - {source: test-guideline, locator: "раздел 3"}
+referral_decline:
+  reasons:
+    - id: other
+      text: "Другое"
+snooze:
+  max_days: 14
+  presets_days: [3, 7, 14]
+  basis: "Период следующего планового опроса"

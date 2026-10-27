@@ -1,0 +1,2 @@
+# Копии источников хранятся байт в байт: sha256 записан в knowledge/sources/manifest.yaml.
+*.pdf binary

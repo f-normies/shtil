@@ -1,0 +1,22 @@
+id: test-cross-scale
+version: 1
+status: reviewed
+kind: alert
+level: mandatory
+title: "Тест: два результата высокого уровня"
+when:
+  all:
+    - {scale: test-eligible, score: total, op: ">=", value: 2}
+    - {scale: test-eligible-second, item: q3, op: ">=", value: 1}
+doctor_actions:
+  - "Проверить тестовый сигнал"
+sources:
+  - {source: test-scale-validation, locator: "с. 5"}
+  - {source: test-validation, locator: "с. 5"}
+cases:
+  - given: {test-eligible: {total: 2}, test-eligible-second: {q3: 1}}
+    fires: true
+    source: {source: test-scale-validation, locator: "с. 5"}
+  - given: {test-eligible: {total: 1}, test-eligible-second: {q3: 1}}
+    fires: false
+    source: {source: test-scale-validation, locator: "с. 5"}

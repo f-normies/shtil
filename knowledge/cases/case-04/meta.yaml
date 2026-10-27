@@ -1,0 +1,4 @@
+section_order: [diagnosis, complaints, history_of_illness, examination, consultations, treatment, recommendations]
+detail: detailed
+style: "выписка неврологического отделения, диагноз в начале документа"
+diagnosis_format: "основной и сопутствующий диагнозы раздельно, текст с кодом в скобках"

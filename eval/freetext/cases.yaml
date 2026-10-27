@@ -1,0 +1,309 @@
+# Эталонный набор разбора дневника и чата (спека #32, раздел 7.1). Все тексты синтетические.
+#
+# У текста: вид (source_type: diary | message, transcript — расшифровка голосовой),
+# ожидаемые находки (категория и дословная цитата; у adherence — событие приёма),
+# упоминания препаратов с ожидаемым итогом сверки по снимку ГРЛС и виды признаков риска.
+# Цитата — фрагмент текста; находка модели совпадает с эталоном, если у неё та же категория
+# и цитаты перекрываются хотя бы наполовину. Ревью — второй медик.
+cases:
+  # --- записи дневника ---------------------------------------------------------------
+  - id: diary-01
+    source_type: diary
+    text: "Принимаю Авиандр 50 мг по утрам вторую неделю. Сон стал лучше, но по вечерам болит голова и подташнивает."
+    findings:
+      - {category: adherence, quote: "Принимаю Авиандр 50 мг по утрам вторую неделю", adherence_event: taken}
+      - {category: symptom, quote: "Сон стал лучше"}
+      - {category: side_effect, quote: "по вечерам болит голова"}
+      - {category: side_effect, quote: "подташнивает"}
+    drugs:
+      - {name: "Авиандр", check: registered}
+
+  - id: diary-02
+    source_type: diary
+    text: "Пропустила вчера таблетку, просто забыла. Сегодня с утра тревожно и всё валится из рук."
+    findings:
+      - {category: adherence, quote: "Пропустила вчера таблетку, просто забыла", adherence_event: missed}
+      - {category: symptom, quote: "Сегодня с утра тревожно"}
+
+  - id: diary-03
+    source_type: diary
+    text: "Сама уменьшила дозу золофта до половины таблетки, потому что днём постоянно хотелось спать."
+    findings:
+      - {category: adherence, quote: "Сама уменьшила дозу золофта до половины таблетки", adherence_event: dose_changed}
+      - {category: side_effect, quote: "днём постоянно хотелось спать"}
+    drugs:
+      - {name: "золофт", check: registered}
+
+  - id: diary-04
+    source_type: diary
+    text: "Неделю почти не сплю: просыпаюсь в четыре утра и больше не могу уснуть. Аппетита нет совсем."
+    findings:
+      - {category: symptom, quote: "просыпаюсь в четыре утра и больше не могу уснуть"}
+      - {category: symptom, quote: "Аппетита нет совсем"}
+
+  - id: diary-05
+    source_type: diary
+    text: "Пью на ночь мелатонин, без него не засыпаю."
+    findings:
+      - {category: medication, quote: "Пью на ночь мелатонин"}
+      - {category: symptom, quote: "без него не засыпаю"}
+    drugs:
+      - {name: "мелатонин", check: registered}
+
+  - id: diary-06
+    source_type: diary
+    text: "Иногда думаю, что не хочу жить. Сил ни на что нет, лежу целыми днями."
+    findings:
+      - {category: symptom, quote: "Сил ни на что нет, лежу целыми днями"}
+    signs: [suicidal-thoughts]
+
+  - id: diary-07
+    source_type: diary
+    text: "Опять резала руку вечером. Так становится легче, хотя потом стыдно."
+    signs: [self-harm]
+
+  - id: diary-08
+    source_type: diary
+    text: "Коплю таблетки на всякий случай, уже набралось много. Никому не говорю."
+    signs: [suicidal-intent]
+
+  - id: diary-09
+    source_type: diary
+    text: "Бросила пить авиандр три дня назад, и снова мысли, что всё бессмысленно и лучше умереть."
+    findings:
+      - {category: adherence, quote: "Бросила пить авиандр три дня назад", adherence_event: stopped}
+    drugs:
+      - {name: "авиандр", check: registered}
+    signs: [suicidal-thoughts]
+
+  - id: diary-10
+    source_type: diary
+    text: "На работе умираю от скуки, а вечером убиваю время сериалами. Настроение в целом ровное."
+    findings:
+      - {category: symptom, quote: "Настроение в целом ровное"}
+
+  - id: diary-11
+    source_type: diary
+    text: "Вчера была годовщина смерти мамы, сходили на кладбище. Поплакала, но потом стало легче."
+    findings:
+      - {category: symptom, quote: "Поплакала, но потом стало легче"}
+
+  - id: diary-12
+    source_type: diary
+    text: "Порезалась, когда резала хлеб, ничего страшного. Тревога меньше, чем на прошлой неделе."
+    findings:
+      - {category: symptom, quote: "Тревога меньше, чем на прошлой неделе"}
+
+  - id: diary-13
+    source_type: diary
+    text: "Разобрала шкаф и раздала старые вещи в благотворительный фонд. Давно собиралась, приятно."
+
+  - id: diary-14
+    source_type: diary
+    text: "Без назначения пью феназепам по половинке, когда накатывает паника."
+    findings:
+      - {category: medication, quote: "пью феназепам по половинке"}
+      - {category: symptom, quote: "когда накатывает паника"}
+    drugs:
+      - {name: "феназепам", check: registered}
+
+  - id: diary-15
+    source_type: diary
+    text: "Начала принимать омега-3 и глицин, подруга посоветовала. Настроение получше, гуляю по вечерам."
+    findings:
+      - {category: medication, quote: "принимать омега-3"}
+      - {category: medication, quote: "глицин"}
+      - {category: symptom, quote: "Настроение получше"}
+    drugs:
+      - {name: "омега-3", check: not_found}
+      - {name: "глицин", check: registered}
+
+  # --- сообщения в чате ----------------------------------------------------------------
+  - id: chat-01
+    source_type: message
+    text: "Доктор, тревога стала меньше, но сосредоточиться на работе очень трудно."
+    findings:
+      - {category: symptom, quote: "тревога стала меньше"}
+      - {category: symptom, quote: "сосредоточиться на работе очень трудно"}
+
+  - id: chat-02
+    source_type: message
+    text: "Принимаю сертралин, но появилась дрожь в руках. Это нормально?"
+    findings:
+      - {category: adherence, quote: "Принимаю сертралин", adherence_event: taken}
+      - {category: side_effect, quote: "появилась дрожь в руках"}
+    drugs:
+      - {name: "сертралин", check: registered}
+
+  - id: chat-03
+    source_type: message
+    text: "Мне в другой клинике назначили ксанакс. Его можно пить вместе с вашими таблетками?"
+    findings:
+      - {category: medication, quote: "назначили ксанакс"}
+    drugs:
+      - {name: "ксанакс", check: not_found}
+
+  - id: chat-04
+    source_type: message
+    text: "Ципралекс закончился, купить не успела, третий день не пью."
+    findings:
+      - {category: adherence, quote: "третий день не пью", adherence_event: missed}
+    drugs:
+      - {name: "Ципралекс", check: registered}
+
+  - id: chat-05
+    source_type: message
+    text: "Не знаю, зачем я всё это продолжаю. Хочется просто исчезнуть."
+    signs: [suicidal-thoughts]
+
+  - id: chat-06
+    source_type: message
+    text: "Я решила: если до конца месяца не станет лучше, я это сделаю. Уже знаю как."
+    signs: [suicidal-intent]
+
+  - id: chat-07
+    source_type: message
+    text: "Всем было бы легче без меня. Простите, что пишу такое."
+    signs: [suicidal-thoughts]
+
+  - id: chat-08
+    source_type: message
+    text: "Две недели назад наглоталась таблеток, никому не сказала. Сейчас вроде нормально."
+    signs: [suicidal-intent]
+
+  - id: chat-09
+    source_type: message
+    text: "Не хочу идти на работу, хочу в отпуск. А так всё по-прежнему, таблетки пью."
+    findings:
+      - {category: adherence, quote: "таблетки пью", adherence_event: taken}
+
+  - id: chat-10
+    source_type: message
+    text: "Прочитала книгу, где героиня покончила с собой. Тяжёлая история, не советую."
+
+  - id: chat-11
+    source_type: message
+    text: "Афобазол пью сама курсом, ещё до вас начала. Сказать вам об этом?"
+    findings:
+      - {category: medication, quote: "Афобазол пью сама курсом"}
+    drugs:
+      - {name: "Афобазол", check: registered}
+
+  - id: chat-12
+    source_type: message
+    text: "Когда накрывает, бью себя кулаком по голове, пока не отпустит."
+    signs: [self-harm]
+
+  - id: chat-13
+    source_type: message
+    text: "Вспомнила соседку по палате, она в прошлом году пыталась отравиться. Расстроилась на весь вечер."
+    findings:
+      - {category: symptom, quote: "Расстроилась на весь вечер"}
+
+  # --- расшифровки голосовых -----------------------------------------------------------
+  - id: voice-01
+    source_type: message
+    transcript: true
+    text: "доктор я принимаю авиандор утром как вы сказали но во рту сухость постоянно"
+    findings:
+      - {category: adherence, quote: "я принимаю авиандор утром", adherence_event: taken}
+      - {category: side_effect, quote: "во рту сухость постоянно"}
+    drugs:
+      - {name: "авиандор", check: similar}
+
+  - id: voice-02
+    source_type: diary
+    transcript: true
+    text: "овиандр пью уже месяц настроение ровнее только по утрам голова тяжёлая"
+    findings:
+      - {category: adherence, quote: "овиандр пью уже месяц", adherence_event: taken}
+      - {category: symptom, quote: "настроение ровнее"}
+      - {category: side_effect, quote: "по утрам голова тяжёлая"}
+    drugs:
+      - {name: "овиандр", check: similar}
+
+  - id: voice-03
+    source_type: message
+    transcript: true
+    text: "ципролекс закончился неделю назад и я его не покупала"
+    findings:
+      - {category: adherence, quote: "я его не покупала", adherence_event: missed}
+    drugs:
+      - {name: "ципролекс", check: similar}
+
+  - id: voice-04
+    source_type: diary
+    transcript: true
+    text: "фенозепам выпила вчера на ночь и проспала до обеда"
+    findings:
+      - {category: medication, quote: "фенозепам выпила вчера на ночь"}
+    drugs:
+      - {name: "фенозепам", check: similar}
+
+  - id: voice-05
+    source_type: message
+    transcript: true
+    text: "доктор мне последнее время кажется что жить незачем ничего не радует"
+    findings:
+      - {category: symptom, quote: "ничего не радует"}
+    signs: [suicidal-thoughts]
+
+  - id: voice-06
+    source_type: diary
+    transcript: true
+    text: "лучше бы я вообще не просыпалась утром каждый день одно и то же"
+    signs: [suicidal-thoughts]
+
+  - id: voice-07
+    source_type: message
+    transcript: true
+    text: "вчера опять прижигала себя сигаретой не могу остановиться"
+    signs: [self-harm]
+
+  - id: voice-08
+    source_type: diary
+    transcript: true
+    text: "написал письма родным чтобы они не винили себя когда меня не станет"
+    signs: [suicidal-intent]
+
+  - id: voice-09
+    source_type: diary
+    transcript: true
+    text: "устала смертельно после смены но сплю нормально и таблетки не пропускаю"
+    findings:
+      - {category: symptom, quote: "сплю нормально"}
+      - {category: adherence, quote: "таблетки не пропускаю", adherence_event: taken}
+
+  - id: voice-10
+    source_type: message
+    transcript: true
+    text: "дети смеются что я их убью своими пирогами столько напекла настроение хорошее"
+    findings:
+      - {category: symptom, quote: "настроение хорошее"}
+
+  - id: voice-11
+    source_type: message
+    transcript: true
+    text: "от но шпы живот прошёл а голова всё равно болит"
+    findings:
+      - {category: medication, quote: "от но шпы живот прошёл"}
+      - {category: symptom, quote: "голова всё равно болит"}
+    drugs:
+      - {name: "но-шпа", check: registered}
+
+  - id: voice-12
+    source_type: diary
+    transcript: true
+    text: "смотрела новости про теракт очень страшно за близких полночи не спала"
+    findings:
+      - {category: symptom, quote: "полночи не спала"}
+
+  - id: voice-13
+    source_type: message
+    transcript: true
+    text: "подруга посоветовала фенибут выпила одну таблетку стало спокойнее"
+    findings:
+      - {category: medication, quote: "фенибут выпила одну таблетку"}
+      - {category: symptom, quote: "стало спокойнее"}
+    drugs:
+      - {name: "фенибут", check: registered}

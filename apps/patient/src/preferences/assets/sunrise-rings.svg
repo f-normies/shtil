@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="360" height="300" viewBox="0 0 360 300" fill="none" xmlns="http://www.w3.org/2000/svg"><title>Кольца рассвета</title>
+<g id="&#208;&#154;&#209;&#128;&#209;&#131;&#208;&#179;&#208;&#184;" clip-path="url(#clip0_0_71)">
+<circle id="&#208;&#154;&#209;&#128;&#209;&#131;&#208;&#179; 200" cx="180" cy="300" r="100" stroke="#A9D0DD" stroke-width="3"/>
+<circle id="&#208;&#154;&#209;&#128;&#209;&#131;&#208;&#179; 280" cx="180" cy="300" r="140" stroke="#A9D0DD" stroke-width="3"/>
+<circle id="&#208;&#154;&#209;&#128;&#209;&#131;&#208;&#179; 360" cx="180" cy="300" r="180" stroke="#A9D0DD" stroke-width="3"/>
+</g>
+<defs>
+<clipPath id="clip0_0_71">
+<rect width="360" height="300" fill="white"/>
+</clipPath>
+</defs>
+</svg>

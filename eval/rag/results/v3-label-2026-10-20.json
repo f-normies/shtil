@@ -1,0 +1,10 @@
+{
+  "judge": "eval.rag.judge_relevance-6f1e6352",
+  "pool_depth": 10,
+  "none_with_answer": [
+    "s-013",
+    "s-052",
+    "s-074",
+    "s-077"
+  ]
+}

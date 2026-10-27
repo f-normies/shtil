@@ -1,0 +1,23 @@
+# Выдуманные источники для тестов модуля alerts.
+sources:
+  - id: test-guideline
+    title: "Тестовые клинические рекомендации"
+    kind: clinical_guideline
+    publisher: "Тестовый издатель"
+    url: https://example.org/test-guideline
+    version: "1"
+    date: 2024-01-15
+    license: "только ссылка"
+    file: null
+    supplementary: false
+    icd10: [F41.1]
+  - id: test-validation
+    title: "Тестовая валидация шкалы"
+    kind: scale_validation
+    publisher: "Тестовый журнал"
+    url: https://example.org/test-validation
+    version: "1"
+    date: 2020-05-01
+    license: "только ссылка"
+    file: null
+    supplementary: false

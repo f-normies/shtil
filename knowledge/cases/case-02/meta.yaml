@@ -1,0 +1,4 @@
+section_order: [complaints, history_of_illness, examination, diagnosis, treatment]
+detail: brief
+style: "запись в амбулаторной карте терапевта, сокращения и символы"
+diagnosis_format: "Ds: текст с кодом в скобках, несколько диагнозов в одной строке"

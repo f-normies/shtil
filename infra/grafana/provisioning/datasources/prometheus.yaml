@@ -1,0 +1,21 @@
+# Источник данных Grafana (спека #40, 3.5): Prometheus стенда в сети compose.
+# uid закреплён: на него ссылаются панели dashboards/compass.json.
+apiVersion: 1
+
+# Источник, которого больше нет в этом файле, удаляется при старте.
+prune: true
+
+datasources:
+  - name: Prometheus
+    uid: prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true
+    editable: false
+    jsonData:
+      httpMethod: POST
+      # Равен scrape_interval в infra/prometheus/prometheus.yml: от него считается $__rate_interval.
+      timeInterval: 15s
+      prometheusType: Prometheus
+      prometheusVersion: 3.15.0

@@ -1,0 +1,4 @@
+section_order: [previous_treatment, complaints, history, mental_status, diagnosis, treatment]
+detail: standard
+style: "протокол частной клиники, нестандартный порядок: лечение до анамнеза, жалобы от первого лица"
+diagnosis_format: "в разделе «Заключение», текст с кодом в скобках"

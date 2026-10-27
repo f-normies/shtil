@@ -1,0 +1,10 @@
+id: test-intent
+version: 1
+status: reviewed
+rank: 1
+title: "Тест: намерение"
+definition: "Пациент пишет о плане или приготовлениях."
+doctor_actions:
+  - "Тест: связаться немедленно"
+sources:
+  - {source: test-guideline, locator: "раздел 1"}

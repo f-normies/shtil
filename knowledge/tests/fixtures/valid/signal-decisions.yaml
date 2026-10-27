@@ -1,0 +1,51 @@
+# Пример решений по сигналам для тестов: структура как у knowledge/signal-decisions.yaml.
+version: 1
+status: reviewed
+safety:
+  decisions:
+    - id: high-risk
+      text: "Риск высокий: оформлено направление"
+      reason_hint: "что сделано"
+      sources:
+        - {source: example-guideline, locator: "раздел 2"}
+    - id: not-high
+      text: "Риск не высокий"
+      reason_hint: "план наблюдения"
+      sources:
+        - {source: example-guideline, locator: "раздел 2"}
+  no_contact:
+    text: "Не удалось связаться"
+    sources:
+      - {source: example-guideline, locator: "раздел 2"}
+therapy:
+  decisions:
+    - id: drug-stopped
+      text: "Препарат отменён"
+      reason_hint: "что сделано"
+      applies_to: [contraindication, caution, reaction]
+      sources:
+        - {source: example-label, locator: "4.8"}
+    - id: continued
+      text: "Препарат продолжен, наблюдение"
+      reason_hint: "план наблюдения"
+      applies_to: [caution, reaction]
+      sources:
+        - {source: example-label, locator: "4.4"}
+    - id: data-corrected
+      text: "Данные карты исправлены"
+      reason_hint: "что исправлено"
+      applies_to: [contraindication]
+referral_decline:
+  reasons:
+    - id: declined
+      text: "Пациент отказался"
+      sources:
+        - {source: example-guideline, locator: "раздел 3"}
+    - id: planned
+      text: "Консультация уже запланирована"
+    - id: other
+      text: "Другое"
+snooze:
+  max_days: 14
+  presets_days: [3, 7, 14]
+  basis: "Период следующего планового опроса"

@@ -1,0 +1,38 @@
+{
+  "name": "@compass/patient",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "typecheck:e2e": "tsc --noEmit -p tsconfig.e2e.json",
+    "test:browser": "pnpm typecheck:e2e && playwright test",
+    "test:browser:production": "pnpm typecheck:e2e && playwright test --config=playwright.production.config.ts"
+  },
+  "dependencies": {
+    "@compass/api-client": "workspace:*",
+    "@compass/ui": "workspace:*",
+    "@tanstack/react-query": "5.104.3",
+    "@tanstack/react-router": "1.170.44",
+    "lucide-react": "1.57.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "workbox-window": "7.4.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.1",
+    "@tailwindcss/vite": "4.3.3",
+    "@tanstack/router-plugin": "1.168.46",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.9.3",
+    "vite": "8.3.4",
+    "vite-plugin-pwa": "2.0.0",
+    "vitest": "5.0.5"
+  }
+}

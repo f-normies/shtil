@@ -1,0 +1,36 @@
+id: test-eligible
+version: 1
+title: "Тестовая шкала для пациента"
+purpose: monitoring
+respondent: patient
+status: reviewed
+license:
+  terms: "только тест"
+  allowed: true
+  source: {source: test-scale-validation, locator: "с. 1"}
+validation:
+  - {source: test-scale-validation, locator: "с. 2"}
+  - {source: test-validation, locator: "с. 6"}
+instruction: "Тестовая инструкция."
+items:
+  - id: q1
+    text: "Первый тестовый вопрос"
+    options:
+      - {value: 0, text: "Нет"}
+      - {value: 1, text: "Да"}
+  - id: q2
+    text: "Второй тестовый вопрос"
+    options:
+      - {value: 0, text: "Нет"}
+      - {value: 1, text: "Да"}
+scores:
+  - id: total
+    items: [q1, q2]
+    bands:
+      - {min: 0, max: 1, code: low, label: "Низкий", source: {source: test-scale-validation, locator: "с. 3"}}
+      - {min: 2, max: 2, code: high, label: "Высокий", source: {source: test-scale-validation, locator: "с. 4"}}
+  - id: first
+    items: [q1]
+    bands:
+      - {min: 0, max: 0, code: low, label: "Низкий", source: {source: test-scale-validation, locator: "с. 3"}}
+      - {min: 1, max: 1, code: high, label: "Высокий", source: {source: test-scale-validation, locator: "с. 4"}}

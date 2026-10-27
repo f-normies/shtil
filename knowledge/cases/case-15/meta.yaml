@@ -1,0 +1,4 @@
+section_order: [header, past_illness, complaints, comorbidity, functional_tests, diagnosis, recommendations]
+detail: detailed
+style: "заключение реабилитолога после COVID-19: функциональные пробы, баллы шкал, реабилитационный диагноз по рубрикам"
+diagnosis_format: "«Основной» и «Сопутствующие», текст с кодом в скобках; F43.2 — со ссылкой на заключение другого специалиста"

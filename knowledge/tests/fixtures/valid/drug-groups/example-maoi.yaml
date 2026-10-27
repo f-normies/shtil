@@ -1,0 +1,5 @@
+# Выдуманная группа для тестов.
+id: example-maoi
+title: "Пример группы ингибиторов МАО"
+inn: ["примеромоклобемид"]
+sources: [{source: example-label, locator: "4.5"}]

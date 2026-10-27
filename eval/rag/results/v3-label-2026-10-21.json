@@ -1,0 +1,86 @@
+{
+  "judge": "eval.rag.judge_relevance-6f1e6352",
+  "pool_depth": 10,
+  "none_with_answer": {
+    "s-013": [
+      "kr-depression-2024/doc_diag_2/3"
+    ],
+    "s-052": [
+      "kr-depression-2024/doc_3/3"
+    ],
+    "s-074": [
+      "kr-gad-2024/doc_3/12"
+    ],
+    "s-077": [
+      "kr-depression-2024/doc_a3/3",
+      "kr-gad-2024/doc_3/24",
+      "kr-gad-2024/doc_a3/2"
+    ],
+    "s-109": [
+      "kr-gad-2024/doc_diag_2_5/2"
+    ],
+    "s-119": [
+      "cipralex-ohlp/4.4/3"
+    ],
+    "s-129": [
+      "afobazol-ohlp/4.6/1",
+      "cipralex-ohlp/4.6/1",
+      "lyrica-ohlp/4.6/1",
+      "lyrica-ohlp/5.2/3"
+    ],
+    "s-132": [
+      "aviandr-ohlp/4.2/1",
+      "cipralex-ohlp/4.2/2",
+      "lyrica-ohlp/4.2/2",
+      "lyrica-ohlp/4.2/3"
+    ],
+    "s-139": [
+      "cipralex-ohlp/4.4/4",
+      "cipralex-ohlp/4.5/2",
+      "cipralex-ohlp/4.8/3"
+    ],
+    "s-183": [
+      "kr-gad-2024/doc_3/4",
+      "kr-gad-2024/doc_a3/2"
+    ],
+    "s-186": [
+      "kr-depression-2024/doc_a3/3"
+    ],
+    "s-187": [
+      "kr-gad-2024/doc_b/3"
+    ],
+    "s-191": [
+      "kr-depression-2024/doc_3/67"
+    ],
+    "s-193": [
+      "kr-depression-2024/doc_a3/3",
+      "kr-gad-2024/doc_a3/2"
+    ],
+    "s-194": [
+      "kr-depression-2024/doc_crat_info_1_4/1"
+    ],
+    "s-196": [
+      "kr-depression-2024/doc_5/1"
+    ],
+    "s-199": [
+      "lyrica-ohlp/4.8/4"
+    ],
+    "s-201": [
+      "kr-depression-2024/doc_v/1",
+      "kr-gad-2024/doc_5/3"
+    ],
+    "s-203": [
+      "cipralex-ohlp/4.4/5",
+      "cipralex-ohlp/4.8/5"
+    ]
+  },
+  "v2_none_with_answer": {
+    "q-154": [
+      "kr-depression-2024/doc_a3/5"
+    ],
+    "q-165": [
+      "afobazol-ohlp/4.1/1",
+      "afobazol-ohlp/4.2/1"
+    ]
+  }
+}

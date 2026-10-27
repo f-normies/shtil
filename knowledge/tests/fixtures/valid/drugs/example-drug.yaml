@@ -1,0 +1,77 @@
+# Выдуманный препарат для тестов. Настоящие — в knowledge/drugs/.
+id: example-drug
+version: 1
+status: reviewed
+trade_name: "Пример"
+inn: "примерин"
+registration: {number: "ЛП-000100", source: {source: example-registry, locator: "ЛП-000100"}}
+label: example-label
+additional_monitoring: true
+forms:
+  - {id: tab-10, title: "таблетки, 10 мг", strength_mg: 10}
+age_min: {years: 18, source: {source: example-label, locator: "4.1"}}
+indications:
+  - id: anxiety
+    title: "Пример тревожного расстройства"
+    icd10: [F41.1]
+    source: {source: example-label, locator: "4.1"}
+    regimen:
+      form: tab-10
+      dose_mg: 10
+      times_per_day: 2
+      schedule: "утром и вечером"
+      duration: {text: "определяет врач"}
+      source: {source: example-label, locator: "4.2"}
+  - id: course
+    title: "Пример показания с курсом"
+    icd10: [F43.2]
+    requires_any: [U09.9]
+    manual: ["лёгкая или средняя степень выраженности"]
+    source: {source: example-label, locator: "4.1"}
+    regimen:
+      form: tab-10
+      dose_mg: 10
+      times_per_day: 2
+      schedule: "утром и вечером"
+      duration: {days: 28, max_days: 42, text: "4 недели, до 6"}
+      source: {source: example-label, locator: "4.2"}
+instructions:
+  - {text: "Внутрь до еды", source: {source: example-label, locator: "4.2"}}
+contraindications:
+  - id: maoi
+    title: "Пример ингибитора МАО и 2 недели после отмены"
+    when:
+      any:
+        - {medication: {group: example-maoi, within_days: 14}}
+    doctor_actions: ["Не назначать до окончания срока"]
+    sources: [{source: example-label, locator: "4.3"}]
+    cases:
+      - {given: {medications: [{inn: примеромоклобемид, stopped_days_ago: 10}]}, result: "yes", source: {source: example-label, locator: "4.3"}}
+      - {given: {medications: [{inn: примеромоклобемид, stopped_days_ago: 15}]}, result: "no", source: {source: example-label, locator: "4.3"}}
+  - id: hypersensitivity
+    title: "Пример гиперчувствительности"
+    when:
+      any:
+        - {ask: "гиперчувствительность к примерину"}
+    doctor_actions: ["Уточнить аллергологический анамнез"]
+    sources: [{source: example-label, locator: "4.3"}]
+    cases:
+      - {given: {}, result: unknown, source: {source: example-label, locator: "4.3"}}
+cautions:
+  - id: renal
+    title: "Пример: сниженная СКФ"
+    when:
+      any:
+        - {fact: {name: egfr, op: "<", value: 60}}
+    doctor_actions: ["Контроль функции почек"]
+    sources: [{source: example-label, locator: "4.4"}]
+    cases:
+      - {given: {facts: {egfr: 50}}, result: "yes", source: {source: example-label, locator: "4.4"}}
+      - {given: {facts: {egfr: 90}}, result: "no", source: {source: example-label, locator: "4.4"}}
+      - {given: {}, result: unknown, source: {source: example-label, locator: "4.4"}}
+reaction_actions:
+  doctor_actions: ["Оценить состояние пациента"]
+  sources: [{source: example-label, locator: "4.8"}]
+adverse_reactions:
+  - {id: stiffness, title: "Скованность мышц", frequency: "нечасто", level: mandatory, patient_reportable: true, patient_title: "скованность мышц", sources: [{source: example-label, locator: "4.8"}]}
+  - {id: ck-up, title: "Повышение КФК", frequency: "нечасто", level: desirable, patient_reportable: false, sources: [{source: example-label, locator: "4.8"}]}

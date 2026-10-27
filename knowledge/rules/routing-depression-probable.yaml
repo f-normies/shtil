@@ -1,0 +1,35 @@
+# Маршрутизация (#8): вероятная депрессия лёгкой и средней тяжести — консультация психиатра
+# «желательно». Верхние границы (19 и 18) отделяют правило от routing-depression-severe,
+# чтобы одна причина не давала два сигнала. По букве КР (раздел 2) диагноз ставит
+# психиатр; категория «желательно» выбрана медиком, чтобы категории различались тяжестью.
+id: routing-depression-probable
+version: 2
+status: reviewed
+kind: routing
+level: desirable
+title: "Вероятная депрессия лёгкой или средней тяжести: консультация психиатра желательна"
+when:
+  any:
+    - all:
+        - {scale: phq-9, score: total, op: ">=", value: 10}
+        - {scale: phq-9, score: total, op: "<=", value: 19}
+    - all:
+        - {scale: hamd-17, score: total, op: ">=", value: 8}
+        - {scale: hamd-17, score: total, op: "<=", value: 18}
+doctor_actions:
+  - "Рекомендовать консультацию психиатра"
+  - "Без суицидального риска лечение возможно амбулаторно"
+sources:
+  - {source: kr-depression-2024, locator: "раздел 2.1: первичный приём врача-психиатра всем пациентам, УУР C (УДД 5)"}
+  - {source: kr-depression-2024, locator: "раздел 6: ДЭ лёгкой и средней степени без суицидального риска — амбулаторно в ПНД"}
+  - {source: zolotareva-phq9-2023, locator: "с. 121: PHQ-9 ≥ 10 — вероятное большое депрессивное расстройство"}
+  - {source: kr-depression-2024, locator: "прил. Г1, ключ: HAMD-17 8–18 — лёгкое и средней тяжести"}
+cases:
+  - {given: {phq-9: {total: 10}}, fires: true, source: {source: zolotareva-phq9-2023, locator: "с. 121: порог вероятного БДР"}}
+  - {given: {phq-9: {total: 9}}, fires: false, source: {source: zolotareva-gad7-2023, locator: "с. 35: 5–9 — лёгкая депрессия, ниже порога БДР"}}
+  - {given: {phq-9: {total: 19}}, fires: true, source: {source: zolotareva-gad7-2023, locator: "с. 35: 15–19 — умеренно тяжёлая"}}
+  - {given: {phq-9: {total: 20}}, fires: false, source: {source: zolotareva-gad7-2023, locator: "с. 35: ≥ 20 — правило routing-depression-severe"}}
+  - {given: {hamd-17: {total: 8}}, fires: true, source: {source: kr-depression-2024, locator: "прил. Г1, ключ: граница лёгкого расстройства"}}
+  - {given: {hamd-17: {total: 7}}, fires: false, source: {source: kr-depression-2024, locator: "прил. Г1, ключ: 0–7 — норма"}}
+  - {given: {hamd-17: {total: 19}}, fires: false, source: {source: kr-depression-2024, locator: "прил. Г1, ключ: ≥ 19 — правило routing-depression-severe"}}
+  - {given: {}, fires: false, source: {source: kr-depression-2024, locator: "раздел 2: без оценки по шкалам сигнала нет"}}

@@ -1,0 +1,15 @@
+# Дашборды Grafana (спека #40, 3.6) из каталога образа. Правка в интерфейсе не сохраняется:
+# дашборд меняется только в репозитории, infra/grafana/dashboards/.
+apiVersion: 1
+
+providers:
+  - name: compass
+    orgId: 1
+    folder: ""
+    type: file
+    disableDeletion: true
+    allowUiUpdates: false
+    options:
+      # Вне тома grafana_data (/var/lib/grafana): новый образ приносит новую версию дашборда.
+      path: /etc/grafana/dashboards
+      foldersFromFilesStructure: false

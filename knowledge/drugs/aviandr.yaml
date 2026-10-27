@@ -1,0 +1,276 @@
+# «Авиандр» по ОХЛП версии 0010 (`aviandr-ohlp`, спека #28). Схема одна: 20 мг 2 раза в сутки.
+# Диапазона доз и максимальной суточной дозы в ОХЛП нет, поэтому любое отклонение — вне инструкции.
+# В ОХЛП кодов МКБ-10 нет. Коды показаний подобрал и подтвердил медик (ревью #28).
+# Противопоказания, взаимодействия и нежелательные реакции (4.3–4.8) — правила #29.
+id: aviandr
+version: 1
+status: reviewed
+trade_name: "Авиандр"
+inn: "маритупирдин"
+registration:
+  number: "ЛП-№(002445)-(РГ-RU)"
+  source: {source: grls, locator: "ЛП-№(002445)-(РГ-RU), АВИАНДР®, статус active"}
+label: aviandr-ohlp
+# ▼ Листок-вкладыш, начало: «подлежит дополнительному мониторингу». Пометка — в черновике извещения.
+additional_monitoring: true
+forms:
+  - id: tab-20
+    title: "таблетки, покрытые плёночной оболочкой, 20 мг"
+    strength_mg: 20
+    appearance:
+      shape: round
+      color: white
+      description: >-
+        Круглые двояковыпуклые таблетки, покрытые пленочной оболочкой белого или почти белого
+        цвета. На поперечном разрезе ядро таблетки белого или почти белого цвета.
+      source: {source: aviandr-ohlp, locator: "3, «Лекарственная форма»"}
+age_min:
+  years: 18
+  source: {source: aviandr-ohlp, locator: "4.1: у взрослых старше 18 лет; 4.2, «Дети»: детям до 18 лет не назначать"}
+indications:
+  - id: gad
+    title: "Генерализованное тревожное расстройство"
+    icd10: [F41.1]
+    source: {source: aviandr-ohlp, locator: "4.1: генерализованное тревожное расстройство"}
+    regimen:
+      form: tab-20
+      dose_mg: 20
+      times_per_day: 2
+      schedule: "утром и вечером"
+      duration: {text: "определяет врач: заболевание с хроническим течением"}
+      source: {source: aviandr-ohlp, locator: "4.2, «Лечение генерализованного тревожного расстройства»"}
+  - id: post-covid-anxiety
+    title: "Тревожное состояние после COVID-19 при стрессовой реакции и нарушении адаптации"
+    # F43.2 — расстройство адаптации, F43.8 — другие реакции на тяжёлый стресс; U09.9 — состояние
+    # после COVID-19. F43.0 (острая реакция на стресс) не подходит: она проходит за часы или
+    # дни, а курс — 4–6 недель. Степень выраженности по коду не проверить: её подтверждает врач.
+    icd10: [F43.2, F43.8]
+    requires_any: [U09.9]
+    manual: ["лёгкая или средняя степень выраженности"]
+    source: {source: aviandr-ohlp, locator: "4.1: тревожные состояния после COVID-19 у пациентов со стрессовой реакцией и нарушением адаптации, лёгкой и средней степени выраженности"}
+    regimen:
+      form: tab-20
+      dose_mg: 20
+      times_per_day: 2
+      schedule: "утром и вечером"
+      duration: {days: 28, max_days: 42, text: "4 недели, при необходимости до 6 недель"}
+      source: {source: aviandr-ohlp, locator: "4.2, «Лечение тревожных состояний, в том числе после перенесённой коронавирусной инфекции»"}
+instructions:
+  - text: "Внутрь за 30 минут до еды, таблетку проглатывать целиком, не разжёвывая"
+    source: {source: aviandr-ohlp, locator: "4.2, «Способ применения»"}
+  - text: "Пропущенную дозу не принимать: следующую — в обычной дозе в обычное время"
+    source: {source: aviandr-ohlp, locator: "4.2, «Способ применения»"}
+  - text: "При прекращении лечения постепенно снижать дозу не нужно"
+    source: {source: aviandr-ohlp, locator: "4.2, «Прекращение лечения»"}
+  - text: "Избегать алкоголя и препаратов, содержащих этанол"
+    source: {source: aviandr-ohlp, locator: "4.5, «Алкоголь и лекарственные препараты, содержащие этанол»"}
+  - text: "Возможны головокружение и сонливость: при них не управлять транспортом и механизмами"
+    source: {source: aviandr-ohlp, locator: "4.7"}
+# Противопоказания: при любом из них препарат не предлагается (`fail`, «обязательно»).
+# Неизвестные данные пациента — проверка, которую подтверждает врач (спека #29).
+contraindications:
+  - id: hypersensitivity
+    title: "Гиперчувствительность к маритупирдину или вспомогательным веществам"
+    when:
+      any:
+        - {ask: "нет ли гиперчувствительности к маритупирдину и вспомогательным веществам (раздел 6.1)"}
+    doctor_actions: ["Уточнить аллергологический анамнез"]
+    sources: [{source: aviandr-ohlp, locator: "4.3"}]
+    cases:
+      - {given: {}, result: unknown, source: {source: aviandr-ohlp, locator: "4.3"}}
+  - id: epilepsy-organic
+    title: "Эпилепсия и органические заболевания головного мозга"
+    # F00–F09 — органические психические расстройства. Остальные коды — решение ревью #76:
+    # органическое поражение мозга кодируют и другими рубриками. Нейродегенеративные болезни
+    # G10, G20, G23, G30–G32; рассеянный склероз G35; поражения мозга G93.0, G93.1,
+    # G93.4–G93.9; цереброваскулярные болезни и их последствия I60–I69; внутричерепная травма
+    # S06 и её последствия T90.5; опухоли и метастазы C71, C79.3, D33, D43; энцефалит G04
+    # и последствия нейроинфекции G09, B94.1; детский церебральный паралич G80; гидроцефалия
+    # G91; врождённые аномалии мозга Q00–Q04. G93.2 (доброкачественная внутричерепная
+    # гипертензия) и G93.3 (утомляемость после вирусной болезни, ей кодируют и постковидную
+    # астению) не входят. Кодами все случаи не покрыть, поэтому врач уточняет.
+    when:
+      any:
+        - {diagnosis: [G40, G41, F00-F09, G10, G20, G23, G30-G32, G35, G93.0, G93.1, G93.4-G93.9, I60-I69, S06, T90.5, C71, C79.3, D33, D43, G04, G09, B94.1, G80, G91, Q00-Q04]}
+        - {ask: "нет ли органического заболевания головного мозга (последствия ЧМТ, инсульта, нейроинфекции, опухоль, нейродегенеративное заболевание)"}
+    doctor_actions: ["Не назначать; рассмотреть другую терапию"]
+    sources: [{source: aviandr-ohlp, locator: "4.3"}]
+    cases:
+      - {given: {diagnoses: [G40.1]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.3: эпилепсия"}}
+      - {given: {diagnoses: [F06.4]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.3: органические заболевания головного мозга"}}
+      - {given: {diagnoses: [I69.3]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.3: органические заболевания головного мозга; последствия инфаркта мозга — код по решению ревью #76"}}
+      - {given: {diagnoses: [T90.5]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.3: органические заболевания головного мозга; последствия внутричерепной травмы — код по решению ревью #76"}}
+      - {given: {diagnoses: [G20]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.3: органические заболевания головного мозга; болезнь Паркинсона — код по решению ревью #76"}}
+      - {given: {diagnoses: [C79.3]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.3: органические заболевания головного мозга; метастазы в головной мозг — код по решению ревью #76"}}
+      - {given: {diagnoses: [Q03.9]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.3: органические заболевания головного мозга; врождённая гидроцефалия — код по решению ревью #76"}}
+      - {given: {diagnoses: [F41.1]}, result: unknown, source: {source: aviandr-ohlp, locator: "4.3: по кодам не выявлено, органическое заболевание уточняет врач"}}
+      # G93.3 — не противопоказание по коду (решение ревью #76): правило с вопросом врачу даёт unknown.
+      - {given: {diagnoses: [G93.3]}, result: unknown, source: {source: aviandr-ohlp, locator: "4.3: G93.3 (утомляемость после вирусной болезни) — не органическое заболевание по коду, решение ревью #76; врач уточняет"}}
+  - id: maoi
+    title: "Приём ингибиторов МАО или меньше 2 недель после их отмены"
+    when:
+      any:
+        - {medication: {group: maoi, within_days: 14}}
+    doctor_actions: ["Не назначать до окончания срока после отмены ингибитора МАО"]
+    sources:
+      - {source: aviandr-ohlp, locator: "4.3"}
+      - {source: aviandr-ohlp, locator: "4.5, «Ингибиторы моноаминоксидазы (МАО)»"}
+    cases:
+      - {given: {medications: [{inn: моклобемид}]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.3: одновременно с ингибиторами МАО"}}
+      - {given: {medications: [{inn: моклобемид, stopped_days_ago: 10}]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.3: в течение 2 недель после отмены"}}
+      # 14-й день после отмены ещё «в течение 2 недель»: безопасное прочтение (ревью медика #76).
+      - {given: {medications: [{inn: моклобемид, stopped_days_ago: 14}]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.3: в течение 2 недель после отмены"}}
+      - {given: {medications: [{inn: моклобемид, stopped_days_ago: 15}]}, result: "no", source: {source: aviandr-ohlp, locator: "4.3: 2 недели прошли"}}
+      - {given: {medications: [{inn: моклобемид, stopped_days_ago: 16}]}, result: "no", source: {source: aviandr-ohlp, locator: "4.3: 2 недели прошли"}}
+      - {given: {medications: [{inn: линезолид}]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.3: одновременно с ингибиторами МАО; линезолид — обратимый ингибитор МАО, решение медика (ревью #76)"}}
+  - id: renal
+    title: "Почечная недостаточность средней и тяжёлой степени (СКФ < 60 мл/мин)"
+    when:
+      any:
+        - {fact: {name: egfr, op: "<", value: 60}}
+    doctor_actions: ["Не назначать"]
+    sources: [{source: aviandr-ohlp, locator: "4.3; 4.2, «Пациенты с почечной недостаточностью»"}]
+    cases:
+      - {given: {facts: {egfr: 59}}, result: "yes", source: {source: aviandr-ohlp, locator: "4.3: СКФ < 60 мл/мин"}}
+      - {given: {facts: {egfr: 95}}, result: "no", source: {source: aviandr-ohlp, locator: "4.3"}}
+      - {given: {}, result: unknown, source: {source: aviandr-ohlp, locator: "4.3: без СКФ не проверить"}}
+  - id: hepatic
+    title: "Печёночная недостаточность классов A, B и C по Чайлд-Пью"
+    when:
+      any:
+        - {fact: {name: child_pugh, in: [A, B, C]}}
+        # Цирроз печени — не ниже класса A по Чайлд-Пью, даже если класс не внесён (ревью медика #76).
+        - {diagnosis: [K70.3, K70.4, K71.7, K72, K74.3-K74.6, K76.6, K76.7]}
+    doctor_actions: ["Не назначать"]
+    sources: [{source: aviandr-ohlp, locator: "4.3; 4.2, «Пациенты с печёночной недостаточностью»"}]
+    cases:
+      - {given: {facts: {child_pugh: A}}, result: "yes", source: {source: aviandr-ohlp, locator: "4.3: лёгкая степень, класс A"}}
+      - {given: {diagnoses: [K70.3]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.3: печёночная недостаточность классов A–C; цирроз — не ниже класса A, решение медика (ревью #76)"}}
+      - {given: {facts: {child_pugh: none}}, result: "no", source: {source: aviandr-ohlp, locator: "4.3"}}
+      - {given: {}, result: unknown, source: {source: aviandr-ohlp, locator: "4.3: без оценки функции печени не проверить"}}
+  - id: pregnancy
+    title: "Беременность"
+    when:
+      any:
+        - {fact: {name: pregnant, op: "==", value: true}}
+    doctor_actions: ["Не назначать; обсудить другую терапию"]
+    sources: [{source: aviandr-ohlp, locator: "4.6: применение при беременности противопоказано"}]
+    cases:
+      - {given: {sex: female, facts: {pregnant: true}}, result: "yes", source: {source: aviandr-ohlp, locator: "4.6"}}
+      - {given: {sex: female, facts: {pregnant: false}}, result: "no", source: {source: aviandr-ohlp, locator: "4.6"}}
+      - {given: {sex: male}, result: "no", source: {source: aviandr-ohlp, locator: "4.6: неприменимо"}}
+      - {given: {sex: female}, result: unknown, source: {source: aviandr-ohlp, locator: "4.6: беременность не уточнена"}}
+  - id: breastfeeding
+    title: "Грудное вскармливание"
+    when:
+      any:
+        - {fact: {name: breastfeeding, op: "==", value: true}}
+    doctor_actions: ["Не назначать или решить вопрос о прекращении грудного вскармливания"]
+    sources: [{source: aviandr-ohlp, locator: "4.6, «Лактация»"}]
+    cases:
+      - {given: {sex: female, facts: {breastfeeding: true}}, result: "yes", source: {source: aviandr-ohlp, locator: "4.6"}}
+      - {given: {sex: female, facts: {breastfeeding: false}}, result: "no", source: {source: aviandr-ohlp, locator: "4.6"}}
+      - {given: {sex: male}, result: "no", source: {source: aviandr-ohlp, locator: "4.6: неприменимо"}}
+      - {given: {sex: female}, result: unknown, source: {source: aviandr-ohlp, locator: "4.6: грудное вскармливание не уточнено"}}
+  - id: lactose
+    title: "Непереносимость галактозы, дефицит лактазы, глюкозо-галактозная мальабсорбция"
+    when:
+      any:
+        - {diagnosis: [E73, E74.2, E74.3]}
+    doctor_actions: ["Не назначать: препарат содержит лактозу"]
+    sources: [{source: aviandr-ohlp, locator: "4.4, «Вспомогательные вещества»"}]
+    cases:
+      - {given: {diagnoses: [E73.9]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.4: дефицит лактазы"}}
+      - {given: {diagnoses: [E74.3]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.4: глюкозо-галактозная мальабсорбция"}}
+      - {given: {diagnoses: [E11.9]}, result: "no", source: {source: aviandr-ohlp, locator: "4.4"}}
+# Меры предосторожности и взаимодействия: предложение есть, предупреждение «желательно».
+cautions:
+  - id: cardiovascular
+    title: "Сердечно-сосудистые заболевания: применять с осторожностью"
+    # Решение ревью #76: без болезней вен I80–I89 (флебит, варикоз, геморрой), это не
+    # сердечно-сосудистые заболевания в смысле 4.4, частое предупреждение врач привыкнет
+    # пропускать. I95 — гипотензия, Q20–Q28 — врождённые пороки сердца и сосудов.
+    when:
+      any:
+        - {diagnosis: [I00-I79, I95, Q20-Q28]}
+    doctor_actions: ["Назначать с осторожностью, контролировать состояние"]
+    sources: [{source: aviandr-ohlp, locator: "4.4, «Сердечно-сосудистые нарушения»"}]
+    cases:
+      - {given: {diagnoses: [I10]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.4"}}
+      - {given: {diagnoses: [Q21.1]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.4: сердечно-сосудистые заболевания; врождённый порок сердца — код по решению ревью #76"}}
+      - {given: {diagnoses: [I83.9]}, result: "no", source: {source: aviandr-ohlp, locator: "4.4: сердечно-сосудистые заболевания; болезни вен вне правила — решение медика (ревью #76)"}}
+      - {given: {diagnoses: [F41.1]}, result: "no", source: {source: aviandr-ohlp, locator: "4.4"}}
+  - id: sedative
+    title: "Препараты с седативными свойствами: возможно усиление седации"
+    when:
+      any:
+        - {medication: {group: sedative}}
+    doctor_actions: ["Назначать с осторожностью; предупредить о сонливости"]
+    sources: [{source: aviandr-ohlp, locator: "4.5, «Лекарственные препараты с седативными свойствами»"}]
+    cases:
+      - {given: {medications: [{inn: диазепам}]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.5: производные бензодиазепина"}}
+      - {given: {medications: [{inn: "Фенобарбитал натрия"}]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.5: барбитураты"}}
+      - {given: {medications: [{inn: цетиризин}]}, result: "yes", source: {source: aviandr-leaflet-2026, locator: "раздел 2, «Другие препараты»: противоаллергические препараты — цетиризин"}}
+      - {given: {medications: [{inn: метопролол}]}, result: "no", source: {source: aviandr-ohlp, locator: "4.5: метопролол — без значимого взаимодействия"}}
+  - id: serotonergic
+    title: "Серотонинергические препараты: риск серотонинового синдрома"
+    when:
+      any:
+        - {medication: {group: serotonergic}}
+    doctor_actions: ["Назначать с осторожностью; объяснить пациенту признаки серотонинового синдрома"]
+    sources: [{source: aviandr-ohlp, locator: "4.5, «Лекарственные препараты с серотонинергическим действием»"}]
+    cases:
+      - {given: {medications: [{inn: суматриптан}]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.5: препараты из группы триптанов"}}
+      # Все написания МНН зверобоя в ГРЛС, кроме гомеопатических (ревью #76).
+      - {given: {medications: [{inn: "Зверобоя трава"}]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.5: зверобой продырявленный"}}
+      - {given: {medications: [{inn: "Зверобоя продырявленного травы экстракт"}]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.5: зверобой продырявленный"}}
+      - {given: {medications: [{inn: "Зверобоя травы экстракт"}]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.5: зверобой продырявленный"}}
+      - {given: {medications: [{inn: "Зверобоя травы экстракт сухой"}]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.5: зверобой продырявленный"}}
+      - {given: {medications: [{inn: дулоксетин}]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.5: «с другими серотонинергическими препаратами»; дулоксетин в группе — решение медика (ревью #76)"}}
+      - {given: {medications: [{inn: метопролол}]}, result: "no", source: {source: aviandr-ohlp, locator: "4.5"}}
+  - id: cyp2d6
+    title: "Ингибиторы CYP2D6: возможно повышение концентрации маритупирдина"
+    when:
+      any:
+        - {medication: {group: cyp2d6-inhibitors}}
+    doctor_actions: ["Назначать с осторожностью"]
+    sources: [{source: aviandr-ohlp, locator: "4.5, «Ингибиторы изофермента CYP2D6»"}]
+    cases:
+      - {given: {medications: [{inn: тербинафин}]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.5"}}
+      - {given: {medications: [{inn: бупропион}]}, result: "yes", source: {source: aviandr-ohlp, locator: "4.5: ингибиторы CYP2D6; бупропион — сильный ингибитор CYP2D6, решение медика (ревью #76)"}}
+      - {given: {medications: [{inn: дулоксетин}]}, result: "no", source: {source: aviandr-ohlp, locator: "4.5: дулоксетин не менял фармакокинетику маритупирдина"}}
+      - {given: {medications: [{inn: флуконазол}]}, result: "no", source: {source: aviandr-ohlp, locator: "4.5: ингибитор CYP2C19, без значимого влияния"}}
+# Таблица 1 раздела 4.8. Уровень сигнала при отметке пациентом — по листку-вкладышу
+# (aviandr-leaflet-2026), раздел 4: «обязательно» — список «Немедленно сообщите лечащему врачу»
+# (скованность мышц, тризм, гипергидроз, снижение гемоглобина), остальные — «желательно»:
+# список «Другие возможные нежелательные реакции». Снижения аппетита в листке нет: «желательно».
+# Действия врача по сигналу, который поднимает отметка реакции пациентом. Листок-вкладыш,
+# раздел 4: «Оценив Ваше состояние, врач может изменить схему лечения, решить прекратить
+# лечение или снизить дозу». Решение о схеме — за врачом, система её не меняет.
+reaction_actions:
+  doctor_actions:
+    - "Связаться с пациентом и оценить его состояние"
+    - "Решить, менять ли лечение: изменить схему, снизить дозу или прекратить приём"
+  sources: [{source: aviandr-leaflet-2026, locator: "раздел 4, после списка «Немедленно сообщите лечащему врачу»"}]
+adverse_reactions:
+  - {id: appetite-decrease, title: "Снижение аппетита", frequency: "нечасто", level: desirable, patient_reportable: true, patient_title: "пропал аппетит", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}]}
+  - {id: insomnia, title: "Инсомния", frequency: "нечасто", level: desirable, patient_reportable: true, patient_title: "не могу уснуть", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Другие возможные нежелательные реакции»"}]}
+  - {id: anxiety-increase, title: "Усиление тревоги", frequency: "нечасто", level: desirable, patient_reportable: true, patient_title: "тревога стала сильнее", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Другие возможные нежелательные реакции»"}]}
+  - {id: poor-sleep, title: "Низкое качество сна", frequency: "нечасто", level: desirable, patient_reportable: true, patient_title: "сплю плохо, не высыпаюсь", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Другие возможные нежелательные реакции»"}]}
+  - {id: headache, title: "Головная боль", frequency: "часто", level: desirable, patient_reportable: true, patient_title: "болит голова", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Другие возможные нежелательные реакции»"}]}
+  - {id: dizziness, title: "Головокружение", frequency: "часто", level: desirable, patient_reportable: true, patient_title: "кружится голова", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Другие возможные нежелательные реакции»"}]}
+  - {id: somnolence, title: "Сонливость", frequency: "часто", level: desirable, patient_reportable: true, patient_title: "постоянно хочется спать", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Другие возможные нежелательные реакции»"}]}
+  - {id: paresthesia, title: "Парестезия", frequency: "часто", level: desirable, patient_reportable: true, patient_title: "покалывание или онемение кожи", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Другие возможные нежелательные реакции»"}]}
+  - {id: attention-disturbance, title: "Нарушение внимания", frequency: "нечасто", level: desirable, patient_reportable: true, patient_title: "трудно сосредоточиться", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Другие возможные нежелательные реакции»"}]}
+  - {id: hyporeactivity, title: "Сниженная реакция на раздражители", frequency: "нечасто", level: desirable, patient_reportable: true, patient_title: "медленно реагирую на происходящее", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Другие возможные нежелательные реакции»"}]}
+  - {id: dysgeusia, title: "Дисгевзия", frequency: "нечасто", level: desirable, patient_reportable: true, patient_title: "изменился вкус", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Другие возможные нежелательные реакции»"}]}
+  - {id: nausea, title: "Тошнота", frequency: "нечасто", level: desirable, patient_reportable: true, patient_title: "тошнит", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Другие возможные нежелательные реакции»"}]}
+  - {id: upper-abdominal-pain, title: "Боль в верхней части живота", frequency: "нечасто", level: desirable, patient_reportable: true, patient_title: "болит верх живота", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Другие возможные нежелательные реакции»"}]}
+  - {id: constipation, title: "Запор", frequency: "нечасто", level: desirable, patient_reportable: true, patient_title: "запор", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Другие возможные нежелательные реакции»"}]}
+  - {id: hyperhidrosis, title: "Гипергидроз", frequency: "нечасто", level: mandatory, patient_reportable: true, patient_title: "сильная потливость", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Немедленно сообщите лечащему врачу»"}]}
+  - {id: muscle-stiffness, title: "Скованность мышц", frequency: "нечасто", level: mandatory, patient_reportable: true, patient_title: "скованность мышц", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Немедленно сообщите лечащему врачу»"}]}
+  - {id: trismus, title: "Тризм", frequency: "нечасто", level: mandatory, patient_reportable: true, patient_title: "сводит челюсть, трудно открыть рот", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Немедленно сообщите лечащему врачу»"}]}
+  - {id: back-pain, title: "Боль в спине", frequency: "нечасто", level: desirable, patient_reportable: true, patient_title: "болит спина", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Другие возможные нежелательные реакции»"}]}
+  - {id: asthenia, title: "Астения", frequency: "часто", level: desirable, patient_reportable: true, patient_title: "слабость, быстро устаю", sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Другие возможные нежелательные реакции»"}]}
+  - {id: ck-increase, title: "Повышение уровня креатинфосфокиназы", frequency: "нечасто", level: desirable, patient_reportable: false, sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Другие возможные нежелательные реакции»"}]}
+  - {id: hemoglobin-decrease, title: "Снижение уровня гемоглобина", frequency: "нечасто", level: mandatory, patient_reportable: false, sources: [{source: aviandr-ohlp, locator: "4.8, таблица 1"}, {source: aviandr-leaflet-2026, locator: "раздел 4, «Немедленно сообщите лечащему врачу»"}]}

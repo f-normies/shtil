@@ -1,0 +1,917 @@
+{
+  "leader": "d2q+rw=one+rq=question+claims=8",
+  "winner": "claims=8",
+  "runs": {
+    "base": {
+      "summary": {
+        "questions": 150,
+        "recall_at_5": {
+          "mean": 0.4274,
+          "ci95": [
+            0.3894,
+            0.4696
+          ],
+          "n": 128
+        },
+        "recall_at_20": {
+          "mean": 0.6985,
+          "ci95": [
+            0.6649,
+            0.7329
+          ],
+          "n": 128
+        },
+        "hit_at_5": {
+          "mean": 0.9688,
+          "ci95": [
+            0.9375,
+            0.9922
+          ],
+          "n": 128
+        },
+        "mrr": {
+          "mean": 0.8327,
+          "ci95": [
+            0.7815,
+            0.8823
+          ],
+          "n": 128
+        },
+        "ndcg_at_10": {
+          "mean": 0.5984,
+          "ci95": [
+            0.5626,
+            0.6371
+          ],
+          "n": 128
+        },
+        "precision_at_5": {
+          "mean": 0.4787,
+          "ci95": [
+            0.4373,
+            0.5253
+          ],
+          "n": 150
+        },
+        "context_coverage": {
+          "mean": 0.4833,
+          "ci95": [
+            0.4234,
+            0.5419
+          ],
+          "n": 128
+        },
+        "context_use": {
+          "mean": 0.4217,
+          "ci95": [
+            0.3907,
+            0.4558
+          ],
+          "n": 129
+        },
+        "point_coverage": {
+          "mean": 0.4842,
+          "ci95": [
+            0.4301,
+            0.534
+          ],
+          "n": 128
+        },
+        "critical_complete": {
+          "mean": 0.3519,
+          "ci95": [
+            0.2685,
+            0.4444
+          ],
+          "n": 108
+        },
+        "must_not_share": {
+          "mean": 0.1277,
+          "ci95": [
+            0.078,
+            0.1844
+          ],
+          "n": 141
+        },
+        "refusal": {
+          "mean": 0.6818,
+          "ci95": [
+            0.5,
+            0.8636
+          ],
+          "n": 22
+        },
+        "false_refusal": {
+          "mean": 0.0469,
+          "ci95": [
+            0.0156,
+            0.0859
+          ],
+          "n": 128
+        },
+        "supported_share": {
+          "mean": 0.8747,
+          "ci95": [
+            0.8451,
+            0.9029
+          ]
+        },
+        "quotes_found_share": {
+          "mean": 0.9599,
+          "ci95": [
+            0.9372,
+            0.9797
+          ]
+        },
+        "latency": {
+          "total": {
+            "median_s": 9.62,
+            "p95_s": 14.89
+          },
+          "answer": {
+            "median_s": 9.62,
+            "p95_s": 14.88
+          },
+          "rewrite": {
+            "median_s": 0.0,
+            "p95_s": 0.0
+          },
+          "verify": {
+            "median_s": 0.0,
+            "p95_s": 0.0
+          }
+        }
+      },
+      "vs_leader": {
+        "point_coverage": [
+          -0.0553,
+          -0.0897,
+          -0.0217
+        ],
+        "critical_complete": [
+          -0.0556,
+          -0.1296,
+          0.0185
+        ],
+        "must_not_share": [
+          -0.0426,
+          -0.0922,
+          0.0
+        ],
+        "supported_share": [
+          0.0075,
+          -0.0287,
+          0.0451
+        ],
+        "refusal": [
+          0.0455,
+          0.0,
+          0.1364
+        ]
+      },
+      "candidate": false,
+      "in_budget": true,
+      "by_type": {
+        "reference": {
+          "questions": 62.0,
+          "recall_at_5": 0.4602,
+          "recall_at_20": 0.7476,
+          "hit_at_5": 0.9516,
+          "mrr": 0.8245,
+          "ndcg_at_10": 0.6396,
+          "precision_at_5": 0.4968,
+          "context_coverage": 0.5465,
+          "context_use": 0.4,
+          "point_coverage": 0.468,
+          "critical_complete": 0.2391,
+          "must_not_share": 0.0755,
+          "refusal": null,
+          "false_refusal": 0.0968
+        },
+        "case": {
+          "questions": 49.0,
+          "recall_at_5": 0.3246,
+          "recall_at_20": 0.6187,
+          "hit_at_5": 0.9792,
+          "mrr": 0.8076,
+          "ndcg_at_10": 0.5252,
+          "precision_at_5": 0.5633,
+          "context_coverage": 0.3333,
+          "context_use": 0.4653,
+          "point_coverage": 0.4722,
+          "critical_complete": 0.4318,
+          "must_not_share": 0.0816,
+          "refusal": 0.0,
+          "false_refusal": 0.0
+        },
+        "none": {
+          "questions": 21.0,
+          "recall_at_5": null,
+          "recall_at_20": null,
+          "hit_at_5": null,
+          "mrr": null,
+          "ndcg_at_10": null,
+          "precision_at_5": 0.1429,
+          "context_coverage": null,
+          "context_use": 0.3,
+          "point_coverage": null,
+          "critical_complete": null,
+          "must_not_share": 0.0952,
+          "refusal": 0.7143,
+          "false_refusal": null
+        },
+        "trap": {
+          "questions": 18.0,
+          "recall_at_5": 0.5885,
+          "recall_at_20": 0.7419,
+          "hit_at_5": 1.0,
+          "mrr": 0.9278,
+          "ndcg_at_10": 0.6518,
+          "precision_at_5": 0.5778,
+          "context_coverage": 0.6657,
+          "context_use": 0.4111,
+          "point_coverage": 0.5722,
+          "critical_complete": 0.4444,
+          "must_not_share": 0.4444,
+          "refusal": null,
+          "false_refusal": 0.0
+        }
+      },
+      "by_style": {
+        "short": {
+          "questions": 78.0,
+          "recall_at_5": 0.4307,
+          "recall_at_20": 0.6772,
+          "hit_at_5": 0.9688,
+          "mrr": 0.8245,
+          "ndcg_at_10": 0.599,
+          "precision_at_5": 0.459,
+          "context_coverage": 0.4844,
+          "context_use": 0.4348,
+          "point_coverage": 0.4927,
+          "critical_complete": 0.3774,
+          "must_not_share": 0.12,
+          "refusal": 0.5714,
+          "false_refusal": 0.0156
+        },
+        "full": {
+          "questions": 72.0,
+          "recall_at_5": 0.424,
+          "recall_at_20": 0.7197,
+          "hit_at_5": 0.9688,
+          "mrr": 0.8409,
+          "ndcg_at_10": 0.5977,
+          "precision_at_5": 0.5,
+          "context_coverage": 0.4823,
+          "context_use": 0.4067,
+          "point_coverage": 0.4758,
+          "critical_complete": 0.3273,
+          "must_not_share": 0.1364,
+          "refusal": 0.875,
+          "false_refusal": 0.0781
+        }
+      },
+      "point_losses": {
+        "all": {
+          "shown_said": 176,
+          "shown_not_said": 61,
+          "missed_not_said": 108,
+          "top20_not_said": 103,
+          "missed_said": 31,
+          "top20_said": 26
+        },
+        "reference": {
+          "shown_said": 90,
+          "shown_not_said": 35,
+          "missed_not_said": 40,
+          "top20_not_said": 56,
+          "missed_said": 5,
+          "top20_said": 7
+        },
+        "case": {
+          "missed_said": 24,
+          "missed_not_said": 55,
+          "top20_not_said": 43,
+          "shown_said": 57,
+          "top20_said": 14,
+          "shown_not_said": 15
+        },
+        "trap": {
+          "shown_said": 29,
+          "top20_said": 5,
+          "missed_not_said": 13,
+          "shown_not_said": 11,
+          "top20_not_said": 4,
+          "missed_said": 2
+        }
+      }
+    },
+    "claims=8": {
+      "summary": {
+        "questions": 150,
+        "recall_at_5": {
+          "mean": 0.4274,
+          "ci95": [
+            0.3894,
+            0.4696
+          ],
+          "n": 128
+        },
+        "recall_at_20": {
+          "mean": 0.6985,
+          "ci95": [
+            0.6649,
+            0.7329
+          ],
+          "n": 128
+        },
+        "hit_at_5": {
+          "mean": 0.9688,
+          "ci95": [
+            0.9375,
+            0.9922
+          ],
+          "n": 128
+        },
+        "mrr": {
+          "mean": 0.8327,
+          "ci95": [
+            0.7815,
+            0.8823
+          ],
+          "n": 128
+        },
+        "ndcg_at_10": {
+          "mean": 0.5984,
+          "ci95": [
+            0.5626,
+            0.6371
+          ],
+          "n": 128
+        },
+        "precision_at_5": {
+          "mean": 0.4787,
+          "ci95": [
+            0.4373,
+            0.5253
+          ],
+          "n": 150
+        },
+        "context_coverage": {
+          "mean": 0.4833,
+          "ci95": [
+            0.4234,
+            0.5419
+          ],
+          "n": 128
+        },
+        "context_use": {
+          "mean": 0.4693,
+          "ci95": [
+            0.4315,
+            0.5071
+          ],
+          "n": 127
+        },
+        "point_coverage": {
+          "mean": 0.5031,
+          "ci95": [
+            0.4525,
+            0.5539
+          ],
+          "n": 128
+        },
+        "critical_complete": {
+          "mean": 0.3889,
+          "ci95": [
+            0.3056,
+            0.4907
+          ],
+          "n": 108
+        },
+        "must_not_share": {
+          "mean": 0.1986,
+          "ci95": [
+            0.1348,
+            0.2695
+          ],
+          "n": 141
+        },
+        "refusal": {
+          "mean": 0.6818,
+          "ci95": [
+            0.5,
+            0.8636
+          ],
+          "n": 22
+        },
+        "false_refusal": {
+          "mean": 0.0625,
+          "ci95": [
+            0.0234,
+            0.1094
+          ],
+          "n": 128
+        },
+        "supported_share": {
+          "mean": 0.8459,
+          "ci95": [
+            0.81,
+            0.8792
+          ]
+        },
+        "quotes_found_share": {
+          "mean": 0.9604,
+          "ci95": [
+            0.9434,
+            0.9754
+          ]
+        },
+        "latency": {
+          "total": {
+            "median_s": 11.04,
+            "p95_s": 17.53
+          },
+          "answer": {
+            "median_s": 11.04,
+            "p95_s": 17.53
+          },
+          "rewrite": {
+            "median_s": 0.0,
+            "p95_s": 0.0
+          },
+          "verify": {
+            "median_s": 0.0,
+            "p95_s": 0.0
+          }
+        }
+      },
+      "vs_leader": {
+        "point_coverage": [
+          -0.0365,
+          -0.075,
+          0.0001
+        ],
+        "critical_complete": [
+          -0.0185,
+          -0.0741,
+          0.0463
+        ],
+        "must_not_share": [
+          0.0284,
+          -0.0213,
+          0.078
+        ],
+        "supported_share": [
+          -0.0214,
+          -0.0577,
+          0.0138
+        ],
+        "refusal": [
+          0.0455,
+          0.0,
+          0.1364
+        ]
+      },
+      "candidate": true,
+      "in_budget": true,
+      "by_type": {
+        "reference": {
+          "questions": 62.0,
+          "recall_at_5": 0.4602,
+          "recall_at_20": 0.7476,
+          "hit_at_5": 0.9516,
+          "mrr": 0.8245,
+          "ndcg_at_10": 0.6396,
+          "precision_at_5": 0.4968,
+          "context_coverage": 0.5465,
+          "context_use": 0.4436,
+          "point_coverage": 0.4815,
+          "critical_complete": 0.2609,
+          "must_not_share": 0.0943,
+          "refusal": null,
+          "false_refusal": 0.1129
+        },
+        "case": {
+          "questions": 49.0,
+          "recall_at_5": 0.3246,
+          "recall_at_20": 0.6187,
+          "hit_at_5": 0.9792,
+          "mrr": 0.8076,
+          "ndcg_at_10": 0.5252,
+          "precision_at_5": 0.5633,
+          "context_coverage": 0.3333,
+          "context_use": 0.5083,
+          "point_coverage": 0.516,
+          "critical_complete": 0.4545,
+          "must_not_share": 0.2245,
+          "refusal": 0.0,
+          "false_refusal": 0.0208
+        },
+        "none": {
+          "questions": 21.0,
+          "recall_at_5": null,
+          "recall_at_20": null,
+          "hit_at_5": null,
+          "mrr": null,
+          "ndcg_at_10": null,
+          "precision_at_5": 0.1429,
+          "context_coverage": null,
+          "context_use": 0.4,
+          "point_coverage": null,
+          "critical_complete": null,
+          "must_not_share": 0.0952,
+          "refusal": 0.7143,
+          "false_refusal": null
+        },
+        "trap": {
+          "questions": 18.0,
+          "recall_at_5": 0.5885,
+          "recall_at_20": 0.7419,
+          "hit_at_5": 1.0,
+          "mrr": 0.9278,
+          "ndcg_at_10": 0.6518,
+          "precision_at_5": 0.5778,
+          "context_coverage": 0.6657,
+          "context_use": 0.4667,
+          "point_coverage": 0.5435,
+          "critical_complete": 0.5556,
+          "must_not_share": 0.5556,
+          "refusal": null,
+          "false_refusal": 0.0
+        }
+      },
+      "by_style": {
+        "short": {
+          "questions": 78.0,
+          "recall_at_5": 0.4307,
+          "recall_at_20": 0.6772,
+          "hit_at_5": 0.9688,
+          "mrr": 0.8245,
+          "ndcg_at_10": 0.599,
+          "precision_at_5": 0.459,
+          "context_coverage": 0.4844,
+          "context_use": 0.4806,
+          "point_coverage": 0.5206,
+          "critical_complete": 0.4151,
+          "must_not_share": 0.2,
+          "refusal": 0.5714,
+          "false_refusal": 0.0469
+        },
+        "full": {
+          "questions": 72.0,
+          "recall_at_5": 0.424,
+          "recall_at_20": 0.7197,
+          "hit_at_5": 0.9688,
+          "mrr": 0.8409,
+          "ndcg_at_10": 0.5977,
+          "precision_at_5": 0.5,
+          "context_coverage": 0.4823,
+          "context_use": 0.4567,
+          "point_coverage": 0.4857,
+          "critical_complete": 0.3636,
+          "must_not_share": 0.197,
+          "refusal": 0.875,
+          "false_refusal": 0.0781
+        }
+      },
+      "point_losses": {
+        "all": {
+          "shown_said": 182,
+          "missed_not_said": 97,
+          "shown_not_said": 55,
+          "top20_not_said": 107,
+          "missed_said": 42,
+          "top20_said": 22
+        },
+        "reference": {
+          "shown_said": 94,
+          "missed_not_said": 39,
+          "shown_not_said": 31,
+          "top20_not_said": 56,
+          "missed_said": 6,
+          "top20_said": 7
+        },
+        "case": {
+          "missed_said": 35,
+          "missed_not_said": 44,
+          "top20_not_said": 45,
+          "shown_said": 59,
+          "top20_said": 12,
+          "shown_not_said": 13
+        },
+        "trap": {
+          "shown_said": 29,
+          "top20_not_said": 6,
+          "missed_said": 1,
+          "shown_not_said": 11,
+          "missed_not_said": 14,
+          "top20_said": 3
+        }
+      }
+    },
+    "d2q+rw=one+rq=question+claims=8": {
+      "summary": {
+        "questions": 150,
+        "recall_at_5": {
+          "mean": 0.4572,
+          "ci95": [
+            0.4171,
+            0.503
+          ],
+          "n": 128
+        },
+        "recall_at_20": {
+          "mean": 0.7691,
+          "ci95": [
+            0.737,
+            0.801
+          ],
+          "n": 128
+        },
+        "hit_at_5": {
+          "mean": 0.9844,
+          "ci95": [
+            0.9609,
+            1.0
+          ],
+          "n": 128
+        },
+        "mrr": {
+          "mean": 0.8476,
+          "ci95": [
+            0.7974,
+            0.8941
+          ],
+          "n": 128
+        },
+        "ndcg_at_10": {
+          "mean": 0.64,
+          "ci95": [
+            0.6045,
+            0.6782
+          ],
+          "n": 128
+        },
+        "precision_at_5": {
+          "mean": 0.5093,
+          "ci95": [
+            0.468,
+            0.556
+          ],
+          "n": 150
+        },
+        "context_coverage": {
+          "mean": 0.512,
+          "ci95": [
+            0.454,
+            0.5673
+          ],
+          "n": 128
+        },
+        "context_use": {
+          "mean": 0.4862,
+          "ci95": [
+            0.4508,
+            0.5231
+          ],
+          "n": 130
+        },
+        "point_coverage": {
+          "mean": 0.5396,
+          "ci95": [
+            0.4911,
+            0.5875
+          ],
+          "n": 128
+        },
+        "critical_complete": {
+          "mean": 0.4074,
+          "ci95": [
+            0.3148,
+            0.5
+          ],
+          "n": 108
+        },
+        "must_not_share": {
+          "mean": 0.1702,
+          "ci95": [
+            0.1064,
+            0.234
+          ],
+          "n": 141
+        },
+        "refusal": {
+          "mean": 0.6364,
+          "ci95": [
+            0.4545,
+            0.8182
+          ],
+          "n": 22
+        },
+        "false_refusal": {
+          "mean": 0.0469,
+          "ci95": [
+            0.0156,
+            0.0859
+          ],
+          "n": 128
+        },
+        "supported_share": {
+          "mean": 0.8672,
+          "ci95": [
+            0.8333,
+            0.8973
+          ]
+        },
+        "quotes_found_share": {
+          "mean": 0.9651,
+          "ci95": [
+            0.9482,
+            0.9793
+          ]
+        },
+        "latency": {
+          "total": {
+            "median_s": 12.77,
+            "p95_s": 18.39
+          },
+          "answer": {
+            "median_s": 11.12,
+            "p95_s": 17.05
+          },
+          "rewrite": {
+            "median_s": 1.33,
+            "p95_s": 2.31
+          },
+          "verify": {
+            "median_s": 0.0,
+            "p95_s": 0.0
+          }
+        }
+      },
+      "vs_leader": {
+        "point_coverage": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "critical_complete": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "must_not_share": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "supported_share": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "refusal": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "candidate": true,
+      "in_budget": true,
+      "by_type": {
+        "reference": {
+          "questions": 62.0,
+          "recall_at_5": 0.51,
+          "recall_at_20": 0.8153,
+          "hit_at_5": 0.9839,
+          "mrr": 0.8395,
+          "ndcg_at_10": 0.6753,
+          "precision_at_5": 0.5387,
+          "context_coverage": 0.6126,
+          "context_use": 0.4456,
+          "point_coverage": 0.5414,
+          "critical_complete": 0.2826,
+          "must_not_share": 0.0943,
+          "refusal": null,
+          "false_refusal": 0.0806
+        },
+        "case": {
+          "questions": 49.0,
+          "recall_at_5": 0.3392,
+          "recall_at_20": 0.6824,
+          "hit_at_5": 0.9792,
+          "mrr": 0.827,
+          "ndcg_at_10": 0.5658,
+          "precision_at_5": 0.5837,
+          "context_coverage": 0.3312,
+          "context_use": 0.5167,
+          "point_coverage": 0.4993,
+          "critical_complete": 0.4318,
+          "must_not_share": 0.1633,
+          "refusal": 0.0,
+          "false_refusal": 0.0208
+        },
+        "none": {
+          "questions": 21.0,
+          "recall_at_5": null,
+          "recall_at_20": null,
+          "hit_at_5": null,
+          "mrr": null,
+          "ndcg_at_10": null,
+          "precision_at_5": 0.181,
+          "context_coverage": null,
+          "context_use": 0.5143,
+          "point_coverage": null,
+          "critical_complete": null,
+          "must_not_share": 0.0952,
+          "refusal": 0.6667,
+          "false_refusal": null
+        },
+        "trap": {
+          "questions": 18.0,
+          "recall_at_5": 0.5899,
+          "recall_at_20": 0.8415,
+          "hit_at_5": 1.0,
+          "mrr": 0.9306,
+          "ndcg_at_10": 0.7161,
+          "precision_at_5": 0.5889,
+          "context_coverage": 0.6472,
+          "context_use": 0.5222,
+          "point_coverage": 0.6407,
+          "critical_complete": 0.6667,
+          "must_not_share": 0.5,
+          "refusal": null,
+          "false_refusal": 0.0
+        }
+      },
+      "by_style": {
+        "short": {
+          "questions": 78.0,
+          "recall_at_5": 0.4809,
+          "recall_at_20": 0.7786,
+          "hit_at_5": 0.9844,
+          "mrr": 0.8512,
+          "ndcg_at_10": 0.654,
+          "precision_at_5": 0.5051,
+          "context_coverage": 0.5247,
+          "context_use": 0.4914,
+          "point_coverage": 0.5706,
+          "critical_complete": 0.434,
+          "must_not_share": 0.16,
+          "refusal": 0.5,
+          "false_refusal": 0.0156
+        },
+        "full": {
+          "questions": 72.0,
+          "recall_at_5": 0.4335,
+          "recall_at_20": 0.7597,
+          "hit_at_5": 0.9844,
+          "mrr": 0.844,
+          "ndcg_at_10": 0.626,
+          "precision_at_5": 0.5139,
+          "context_coverage": 0.4992,
+          "context_use": 0.48,
+          "point_coverage": 0.5086,
+          "critical_complete": 0.3818,
+          "must_not_share": 0.1818,
+          "refusal": 0.875,
+          "false_refusal": 0.0781
+        }
+      },
+      "point_losses": {
+        "all": {
+          "shown_said": 197,
+          "missed_not_said": 90,
+          "shown_not_said": 50,
+          "top20_not_said": 105,
+          "missed_said": 25,
+          "top20_said": 38
+        },
+        "reference": {
+          "shown_said": 106,
+          "missed_not_said": 33,
+          "shown_not_said": 32,
+          "top20_not_said": 49,
+          "missed_said": 4,
+          "top20_said": 9
+        },
+        "case": {
+          "shown_said": 60,
+          "top20_not_said": 46,
+          "missed_said": 21,
+          "missed_not_said": 51,
+          "top20_said": 20,
+          "shown_not_said": 10
+        },
+        "trap": {
+          "shown_said": 31,
+          "top20_not_said": 10,
+          "top20_said": 9,
+          "shown_not_said": 8,
+          "missed_not_said": 6
+        }
+      }
+    }
+  }
+}

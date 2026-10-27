@@ -1,0 +1,10 @@
+id: test-thoughts
+version: 1
+status: reviewed
+rank: 2
+title: "Тест: мысли о смерти"
+definition: "Пациент пишет, что не хочет жить."
+doctor_actions:
+  - "Тест: связаться в тот же день"
+sources:
+  - {source: test-guideline, locator: "раздел 2"}

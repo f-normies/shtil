@@ -1,0 +1,4 @@
+section_order: [complaints, examination, diagnosis, prescriptions]
+detail: brief
+style: "телеграфная амбулаторная выписка, сокращения, рецептурные строки на латыни"
+diagnosis_format: "Ds. с текстом и кодом в скобках; препараты латиницей в рецептурной форме"

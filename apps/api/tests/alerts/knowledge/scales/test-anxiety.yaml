@@ -1,0 +1,30 @@
+id: test-anxiety
+version: 1
+title: "Тестовая шкала test-anxiety"
+purpose: monitoring
+respondent: patient
+status: reviewed
+license:
+  terms: "свободное использование"
+  allowed: true
+  source: {source: test-validation, locator: "с. 1"}
+validation:
+  - {source: test-validation, locator: "табл. 1"}
+instruction: "Отметьте, как часто за последние две недели…"
+items:
+  - id: a1
+    text: "Пункт a1"
+    options: &freq
+      - {value: 0, text: "Ни разу"}
+      - {value: 1, text: "Несколько дней"}
+      - {value: 2, text: "Больше половины дней"}
+      - {value: 3, text: "Почти каждый день"}
+  - id: a2
+    text: "Пункт a2"
+    options: *freq
+scores:
+  - id: total
+    items: [a1, a2]
+    bands:
+      - {min: 0, max: 3, code: low, label: "Низкий", source: {source: test-validation, locator: "табл. 2"}}
+      - {min: 4, max: 6, code: high, label: "Высокий", source: {source: test-validation, locator: "табл. 2"}}

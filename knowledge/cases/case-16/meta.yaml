@@ -1,0 +1,4 @@
+section_order: [obstetric_status, complaints, history, scales, examination, diagnosis, plan]
+detail: standard
+style: "протокол осмотра в женской консультации: акушерский статус, лактация, EPDS с отдельным пунктом 10"
+diagnosis_format: "строка «Диагноз:», тексты с кодами в скобках, «Лактация» без кода; код Z39.1 в эталоне проставлен медиком"

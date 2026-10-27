@@ -1,0 +1,44 @@
+[project]
+name = "clin-compass-knowledge"
+version = "0.1.0"
+description = "Клинический компас: форматы клинических данных knowledge/ и их проверка"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "pydantic>=2.14",
+    "pyyaml>=6.0.3",
+    "rapidfuzz>=3.14.6",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.0,<0.14"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "clin_compass_knowledge"
+
+[dependency-groups]
+# Только для grls-update: чтение xlsx официальной выгрузки ГРЛС.
+grls = ["openpyxl>=3.1.5"]
+dev = [
+    { include-group = "grls" },
+    "mypy>=2.4.0",
+    "pytest>=9.1.1",
+    "ruff>=0.17.1",
+    "types-openpyxl>=3.1.5",
+    "types-pyyaml>=6.0.12",
+]
+
+# Те же правила, что у бэкенда.
+[tool.ruff]
+extend = "../apps/api/pyproject.toml"
+src = ["src", "tests"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+plugins = ["pydantic.mypy"]
+mypy_path = "src"
+packages = ["clin_compass_knowledge"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

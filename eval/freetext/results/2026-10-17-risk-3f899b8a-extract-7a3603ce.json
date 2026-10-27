@@ -1,0 +1,116 @@
+{
+  "date": "2026-10-17T19:21:51+00:00",
+  "model": "qwen3.8-27b",
+  "prompts": {
+    "risk": "risk-3f899b8a",
+    "extract": "extract-7a3603ce"
+  },
+  "grls": "2026-10-16",
+  "cases": 41,
+  "metrics": {
+    "findings": {
+      "symptom": {
+        "precision": 0.69,
+        "recall": 0.952,
+        "f1": 0.8,
+        "tp": 20,
+        "fp": 9,
+        "fn": 1
+      },
+      "side_effect": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 6,
+        "fp": 0,
+        "fn": 0
+      },
+      "adherence": {
+        "precision": 0.917,
+        "recall": 1.0,
+        "f1": 0.957,
+        "tp": 11,
+        "fp": 1,
+        "fn": 0
+      },
+      "medication": {
+        "precision": 0.875,
+        "recall": 0.778,
+        "f1": 0.824,
+        "tp": 7,
+        "fp": 1,
+        "fn": 2
+      },
+      "all": {
+        "precision": 0.8,
+        "recall": 0.936,
+        "f1": 0.863,
+        "tp": 44,
+        "fp": 11,
+        "fn": 3
+      }
+    },
+    "adherence_accuracy": 0.909,
+    "drugs_accuracy": 0.941,
+    "drugs_missed": [
+      "voice-11: но-шпа"
+    ],
+    "quotes_not_found_share": 0.0,
+    "risk": {
+      "check_risk": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 13,
+        "fp": 0,
+        "fn": 0
+      },
+      "extract": {
+        "precision": 0.929,
+        "recall": 1.0,
+        "f1": 0.963,
+        "tp": 13,
+        "fp": 1,
+        "fn": 0
+      },
+      "either": {
+        "precision": 0.929,
+        "recall": 1.0,
+        "f1": 0.963,
+        "tp": 13,
+        "fp": 1,
+        "fn": 0
+      },
+      "kinds_check_risk": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 13,
+        "fp": 0,
+        "fn": 0
+      },
+      "kinds_extract": {
+        "precision": 0.929,
+        "recall": 1.0,
+        "f1": 0.963,
+        "tp": 13,
+        "fp": 1,
+        "fn": 0
+      },
+      "missed_by_both": [],
+      "false_alarms": [
+        "diary-12"
+      ]
+    }
+  },
+  "latency": {
+    "check_risk": {
+      "median_s": 5.79,
+      "p95_s": 8.32
+    },
+    "extract": {
+      "median_s": 12.16,
+      "p95_s": 16.83
+    }
+  }
+}

@@ -1,0 +1,4 @@
+section_order: [visit, diagnosis, prescription_table]
+detail: brief
+style: "короткая запись повторного приёма с листом назначений: статус препарата определяется только по датам начала и отмены"
+diagnosis_format: "Ds: текст с кодом в скобках"

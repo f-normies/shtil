@@ -1,0 +1,107 @@
+{
+  "date": "2026-10-19T17:44:42+00:00",
+  "runs": {
+    "answers-2026-10-19-test-final.json": {
+      "summary": {
+        "questions": 47,
+        "quotes_found_share": {
+          "mean": 0.9934,
+          "ci95": [
+            0.979,
+            1.0
+          ]
+        },
+        "supported_share": {
+          "mean": 0.9338,
+          "ci95": [
+            0.8759,
+            0.976
+          ]
+        },
+        "answered_share": {
+          "mean": 0.9524,
+          "ci95": [
+            0.881,
+            1.0
+          ]
+        },
+        "empty_on_none_share": {
+          "mean": 0.8,
+          "ci95": [
+            0.4,
+            1.0
+          ]
+        },
+        "latency": {
+          "median_s": 10.08,
+          "p95_s": 13.84
+        },
+        "output_tokens_median": 282
+      },
+      "vs_best": {
+        "supported_share": [
+          -0.0343,
+          -0.0948,
+          0.0137
+        ],
+        "answered_share": [
+          -0.0476,
+          -0.119,
+          0.0
+        ]
+      },
+      "equal_to_best": true
+    },
+    "answers-2026-10-19-test-base.json": {
+      "summary": {
+        "questions": 47,
+        "quotes_found_share": {
+          "mean": 0.9563,
+          "ci95": [
+            0.9179,
+            0.9879
+          ]
+        },
+        "supported_share": {
+          "mean": 0.968,
+          "ci95": [
+            0.9431,
+            0.9906
+          ]
+        },
+        "answered_share": {
+          "mean": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "empty_on_none_share": {
+          "mean": 0.6,
+          "ci95": [
+            0.2,
+            1.0
+          ]
+        },
+        "latency": {
+          "median_s": 76.84,
+          "p95_s": 110.56
+        },
+        "output_tokens_median": 600
+      },
+      "vs_best": {
+        "supported_share": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "answered_share": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "equal_to_best": true
+    }
+  }
+}

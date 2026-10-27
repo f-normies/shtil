@@ -1,0 +1,22 @@
+# Выдуманные источники для тестов модуля assessments.
+sources:
+  - id: test-scale-validation
+    title: "Тестовая русскоязычная валидация"
+    kind: scale_validation
+    publisher: "Тестовый журнал"
+    url: https://example.org/test-scale-validation
+    version: "1"
+    date: 2024-01-01
+    license: "только тест"
+    file: null
+    supplementary: false
+  - id: test-validation
+    title: "Тестовая дополнительная валидация"
+    kind: other
+    publisher: "Тестовый издатель"
+    url: https://example.org/test-validation
+    version: "1"
+    date: 2024-01-01
+    license: "только тест"
+    file: null
+    supplementary: true

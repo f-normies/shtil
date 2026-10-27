@@ -1,0 +1,25 @@
+id: test-eligible-second
+version: 1
+title: "Вторая тестовая шкала для пациента"
+purpose: monitoring
+respondent: patient
+status: reviewed
+license:
+  terms: "только тест"
+  allowed: true
+  source: {source: test-scale-validation, locator: "с. 1"}
+validation:
+  - {source: test-scale-validation, locator: "с. 2"}
+instruction: "Тестовая инструкция."
+items:
+  - id: q3
+    text: "Третий тестовый вопрос"
+    options:
+      - {value: 0, text: "Нет"}
+      - {value: 1, text: "Да"}
+scores:
+  - id: total
+    items: [q3]
+    bands:
+      - {min: 0, max: 0, code: low, label: "Низкий", source: {source: test-scale-validation, locator: "с. 3"}}
+      - {min: 1, max: 1, code: high, label: "Высокий", source: {source: test-scale-validation, locator: "с. 4"}}

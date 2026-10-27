@@ -1,0 +1,1896 @@
+{
+  "leader": "rw=one+scales",
+  "winner": "base",
+  "runs": {
+    "base": {
+      "summary": {
+        "questions": 50,
+        "recall_at_5": {
+          "mean": 0.574,
+          "ci95": [
+            0.4629,
+            0.6775
+          ],
+          "n": 42
+        },
+        "recall_at_20": {
+          "mean": 0.7827,
+          "ci95": [
+            0.7034,
+            0.8587
+          ],
+          "n": 42
+        },
+        "hit_at_5": {
+          "mean": 0.9048,
+          "ci95": [
+            0.8095,
+            0.9762
+          ],
+          "n": 42
+        },
+        "mrr": {
+          "mean": 0.8744,
+          "ci95": [
+            0.78,
+            0.9554
+          ],
+          "n": 42
+        },
+        "ndcg_at_10": {
+          "mean": 0.6855,
+          "ci95": [
+            0.611,
+            0.7547
+          ],
+          "n": 42
+        },
+        "precision_at_5": {
+          "mean": 0.45,
+          "ci95": [
+            0.382,
+            0.518
+          ],
+          "n": 50
+        },
+        "context_coverage": {
+          "mean": 0.6944,
+          "ci95": [
+            0.5754,
+            0.7996
+          ],
+          "n": 42
+        },
+        "context_use": {
+          "mean": 0.4065,
+          "ci95": [
+            0.3565,
+            0.4587
+          ],
+          "n": 46
+        },
+        "point_coverage": {
+          "mean": 0.7341,
+          "ci95": [
+            0.6429,
+            0.8274
+          ],
+          "n": 42
+        },
+        "critical_complete": {
+          "mean": 0.6944,
+          "ci95": [
+            0.5278,
+            0.8333
+          ],
+          "n": 36
+        },
+        "must_not_share": {
+          "mean": 0.1026,
+          "ci95": [
+            0.0256,
+            0.2051
+          ],
+          "n": 39
+        },
+        "refusal": {
+          "mean": 0.5,
+          "ci95": [
+            0.125,
+            0.875
+          ],
+          "n": 8
+        },
+        "false_refusal": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 42
+        },
+        "supported_share": {
+          "mean": 0.9103,
+          "ci95": [
+            0.854,
+            0.9559
+          ]
+        },
+        "quotes_found_share": {
+          "mean": 0.9732,
+          "ci95": [
+            0.9455,
+            0.9937
+          ]
+        },
+        "latency": {
+          "total": {
+            "median_s": 9.07,
+            "p95_s": 13.84
+          },
+          "answer": {
+            "median_s": 9.07,
+            "p95_s": 13.84
+          },
+          "rewrite": {
+            "median_s": 0.0,
+            "p95_s": 0.0
+          },
+          "verify": {
+            "median_s": 0.0,
+            "p95_s": 0.0
+          }
+        }
+      },
+      "vs_leader": {
+        "point_coverage": [
+          -0.0377,
+          -0.0873,
+          0.0099
+        ],
+        "critical_complete": [
+          0.0,
+          -0.1389,
+          0.1389
+        ],
+        "must_not_share": [
+          -0.0769,
+          -0.2051,
+          0.0256
+        ],
+        "supported_share": [
+          0.0145,
+          -0.0323,
+          0.0619
+        ],
+        "refusal": [
+          -0.125,
+          -0.375,
+          0.0
+        ]
+      },
+      "candidate": true,
+      "in_budget": true,
+      "by_type": {
+        "reference": {
+          "questions": 20.0,
+          "recall_at_5": 0.6562,
+          "recall_at_20": 0.8382,
+          "hit_at_5": 0.9,
+          "mrr": 0.8729,
+          "ndcg_at_10": 0.754,
+          "precision_at_5": 0.51,
+          "context_coverage": 0.7333,
+          "context_use": 0.35,
+          "point_coverage": 0.7167,
+          "critical_complete": 0.6667,
+          "must_not_share": 0.0,
+          "refusal": null,
+          "false_refusal": 0.0
+        },
+        "none": {
+          "questions": 8.0,
+          "recall_at_5": null,
+          "recall_at_20": null,
+          "hit_at_5": null,
+          "mrr": null,
+          "ndcg_at_10": null,
+          "precision_at_5": 0.25,
+          "context_coverage": null,
+          "context_use": 0.5,
+          "point_coverage": null,
+          "critical_complete": null,
+          "must_not_share": 0.25,
+          "refusal": 0.5,
+          "false_refusal": null
+        },
+        "case": {
+          "questions": 16.0,
+          "recall_at_5": 0.4098,
+          "recall_at_20": 0.7018,
+          "hit_at_5": 0.875,
+          "mrr": 0.8604,
+          "ndcg_at_10": 0.5935,
+          "precision_at_5": 0.4688,
+          "context_coverage": 0.5729,
+          "context_use": 0.4688,
+          "point_coverage": 0.7083,
+          "critical_complete": 0.6667,
+          "must_not_share": 0.0,
+          "refusal": null,
+          "false_refusal": 0.0
+        },
+        "trap": {
+          "questions": 6.0,
+          "recall_at_5": 0.7381,
+          "recall_at_20": 0.8135,
+          "hit_at_5": 1.0,
+          "mrr": 0.9167,
+          "ndcg_at_10": 0.7027,
+          "precision_at_5": 0.4667,
+          "context_coverage": 0.8889,
+          "context_use": 0.3667,
+          "point_coverage": 0.8611,
+          "critical_complete": 0.8333,
+          "must_not_share": 0.3333,
+          "refusal": null,
+          "false_refusal": 0.0
+        }
+      },
+      "by_style": {
+        "short": {
+          "questions": 23.0,
+          "recall_at_5": 0.5338,
+          "recall_at_20": 0.7632,
+          "hit_at_5": 0.8947,
+          "mrr": 0.8662,
+          "ndcg_at_10": 0.6768,
+          "precision_at_5": 0.5217,
+          "context_coverage": 0.6447,
+          "context_use": 0.3909,
+          "point_coverage": 0.6886,
+          "critical_complete": 0.7222,
+          "must_not_share": 0.2105,
+          "refusal": 0.25,
+          "false_refusal": 0.0
+        },
+        "full": {
+          "questions": 27.0,
+          "recall_at_5": 0.6072,
+          "recall_at_20": 0.7989,
+          "hit_at_5": 0.913,
+          "mrr": 0.8812,
+          "ndcg_at_10": 0.6928,
+          "precision_at_5": 0.3889,
+          "context_coverage": 0.7355,
+          "context_use": 0.4208,
+          "point_coverage": 0.7717,
+          "critical_complete": 0.6667,
+          "must_not_share": 0.0,
+          "refusal": 0.75,
+          "false_refusal": 0.0
+        }
+      }
+    },
+    "premise": {
+      "summary": {
+        "questions": 50,
+        "recall_at_5": {
+          "mean": 0.574,
+          "ci95": [
+            0.4629,
+            0.6775
+          ],
+          "n": 42
+        },
+        "recall_at_20": {
+          "mean": 0.7827,
+          "ci95": [
+            0.7034,
+            0.8587
+          ],
+          "n": 42
+        },
+        "hit_at_5": {
+          "mean": 0.9048,
+          "ci95": [
+            0.8095,
+            0.9762
+          ],
+          "n": 42
+        },
+        "mrr": {
+          "mean": 0.8744,
+          "ci95": [
+            0.78,
+            0.9554
+          ],
+          "n": 42
+        },
+        "ndcg_at_10": {
+          "mean": 0.6855,
+          "ci95": [
+            0.611,
+            0.7547
+          ],
+          "n": 42
+        },
+        "precision_at_5": {
+          "mean": 0.45,
+          "ci95": [
+            0.382,
+            0.518
+          ],
+          "n": 50
+        },
+        "context_coverage": {
+          "mean": 0.6944,
+          "ci95": [
+            0.5754,
+            0.7996
+          ],
+          "n": 42
+        },
+        "context_use": {
+          "mean": 0.4114,
+          "ci95": [
+            0.3614,
+            0.4636
+          ],
+          "n": 44
+        },
+        "point_coverage": {
+          "mean": 0.7381,
+          "ci95": [
+            0.6429,
+            0.8313
+          ],
+          "n": 42
+        },
+        "critical_complete": {
+          "mean": 0.6667,
+          "ci95": [
+            0.5,
+            0.8056
+          ],
+          "n": 36
+        },
+        "must_not_share": {
+          "mean": 0.2051,
+          "ci95": [
+            0.0769,
+            0.3333
+          ],
+          "n": 39
+        },
+        "refusal": {
+          "mean": 0.5,
+          "ci95": [
+            0.125,
+            0.875
+          ],
+          "n": 8
+        },
+        "false_refusal": {
+          "mean": 0.0476,
+          "ci95": [
+            0.0,
+            0.119
+          ],
+          "n": 42
+        },
+        "supported_share": {
+          "mean": 0.9179,
+          "ci95": [
+            0.8657,
+            0.9658
+          ]
+        },
+        "quotes_found_share": {
+          "mean": 0.964,
+          "ci95": [
+            0.9244,
+            0.9933
+          ]
+        },
+        "latency": {
+          "total": {
+            "median_s": 9.48,
+            "p95_s": 14.52
+          },
+          "answer": {
+            "median_s": 9.48,
+            "p95_s": 14.52
+          },
+          "rewrite": {
+            "median_s": 0.0,
+            "p95_s": 0.0
+          },
+          "verify": {
+            "median_s": 0.0,
+            "p95_s": 0.0
+          }
+        }
+      },
+      "vs_leader": {
+        "point_coverage": [
+          -0.0337,
+          -0.0913,
+          0.0198
+        ],
+        "critical_complete": [
+          -0.0278,
+          -0.1667,
+          0.1111
+        ],
+        "must_not_share": [
+          0.0256,
+          -0.0769,
+          0.1538
+        ],
+        "supported_share": [
+          0.0221,
+          -0.03,
+          0.0757
+        ],
+        "refusal": [
+          -0.125,
+          -0.375,
+          0.0
+        ]
+      },
+      "candidate": true,
+      "in_budget": true,
+      "by_type": {
+        "reference": {
+          "questions": 20.0,
+          "recall_at_5": 0.6562,
+          "recall_at_20": 0.8382,
+          "hit_at_5": 0.9,
+          "mrr": 0.8729,
+          "ndcg_at_10": 0.754,
+          "precision_at_5": 0.51,
+          "context_coverage": 0.7333,
+          "context_use": 0.3667,
+          "point_coverage": 0.7167,
+          "critical_complete": 0.6667,
+          "must_not_share": 0.0,
+          "refusal": null,
+          "false_refusal": 0.1
+        },
+        "none": {
+          "questions": 8.0,
+          "recall_at_5": null,
+          "recall_at_20": null,
+          "hit_at_5": null,
+          "mrr": null,
+          "ndcg_at_10": null,
+          "precision_at_5": 0.25,
+          "context_coverage": null,
+          "context_use": 0.45,
+          "point_coverage": null,
+          "critical_complete": null,
+          "must_not_share": 0.25,
+          "refusal": 0.5,
+          "false_refusal": null
+        },
+        "case": {
+          "questions": 16.0,
+          "recall_at_5": 0.4098,
+          "recall_at_20": 0.7018,
+          "hit_at_5": 0.875,
+          "mrr": 0.8604,
+          "ndcg_at_10": 0.5935,
+          "precision_at_5": 0.4688,
+          "context_coverage": 0.5729,
+          "context_use": 0.4688,
+          "point_coverage": 0.7396,
+          "critical_complete": 0.6,
+          "must_not_share": 0.125,
+          "refusal": null,
+          "false_refusal": 0.0
+        },
+        "trap": {
+          "questions": 6.0,
+          "recall_at_5": 0.7381,
+          "recall_at_20": 0.8135,
+          "hit_at_5": 1.0,
+          "mrr": 0.9167,
+          "ndcg_at_10": 0.7027,
+          "precision_at_5": 0.4667,
+          "context_coverage": 0.8889,
+          "context_use": 0.3667,
+          "point_coverage": 0.8056,
+          "critical_complete": 0.8333,
+          "must_not_share": 0.6667,
+          "refusal": null,
+          "false_refusal": 0.0
+        }
+      },
+      "by_style": {
+        "short": {
+          "questions": 23.0,
+          "recall_at_5": 0.5338,
+          "recall_at_20": 0.7632,
+          "hit_at_5": 0.8947,
+          "mrr": 0.8662,
+          "ndcg_at_10": 0.6768,
+          "precision_at_5": 0.5217,
+          "context_coverage": 0.6447,
+          "context_use": 0.42,
+          "point_coverage": 0.7237,
+          "critical_complete": 0.7222,
+          "must_not_share": 0.2632,
+          "refusal": 0.25,
+          "false_refusal": 0.1053
+        },
+        "full": {
+          "questions": 27.0,
+          "recall_at_5": 0.6072,
+          "recall_at_20": 0.7989,
+          "hit_at_5": 0.913,
+          "mrr": 0.8812,
+          "ndcg_at_10": 0.6928,
+          "precision_at_5": 0.3889,
+          "context_coverage": 0.7355,
+          "context_use": 0.4042,
+          "point_coverage": 0.75,
+          "critical_complete": 0.6111,
+          "must_not_share": 0.15,
+          "refusal": 0.75,
+          "false_refusal": 0.0
+        }
+      }
+    },
+    "rw=one+scales+premise": {
+      "summary": {
+        "questions": 50,
+        "recall_at_5": {
+          "mean": 0.5784,
+          "ci95": [
+            0.4809,
+            0.6752
+          ],
+          "n": 42
+        },
+        "recall_at_20": {
+          "mean": 0.8377,
+          "ci95": [
+            0.7672,
+            0.898
+          ],
+          "n": 42
+        },
+        "hit_at_5": {
+          "mean": 0.9286,
+          "ci95": [
+            0.8333,
+            1.0
+          ],
+          "n": 42
+        },
+        "mrr": {
+          "mean": 0.9077,
+          "ci95": [
+            0.8234,
+            0.9792
+          ],
+          "n": 42
+        },
+        "ndcg_at_10": {
+          "mean": 0.7137,
+          "ci95": [
+            0.643,
+            0.781
+          ],
+          "n": 42
+        },
+        "precision_at_5": {
+          "mean": 0.468,
+          "ci95": [
+            0.392,
+            0.536
+          ],
+          "n": 50
+        },
+        "context_coverage": {
+          "mean": 0.7179,
+          "ci95": [
+            0.6067,
+            0.819
+          ],
+          "n": 42
+        },
+        "context_use": {
+          "mean": 0.4372,
+          "ci95": [
+            0.3814,
+            0.493
+          ],
+          "n": 43
+        },
+        "point_coverage": {
+          "mean": 0.7381,
+          "ci95": [
+            0.6429,
+            0.8274
+          ],
+          "n": 42
+        },
+        "critical_complete": {
+          "mean": 0.6944,
+          "ci95": [
+            0.5278,
+            0.8333
+          ],
+          "n": 36
+        },
+        "must_not_share": {
+          "mean": 0.1795,
+          "ci95": [
+            0.0769,
+            0.3077
+          ],
+          "n": 39
+        },
+        "refusal": {
+          "mean": 0.625,
+          "ci95": [
+            0.25,
+            0.875
+          ],
+          "n": 8
+        },
+        "false_refusal": {
+          "mean": 0.0476,
+          "ci95": [
+            0.0,
+            0.119
+          ],
+          "n": 42
+        },
+        "supported_share": {
+          "mean": 0.9154,
+          "ci95": [
+            0.8551,
+            0.9646
+          ]
+        },
+        "quotes_found_share": {
+          "mean": 0.9091,
+          "ci95": [
+            0.8403,
+            0.9603
+          ]
+        },
+        "latency": {
+          "total": {
+            "median_s": 9.89,
+            "p95_s": 14.25
+          },
+          "answer": {
+            "median_s": 8.66,
+            "p95_s": 13.03
+          },
+          "rewrite": {
+            "median_s": 1.14,
+            "p95_s": 1.35
+          },
+          "verify": {
+            "median_s": 0.0,
+            "p95_s": 0.0
+          }
+        }
+      },
+      "vs_leader": {
+        "point_coverage": [
+          -0.0337,
+          -0.0933,
+          0.0258
+        ],
+        "critical_complete": [
+          0.0,
+          -0.1389,
+          0.1389
+        ],
+        "must_not_share": [
+          0.0,
+          -0.0769,
+          0.0769
+        ],
+        "supported_share": [
+          0.0196,
+          -0.0371,
+          0.0803
+        ],
+        "refusal": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "candidate": true,
+      "in_budget": true,
+      "by_type": {
+        "reference": {
+          "questions": 20.0,
+          "recall_at_5": 0.6617,
+          "recall_at_20": 0.8704,
+          "hit_at_5": 0.95,
+          "mrr": 0.8917,
+          "ndcg_at_10": 0.7482,
+          "precision_at_5": 0.51,
+          "context_coverage": 0.7833,
+          "context_use": 0.4111,
+          "point_coverage": 0.7042,
+          "critical_complete": 0.6667,
+          "must_not_share": 0.0,
+          "refusal": null,
+          "false_refusal": 0.1
+        },
+        "none": {
+          "questions": 8.0,
+          "recall_at_5": null,
+          "recall_at_20": null,
+          "hit_at_5": null,
+          "mrr": null,
+          "ndcg_at_10": null,
+          "precision_at_5": 0.225,
+          "context_coverage": null,
+          "context_use": 0.5333,
+          "point_coverage": null,
+          "critical_complete": null,
+          "must_not_share": 0.25,
+          "refusal": 0.625,
+          "false_refusal": null
+        },
+        "case": {
+          "questions": 16.0,
+          "recall_at_5": 0.4056,
+          "recall_at_20": 0.7658,
+          "hit_at_5": 0.875,
+          "mrr": 0.8932,
+          "ndcg_at_10": 0.6181,
+          "precision_at_5": 0.4875,
+          "context_coverage": 0.5719,
+          "context_use": 0.4625,
+          "point_coverage": 0.7656,
+          "critical_complete": 0.6,
+          "must_not_share": 0.0625,
+          "refusal": null,
+          "false_refusal": 0.0
+        },
+        "trap": {
+          "questions": 6.0,
+          "recall_at_5": 0.7619,
+          "recall_at_20": 0.9206,
+          "hit_at_5": 1.0,
+          "mrr": 1.0,
+          "ndcg_at_10": 0.8533,
+          "precision_at_5": 0.6,
+          "context_coverage": 0.8889,
+          "context_use": 0.4,
+          "point_coverage": 0.7778,
+          "critical_complete": 1.0,
+          "must_not_share": 0.6667,
+          "refusal": null,
+          "false_refusal": 0.0
+        }
+      },
+      "by_style": {
+        "short": {
+          "questions": 23.0,
+          "recall_at_5": 0.4971,
+          "recall_at_20": 0.7858,
+          "hit_at_5": 0.8947,
+          "mrr": 0.8662,
+          "ndcg_at_10": 0.6754,
+          "precision_at_5": 0.4609,
+          "context_coverage": 0.6579,
+          "context_use": 0.3895,
+          "point_coverage": 0.6886,
+          "critical_complete": 0.6667,
+          "must_not_share": 0.2105,
+          "refusal": 0.5,
+          "false_refusal": 0.1053
+        },
+        "full": {
+          "questions": 27.0,
+          "recall_at_5": 0.6457,
+          "recall_at_20": 0.8806,
+          "hit_at_5": 0.9565,
+          "mrr": 0.942,
+          "ndcg_at_10": 0.7453,
+          "precision_at_5": 0.4741,
+          "context_coverage": 0.7674,
+          "context_use": 0.475,
+          "point_coverage": 0.779,
+          "critical_complete": 0.7222,
+          "must_not_share": 0.15,
+          "refusal": 0.75,
+          "false_refusal": 0.0
+        }
+      }
+    },
+    "rw=one+scales": {
+      "summary": {
+        "questions": 50,
+        "recall_at_5": {
+          "mean": 0.5784,
+          "ci95": [
+            0.4809,
+            0.6752
+          ],
+          "n": 42
+        },
+        "recall_at_20": {
+          "mean": 0.8377,
+          "ci95": [
+            0.7672,
+            0.898
+          ],
+          "n": 42
+        },
+        "hit_at_5": {
+          "mean": 0.9286,
+          "ci95": [
+            0.8333,
+            1.0
+          ],
+          "n": 42
+        },
+        "mrr": {
+          "mean": 0.9077,
+          "ci95": [
+            0.8234,
+            0.9792
+          ],
+          "n": 42
+        },
+        "ndcg_at_10": {
+          "mean": 0.7137,
+          "ci95": [
+            0.643,
+            0.781
+          ],
+          "n": 42
+        },
+        "precision_at_5": {
+          "mean": 0.468,
+          "ci95": [
+            0.392,
+            0.536
+          ],
+          "n": 50
+        },
+        "context_coverage": {
+          "mean": 0.7179,
+          "ci95": [
+            0.6067,
+            0.819
+          ],
+          "n": 42
+        },
+        "context_use": {
+          "mean": 0.4545,
+          "ci95": [
+            0.3955,
+            0.5136
+          ],
+          "n": 44
+        },
+        "point_coverage": {
+          "mean": 0.7718,
+          "ci95": [
+            0.6825,
+            0.8591
+          ],
+          "n": 42
+        },
+        "critical_complete": {
+          "mean": 0.6944,
+          "ci95": [
+            0.5278,
+            0.8333
+          ],
+          "n": 36
+        },
+        "must_not_share": {
+          "mean": 0.1795,
+          "ci95": [
+            0.0769,
+            0.3077
+          ],
+          "n": 39
+        },
+        "refusal": {
+          "mean": 0.625,
+          "ci95": [
+            0.25,
+            0.875
+          ],
+          "n": 8
+        },
+        "false_refusal": {
+          "mean": 0.0238,
+          "ci95": [
+            0.0,
+            0.0714
+          ],
+          "n": 42
+        },
+        "supported_share": {
+          "mean": 0.8958,
+          "ci95": [
+            0.8418,
+            0.9474
+          ]
+        },
+        "quotes_found_share": {
+          "mean": 0.9351,
+          "ci95": [
+            0.8701,
+            0.9821
+          ]
+        },
+        "latency": {
+          "total": {
+            "median_s": 10.38,
+            "p95_s": 16.23
+          },
+          "answer": {
+            "median_s": 9.15,
+            "p95_s": 14.88
+          },
+          "rewrite": {
+            "median_s": 1.14,
+            "p95_s": 1.35
+          },
+          "verify": {
+            "median_s": 0.0,
+            "p95_s": 0.0
+          }
+        }
+      },
+      "vs_leader": {
+        "point_coverage": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "critical_complete": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "must_not_share": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "supported_share": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "refusal": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "candidate": true,
+      "in_budget": true,
+      "by_type": {
+        "reference": {
+          "questions": 20.0,
+          "recall_at_5": 0.6617,
+          "recall_at_20": 0.8704,
+          "hit_at_5": 0.95,
+          "mrr": 0.8917,
+          "ndcg_at_10": 0.7482,
+          "precision_at_5": 0.51,
+          "context_coverage": 0.7833,
+          "context_use": 0.4211,
+          "point_coverage": 0.7417,
+          "critical_complete": 0.7333,
+          "must_not_share": 0.0,
+          "refusal": null,
+          "false_refusal": 0.05
+        },
+        "none": {
+          "questions": 8.0,
+          "recall_at_5": null,
+          "recall_at_20": null,
+          "hit_at_5": null,
+          "mrr": null,
+          "ndcg_at_10": null,
+          "precision_at_5": 0.225,
+          "context_coverage": null,
+          "context_use": 0.6,
+          "point_coverage": null,
+          "critical_complete": null,
+          "must_not_share": 0.25,
+          "refusal": 0.625,
+          "false_refusal": null
+        },
+        "case": {
+          "questions": 16.0,
+          "recall_at_5": 0.4056,
+          "recall_at_20": 0.7658,
+          "hit_at_5": 0.875,
+          "mrr": 0.8932,
+          "ndcg_at_10": 0.6181,
+          "precision_at_5": 0.4875,
+          "context_coverage": 0.5719,
+          "context_use": 0.4625,
+          "point_coverage": 0.7969,
+          "critical_complete": 0.6,
+          "must_not_share": 0.0,
+          "refusal": null,
+          "false_refusal": 0.0
+        },
+        "trap": {
+          "questions": 6.0,
+          "recall_at_5": 0.7619,
+          "recall_at_20": 0.9206,
+          "hit_at_5": 1.0,
+          "mrr": 1.0,
+          "ndcg_at_10": 0.8533,
+          "precision_at_5": 0.6,
+          "context_coverage": 0.8889,
+          "context_use": 0.4667,
+          "point_coverage": 0.8056,
+          "critical_complete": 0.8333,
+          "must_not_share": 0.8333,
+          "refusal": null,
+          "false_refusal": 0.0
+        }
+      },
+      "by_style": {
+        "short": {
+          "questions": 23.0,
+          "recall_at_5": 0.4971,
+          "recall_at_20": 0.7858,
+          "hit_at_5": 0.8947,
+          "mrr": 0.8662,
+          "ndcg_at_10": 0.6754,
+          "precision_at_5": 0.4609,
+          "context_coverage": 0.6579,
+          "context_use": 0.41,
+          "point_coverage": 0.7368,
+          "critical_complete": 0.7222,
+          "must_not_share": 0.2105,
+          "refusal": 0.5,
+          "false_refusal": 0.0526
+        },
+        "full": {
+          "questions": 27.0,
+          "recall_at_5": 0.6457,
+          "recall_at_20": 0.8806,
+          "hit_at_5": 0.9565,
+          "mrr": 0.942,
+          "ndcg_at_10": 0.7453,
+          "precision_at_5": 0.4741,
+          "context_coverage": 0.7674,
+          "context_use": 0.4917,
+          "point_coverage": 0.8007,
+          "critical_complete": 0.6667,
+          "must_not_share": 0.15,
+          "refusal": 0.75,
+          "false_refusal": 0.0
+        }
+      }
+    },
+    "rw=one": {
+      "summary": {
+        "questions": 50,
+        "recall_at_5": {
+          "mean": 0.5959,
+          "ci95": [
+            0.5023,
+            0.6885
+          ],
+          "n": 42
+        },
+        "recall_at_20": {
+          "mean": 0.8593,
+          "ci95": [
+            0.7998,
+            0.9097
+          ],
+          "n": 42
+        },
+        "hit_at_5": {
+          "mean": 0.9524,
+          "ci95": [
+            0.881,
+            1.0
+          ],
+          "n": 42
+        },
+        "mrr": {
+          "mean": 0.9226,
+          "ci95": [
+            0.8423,
+            0.9841
+          ],
+          "n": 42
+        },
+        "ndcg_at_10": {
+          "mean": 0.7339,
+          "ci95": [
+            0.6664,
+            0.7962
+          ],
+          "n": 42
+        },
+        "precision_at_5": {
+          "mean": 0.488,
+          "ci95": [
+            0.416,
+            0.556
+          ],
+          "n": 50
+        },
+        "context_coverage": {
+          "mean": 0.7179,
+          "ci95": [
+            0.6151,
+            0.8175
+          ],
+          "n": 42
+        },
+        "context_use": {
+          "mean": 0.4364,
+          "ci95": [
+            0.3727,
+            0.5
+          ],
+          "n": 44
+        },
+        "point_coverage": {
+          "mean": 0.754,
+          "ci95": [
+            0.6627,
+            0.8433
+          ],
+          "n": 42
+        },
+        "critical_complete": {
+          "mean": 0.6667,
+          "ci95": [
+            0.5,
+            0.8056
+          ],
+          "n": 36
+        },
+        "must_not_share": {
+          "mean": 0.1538,
+          "ci95": [
+            0.0513,
+            0.2821
+          ],
+          "n": 39
+        },
+        "refusal": {
+          "mean": 0.625,
+          "ci95": [
+            0.25,
+            0.875
+          ],
+          "n": 8
+        },
+        "false_refusal": {
+          "mean": 0.0238,
+          "ci95": [
+            0.0,
+            0.0714
+          ],
+          "n": 42
+        },
+        "supported_share": {
+          "mean": 0.9034,
+          "ci95": [
+            0.8521,
+            0.9533
+          ]
+        },
+        "quotes_found_share": {
+          "mean": 0.9797,
+          "ci95": [
+            0.9444,
+            1.0
+          ]
+        },
+        "latency": {
+          "total": {
+            "median_s": 9.78,
+            "p95_s": 15.24
+          },
+          "answer": {
+            "median_s": 8.59,
+            "p95_s": 13.83
+          },
+          "rewrite": {
+            "median_s": 1.14,
+            "p95_s": 1.35
+          },
+          "verify": {
+            "median_s": 0.0,
+            "p95_s": 0.0
+          }
+        }
+      },
+      "vs_leader": {
+        "point_coverage": [
+          -0.0179,
+          -0.0655,
+          0.0238
+        ],
+        "critical_complete": [
+          -0.0278,
+          -0.1111,
+          0.0556
+        ],
+        "must_not_share": [
+          -0.0256,
+          -0.1282,
+          0.0513
+        ],
+        "supported_share": [
+          0.0076,
+          -0.0157,
+          0.037
+        ],
+        "refusal": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "candidate": true,
+      "in_budget": true,
+      "by_type": {
+        "reference": {
+          "questions": 20.0,
+          "recall_at_5": 0.6867,
+          "recall_at_20": 0.9245,
+          "hit_at_5": 0.95,
+          "mrr": 0.9202,
+          "ndcg_at_10": 0.776,
+          "precision_at_5": 0.53,
+          "context_coverage": 0.7833,
+          "context_use": 0.4105,
+          "point_coverage": 0.7042,
+          "critical_complete": 0.6667,
+          "must_not_share": 0.0,
+          "refusal": null,
+          "false_refusal": 0.05
+        },
+        "none": {
+          "questions": 8.0,
+          "recall_at_5": null,
+          "recall_at_20": null,
+          "hit_at_5": null,
+          "mrr": null,
+          "ndcg_at_10": null,
+          "precision_at_5": 0.25,
+          "context_coverage": null,
+          "context_use": 0.5333,
+          "point_coverage": null,
+          "critical_complete": null,
+          "must_not_share": 0.125,
+          "refusal": 0.625,
+          "false_refusal": null
+        },
+        "case": {
+          "questions": 16.0,
+          "recall_at_5": 0.4202,
+          "recall_at_20": 0.7549,
+          "hit_at_5": 0.9375,
+          "mrr": 0.8964,
+          "ndcg_at_10": 0.6363,
+          "precision_at_5": 0.5125,
+          "context_coverage": 0.5719,
+          "context_use": 0.4375,
+          "point_coverage": 0.7969,
+          "critical_complete": 0.6,
+          "must_not_share": 0.0625,
+          "refusal": null,
+          "false_refusal": 0.0
+        },
+        "trap": {
+          "questions": 6.0,
+          "recall_at_5": 0.7619,
+          "recall_at_20": 0.9206,
+          "hit_at_5": 1.0,
+          "mrr": 1.0,
+          "ndcg_at_10": 0.8533,
+          "precision_at_5": 0.6,
+          "context_coverage": 0.8889,
+          "context_use": 0.4667,
+          "point_coverage": 0.8056,
+          "critical_complete": 0.8333,
+          "must_not_share": 0.6667,
+          "refusal": null,
+          "false_refusal": 0.0
+        }
+      },
+      "by_style": {
+        "short": {
+          "questions": 23.0,
+          "recall_at_5": 0.5357,
+          "recall_at_20": 0.8336,
+          "hit_at_5": 0.9474,
+          "mrr": 0.8739,
+          "ndcg_at_10": 0.6885,
+          "precision_at_5": 0.5043,
+          "context_coverage": 0.6842,
+          "context_use": 0.39,
+          "point_coverage": 0.7368,
+          "critical_complete": 0.7222,
+          "must_not_share": 0.1579,
+          "refusal": 0.5,
+          "false_refusal": 0.0526
+        },
+        "full": {
+          "questions": 27.0,
+          "recall_at_5": 0.6457,
+          "recall_at_20": 0.8806,
+          "hit_at_5": 0.9565,
+          "mrr": 0.9627,
+          "ndcg_at_10": 0.7713,
+          "precision_at_5": 0.4741,
+          "context_coverage": 0.7457,
+          "context_use": 0.475,
+          "point_coverage": 0.7681,
+          "critical_complete": 0.6111,
+          "must_not_share": 0.15,
+          "refusal": 0.75,
+          "false_refusal": 0.0
+        }
+      }
+    },
+    "scales": {
+      "summary": {
+        "questions": 50,
+        "recall_at_5": {
+          "mean": 0.5553,
+          "ci95": [
+            0.444,
+            0.6624
+          ],
+          "n": 42
+        },
+        "recall_at_20": {
+          "mean": 0.7627,
+          "ci95": [
+            0.6793,
+            0.8399
+          ],
+          "n": 42
+        },
+        "hit_at_5": {
+          "mean": 0.9048,
+          "ci95": [
+            0.8095,
+            0.9762
+          ],
+          "n": 42
+        },
+        "mrr": {
+          "mean": 0.8526,
+          "ci95": [
+            0.7548,
+            0.9389
+          ],
+          "n": 42
+        },
+        "ndcg_at_10": {
+          "mean": 0.6628,
+          "ci95": [
+            0.5852,
+            0.7354
+          ],
+          "n": 42
+        },
+        "precision_at_5": {
+          "mean": 0.43,
+          "ci95": [
+            0.36,
+            0.494
+          ],
+          "n": 50
+        },
+        "context_coverage": {
+          "mean": 0.6766,
+          "ci95": [
+            0.5556,
+            0.7897
+          ],
+          "n": 42
+        },
+        "context_use": {
+          "mean": 0.3935,
+          "ci95": [
+            0.3435,
+            0.4457
+          ],
+          "n": 46
+        },
+        "point_coverage": {
+          "mean": 0.7282,
+          "ci95": [
+            0.6369,
+            0.8194
+          ],
+          "n": 42
+        },
+        "critical_complete": {
+          "mean": 0.6667,
+          "ci95": [
+            0.5,
+            0.8056
+          ],
+          "n": 36
+        },
+        "must_not_share": {
+          "mean": 0.1538,
+          "ci95": [
+            0.0513,
+            0.2821
+          ],
+          "n": 39
+        },
+        "refusal": {
+          "mean": 0.5,
+          "ci95": [
+            0.125,
+            0.875
+          ],
+          "n": 8
+        },
+        "false_refusal": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ],
+          "n": 42
+        },
+        "supported_share": {
+          "mean": 0.9014,
+          "ci95": [
+            0.8455,
+            0.9504
+          ]
+        },
+        "quotes_found_share": {
+          "mean": 0.953,
+          "ci95": [
+            0.9014,
+            0.993
+          ]
+        },
+        "latency": {
+          "total": {
+            "median_s": 9.43,
+            "p95_s": 13.87
+          },
+          "answer": {
+            "median_s": 9.43,
+            "p95_s": 13.87
+          },
+          "rewrite": {
+            "median_s": 0.0,
+            "p95_s": 0.0
+          },
+          "verify": {
+            "median_s": 0.0,
+            "p95_s": 0.0
+          }
+        }
+      },
+      "vs_leader": {
+        "point_coverage": [
+          -0.0437,
+          -0.0992,
+          0.0079
+        ],
+        "critical_complete": [
+          -0.0278,
+          -0.1667,
+          0.1111
+        ],
+        "must_not_share": [
+          -0.0256,
+          -0.1282,
+          0.0769
+        ],
+        "supported_share": [
+          0.0056,
+          -0.0491,
+          0.0601
+        ],
+        "refusal": [
+          -0.125,
+          -0.375,
+          0.0
+        ]
+      },
+      "candidate": true,
+      "in_budget": true,
+      "by_type": {
+        "reference": {
+          "questions": 20.0,
+          "recall_at_5": 0.6562,
+          "recall_at_20": 0.8382,
+          "hit_at_5": 0.9,
+          "mrr": 0.8729,
+          "ndcg_at_10": 0.75,
+          "precision_at_5": 0.51,
+          "context_coverage": 0.7333,
+          "context_use": 0.36,
+          "point_coverage": 0.7167,
+          "critical_complete": 0.6667,
+          "must_not_share": 0.0,
+          "refusal": null,
+          "false_refusal": 0.0
+        },
+        "none": {
+          "questions": 8.0,
+          "recall_at_5": null,
+          "recall_at_20": null,
+          "hit_at_5": null,
+          "mrr": null,
+          "ndcg_at_10": null,
+          "precision_at_5": 0.225,
+          "context_coverage": null,
+          "context_use": 0.4,
+          "point_coverage": null,
+          "critical_complete": null,
+          "must_not_share": 0.375,
+          "refusal": 0.5,
+          "false_refusal": null
+        },
+        "case": {
+          "questions": 16.0,
+          "recall_at_5": 0.3815,
+          "recall_at_20": 0.6701,
+          "hit_at_5": 0.875,
+          "mrr": 0.8031,
+          "ndcg_at_10": 0.5515,
+          "precision_at_5": 0.4313,
+          "context_coverage": 0.526,
+          "context_use": 0.4562,
+          "point_coverage": 0.6927,
+          "critical_complete": 0.6,
+          "must_not_share": 0.0625,
+          "refusal": null,
+          "false_refusal": 0.0
+        },
+        "trap": {
+          "questions": 6.0,
+          "recall_at_5": 0.6825,
+          "recall_at_20": 0.7579,
+          "hit_at_5": 1.0,
+          "mrr": 0.9167,
+          "ndcg_at_10": 0.669,
+          "precision_at_5": 0.4333,
+          "context_coverage": 0.8889,
+          "context_use": 0.3333,
+          "point_coverage": 0.8611,
+          "critical_complete": 0.8333,
+          "must_not_share": 0.3333,
+          "refusal": null,
+          "false_refusal": 0.0
+        }
+      },
+      "by_style": {
+        "short": {
+          "questions": 23.0,
+          "recall_at_5": 0.5012,
+          "recall_at_20": 0.7306,
+          "hit_at_5": 0.8947,
+          "mrr": 0.8311,
+          "ndcg_at_10": 0.6426,
+          "precision_at_5": 0.487,
+          "context_coverage": 0.6053,
+          "context_use": 0.3545,
+          "point_coverage": 0.6754,
+          "critical_complete": 0.6667,
+          "must_not_share": 0.2632,
+          "refusal": 0.25,
+          "false_refusal": 0.0
+        },
+        "full": {
+          "questions": 27.0,
+          "recall_at_5": 0.6,
+          "recall_at_20": 0.7892,
+          "hit_at_5": 0.913,
+          "mrr": 0.8703,
+          "ndcg_at_10": 0.6796,
+          "precision_at_5": 0.3815,
+          "context_coverage": 0.7355,
+          "context_use": 0.4292,
+          "point_coverage": 0.7717,
+          "critical_complete": 0.6667,
+          "must_not_share": 0.05,
+          "refusal": 0.75,
+          "false_refusal": 0.0
+        }
+      }
+    },
+    "verify": {
+      "summary": {
+        "questions": 50,
+        "recall_at_5": {
+          "mean": 0.574,
+          "ci95": [
+            0.4629,
+            0.6775
+          ],
+          "n": 42
+        },
+        "recall_at_20": {
+          "mean": 0.7827,
+          "ci95": [
+            0.7034,
+            0.8587
+          ],
+          "n": 42
+        },
+        "hit_at_5": {
+          "mean": 0.9048,
+          "ci95": [
+            0.8095,
+            0.9762
+          ],
+          "n": 42
+        },
+        "mrr": {
+          "mean": 0.8744,
+          "ci95": [
+            0.78,
+            0.9554
+          ],
+          "n": 42
+        },
+        "ndcg_at_10": {
+          "mean": 0.6855,
+          "ci95": [
+            0.611,
+            0.7547
+          ],
+          "n": 42
+        },
+        "precision_at_5": {
+          "mean": 0.45,
+          "ci95": [
+            0.382,
+            0.518
+          ],
+          "n": 50
+        },
+        "context_coverage": {
+          "mean": 0.6944,
+          "ci95": [
+            0.5754,
+            0.7996
+          ],
+          "n": 42
+        },
+        "context_use": {
+          "mean": 0.3711,
+          "ci95": [
+            0.3178,
+            0.4289
+          ],
+          "n": 45
+        },
+        "point_coverage": {
+          "mean": 0.6905,
+          "ci95": [
+            0.5853,
+            0.7917
+          ],
+          "n": 42
+        },
+        "critical_complete": {
+          "mean": 0.6111,
+          "ci95": [
+            0.4444,
+            0.75
+          ],
+          "n": 36
+        },
+        "must_not_share": {
+          "mean": 0.0769,
+          "ci95": [
+            0.0,
+            0.1538
+          ],
+          "n": 39
+        },
+        "refusal": {
+          "mean": 0.5,
+          "ci95": [
+            0.125,
+            0.875
+          ],
+          "n": 8
+        },
+        "false_refusal": {
+          "mean": 0.0238,
+          "ci95": [
+            0.0,
+            0.0714
+          ],
+          "n": 42
+        },
+        "supported_share": {
+          "mean": 0.9618,
+          "ci95": [
+            0.9292,
+            0.9919
+          ]
+        },
+        "quotes_found_share": {
+          "mean": 0.8792,
+          "ci95": [
+            0.8129,
+            0.9362
+          ]
+        },
+        "latency": {
+          "total": {
+            "median_s": 10.69,
+            "p95_s": 15.28
+          },
+          "answer": {
+            "median_s": 9.53,
+            "p95_s": 13.81
+          },
+          "rewrite": {
+            "median_s": 0.0,
+            "p95_s": 0.0
+          },
+          "verify": {
+            "median_s": 1.13,
+            "p95_s": 1.74
+          }
+        }
+      },
+      "vs_leader": {
+        "point_coverage": [
+          -0.0813,
+          -0.1448,
+          -0.0278
+        ],
+        "critical_complete": [
+          -0.0833,
+          -0.2222,
+          0.0556
+        ],
+        "must_not_share": [
+          -0.1026,
+          -0.2051,
+          -0.0256
+        ],
+        "supported_share": [
+          0.066,
+          0.0099,
+          0.1246
+        ],
+        "refusal": [
+          -0.125,
+          -0.375,
+          0.0
+        ]
+      },
+      "candidate": false,
+      "in_budget": true,
+      "by_type": {
+        "reference": {
+          "questions": 20.0,
+          "recall_at_5": 0.6562,
+          "recall_at_20": 0.8382,
+          "hit_at_5": 0.9,
+          "mrr": 0.8729,
+          "ndcg_at_10": 0.754,
+          "precision_at_5": 0.51,
+          "context_coverage": 0.7333,
+          "context_use": 0.34,
+          "point_coverage": 0.7167,
+          "critical_complete": 0.6667,
+          "must_not_share": 0.0,
+          "refusal": null,
+          "false_refusal": 0.0
+        },
+        "none": {
+          "questions": 8.0,
+          "recall_at_5": null,
+          "recall_at_20": null,
+          "hit_at_5": null,
+          "mrr": null,
+          "ndcg_at_10": null,
+          "precision_at_5": 0.25,
+          "context_coverage": null,
+          "context_use": 0.4,
+          "point_coverage": null,
+          "critical_complete": null,
+          "must_not_share": 0.125,
+          "refusal": 0.5,
+          "false_refusal": null
+        },
+        "case": {
+          "questions": 16.0,
+          "recall_at_5": 0.4098,
+          "recall_at_20": 0.7018,
+          "hit_at_5": 0.875,
+          "mrr": 0.8604,
+          "ndcg_at_10": 0.5935,
+          "precision_at_5": 0.4688,
+          "context_coverage": 0.5729,
+          "context_use": 0.4067,
+          "point_coverage": 0.625,
+          "critical_complete": 0.5333,
+          "must_not_share": 0.0,
+          "refusal": null,
+          "false_refusal": 0.0625
+        },
+        "trap": {
+          "questions": 6.0,
+          "recall_at_5": 0.7381,
+          "recall_at_20": 0.8135,
+          "hit_at_5": 1.0,
+          "mrr": 0.9167,
+          "ndcg_at_10": 0.7027,
+          "precision_at_5": 0.4667,
+          "context_coverage": 0.8889,
+          "context_use": 0.3667,
+          "point_coverage": 0.7778,
+          "critical_complete": 0.6667,
+          "must_not_share": 0.3333,
+          "refusal": null,
+          "false_refusal": 0.0
+        }
+      },
+      "by_style": {
+        "short": {
+          "questions": 23.0,
+          "recall_at_5": 0.5338,
+          "recall_at_20": 0.7632,
+          "hit_at_5": 0.8947,
+          "mrr": 0.8662,
+          "ndcg_at_10": 0.6768,
+          "precision_at_5": 0.5217,
+          "context_coverage": 0.6447,
+          "context_use": 0.3727,
+          "point_coverage": 0.6886,
+          "critical_complete": 0.7222,
+          "must_not_share": 0.1579,
+          "refusal": 0.25,
+          "false_refusal": 0.0
+        },
+        "full": {
+          "questions": 27.0,
+          "recall_at_5": 0.6072,
+          "recall_at_20": 0.7989,
+          "hit_at_5": 0.913,
+          "mrr": 0.8812,
+          "ndcg_at_10": 0.6928,
+          "precision_at_5": 0.3889,
+          "context_coverage": 0.7355,
+          "context_use": 0.3696,
+          "point_coverage": 0.692,
+          "critical_complete": 0.5,
+          "must_not_share": 0.0,
+          "refusal": 0.75,
+          "false_refusal": 0.0435
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "clin-compass",
+  "private": true,
+  "packageManager": "pnpm@10.28.2",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "lint": "biome check .",
+    "fmt": "biome check --write .",
+    "e2e": "node e2e/run.mjs",
+    "typecheck:e2e": "tsc --project tsconfig.e2e.json"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.15",
+    "@playwright/test": "1.62.1",
+    "@types/node": "^24.19.2",
+    "typescript": "^5.9.3"
+  }
+}

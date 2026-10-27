@@ -1,0 +1,84 @@
+id: test-drug
+version: 1
+status: reviewed
+trade_name: "Тестин"
+inn: "тестин"
+registration: {number: "ЛП-000100", source: {source: test-registry, locator: "ЛП-000100"}}
+label: test-label
+additional_monitoring: true
+forms:
+  - id: tab-10
+    title: "таблетки, 10 мг"
+    strength_mg: 10
+    appearance:
+      shape: round
+      color: white
+      description: "Круглая белая таблетка по тестовой инструкции."
+      source: {source: test-label, locator: "3"}
+age_min: {years: 18, source: {source: test-label, locator: "4.1"}}
+indications:
+  - id: anxiety
+    title: "Тестовое тревожное расстройство"
+    icd10: [F41.1]
+    source: {source: test-label, locator: "4.1"}
+    regimen:
+      form: tab-10
+      dose_mg: 10
+      times_per_day: 2
+      schedule: "утром и вечером"
+      duration: {text: "определяет врач"}
+      source: {source: test-label, locator: "4.2"}
+  - id: course
+    title: "Тестовое показание с курсом"
+    icd10: [F43.2]
+    requires_any: [U09.9]
+    manual: ["лёгкая или средняя степень выраженности"]
+    source: {source: test-label, locator: "4.1"}
+    regimen:
+      form: tab-10
+      dose_mg: 10
+      times_per_day: 2
+      schedule: "утром и вечером"
+      duration: {days: 28, max_days: 42, text: "4 недели, до 6"}
+      source: {source: test-label, locator: "4.2"}
+instructions:
+  - {text: "Внутрь до еды", source: {source: test-label, locator: "4.2"}}
+contraindications:
+  - id: maoi
+    title: "Тест: ингибиторы МАО и 2 недели после отмены"
+    when:
+      any:
+        - {medication: {group: test-maoi, within_days: 14}}
+    doctor_actions: ["Не назначать до окончания срока"]
+    sources: [{source: test-label, locator: "4.3"}, {source: test-label, locator: "4.5"}]
+    cases:
+      - {given: {medications: [{inn: моклобемид, stopped_days_ago: 10}]}, result: "yes", source: {source: test-label, locator: "4.3"}}
+      - {given: {medications: [{inn: моклобемид, stopped_days_ago: 16}]}, result: "no", source: {source: test-label, locator: "4.3"}}
+  - id: renal
+    title: "Тест: СКФ < 60"
+    when:
+      any:
+        - {fact: {name: egfr, op: "<", value: 60}}
+    doctor_actions: ["Не назначать"]
+    sources: [{source: test-label, locator: "4.3"}]
+    cases:
+      - {given: {facts: {egfr: 50}}, result: "yes", source: {source: test-label, locator: "4.3"}}
+      - {given: {facts: {egfr: 90}}, result: "no", source: {source: test-label, locator: "4.3"}}
+cautions:
+  - id: serotonergic
+    title: "Тест: серотонинергические препараты"
+    when:
+      any:
+        - {medication: {group: test-serotonergic}}
+    doctor_actions: ["Назначать с осторожностью"]
+    sources: [{source: test-label, locator: "4.5"}]
+    cases:
+      - {given: {medications: [{inn: суматриптан}]}, result: "yes", source: {source: test-label, locator: "4.5"}}
+      - {given: {medications: [{inn: метопролол}]}, result: "no", source: {source: test-label, locator: "4.5"}}
+reaction_actions:
+  doctor_actions: ["Оценить состояние пациента"]
+  sources: [{source: test-label, locator: "4.8"}]
+adverse_reactions:
+  - {id: stiffness, title: "Скованность мышц", frequency: "нечасто", level: mandatory, patient_reportable: true, patient_title: "скованность мышц", sources: [{source: test-label, locator: "4.8"}]}
+  - {id: headache, title: "Головная боль", frequency: "часто", level: desirable, patient_reportable: true, patient_title: "болит голова", sources: [{source: test-label, locator: "4.8"}]}
+  - {id: ck-up, title: "Повышение КФК", frequency: "нечасто", level: desirable, patient_reportable: false, sources: [{source: test-label, locator: "4.8"}]}

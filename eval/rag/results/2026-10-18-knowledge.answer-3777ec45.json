@@ -1,0 +1,1261 @@
+{
+  "date": "2026-10-18T09:28:26+00:00",
+  "versions": {
+    "llm": "qwen3.8-27b",
+    "embeddings": "giga-embeddings-3b-0826",
+    "prompt": "knowledge.answer-3777ec45",
+    "documents": [
+      {
+        "source_id": "aviandr-ohlp",
+        "version": "0010",
+        "title": "АВИАНДР (маритупирдин), 20 мг, таблетки, покрытые плёночной оболочкой: общая характеристика лекарственного препарата",
+        "kind": "drug_label",
+        "content_hash": "4e535418cfb0153018812148e988cc5adc230c2e926605c72828d4dab80158a4"
+      },
+      {
+        "source_id": "kr-depression-2024",
+        "version": "301_3",
+        "title": "Депрессивный эпизод, Рекуррентное депрессивное расстройство",
+        "kind": "clinical_guideline",
+        "content_hash": "17449139d18db0550d82cea94c56a2965d3e57779f4b35d6652c9c581c706fec"
+      },
+      {
+        "source_id": "kr-gad-2024",
+        "version": "457_3",
+        "title": "Генерализованное тревожное расстройство",
+        "kind": "clinical_guideline",
+        "content_hash": "0366165680f465394ea5466c5c51d7e553517bdfcde1ce5c4572030ae7f8f10d"
+      }
+    ]
+  },
+  "questions": 44,
+  "metrics": {
+    "retrieval": {
+      "all": {
+        "questions": 40,
+        "recall_at_5": 0.656,
+        "recall_at_10": 0.838,
+        "mrr": 0.52
+      },
+      "single": {
+        "questions": 37,
+        "recall_at_5": 0.649,
+        "recall_at_10": 0.838,
+        "mrr": 0.494
+      },
+      "multi": {
+        "questions": 3,
+        "recall_at_5": 0.75,
+        "recall_at_10": 0.833,
+        "mrr": 0.833
+      }
+    },
+    "quotes_correct_share": 0.954,
+    "answers_citing_expected_share": 0.75,
+    "empty_on_none_share": 1.0,
+    "missed_at_10": [
+      "kr-dep-004",
+      "kr-dep-009",
+      "kr-gad-008",
+      "kr-gad-009",
+      "kr-gad-010",
+      "kr-gad-011"
+    ],
+    "latency": {
+      "median_s": 64.33,
+      "p95_s": 95.04
+    }
+  },
+  "per_question": [
+    {
+      "id": "ohlp-001",
+      "kind": "single",
+      "expected": [
+        "aviandr-ohlp/4.1/1"
+      ],
+      "found": [
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/4.4/1",
+        "aviandr-ohlp/4.1/1",
+        "aviandr-ohlp/4.8/1",
+        "kr-depression-2024/doc_3/57",
+        "aviandr-ohlp/5.2/2",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_3/4",
+        "aviandr-ohlp/5.1/2",
+        "kr-gad-2024/doc_3/36"
+      ],
+      "cited": [
+        "aviandr-ohlp/4.1/1",
+        "aviandr-ohlp/4.1/1",
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/4.4/1"
+      ],
+      "dropped": 0,
+      "latency_s": 96.56
+    },
+    {
+      "id": "ohlp-002",
+      "kind": "single",
+      "expected": [
+        "aviandr-ohlp/4.2/1"
+      ],
+      "found": [
+        "aviandr-ohlp/4.2/1",
+        "kr-gad-2024/doc_b/3",
+        "kr-depression-2024/doc_b/2",
+        "aviandr-ohlp/4.1/1",
+        "kr-gad-2024/doc_3/31",
+        "kr-depression-2024/doc_3/53",
+        "aviandr-ohlp/5.1/1",
+        "aviandr-ohlp/4.8/1",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/31"
+      ],
+      "cited": [
+        "aviandr-ohlp/4.1/1",
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/5.1/1"
+      ],
+      "dropped": 2,
+      "latency_s": 80.9
+    },
+    {
+      "id": "ohlp-003",
+      "kind": "single",
+      "expected": [
+        "aviandr-ohlp/4.3/1"
+      ],
+      "found": [
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/4.4/1",
+        "kr-depression-2024/doc_diag_2_5/3",
+        "aviandr-ohlp/4.3/1",
+        "kr-depression-2024/doc_3/1",
+        "aviandr-ohlp/6.2/1",
+        "kr-depression-2024/doc_3/3",
+        "aviandr-ohlp/4.6/1",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "aviandr-ohlp/4.1/1"
+      ],
+      "cited": [
+        "aviandr-ohlp/4.3/1",
+        "aviandr-ohlp/4.3/1",
+        "aviandr-ohlp/4.3/1",
+        "aviandr-ohlp/4.3/1",
+        "aviandr-ohlp/4.3/1",
+        "aviandr-ohlp/4.6/1",
+        "aviandr-ohlp/4.4/1",
+        "aviandr-ohlp/4.2/1"
+      ],
+      "dropped": 0,
+      "latency_s": 86.6
+    },
+    {
+      "id": "ohlp-004",
+      "kind": "single",
+      "expected": [
+        "aviandr-ohlp/4.4/1"
+      ],
+      "found": [
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/4.4/1",
+        "kr-depression-2024/doc_3/3",
+        "aviandr-ohlp/4.8/1",
+        "kr-gad-2024/doc_3/4",
+        "aviandr-ohlp/5.2/2",
+        "kr-depression-2024/doc_3/31",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "aviandr-ohlp/4.1/1",
+        "aviandr-ohlp/4.7/1"
+      ],
+      "cited": [
+        "aviandr-ohlp/4.4/1",
+        "aviandr-ohlp/4.4/1",
+        "aviandr-ohlp/4.4/1"
+      ],
+      "dropped": 0,
+      "latency_s": 79.96
+    },
+    {
+      "id": "ohlp-005",
+      "kind": "single",
+      "expected": [
+        "aviandr-ohlp/4.5/1"
+      ],
+      "found": [
+        "aviandr-ohlp/4.5/1",
+        "aviandr-ohlp/4.5/2",
+        "aviandr-ohlp/4.4/1",
+        "aviandr-ohlp/5.2/2",
+        "aviandr-ohlp/5.1/1",
+        "kr-depression-2024/doc_3/28",
+        "aviandr-ohlp/4.5/3",
+        "kr-depression-2024/doc_3/3",
+        "aviandr-ohlp/5.2/1",
+        "aviandr-ohlp/4.8/1"
+      ],
+      "cited": [
+        "aviandr-ohlp/4.5/1",
+        "aviandr-ohlp/4.5/1",
+        "aviandr-ohlp/4.5/1",
+        "aviandr-ohlp/4.5/1",
+        "aviandr-ohlp/4.5/1",
+        "aviandr-ohlp/4.5/1"
+      ],
+      "dropped": 0,
+      "latency_s": 93.79
+    },
+    {
+      "id": "ohlp-006",
+      "kind": "single",
+      "expected": [
+        "aviandr-ohlp/4.5/2"
+      ],
+      "found": [
+        "aviandr-ohlp/4.5/2",
+        "aviandr-ohlp/4.5/1",
+        "aviandr-ohlp/5.2/1",
+        "aviandr-ohlp/5.2/2",
+        "aviandr-ohlp/4.5/3",
+        "aviandr-ohlp/4.4/1",
+        "aviandr-ohlp/4.6/1",
+        "aviandr-ohlp/5.1/1",
+        "aviandr-ohlp/4.8/1",
+        "aviandr-ohlp/4.2/1"
+      ],
+      "cited": [
+        "aviandr-ohlp/4.5/2",
+        "aviandr-ohlp/4.5/2",
+        "aviandr-ohlp/4.5/2",
+        "aviandr-ohlp/5.2/2"
+      ],
+      "dropped": 0,
+      "latency_s": 66.47
+    },
+    {
+      "id": "ohlp-007",
+      "kind": "single",
+      "expected": [
+        "aviandr-ohlp/4.6/1"
+      ],
+      "found": [
+        "aviandr-ohlp/4.6/1",
+        "aviandr-ohlp/4.2/1",
+        "kr-depression-2024/doc_7/2",
+        "kr-depression-2024/doc_3/57",
+        "kr-gad-2024/doc_3/4",
+        "aviandr-ohlp/4.1/1",
+        "aviandr-ohlp/4.4/1",
+        "kr-depression-2024/doc_7/1",
+        "kr-depression-2024/doc_diag_2_5/3",
+        "kr-depression-2024/doc_3/39"
+      ],
+      "cited": [
+        "aviandr-ohlp/4.6/1",
+        "aviandr-ohlp/4.6/1",
+        "aviandr-ohlp/4.6/1",
+        "aviandr-ohlp/4.6/1",
+        "aviandr-ohlp/4.6/1",
+        "aviandr-ohlp/4.6/1"
+      ],
+      "dropped": 0,
+      "latency_s": 57.06
+    },
+    {
+      "id": "ohlp-008",
+      "kind": "single",
+      "expected": [
+        "aviandr-ohlp/4.7/1"
+      ],
+      "found": [
+        "aviandr-ohlp/4.4/1",
+        "aviandr-ohlp/4.2/1",
+        "kr-gad-2024/doc_3/27",
+        "aviandr-ohlp/4.5/1",
+        "kr-depression-2024/doc_v/1",
+        "kr-depression-2024/doc_3/13",
+        "kr-depression-2024/doc_a3/4",
+        "kr-gad-2024/doc_b/2",
+        "aviandr-ohlp/4.7/1",
+        "kr-depression-2024/doc_3/3"
+      ],
+      "cited": [
+        "kr-gad-2024/doc_3/27",
+        "kr-depression-2024/doc_v/1",
+        "aviandr-ohlp/4.5/1",
+        "aviandr-ohlp/4.5/1"
+      ],
+      "dropped": 0,
+      "latency_s": 61.81
+    },
+    {
+      "id": "ohlp-009",
+      "kind": "single",
+      "expected": [
+        "aviandr-ohlp/4.9/1"
+      ],
+      "found": [
+        "aviandr-ohlp/4.9/1",
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/4.1/1",
+        "aviandr-ohlp/4.4/1",
+        "aviandr-ohlp/1/1",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_a3/5",
+        "aviandr-ohlp/9/1",
+        "kr-depression-2024/doc_3/10",
+        "kr-depression-2024/doc_3/7"
+      ],
+      "cited": [
+        "aviandr-ohlp/4.9/1",
+        "aviandr-ohlp/4.9/1",
+        "aviandr-ohlp/4.9/1",
+        "aviandr-ohlp/4.9/1",
+        "aviandr-ohlp/4.9/1",
+        "aviandr-ohlp/4.9/1"
+      ],
+      "dropped": 0,
+      "latency_s": 57.8
+    },
+    {
+      "id": "ohlp-010",
+      "kind": "single",
+      "expected": [
+        "aviandr-ohlp/5.1/1"
+      ],
+      "found": [
+        "aviandr-ohlp/5.1/1",
+        "aviandr-ohlp/4.7/1",
+        "aviandr-ohlp/4.5/1",
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/4.4/1",
+        "aviandr-ohlp/9/1",
+        "kr-depression-2024/doc_3/7",
+        "kr-gad-2024/doc_3/3",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/12"
+      ],
+      "cited": [
+        "aviandr-ohlp/5.1/1",
+        "aviandr-ohlp/5.1/1",
+        "aviandr-ohlp/5.1/1",
+        "aviandr-ohlp/5.1/1",
+        "aviandr-ohlp/5.1/1",
+        "aviandr-ohlp/5.1/1"
+      ],
+      "dropped": 0,
+      "latency_s": 79.8
+    },
+    {
+      "id": "ohlp-011",
+      "kind": "single",
+      "expected": [
+        "aviandr-ohlp/5.2/2"
+      ],
+      "found": [
+        "aviandr-ohlp/5.2/2",
+        "aviandr-ohlp/4.5/2",
+        "aviandr-ohlp/5.2/1",
+        "aviandr-ohlp/4.5/1",
+        "aviandr-ohlp/4.5/3",
+        "aviandr-ohlp/4.4/1",
+        "aviandr-ohlp/5.1/1",
+        "aviandr-ohlp/4.6/1",
+        "aviandr-ohlp/4.8/1",
+        "aviandr-ohlp/5.3/1"
+      ],
+      "cited": [
+        "aviandr-ohlp/5.2/2",
+        "aviandr-ohlp/5.2/2",
+        "aviandr-ohlp/5.2/2",
+        "aviandr-ohlp/5.2/2"
+      ],
+      "dropped": 0,
+      "latency_s": 79.32
+    },
+    {
+      "id": "ohlp-012",
+      "kind": "single",
+      "expected": [
+        "aviandr-ohlp/9/1"
+      ],
+      "found": [
+        "aviandr-ohlp/9/1",
+        "aviandr-ohlp/4.1/1",
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/1/1",
+        "aviandr-ohlp/4.4/1",
+        "aviandr-ohlp/6.6/1",
+        "aviandr-ohlp/6.2/1",
+        "aviandr-ohlp/6.3/1",
+        "aviandr-ohlp/7/1",
+        "aviandr-ohlp/7.1/1"
+      ],
+      "cited": [
+        "aviandr-ohlp/9/1"
+      ],
+      "dropped": 0,
+      "latency_s": 15.99
+    },
+    {
+      "id": "ohlp-013",
+      "kind": "multi",
+      "expected": [
+        "aviandr-ohlp/4.8/1",
+        "aviandr-ohlp/4.8/2"
+      ],
+      "found": [
+        "aviandr-ohlp/4.8/1",
+        "aviandr-ohlp/4.8/3",
+        "aviandr-ohlp/4.8/2",
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/0/1",
+        "aviandr-ohlp/5.2/1",
+        "kr-depression-2024/doc_3/31",
+        "kr-gad-2024/doc_3/3",
+        "aviandr-ohlp/5.2/2",
+        "kr-depression-2024/doc_3/53"
+      ],
+      "cited": [
+        "aviandr-ohlp/4.8/1",
+        "aviandr-ohlp/4.8/1",
+        "aviandr-ohlp/4.8/3",
+        "aviandr-ohlp/4.8/2",
+        "aviandr-ohlp/4.8/2",
+        "aviandr-ohlp/4.8/2",
+        "aviandr-ohlp/4.8/2",
+        "aviandr-ohlp/4.8/2"
+      ],
+      "dropped": 0,
+      "latency_s": 73.62
+    },
+    {
+      "id": "kr-dep-001",
+      "kind": "single",
+      "expected": [
+        "kr-depression-2024/doc_diag_2_1/1"
+      ],
+      "found": [
+        "kr-depression-2024/doc_diag_2_1/1",
+        "kr-depression-2024/doc_diag_2_5/3",
+        "kr-depression-2024/doc_diag_2_1/3",
+        "kr-depression-2024/doc_diag_2/5",
+        "kr-depression-2024/doc_diag_2/1",
+        "kr-depression-2024/doc_diag_2_1/6",
+        "kr-depression-2024/doc_diag_2/4",
+        "kr-depression-2024/doc_diag_2/6",
+        "kr-depression-2024/doc_diag_2_1/2",
+        "kr-depression-2024/doc_diag_2_5/4"
+      ],
+      "cited": [
+        "kr-depression-2024/doc_diag_2_1/1",
+        "kr-depression-2024/doc_diag_2/1",
+        "kr-depression-2024/doc_diag_2_1/6",
+        "kr-depression-2024/doc_diag_2_5/3",
+        "kr-depression-2024/doc_diag_2_5/3",
+        "kr-depression-2024/doc_diag_2_5/3",
+        "kr-depression-2024/doc_diag_2_1/3",
+        "kr-depression-2024/doc_diag_2_1/3"
+      ],
+      "dropped": 0,
+      "latency_s": 83.34
+    },
+    {
+      "id": "kr-dep-002",
+      "kind": "single",
+      "expected": [
+        "kr-depression-2024/doc_diag_2_1/5"
+      ],
+      "found": [
+        "kr-depression-2024/doc_diag_2_1/5",
+        "kr-depression-2024/doc_diag_2/1",
+        "kr-depression-2024/doc_diag_2/5",
+        "kr-depression-2024/doc_diag_2_1/3",
+        "kr-depression-2024/doc_diag_2_1/4",
+        "kr-depression-2024/doc_crat_info_1_6/1",
+        "kr-depression-2024/doc_diag_2_1/6",
+        "kr-depression-2024/doc_diag_2_1/2",
+        "kr-depression-2024/doc_diag_2_5/4",
+        "kr-depression-2024/doc_diag_2_5/3"
+      ],
+      "cited": [
+        "kr-depression-2024/doc_diag_2_1/5",
+        "kr-depression-2024/doc_diag_2_1/5",
+        "kr-depression-2024/doc_diag_2_1/5"
+      ],
+      "dropped": 0,
+      "latency_s": 48.59
+    },
+    {
+      "id": "kr-dep-003",
+      "kind": "single",
+      "expected": [
+        "kr-depression-2024/doc_diag_2_4/2"
+      ],
+      "found": [
+        "kr-depression-2024/doc_3/1",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_diag_2_1/6",
+        "kr-depression-2024/doc_diag_2/5",
+        "kr-depression-2024/doc_diag_2/1",
+        "kr-depression-2024/doc_diag_2_4/2",
+        "kr-depression-2024/doc_diag_2/4",
+        "kr-depression-2024/doc_diag_2_1/3",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/39"
+      ],
+      "cited": [
+        "kr-depression-2024/doc_diag_2_4/2",
+        "kr-depression-2024/doc_diag_2_4/2",
+        "kr-depression-2024/doc_diag_2_4/2",
+        "kr-depression-2024/doc_diag_2_4/2",
+        "kr-depression-2024/doc_diag_2_4/2",
+        "kr-depression-2024/doc_diag_2_4/2"
+      ],
+      "dropped": 0,
+      "latency_s": 58.98
+    },
+    {
+      "id": "kr-dep-004",
+      "kind": "single",
+      "expected": [
+        "kr-depression-2024/doc_diag_2_5/3"
+      ],
+      "found": [
+        "kr-depression-2024/doc_diag_2/1",
+        "kr-depression-2024/doc_diag_2/4",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_diag_2/5",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_diag_2_1/6",
+        "kr-depression-2024/doc_diag_2_1/3",
+        "kr-depression-2024/doc_crat_info_1_1/1",
+        "kr-depression-2024/doc_3/56",
+        "kr-depression-2024/doc_3/5"
+      ],
+      "cited": [
+        "kr-depression-2024/doc_diag_2/1"
+      ],
+      "dropped": 0,
+      "latency_s": 40.44
+    },
+    {
+      "id": "kr-dep-005",
+      "kind": "single",
+      "expected": [
+        "kr-depression-2024/doc_3/3"
+      ],
+      "found": [
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/31",
+        "kr-depression-2024/doc_3/21",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/1",
+        "kr-depression-2024/doc_b/2",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_3/23",
+        "kr-gad-2024/doc_b/3",
+        "kr-depression-2024/doc_3/32"
+      ],
+      "cited": [
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/21",
+        "kr-depression-2024/doc_3/23"
+      ],
+      "dropped": 1,
+      "latency_s": 82.87
+    },
+    {
+      "id": "kr-dep-006",
+      "kind": "single",
+      "expected": [
+        "kr-depression-2024/doc_3/42"
+      ],
+      "found": [
+        "kr-depression-2024/doc_3/45",
+        "kr-depression-2024/doc_3/39",
+        "kr-depression-2024/doc_3/43",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/42",
+        "kr-gad-2024/doc_3/16",
+        "kr-depression-2024/doc_3/9",
+        "kr-depression-2024/doc_3/46",
+        "kr-depression-2024/doc_3/40",
+        "kr-depression-2024/doc_3/7"
+      ],
+      "cited": [
+        "kr-depression-2024/doc_3/43",
+        "kr-depression-2024/doc_3/43",
+        "kr-depression-2024/doc_3/45"
+      ],
+      "dropped": 1,
+      "latency_s": 62.2
+    },
+    {
+      "id": "kr-dep-007",
+      "kind": "single",
+      "expected": [
+        "kr-depression-2024/doc_4/1"
+      ],
+      "found": [
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_3/55",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/60",
+        "kr-depression-2024/doc_3/47",
+        "kr-depression-2024/doc_3/56",
+        "kr-depression-2024/doc_3/21",
+        "kr-depression-2024/doc_4/1",
+        "kr-gad-2024/doc_3/31",
+        "kr-depression-2024/doc_terms/1"
+      ],
+      "cited": [
+        "kr-depression-2024/doc_4/1",
+        "kr-depression-2024/doc_3/55",
+        "kr-depression-2024/doc_3/57"
+      ],
+      "dropped": 0,
+      "latency_s": 55.72
+    },
+    {
+      "id": "kr-dep-008",
+      "kind": "single",
+      "expected": [
+        "kr-depression-2024/doc_7/2"
+      ],
+      "found": [
+        "kr-depression-2024/doc_diag_2/6",
+        "kr-depression-2024/doc_diag_2/5",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_crat_info_1_4/1",
+        "kr-depression-2024/doc_3/1",
+        "kr-depression-2024/doc_7/2",
+        "kr-depression-2024/doc_diag_2/1",
+        "kr-depression-2024/doc_diag_2/4",
+        "kr-depression-2024/doc_3/57"
+      ],
+      "cited": [
+        "kr-depression-2024/doc_7/2",
+        "kr-depression-2024/doc_7/2",
+        "kr-depression-2024/doc_7/2",
+        "kr-depression-2024/doc_7/2",
+        "kr-depression-2024/doc_7/2"
+      ],
+      "dropped": 0,
+      "latency_s": 72.65
+    },
+    {
+      "id": "kr-dep-009",
+      "kind": "single",
+      "expected": [
+        "kr-depression-2024/doc_terms/2"
+      ],
+      "found": [
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/24",
+        "kr-depression-2024/doc_diag_2_1/3",
+        "kr-depression-2024/doc_3/56",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_3/39",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/55",
+        "kr-depression-2024/doc_3/43",
+        "kr-depression-2024/doc_3/1"
+      ],
+      "cited": [
+        "kr-depression-2024/doc_3/24",
+        "kr-depression-2024/doc_diag_2_1/3",
+        "kr-depression-2024/doc_3/3"
+      ],
+      "dropped": 0,
+      "latency_s": 61.92
+    },
+    {
+      "id": "kr-dep-010",
+      "kind": "single",
+      "expected": [
+        "kr-depression-2024/doc_5/1"
+      ],
+      "found": [
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_v/1",
+        "kr-depression-2024/doc_4/2",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/24",
+        "kr-depression-2024/doc_3/31",
+        "kr-depression-2024/doc_criteria/2",
+        "kr-depression-2024/doc_crat_info_1_4/1",
+        "kr-depression-2024/doc_3/54"
+      ],
+      "cited": [
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_5/1"
+      ],
+      "dropped": 0,
+      "latency_s": 80.33
+    },
+    {
+      "id": "kr-dep-011",
+      "kind": "single",
+      "expected": [
+        "kr-depression-2024/doc_6/1"
+      ],
+      "found": [
+        "kr-depression-2024/doc_diag_2/4",
+        "kr-depression-2024/doc_diag_2/6",
+        "kr-depression-2024/doc_crat_info_1_5/1",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_6/1",
+        "kr-depression-2024/doc_diag_2/5",
+        "kr-depression-2024/doc_crat_info_1_6/1",
+        "kr-depression-2024/doc_diag_2/1",
+        "kr-depression-2024/doc_diag_2_1/3",
+        "kr-depression-2024/doc_crat_info_1_3/1"
+      ],
+      "cited": [
+        "kr-depression-2024/doc_6/1",
+        "kr-depression-2024/doc_6/1",
+        "kr-depression-2024/doc_6/1"
+      ],
+      "dropped": 0,
+      "latency_s": 51.27
+    },
+    {
+      "id": "kr-dep-012",
+      "kind": "single",
+      "expected": [
+        "kr-depression-2024/doc_b/2"
+      ],
+      "found": [
+        "kr-gad-2024/doc_b/3",
+        "kr-depression-2024/doc_b/2",
+        "kr-gad-2024/doc_3/31",
+        "kr-depression-2024/doc_3/53",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_b/1",
+        "kr-depression-2024/doc_3/9",
+        "kr-depression-2024/doc_3/10",
+        "kr-depression-2024/doc_3/40"
+      ],
+      "cited": [
+        "kr-gad-2024/doc_b/3",
+        "kr-gad-2024/doc_b/3",
+        "kr-gad-2024/doc_b/3",
+        "kr-gad-2024/doc_b/3",
+        "kr-gad-2024/doc_3/31"
+      ],
+      "dropped": 0,
+      "latency_s": 77.89
+    },
+    {
+      "id": "kr-dep-013",
+      "kind": "single",
+      "expected": [
+        "kr-depression-2024/doc_v/1"
+      ],
+      "found": [
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_v/1",
+        "kr-depression-2024/doc_3/53",
+        "kr-gad-2024/doc_b/3",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_b/2",
+        "kr-depression-2024/doc_3/7",
+        "kr-gad-2024/doc_3/31",
+        "kr-depression-2024/doc_b/1",
+        "kr-depression-2024/doc_3/31"
+      ],
+      "cited": [
+        "kr-depression-2024/doc_v/1",
+        "kr-depression-2024/doc_v/1",
+        "kr-depression-2024/doc_v/1",
+        "kr-depression-2024/doc_v/1",
+        "kr-depression-2024/doc_v/1",
+        "kr-depression-2024/doc_v/1",
+        "kr-depression-2024/doc_v/1",
+        "kr-depression-2024/doc_v/1"
+      ],
+      "dropped": 0,
+      "latency_s": 77.49
+    },
+    {
+      "id": "kr-dep-014",
+      "kind": "multi",
+      "expected": [
+        "kr-depression-2024/doc_diag_2_3/2",
+        "kr-depression-2024/doc_diag_2_3/3",
+        "kr-depression-2024/doc_diag_2_3/4",
+        "kr-depression-2024/doc_diag_2_3/5"
+      ],
+      "found": [
+        "kr-depression-2024/doc_diag_2_3/3",
+        "kr-depression-2024/doc_diag_2_1/6",
+        "kr-depression-2024/doc_diag_2/1",
+        "kr-depression-2024/doc_diag_2/4",
+        "kr-depression-2024/doc_diag_2/5",
+        "kr-depression-2024/doc_diag_2_1/2",
+        "kr-depression-2024/doc_diag_2_3/2",
+        "kr-depression-2024/doc_diag_2/6",
+        "kr-depression-2024/doc_diag_2_1/4",
+        "kr-gad-2024/doc_diag_2_3/5"
+      ],
+      "cited": [
+        "kr-depression-2024/doc_diag_2_3/2",
+        "kr-depression-2024/doc_diag_2_3/3",
+        "kr-depression-2024/doc_diag_2_3/3",
+        "kr-depression-2024/doc_diag_2_3/3"
+      ],
+      "dropped": 0,
+      "latency_s": 53.07
+    },
+    {
+      "id": "kr-gad-001",
+      "kind": "single",
+      "expected": [
+        "kr-gad-2024/doc_crat_info_1_6/3"
+      ],
+      "found": [
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_diag_2_1/6",
+        "kr-gad-2024/doc_v/1",
+        "kr-gad-2024/doc_diag_2_1/4",
+        "kr-gad-2024/doc_crat_info_1_6/2",
+        "kr-gad-2024/doc_diag_2/1",
+        "kr-gad-2024/doc_diag_2_1/7",
+        "kr-gad-2024/doc_diag_2/2",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_crat_info_1_1/1"
+      ],
+      "cited": [
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_diag_2_1/6",
+        "kr-gad-2024/doc_diag_2_1/4"
+      ],
+      "dropped": 0,
+      "latency_s": 78.96
+    },
+    {
+      "id": "kr-gad-002",
+      "kind": "single",
+      "expected": [
+        "kr-gad-2024/doc_diag_2_2/3"
+      ],
+      "found": [
+        "kr-gad-2024/doc_diag_2_3/5",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_v/1",
+        "kr-gad-2024/doc_diag_2_1/6",
+        "kr-gad-2024/doc_diag_2_2/3",
+        "kr-depression-2024/doc_diag_2_3/5",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_diag_2_1/7",
+        "kr-gad-2024/doc_crat_info_1_6/1",
+        "kr-gad-2024/doc_diag_2_1/4"
+      ],
+      "cited": [
+        "kr-gad-2024/doc_diag_2_2/3",
+        "kr-gad-2024/doc_diag_2_2/3",
+        "kr-gad-2024/doc_diag_2_3/5",
+        "kr-gad-2024/doc_diag_2_3/5",
+        "kr-gad-2024/doc_diag_2_3/5",
+        "kr-gad-2024/doc_diag_2_3/5",
+        "kr-gad-2024/doc_diag_2_3/5",
+        "kr-gad-2024/doc_diag_2_3/5"
+      ],
+      "dropped": 0,
+      "latency_s": 73.7
+    },
+    {
+      "id": "kr-gad-003",
+      "kind": "single",
+      "expected": [
+        "kr-gad-2024/doc_diag_2_3/2"
+      ],
+      "found": [
+        "kr-gad-2024/doc_diag_2_1/6",
+        "kr-gad-2024/doc_v/1",
+        "kr-gad-2024/doc_diag_2_3/5",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_diag_2_3/2",
+        "kr-gad-2024/doc_crat_info_1_6/2",
+        "kr-gad-2024/doc_a3/1",
+        "kr-gad-2024/doc_3/4",
+        "kr-gad-2024/doc_diag_2/1"
+      ],
+      "cited": [
+        "kr-gad-2024/doc_diag_2_3/5",
+        "kr-gad-2024/doc_diag_2_3/5",
+        "kr-gad-2024/doc_diag_2_3/5",
+        "kr-gad-2024/doc_diag_2_3/2",
+        "kr-gad-2024/doc_diag_2_3/2"
+      ],
+      "dropped": 0,
+      "latency_s": 79.8
+    },
+    {
+      "id": "kr-gad-004",
+      "kind": "single",
+      "expected": [
+        "kr-gad-2024/doc_diag_2_4/2"
+      ],
+      "found": [
+        "kr-gad-2024/doc_diag_2_1/6",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_v/1",
+        "kr-gad-2024/doc_diag_2/1",
+        "kr-gad-2024/doc_diag_2_1/4",
+        "kr-gad-2024/doc_diag_2_1/7",
+        "kr-gad-2024/doc_crat_info_1_4/1",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_3/4",
+        "kr-gad-2024/doc_diag_2_4/2"
+      ],
+      "cited": [],
+      "dropped": 0,
+      "latency_s": 31.26
+    },
+    {
+      "id": "kr-gad-005",
+      "kind": "single",
+      "expected": [
+        "kr-gad-2024/doc_diag_2_5/2"
+      ],
+      "found": [
+        "kr-gad-2024/doc_diag_2_1/6",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_diag_2/1",
+        "kr-gad-2024/doc_diag_2_1/4",
+        "kr-gad-2024/doc_v/1",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_b/1",
+        "kr-gad-2024/doc_diag_2_5/2",
+        "kr-gad-2024/doc_diag_2_1/7",
+        "kr-gad-2024/doc_crat_info_1_1/1"
+      ],
+      "cited": [
+        "kr-gad-2024/doc_diag_2_5/2"
+      ],
+      "dropped": 0,
+      "latency_s": 39.15
+    },
+    {
+      "id": "kr-gad-006",
+      "kind": "single",
+      "expected": [
+        "kr-gad-2024/doc_3/1"
+      ],
+      "found": [
+        "kr-gad-2024/doc_3/1",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/4",
+        "kr-gad-2024/doc_3/32",
+        "kr-gad-2024/doc_3/27",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_3/40",
+        "kr-gad-2024/doc_3/23",
+        "kr-gad-2024/doc_3/6"
+      ],
+      "cited": [
+        "kr-gad-2024/doc_3/1",
+        "kr-gad-2024/doc_3/1",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_3/4"
+      ],
+      "dropped": 4,
+      "latency_s": 95.04
+    },
+    {
+      "id": "kr-gad-007",
+      "kind": "single",
+      "expected": [
+        "kr-gad-2024/doc_3/22"
+      ],
+      "found": [
+        "kr-gad-2024/doc_3/4",
+        "kr-gad-2024/doc_3/23",
+        "kr-gad-2024/doc_3/22",
+        "kr-gad-2024/doc_3/21",
+        "kr-gad-2024/doc_b/2",
+        "kr-gad-2024/doc_b/3",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_3/5",
+        "kr-gad-2024/doc_3/12",
+        "kr-gad-2024/doc_3/25"
+      ],
+      "cited": [
+        "kr-gad-2024/doc_3/23",
+        "kr-gad-2024/doc_3/22",
+        "kr-gad-2024/doc_3/21",
+        "kr-gad-2024/doc_3/23",
+        "kr-gad-2024/doc_3/23"
+      ],
+      "dropped": 0,
+      "latency_s": 76.67
+    },
+    {
+      "id": "kr-gad-008",
+      "kind": "single",
+      "expected": [
+        "kr-gad-2024/doc_4/2"
+      ],
+      "found": [
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/32",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_3/39",
+        "kr-gad-2024/doc_v/1",
+        "kr-gad-2024/doc_3/1",
+        "kr-gad-2024/doc_3/37",
+        "kr-gad-2024/doc_3/34",
+        "kr-gad-2024/doc_3/38",
+        "kr-gad-2024/doc_3/3"
+      ],
+      "cited": [
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/37",
+        "kr-gad-2024/doc_3/32",
+        "kr-gad-2024/doc_3/32",
+        "kr-gad-2024/doc_3/39",
+        "kr-gad-2024/doc_v/1"
+      ],
+      "dropped": 0,
+      "latency_s": 127.11
+    },
+    {
+      "id": "kr-gad-009",
+      "kind": "single",
+      "expected": [
+        "kr-gad-2024/doc_5/4"
+      ],
+      "found": [
+        "kr-gad-2024/doc_5/6",
+        "kr-gad-2024/doc_5/11",
+        "kr-gad-2024/doc_5/7",
+        "kr-gad-2024/doc_5/10",
+        "kr-gad-2024/doc_5/9",
+        "kr-gad-2024/doc_5/8",
+        "kr-gad-2024/doc_diag_2_1/6",
+        "kr-gad-2024/doc_crat_info_1_6/2",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_diag_2_5/1"
+      ],
+      "cited": [
+        "kr-gad-2024/doc_5/6",
+        "kr-gad-2024/doc_5/6",
+        "kr-gad-2024/doc_5/6",
+        "kr-gad-2024/doc_5/6"
+      ],
+      "dropped": 0,
+      "latency_s": 56.24
+    },
+    {
+      "id": "kr-gad-010",
+      "kind": "single",
+      "expected": [
+        "kr-gad-2024/doc_6/1"
+      ],
+      "found": [
+        "kr-gad-2024/doc_diag_2_1/6",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_crat_info_1_1/1",
+        "kr-gad-2024/doc_3/4",
+        "kr-gad-2024/doc_crat_info_1_6/2",
+        "kr-gad-2024/doc_crat_info_1_6/1",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_diag_2_1/4",
+        "kr-gad-2024/doc_diag_2/1"
+      ],
+      "cited": [],
+      "dropped": 0,
+      "latency_s": 32.15
+    },
+    {
+      "id": "kr-gad-011",
+      "kind": "single",
+      "expected": [
+        "kr-gad-2024/doc_a3/2"
+      ],
+      "found": [
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_b/3",
+        "kr-gad-2024/doc_3/31",
+        "kr-gad-2024/doc_3/12",
+        "kr-gad-2024/doc_3/17",
+        "kr-depression-2024/doc_3/3",
+        "kr-gad-2024/doc_v/1",
+        "kr-gad-2024/doc_a3/1",
+        "kr-gad-2024/doc_3/24",
+        "kr-depression-2024/doc_a3/3"
+      ],
+      "cited": [
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_3/12",
+        "kr-gad-2024/doc_3/17"
+      ],
+      "dropped": 0,
+      "latency_s": 80.1
+    },
+    {
+      "id": "kr-gad-012",
+      "kind": "single",
+      "expected": [
+        "kr-gad-2024/doc_b/2"
+      ],
+      "found": [
+        "kr-gad-2024/doc_3/4",
+        "kr-depression-2024/doc_3/3",
+        "kr-gad-2024/doc_b/2",
+        "kr-gad-2024/doc_b/3",
+        "kr-depression-2024/doc_3/52",
+        "kr-gad-2024/doc_3/5",
+        "kr-gad-2024/doc_3/23",
+        "kr-gad-2024/doc_3/31",
+        "kr-depression-2024/doc_3/31",
+        "kr-gad-2024/doc_3/10"
+      ],
+      "cited": [
+        "kr-gad-2024/doc_b/2",
+        "kr-gad-2024/doc_b/2",
+        "kr-gad-2024/doc_3/4",
+        "kr-gad-2024/doc_3/4"
+      ],
+      "dropped": 0,
+      "latency_s": 61.66
+    },
+    {
+      "id": "kr-gad-013",
+      "kind": "multi",
+      "expected": [
+        "kr-gad-2024/doc_crat_info_1_1/1",
+        "kr-gad-2024/doc_diag_2/1"
+      ],
+      "found": [
+        "kr-gad-2024/doc_v/1",
+        "kr-gad-2024/doc_diag_2/1",
+        "kr-gad-2024/doc_crat_info_1_1/1",
+        "kr-gad-2024/doc_diag_2_1/4",
+        "kr-gad-2024/doc_crat_info_1_6/1",
+        "kr-gad-2024/doc_diag_2_1/6",
+        "kr-gad-2024/doc_3/4",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_diag_2_1/2",
+        "kr-gad-2024/doc_diag_2_5/1"
+      ],
+      "cited": [
+        "kr-gad-2024/doc_crat_info_1_1/1",
+        "kr-gad-2024/doc_diag_2_1/4",
+        "kr-gad-2024/doc_crat_info_1_6/1"
+      ],
+      "dropped": 1,
+      "latency_s": 44.54
+    },
+    {
+      "id": "none-001",
+      "kind": "none",
+      "expected": [],
+      "found": [
+        "aviandr-ohlp/6.5/1",
+        "aviandr-ohlp/6.4/1",
+        "aviandr-ohlp/1/1",
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/4.1/1",
+        "aviandr-ohlp/9/1",
+        "aviandr-ohlp/4.4/1",
+        "aviandr-ohlp/6.3/1",
+        "kr-depression-2024/doc_3/57",
+        "aviandr-ohlp/7/1"
+      ],
+      "cited": [],
+      "dropped": 0,
+      "latency_s": 12.9
+    },
+    {
+      "id": "none-002",
+      "kind": "none",
+      "expected": [],
+      "found": [
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/13",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_3/5",
+        "kr-depression-2024/doc_3/57",
+        "kr-gad-2024/doc_3/3",
+        "kr-depression-2024/doc_3/9",
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/4.5/1"
+      ],
+      "cited": [],
+      "dropped": 0,
+      "latency_s": 42.5
+    },
+    {
+      "id": "none-003",
+      "kind": "none",
+      "expected": [],
+      "found": [
+        "kr-depression-2024/doc_3/3",
+        "kr-gad-2024/doc_3/4",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_3/56",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-depression-2024/doc_3/7",
+        "kr-gad-2024/doc_crat_info_1_6/2",
+        "kr-depression-2024/doc_3/51"
+      ],
+      "cited": [],
+      "dropped": 0,
+      "latency_s": 45.77
+    },
+    {
+      "id": "none-004",
+      "kind": "none",
+      "expected": [],
+      "found": [
+        "kr-depression-2024/doc_crat_info_1_3/1",
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_4/2",
+        "kr-depression-2024/doc_diag_2/5",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_diag_2_1/3",
+        "kr-depression-2024/doc_crat_info_1_1/1",
+        "kr-depression-2024/doc_diag_2_1/6",
+        "kr-depression-2024/doc_diag_2_1/7"
+      ],
+      "cited": [],
+      "dropped": 0,
+      "latency_s": 29.65
+    }
+  ]
+}

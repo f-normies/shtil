@@ -1,0 +1,30 @@
+# Prometheus стенда (спека #40, 3.5). Лежит в образе prometheus: откат образа откатывает
+# и настройку. Наружу Prometheus не публикуется, данные смотрят в Grafana.
+
+global:
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  evaluation_interval: 15s
+
+storage:
+  tsdb:
+    retention:
+      time: 15d
+
+# Метрики отдаёт отдельный HTTP-сервер api и worker на COMPASS_METRICS_PORT (9100), его видит
+# только сеть compose. Запрос A по имени сервиса возвращает адреса всех контейнеров сервиса:
+# так находятся все реплики api при нагрузочном тесте (#41).
+scrape_configs:
+  - job_name: api
+    dns_sd_configs:
+      - names: [api]
+        type: A
+        port: 9100
+        refresh_interval: 15s
+
+  - job_name: worker
+    dns_sd_configs:
+      - names: [worker]
+        type: A
+        port: 9100
+        refresh_interval: 15s

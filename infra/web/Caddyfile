@@ -1,0 +1,50 @@
+# Caddy стенда (спека #15, 4.3). Лежит в образе web: откат образа откатывает и маршруты.
+# Адрес сайта — SITE_ADDRESS; SITE_ADDRESS=localhost проверяет стек на Маке с HTTPS.
+{
+	# HTTP/3 выключен: UDP 443 закрыт группой безопасности. Иначе Caddy объявлял бы
+	# браузерам в Alt-Svc порт, до которого они не дойдут.
+	servers {
+		protocols h1 h2
+	}
+}
+
+# Кабинет по пути /<имя>/. Файлы с хешем в имени (assets) кэшируются навсегда.
+# Остальное — no-cache: так обновление PWA доходит до телефона. Нет файла — index.html
+# приложения: обновление страницы на /doctor/patients/<id> открывает тот же экран.
+(spa) {
+	redir /{args[0]} /{args[0]}/
+
+	handle /{args[0]}/assets/* {
+		root * /srv
+		encode zstd gzip
+		header Cache-Control "public, max-age=31536000, immutable"
+		file_server
+	}
+
+	handle /{args[0]}/* {
+		root * /srv
+		encode zstd gzip
+		header Cache-Control "no-cache"
+		try_files {path} /{args[0]}/index.html
+		file_server
+	}
+}
+
+{$SITE_ADDRESS::80} {
+	# API и WebSocket /api/v1/ws без отрезания префикса. Host не меняем: проверка
+	# источника сравнивает Origin с Host. X-Forwarded-For от клиента Caddy отбрасывает
+	# и ставит настоящий адрес клиента; api верит ему только от адреса Caddy.
+	handle /api/* {
+		reverse_proxy api:8000
+	}
+
+	import spa doctor
+	import spa patient
+
+	# Страница «Врач / Пациент» и прочие пути.
+	handle {
+		root * /srv/root
+		header Cache-Control "no-cache"
+		file_server
+	}
+}

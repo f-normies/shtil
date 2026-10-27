@@ -1,0 +1,21 @@
+# Выдуманный экран помощи для тестов alerts (спека #57). Настоящий — knowledge/patient-help.yaml.
+version: 1
+status: reviewed
+checked_on: 2026-10-01
+title: "Тест: если очень тяжело"
+text: "Тест: позвоните 112."
+sources:
+  - {source: test-guideline, locator: "раздел 2"}
+contacts:
+  - id: emergency
+    number: "112"
+    label: "Позвонить 112"
+    primary: true
+    sources:
+      - {source: test-guideline, locator: "раздел 3"}
+  - id: ambulance
+    number: "103"
+    label: "Скорая помощь 103"
+    primary: false
+    sources:
+      - {source: test-guideline, locator: "раздел 4"}

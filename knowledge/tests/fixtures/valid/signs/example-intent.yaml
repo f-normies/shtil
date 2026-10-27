@@ -1,0 +1,11 @@
+id: example-intent
+version: 1
+status: reviewed
+rank: 1
+title: "Пример: намерение причинить себе вред"
+definition: |
+  Пациент пишет о плане или приготовлениях. Например: «решила, как это сделаю».
+doctor_actions:
+  - "Связаться с пациентом немедленно"
+sources:
+  - {source: example-guideline, locator: "раздел 2"}

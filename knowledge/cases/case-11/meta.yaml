@@ -1,0 +1,4 @@
+section_order: [call_info, complaints, history, examination, ecg, diagnosis, care, outcome]
+detail: standard
+style: "карта вызова скорой помощи: служебные поля, время, сокращения, витальные показатели"
+diagnosis_format: "поле «Диагноз», полное название рубрики МКБ-10 с кодом в скобках"

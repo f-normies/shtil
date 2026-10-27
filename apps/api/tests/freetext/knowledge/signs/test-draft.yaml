@@ -1,0 +1,11 @@
+# Черновик: в промпт не попадает.
+id: test-draft
+version: 1
+status: draft
+rank: 3
+title: "Тест: черновик"
+definition: "Черновой вид признака."
+doctor_actions:
+  - "Тест: ничего"
+sources:
+  - {source: test-guideline, locator: "раздел 3"}

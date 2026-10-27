@@ -1,0 +1,59 @@
+# Контекст сборки образов: корень репозитория. Исключено всё, кроме путей,
+# которые нужны образам api, web, prometheus, grafana и моделей.
+*
+
+# uv workspace: uv требует pyproject.toml всех участников, даже если ставит только api.
+!pyproject.toml
+!uv.lock
+!apps/api/pyproject.toml
+!apps/api/alembic.ini
+!apps/api/migrations
+!apps/api/src
+!eval/pyproject.toml
+!services/asr
+!knowledge/pyproject.toml
+!knowledge/src
+!knowledge/cases
+!knowledge/drug-groups
+!knowledge/drugs
+!knowledge/rules
+!knowledge/scales
+!knowledge/scenarios
+!knowledge/signs
+!knowledge/sources
+!knowledge/signal-decisions.yaml
+!knowledge/scale-schedule.yaml
+!knowledge/patient-help.yaml
+
+# pnpm workspace: --frozen-lockfile требует package.json всех пакетов.
+!package.json
+!pnpm-lock.yaml
+!pnpm-workspace.yaml
+!tsconfig.base.json
+!apps/doctor
+!apps/patient
+!packages/api-client
+!packages/ui
+!packages/figma-snapshot/package.json
+
+# Образ web: Caddyfile и страница «/».
+!infra/web
+
+# Образы prometheus и grafana: настройка и дашборд.
+!infra/prometheus
+!infra/grafana
+
+# Образы моделей (профиль gpu).
+!infra/models
+
+# Внутри разрешённых каталогов: зависимости, сборки, кэши, секреты и тесты браузера.
+**/node_modules
+**/dist
+**/.venv
+**/__pycache__
+**/*.pyc
+**/*.tsbuildinfo
+**/.env
+**/.env.*
+**/test-results
+**/playwright-report

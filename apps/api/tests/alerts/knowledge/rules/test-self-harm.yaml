@@ -1,0 +1,16 @@
+id: test-self-harm
+version: 1
+status: reviewed
+kind: alert
+level: mandatory
+title: "Тест: мысли о самоповреждении"
+when:
+  any:
+    - {scale: test-mood, item: q3, op: ">=", value: 1}
+doctor_actions:
+  - "Связаться с пациентом в тот же день"
+sources:
+  - {source: test-guideline, locator: "раздел 1"}
+cases:
+  - {given: {test-mood: {q3: 1}}, fires: true, source: {source: test-guideline, locator: "раздел 1"}}
+  - {given: {test-mood: {q3: 0}}, fires: false, source: {source: test-guideline, locator: "раздел 1"}}

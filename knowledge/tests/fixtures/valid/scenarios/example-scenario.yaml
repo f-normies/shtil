@@ -1,0 +1,25 @@
+id: example-scenario
+status: draft
+title: "Пример сценария"
+patient:
+  sex: female
+  age: 34
+  summary: "Синтетический пациент"
+  history: "Жалобы на сниженное настроение в течение месяца."
+steps:
+  - id: s1
+    actor: doctor
+    action: "Приглашает пациента"
+    expected: "Пациент получает ссылку"
+  - id: s2
+    actor: patient
+    action: "Заполняет шкалу"
+    expected: "Балл посчитан"
+    refs: {scales: [example-mood]}
+    sources: [{source: example-validation, locator: "табл. 3"}]
+  - id: s3
+    actor: system
+    action: "Проверяет правила"
+    expected: "Врач получает алерт"
+    refs: {rules: [example-self-harm]}
+    sources: [{source: example-guideline, locator: "раздел 2"}]

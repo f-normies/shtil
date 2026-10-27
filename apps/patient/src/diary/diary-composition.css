@@ -1,0 +1,615 @@
+.patient-subpage-header {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  display: grid;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 520px;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  min-height: 56px;
+  margin: 0 auto;
+  padding: 4px 20px;
+  background: var(--color-canvas);
+}
+
+.patient-subpage-header button {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  color: var(--color-ink);
+  background: transparent;
+  cursor: pointer;
+}
+
+.patient-subpage-header button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.patient-subpage-header button img {
+  width: 24px;
+  height: 24px;
+}
+
+.patient-subpage-header h1 {
+  overflow: hidden;
+  margin: 0;
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 600;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.patient-subpage-header__spacer {
+  width: 44px;
+}
+.patient-subpage-header--back {
+  grid-template-columns: 32px minmax(0, 1fr) 44px;
+}
+.patient-subpage-header--back > button:first-child {
+  width: 32px;
+}
+.patient-subpage-header__text {
+  justify-self: start;
+  font: 500 15px / 20px var(--font-sans);
+}
+
+.patient-quick-text__content,
+.patient-voice-screen__content {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 8px 20px 124px;
+}
+
+.patient-date-chip {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 12px;
+  border-radius: 16px;
+  padding: 4px 10px;
+  color: var(--color-ink);
+  background: var(--palette-mint-50);
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.patient-date-chip img {
+  width: 16px;
+  height: 16px;
+}
+
+.patient-quick-text__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.patient-quick-text__field textarea,
+.patient-story-text-field textarea,
+.patient-other-medication textarea,
+.patient-entry-edit textarea {
+  box-sizing: border-box;
+  width: 100%;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  color: var(--color-ink);
+  background: transparent;
+  font: 400 17px / 24px var(--font-sans);
+  resize: vertical;
+}
+
+.patient-quick-text__field textarea {
+  min-height: 154px;
+  outline: 0;
+}
+
+.patient-quick-text__field textarea::placeholder,
+.patient-story-text-field textarea::placeholder {
+  color: var(--color-ink-muted);
+  opacity: 1;
+}
+
+.patient-quick-text__field small,
+.patient-story-text-field small,
+.patient-other-medication small {
+  color: var(--color-ink-muted);
+  font-size: 12px;
+  line-height: 16px;
+  text-align: right;
+}
+
+.patient-quick-text__mood {
+  margin-top: 16px;
+}
+
+.patient-quick-text__mood h2 {
+  margin: 0 0 8px;
+  color: var(--color-ink-muted);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 500;
+}
+
+.patient-quick-text .patient-mood-scale {
+  margin: 0;
+}
+.patient-quick-text .patient-mood-scale__button img {
+  width: 52px;
+  height: 52px;
+  flex-basis: 52px;
+}
+
+.patient-quick-text__actions {
+  position: fixed;
+  z-index: 5;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 520px;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto;
+  border-top: 1px solid var(--color-line);
+  padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+  background: var(--color-canvas);
+}
+
+.patient-quick-text__actions > a {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  flex: 0 0 54px;
+  place-items: center;
+  border: 1px solid var(--palette-mint-100);
+  border-radius: 50%;
+  background: var(--color-surface);
+}
+
+.patient-quick-text__actions > a img {
+  width: 24px;
+  height: 24px;
+}
+.patient-quick-text__actions .patient-checkin-primary {
+  flex: 1;
+  min-height: 54px;
+  border-radius: 28px;
+  font-size: 17px;
+}
+
+.patient-voice-screen__content {
+  display: flex;
+  min-height: calc(100dvh - 56px);
+  flex-direction: column;
+  padding-top: 20px;
+  padding-bottom: 24px;
+}
+
+.patient-voice-capture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.patient-voice-screen .patient-voice-capture {
+  display: contents;
+}
+
+.patient-voice-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--color-ink-muted);
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.patient-voice-status > i {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 10px;
+  border-radius: 50%;
+  background: var(--color-accent-warm);
+}
+
+.patient-voice-status > i[data-paused] {
+  background: var(--color-line-strong);
+}
+.patient-voice-duration {
+  margin-top: 14px;
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 600;
+}
+
+.patient-voice-wave {
+  display: flex;
+  width: 100%;
+  min-height: 64px;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  margin: 24px 0 20px;
+}
+
+.patient-voice-wave i {
+  width: 3px;
+  max-height: 64px;
+  flex: 1 1 3px;
+  border-radius: 4px;
+  background: var(--palette-brand-300);
+}
+
+.patient-voice-wave i:nth-child(n + 17) {
+  background: var(--palette-brand-500);
+}
+.patient-voice-capture:has(.patient-voice-wave) {
+  order: 1;
+}
+.patient-voice-screen .patient-voice-status {
+  order: 1;
+}
+.patient-voice-screen .patient-voice-duration {
+  order: 2;
+}
+.patient-voice-screen .patient-voice-wave {
+  order: 3;
+}
+
+.patient-voice-prompts {
+  order: 4;
+  border-radius: 24px;
+  padding: 16px;
+  background: var(--color-surface);
+  box-shadow: 0 2px 8px rgb(46 58 50 / 8%);
+}
+
+.patient-voice-prompts > p {
+  margin: 0 0 10px;
+  color: var(--color-ink-muted);
+  font-size: 13px;
+  line-height: 18px;
+}
+.patient-voice-prompts > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.patient-voice-prompts span {
+  border-radius: 18px;
+  padding: 7px 12px;
+  color: var(--color-ink);
+  background: var(--palette-mint-50);
+  font-size: 13px;
+  line-height: 18px;
+}
+.patient-voice-fallback,
+.patient-voice-save-note {
+  order: 5;
+  margin: 12px 0 0;
+  color: var(--color-ink-muted);
+  font-size: 13px;
+  line-height: 18px;
+}
+.patient-voice-fallback a {
+  color: var(--color-primary-text);
+  font-weight: 600;
+}
+.patient-voice-save-note {
+  order: 6;
+}
+
+.patient-voice-saved__content {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 8px 20px 124px;
+}
+
+.patient-audio-player {
+  display: flex;
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 72px;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  border-radius: 22px;
+  border: 0;
+  padding: 12px 16px;
+  background: var(--color-surface);
+  box-shadow: 0 2px 8px rgb(46 58 50 / 8%);
+}
+
+.patient-audio-player audio {
+  display: none;
+}
+
+.patient-audio-player__toggle {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-primary);
+  cursor: pointer;
+}
+
+.patient-audio-player__toggle img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1);
+}
+
+.patient-audio-player__wave {
+  display: flex;
+  min-width: 0;
+  height: 40px;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.patient-audio-player__wave:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.patient-audio-player__wave i {
+  width: 2px;
+  max-height: 36px;
+  flex: 1 1 2px;
+  border-radius: 2px;
+  background: var(--palette-brand-300);
+}
+
+.patient-audio-player__wave i[data-played] {
+  background: var(--palette-brand-600);
+}
+
+.patient-audio-player__time {
+  flex: 0 0 auto;
+  color: var(--color-ink-muted);
+  font-size: 13px;
+  line-height: 18px;
+  font-variant-numeric: tabular-nums;
+}
+
+.patient-transcription-card {
+  margin-top: 20px;
+  border-radius: 22px;
+  padding: 16px;
+  background: var(--color-surface);
+  box-shadow: 0 2px 8px rgb(46 58 50 / 8%);
+}
+
+.patient-transcription-card h2 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.patient-transcription-card__status {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  border-radius: 16px;
+  padding: 4px 10px;
+  color: var(--color-ink);
+  background: var(--palette-mint-50);
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.patient-transcription-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.patient-transcription-skeleton i {
+  display: block;
+  height: 12px;
+  border-radius: 8px;
+  background: var(--palette-mint-50);
+}
+
+.patient-transcription-skeleton i:nth-child(2) {
+  width: 90%;
+}
+.patient-transcription-skeleton i:nth-child(3) {
+  width: 96%;
+}
+.patient-transcription-skeleton i:nth-child(4) {
+  width: 50%;
+}
+
+.patient-transcription-card__text,
+.patient-transcription-card__note {
+  margin: 12px 0 0;
+  color: var(--color-ink-muted);
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.patient-transcription-card__text {
+  color: var(--color-ink);
+  font-size: 17px;
+  line-height: 24px;
+}
+
+.patient-voice-saved__mood {
+  margin-top: 20px;
+}
+.patient-voice-saved__mood > p {
+  margin: 0 0 10px;
+  color: var(--color-ink-muted);
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.patient-voice-saved__footer {
+  position: fixed;
+  z-index: 3;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  border-top: 1px solid var(--color-line);
+  padding: 16px 20px calc(16px + env(safe-area-inset-bottom));
+  background: var(--color-canvas);
+}
+
+.patient-voice-saved__footer .ui-button {
+  width: 100%;
+}
+
+.patient-voice-controls {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  gap: 8px;
+  margin-top: auto;
+  padding: 16px 0 8px;
+}
+
+.patient-voice-screen .patient-voice-controls {
+  order: 7;
+}
+.patient-voice-controls > .ui-button {
+  display: flex;
+  width: 64px;
+  min-height: 64px;
+  flex: 0 0 64px;
+  flex-direction: column;
+  gap: 4px;
+  border: 0;
+  border-radius: 50%;
+  padding: 8px 2px;
+  color: var(--color-ink);
+  background: var(--color-surface);
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.patient-voice-controls > .ui-button img {
+  width: 20px;
+  height: 20px;
+}
+.patient-record-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  border: 0;
+  padding: 0;
+  color: var(--color-ink);
+  background: transparent;
+  font: 500 13px / 18px var(--font-sans);
+  cursor: pointer;
+}
+.patient-record-button__inner {
+  display: grid;
+  width: 68px;
+  height: 68px;
+  place-items: center;
+  border: 8px solid var(--palette-brand-100);
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+.patient-record-button__inner img {
+  width: 22px;
+  height: 22px;
+  filter: brightness(0) invert(1);
+}
+.patient-record-button--active .patient-record-button__inner {
+  width: 76px;
+  height: 76px;
+  border-width: 8px;
+  animation: patient-record-pulse 4s ease-in-out infinite;
+}
+.patient-record-button--active .patient-record-button__inner img {
+  width: 18px;
+  height: 18px;
+}
+.patient-voice-screen .patient-voice-controls > .ui-button:first-child {
+  order: 0;
+}
+.patient-voice-screen .patient-record-button--active {
+  order: 1;
+}
+.patient-voice-screen .patient-voice-controls > .ui-button:last-child {
+  order: 2;
+}
+.patient-audio-player {
+  width: 100%;
+  min-height: 48px;
+}
+.patient-voice-screen__footer {
+  display: flex;
+  justify-content: center;
+  padding: 12px 20px calc(16px + env(safe-area-inset-bottom));
+}
+
+@keyframes patient-record-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(31 95 119 / 0%);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgb(31 95 119 / 12%);
+  }
+}
+
+@media (max-width: 359px) {
+  .patient-diary__content {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+  .patient-diary-entry {
+    gap: 8px;
+    padding: 12px;
+  }
+  .patient-diary-entry__badge {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+  .patient-quick-text__content,
+  .patient-voice-screen__content {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .patient-record-button--active .patient-record-button__inner {
+    animation: none;
+  }
+}

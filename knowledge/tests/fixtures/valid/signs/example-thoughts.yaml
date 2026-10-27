@@ -1,0 +1,11 @@
+id: example-thoughts
+version: 1
+status: reviewed
+rank: 2
+title: "Пример: мысли о смерти"
+definition: |
+  Пациент пишет, что не хочет жить. Например: «лучше бы не просыпаться».
+doctor_actions:
+  - "Связаться с пациентом в тот же день"
+sources:
+  - {source: example-guideline, locator: "раздел 2"}

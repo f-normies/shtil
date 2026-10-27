@@ -1,0 +1,1132 @@
+{
+  "date": "2026-10-19T12:12:05+00:00",
+  "stage": "B",
+  "split": "test",
+  "questions": 42,
+  "configs": {
+    "base": {
+      "summary": {
+        "questions": 42,
+        "recall_at_5": {
+          "mean": 0.5833,
+          "ci95": [
+            0.4767,
+            0.6956
+          ]
+        },
+        "recall_at_10": {
+          "mean": 0.6687,
+          "ci95": [
+            0.5678,
+            0.7707
+          ]
+        },
+        "mrr": {
+          "mean": 0.6349,
+          "ci95": [
+            0.5183,
+            0.7493
+          ]
+        },
+        "ndcg_at_10": {
+          "mean": 0.5821,
+          "ci95": [
+            0.5091,
+            0.6558
+          ]
+        }
+      },
+      "diff_vs_base": {
+        "recall_at_5": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "recall_at_10": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "mrr": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "ndcg_at_10": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    "rerank=bge-v2-m3@20": {
+      "summary": {
+        "questions": 42,
+        "recall_at_5": {
+          "mean": 0.6567,
+          "ci95": [
+            0.5607,
+            0.7532
+          ]
+        },
+        "recall_at_10": {
+          "mean": 0.7255,
+          "ci95": [
+            0.6336,
+            0.8123
+          ]
+        },
+        "mrr": {
+          "mean": 0.9001,
+          "ci95": [
+            0.82,
+            0.9683
+          ]
+        },
+        "ndcg_at_10": {
+          "mean": 0.7375,
+          "ci95": [
+            0.6736,
+            0.7981
+          ]
+        }
+      },
+      "diff_vs_base": {
+        "recall_at_5": [
+          0.0734,
+          0.0112,
+          0.1455
+        ],
+        "recall_at_10": [
+          0.0568,
+          -0.0119,
+          0.135
+        ],
+        "mrr": [
+          0.2652,
+          0.178,
+          0.3601
+        ],
+        "ndcg_at_10": [
+          0.1553,
+          0.1083,
+          0.2042
+        ]
+      }
+    }
+  },
+  "found_top10": {
+    "base": {
+      "q-001": [
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/4.1/1",
+        "kr-depression-2024/doc_3/12",
+        "kr-depression-2024/doc_diag_2_5/3",
+        "kr-depression-2024/doc_crat_info_1_4/1",
+        "kr-depression-2024/doc_3/3",
+        "aviandr-ohlp/4.4/1",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "aviandr-ohlp/7/1",
+        "kr-gad-2024/doc_3/4"
+      ],
+      "q-002": [
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/4.1/1",
+        "aviandr-ohlp/5.1/1",
+        "kr-gad-2024/doc_3/31",
+        "kr-depression-2024/doc_v/1",
+        "kr-gad-2024/doc_3/25",
+        "aviandr-ohlp/4.8/1",
+        "kr-gad-2024/doc_3/4",
+        "aviandr-ohlp/5.2/1",
+        "kr-gad-2024/doc_3/39"
+      ],
+      "q-004": [
+        "aviandr-ohlp/4.4/1",
+        "kr-gad-2024/doc_3/8",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/31",
+        "aviandr-ohlp/4.8/2",
+        "aviandr-ohlp/4.7/1",
+        "kr-depression-2024/doc_3/51",
+        "aviandr-ohlp/5.1/1",
+        "aviandr-ohlp/4.5/2",
+        "aviandr-ohlp/4.8/1"
+      ],
+      "q-007": [
+        "aviandr-ohlp/4.5/2",
+        "aviandr-ohlp/4.5/1",
+        "aviandr-ohlp/4.5/3",
+        "aviandr-ohlp/4.4/1",
+        "aviandr-ohlp/5.2/2",
+        "aviandr-ohlp/5.2/1",
+        "aviandr-ohlp/5.1/1",
+        "aviandr-ohlp/4.6/1",
+        "aviandr-ohlp/4.2/1",
+        "kr-depression-2024/doc_3/3"
+      ],
+      "q-012": [
+        "aviandr-ohlp/4.8/3",
+        "aviandr-ohlp/4.8/1",
+        "aviandr-ohlp/0/1",
+        "aviandr-ohlp/4.8/2",
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/4.1/1",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_v/1",
+        "kr-depression-2024/doc_5/1",
+        "aviandr-ohlp/7.1/1"
+      ],
+      "q-017": [
+        "aviandr-ohlp/5.2/2",
+        "aviandr-ohlp/5.2/1",
+        "aviandr-ohlp/4.5/2",
+        "aviandr-ohlp/4.4/1",
+        "aviandr-ohlp/4.5/1",
+        "aviandr-ohlp/4.5/3",
+        "aviandr-ohlp/5.1/1",
+        "aviandr-ohlp/4.6/1",
+        "aviandr-ohlp/4.8/1",
+        "aviandr-ohlp/5.3/1"
+      ],
+      "q-022": [
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/1",
+        "kr-gad-2024/doc_4/2",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_3/39",
+        "kr-gad-2024/doc_3/34",
+        "kr-gad-2024/doc_3/32",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_3/37",
+        "kr-gad-2024/doc_4/3"
+      ],
+      "q-024": [
+        "kr-gad-2024/doc_3/8",
+        "kr-depression-2024/doc_3/3",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_b/2",
+        "kr-gad-2024/doc_3/11",
+        "kr-gad-2024/doc_3/6",
+        "kr-gad-2024/doc_3/4",
+        "kr-gad-2024/doc_3/32",
+        "kr-gad-2024/doc_3/40"
+      ],
+      "q-028": [
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/1",
+        "kr-gad-2024/doc_3/37",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_3/32",
+        "kr-gad-2024/doc_3/38",
+        "kr-gad-2024/doc_3/39",
+        "kr-gad-2024/doc_3/34",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_3/4"
+      ],
+      "q-030": [
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_3/55",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_3/56",
+        "kr-gad-2024/doc_3/36",
+        "kr-depression-2024/doc_3/39",
+        "kr-depression-2024/doc_3/3",
+        "kr-gad-2024/doc_3/30",
+        "kr-depression-2024/doc_3/46"
+      ],
+      "q-031": [
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/1",
+        "kr-gad-2024/doc_3/32",
+        "kr-gad-2024/doc_3/3",
+        "kr-depression-2024/doc_3/57",
+        "kr-gad-2024/doc_3/34",
+        "kr-gad-2024/doc_3/39",
+        "kr-gad-2024/doc_3/4",
+        "kr-gad-2024/doc_3/37",
+        "kr-gad-2024/doc_diag_2_5/1"
+      ],
+      "q-035": [
+        "kr-gad-2024/doc_3/28",
+        "kr-gad-2024/doc_criteria/4",
+        "kr-depression-2024/doc_criteria/2",
+        "kr-depression-2024/doc_diag_2_1/8",
+        "kr-depression-2024/doc_criteria/4",
+        "kr-depression-2024/doc_diag_2_1/7",
+        "kr-depression-2024/doc_diag_2/1",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/1",
+        "kr-gad-2024/doc_5/7"
+      ],
+      "q-037": [
+        "kr-gad-2024/doc_v/1",
+        "kr-gad-2024/doc_3/32",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_diag_2_1/6",
+        "kr-depression-2024/doc_4/2",
+        "kr-gad-2024/doc_crat_info_1_1/1",
+        "kr-gad-2024/doc_crat_info_1_6/1",
+        "kr-gad-2024/doc_3/39",
+        "kr-gad-2024/doc_3/25",
+        "kr-gad-2024/doc_diag_2_5/1"
+      ],
+      "q-042": [
+        "kr-depression-2024/doc_7/2",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_3/9",
+        "kr-depression-2024/doc_3/39",
+        "kr-depression-2024/doc_3/5",
+        "kr-depression-2024/doc_3/51",
+        "kr-depression-2024/doc_3/31",
+        "kr-depression-2024/doc_3/12"
+      ],
+      "q-044": [
+        "kr-depression-2024/doc_3/51",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_3/50",
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_3/53",
+        "kr-depression-2024/doc_3/1",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_a3/3"
+      ],
+      "q-047": [
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_5/1",
+        "kr-gad-2024/doc_3/31",
+        "kr-depression-2024/doc_terms/1",
+        "kr-gad-2024/doc_b/3",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/21",
+        "kr-depression-2024/doc_3/47",
+        "kr-depression-2024/doc_3/53",
+        "kr-depression-2024/doc_3/51"
+      ],
+      "q-051": [
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/38",
+        "kr-gad-2024/doc_3/39",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_3/8",
+        "kr-gad-2024/doc_crat_info_1_2/1",
+        "kr-gad-2024/doc_3/1",
+        "kr-gad-2024/doc_crat_info_1_2/2",
+        "kr-gad-2024/doc_3/30"
+      ],
+      "q-057": [
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_5/11",
+        "kr-gad-2024/doc_diag_2_3/5",
+        "kr-gad-2024/doc_diag_2_3/3",
+        "kr-gad-2024/doc_diag_2_3/2",
+        "kr-depression-2024/doc_diag_2_3/2",
+        "kr-gad-2024/doc_diag_2_3/1",
+        "kr-depression-2024/doc_diag_2_3/3",
+        "kr-gad-2024/doc_5/7"
+      ],
+      "q-063": [
+        "kr-depression-2024/doc_diag_2_4/2",
+        "kr-depression-2024/doc_diag_2_3/3",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_diag_2_4/1",
+        "kr-depression-2024/doc_3/39",
+        "kr-depression-2024/doc_3/56",
+        "kr-depression-2024/doc_3/1",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_3/65"
+      ],
+      "q-064": [
+        "kr-depression-2024/doc_3/3",
+        "kr-gad-2024/doc_b/3",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_3/53",
+        "kr-gad-2024/doc_3/11",
+        "kr-gad-2024/doc_3/31",
+        "kr-depression-2024/doc_b/2",
+        "kr-depression-2024/doc_3/31",
+        "kr-depression-2024/doc_a3/3",
+        "kr-depression-2024/doc_3/52"
+      ],
+      "q-066": [
+        "kr-depression-2024/doc_crat_info_1_6/1",
+        "kr-depression-2024/doc_diag_2/5",
+        "kr-depression-2024/doc_crat_info_1_6/2",
+        "kr-depression-2024/doc_diag_2/6",
+        "kr-depression-2024/doc_diag_2_1/4",
+        "kr-depression-2024/doc_diag_2/4",
+        "kr-depression-2024/doc_diag_2/1",
+        "kr-depression-2024/doc_diag_2_1/5",
+        "kr-depression-2024/doc_crat_info_1_4/1",
+        "kr-depression-2024/doc_diag_2_1/3"
+      ],
+      "q-068": [
+        "kr-gad-2024/doc_diag_2_4/4",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-depression-2024/doc_diag_2_4/2",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_crat_info_1_6/1",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_diag_2_4/2",
+        "kr-gad-2024/doc_diag_2_4/3",
+        "kr-gad-2024/doc_diag_2_1/7",
+        "kr-gad-2024/doc_3/39"
+      ],
+      "q-072": [
+        "kr-gad-2024/doc_diag_2_2/2",
+        "kr-gad-2024/doc_diag_2_1/6",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_diag_2_1/2",
+        "kr-gad-2024/doc_diag_2_2/1",
+        "kr-gad-2024/doc_v/1",
+        "kr-gad-2024/doc_diag_2_1/7",
+        "kr-gad-2024/doc_6/1",
+        "kr-gad-2024/doc_crat_info_1_6/1",
+        "kr-gad-2024/doc_diag_2_4/2"
+      ],
+      "q-077": [
+        "kr-depression-2024/doc_3/32",
+        "kr-depression-2024/doc_3/31",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_a3/3",
+        "kr-depression-2024/doc_3/39",
+        "kr-gad-2024/doc_3/11",
+        "kr-depression-2024/doc_3/51",
+        "kr-depression-2024/doc_3/43"
+      ],
+      "q-080": [
+        "kr-depression-2024/doc_3/3",
+        "kr-gad-2024/doc_b/3",
+        "kr-gad-2024/doc_3/6",
+        "kr-depression-2024/doc_3/21",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_3/31",
+        "kr-gad-2024/doc_3/3",
+        "kr-depression-2024/doc_terms/1",
+        "kr-depression-2024/doc_3/52",
+        "kr-gad-2024/doc_3/5"
+      ],
+      "q-081": [
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/51",
+        "kr-depression-2024/doc_3/32",
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_3/49",
+        "kr-depression-2024/doc_3/28",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_b/1",
+        "kr-depression-2024/doc_3/50"
+      ],
+      "q-086": [
+        "kr-gad-2024/doc_diag_2_3/5",
+        "kr-depression-2024/doc_diag_2_3/3",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_3/39",
+        "kr-gad-2024/doc_diag_2_3/3",
+        "kr-gad-2024/doc_crat_info_1_6/1",
+        "kr-gad-2024/doc_diag_2_3/4",
+        "kr-gad-2024/doc_crat_info_1_2/1",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_diag_2_3/2"
+      ],
+      "q-091": [
+        "kr-gad-2024/doc_v/1",
+        "kr-gad-2024/doc_diag_2/1",
+        "kr-gad-2024/doc_crat_info_1_1/1",
+        "kr-gad-2024/doc_diag_2_1/4",
+        "kr-gad-2024/doc_crat_info_1_6/1",
+        "kr-gad-2024/doc_diag_2_1/6",
+        "kr-gad-2024/doc_3/4",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_crat_info_1_6/2",
+        "kr-gad-2024/doc_diag_2_1/2"
+      ],
+      "q-094": [
+        "kr-gad-2024/doc_crat_info_1_6/1",
+        "kr-gad-2024/doc_crat_info_1_2/1",
+        "kr-gad-2024/doc_crat_info_1_6/2",
+        "kr-gad-2024/doc_diag_2/1",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_diag_2_1/7",
+        "kr-gad-2024/doc_crat_info_1_3/1",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_diag_2_5/1"
+      ],
+      "q-101": [
+        "kr-depression-2024/doc_3/1",
+        "kr-depression-2024/doc_3/55",
+        "kr-depression-2024/doc_diag_2/6",
+        "kr-depression-2024/doc_3/21",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_diag_2/5",
+        "kr-depression-2024/doc_crat_info_1_1/1",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_3/60",
+        "kr-depression-2024/doc_crat_info_1_4/1"
+      ],
+      "q-105": [
+        "kr-depression-2024/doc_3/13",
+        "kr-depression-2024/doc_crat_info_1_6/1",
+        "kr-depression-2024/doc_3/20",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/18",
+        "kr-depression-2024/doc_3/19",
+        "kr-depression-2024/doc_crat_info_1_6/2",
+        "kr-depression-2024/doc_diag_2_1/4",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/15"
+      ],
+      "q-107": [
+        "kr-gad-2024/doc_3/12",
+        "kr-gad-2024/doc_3/17",
+        "kr-gad-2024/doc_3/31",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_b/3",
+        "kr-depression-2024/doc_3/3",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/7",
+        "kr-gad-2024/doc_3/39",
+        "kr-gad-2024/doc_3/27"
+      ],
+      "q-115": [
+        "kr-depression-2024/doc_3/3",
+        "kr-gad-2024/doc_b/3",
+        "kr-depression-2024/doc_3/31",
+        "kr-depression-2024/doc_3/9",
+        "kr-depression-2024/doc_3/12",
+        "kr-depression-2024/doc_3/53",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_3/28",
+        "kr-depression-2024/doc_3/51",
+        "kr-depression-2024/doc_3/52"
+      ],
+      "q-116": [
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_crat_info_1_2/1",
+        "kr-gad-2024/doc_crat_info_1_3/1",
+        "kr-gad-2024/doc_crat_info_1_6/1",
+        "kr-gad-2024/doc_crat_info_1_1/1",
+        "kr-gad-2024/doc_3/25",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_3/39",
+        "kr-gad-2024/doc_3/8"
+      ],
+      "q-118": [
+        "kr-depression-2024/doc_3/55",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/56",
+        "kr-depression-2024/doc_3/7",
+        "kr-gad-2024/doc_3/32",
+        "kr-depression-2024/doc_3/58",
+        "kr-gad-2024/doc_3/36",
+        "kr-depression-2024/doc_3/60",
+        "kr-depression-2024/doc_3/9"
+      ],
+      "q-122": [
+        "kr-depression-2024/doc_3/45",
+        "kr-depression-2024/doc_3/21",
+        "kr-depression-2024/doc_3/27",
+        "kr-depression-2024/doc_3/39",
+        "kr-depression-2024/doc_3/1",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/31",
+        "kr-depression-2024/doc_3/56",
+        "kr-depression-2024/doc_3/7"
+      ],
+      "q-125": [
+        "kr-depression-2024/doc_6/1",
+        "kr-gad-2024/doc_3/39",
+        "kr-gad-2024/doc_3/1",
+        "kr-gad-2024/doc_crat_info_1_6/1",
+        "kr-gad-2024/doc_6/1",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/30",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_crat_info_1_6/3"
+      ],
+      "q-132": [
+        "kr-depression-2024/doc_3/1",
+        "kr-depression-2024/doc_3/21",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/39",
+        "kr-depression-2024/doc_diag_2/1",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_crat_info_1_5/1",
+        "kr-depression-2024/doc_3/45",
+        "kr-depression-2024/doc_diag_2/4"
+      ],
+      "q-136": [
+        "kr-depression-2024/doc_3/55",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_diag_2_3/3",
+        "kr-depression-2024/doc_3/59",
+        "kr-depression-2024/doc_3/39",
+        "kr-depression-2024/doc_3/56",
+        "kr-depression-2024/doc_3/71",
+        "kr-depression-2024/doc_3/67",
+        "kr-depression-2024/doc_3/7"
+      ],
+      "q-144": [
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_3/55",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_4/2",
+        "kr-depression-2024/doc_3/1",
+        "kr-depression-2024/doc_3/60",
+        "kr-depression-2024/doc_3/62",
+        "kr-gad-2024/doc_3/30",
+        "kr-depression-2024/doc_3/56"
+      ],
+      "q-150": [
+        "kr-gad-2024/doc_5/7",
+        "kr-gad-2024/doc_5/11",
+        "kr-gad-2024/doc_5/6",
+        "kr-gad-2024/doc_5/8",
+        "kr-gad-2024/doc_5/10",
+        "kr-gad-2024/doc_5/9",
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_6/1",
+        "kr-depression-2024/doc_diag_2_3/3",
+        "kr-depression-2024/doc_diag_2_3/2"
+      ],
+      "q-151": [
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/20",
+        "kr-depression-2024/doc_3/13",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_3/21",
+        "kr-depression-2024/doc_3/19",
+        "kr-depression-2024/doc_3/18",
+        "kr-depression-2024/doc_3/28",
+        "kr-gad-2024/doc_b/3",
+        "kr-gad-2024/doc_3/6"
+      ]
+    },
+    "rerank=bge-v2-m3@20": {
+      "q-001": [
+        "aviandr-ohlp/4.1/1",
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/4.4/1",
+        "aviandr-ohlp/5.1/1",
+        "aviandr-ohlp/5.1/2",
+        "aviandr-ohlp/1/1",
+        "kr-depression-2024/doc_3/3",
+        "aviandr-ohlp/9/1",
+        "aviandr-ohlp/7/1",
+        "aviandr-ohlp/6.3/1"
+      ],
+      "q-002": [
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/5.1/1",
+        "aviandr-ohlp/4.1/1",
+        "aviandr-ohlp/4.8/1",
+        "kr-depression-2024/doc_v/1",
+        "kr-gad-2024/doc_3/4",
+        "aviandr-ohlp/4.4/1",
+        "aviandr-ohlp/5.2/1",
+        "aviandr-ohlp/5.1/2",
+        "kr-depression-2024/doc_3/3"
+      ],
+      "q-004": [
+        "aviandr-ohlp/4.4/1",
+        "kr-depression-2024/doc_3/31",
+        "aviandr-ohlp/4.8/2",
+        "aviandr-ohlp/4.8/1",
+        "aviandr-ohlp/5.1/1",
+        "kr-depression-2024/doc_3/3",
+        "aviandr-ohlp/4.5/2",
+        "aviandr-ohlp/4.7/1",
+        "aviandr-ohlp/4.5/1",
+        "aviandr-ohlp/5.1/2"
+      ],
+      "q-007": [
+        "aviandr-ohlp/4.5/3",
+        "aviandr-ohlp/4.5/2",
+        "aviandr-ohlp/5.2/1",
+        "aviandr-ohlp/4.5/1",
+        "aviandr-ohlp/6.2/1",
+        "aviandr-ohlp/5.2/2",
+        "aviandr-ohlp/4.4/1",
+        "aviandr-ohlp/4.8/1",
+        "aviandr-ohlp/5.1/1",
+        "aviandr-ohlp/4.2/1"
+      ],
+      "q-012": [
+        "aviandr-ohlp/4.8/3",
+        "aviandr-ohlp/7.1/1",
+        "aviandr-ohlp/0/1",
+        "aviandr-ohlp/4.8/1",
+        "aviandr-ohlp/4.8/2",
+        "aviandr-ohlp/7/1",
+        "aviandr-ohlp/4.2/1",
+        "aviandr-ohlp/5.1/1",
+        "aviandr-ohlp/9/1",
+        "aviandr-ohlp/4.1/1"
+      ],
+      "q-017": [
+        "aviandr-ohlp/5.2/2",
+        "aviandr-ohlp/4.5/2",
+        "aviandr-ohlp/5.2/1",
+        "kr-depression-2024/doc_a3/5",
+        "aviandr-ohlp/4.5/3",
+        "aviandr-ohlp/4.4/1",
+        "aviandr-ohlp/5.1/1",
+        "aviandr-ohlp/4.8/1",
+        "aviandr-ohlp/4.5/1",
+        "aviandr-ohlp/4.8/2"
+      ],
+      "q-022": [
+        "kr-gad-2024/doc_4/2",
+        "kr-gad-2024/doc_4/3",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_4/4",
+        "kr-gad-2024/doc_3/34",
+        "kr-gad-2024/doc_3/1",
+        "kr-gad-2024/doc_3/35",
+        "kr-gad-2024/doc_3/37",
+        "kr-gad-2024/doc_3/32",
+        "kr-gad-2024/doc_3/38"
+      ],
+      "q-024": [
+        "kr-gad-2024/doc_3/10",
+        "kr-gad-2024/doc_3/11",
+        "kr-gad-2024/doc_3/16",
+        "kr-gad-2024/doc_3/5",
+        "kr-depression-2024/doc_3/3",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_3/8",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/17",
+        "kr-gad-2024/doc_v/1"
+      ],
+      "q-028": [
+        "kr-gad-2024/doc_3/37",
+        "kr-gad-2024/doc_3/38",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/34",
+        "kr-gad-2024/doc_3/1",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_3/35",
+        "kr-gad-2024/doc_4/2",
+        "kr-gad-2024/doc_3/30"
+      ],
+      "q-030": [
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_4/1",
+        "kr-depression-2024/doc_3/55",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_3/56",
+        "kr-gad-2024/doc_3/30",
+        "kr-depression-2024/doc_3/39",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/1"
+      ],
+      "q-031": [
+        "kr-gad-2024/doc_3/34",
+        "kr-gad-2024/doc_3/1",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/28",
+        "kr-gad-2024/doc_3/32",
+        "kr-gad-2024/doc_v/1",
+        "kr-gad-2024/doc_3/35",
+        "kr-gad-2024/doc_4/4"
+      ],
+      "q-035": [
+        "kr-depression-2024/doc_diag_2_1/8",
+        "kr-depression-2024/doc_diag_2_1/7",
+        "kr-depression-2024/doc_diag_2_5/4",
+        "kr-depression-2024/doc_criteria/4",
+        "kr-depression-2024/doc_criteria/2",
+        "kr-depression-2024/doc_6/1",
+        "kr-depression-2024/doc_3/6",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/1",
+        "kr-gad-2024/doc_criteria/4"
+      ],
+      "q-037": [
+        "kr-gad-2024/doc_4/1",
+        "kr-gad-2024/doc_4/4",
+        "kr-gad-2024/doc_4/2",
+        "kr-gad-2024/doc_4/3",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_v/1",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/29",
+        "kr-gad-2024/doc_3/32",
+        "kr-gad-2024/doc_crat_info_1_6/1"
+      ],
+      "q-042": [
+        "kr-depression-2024/doc_7/2",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/39",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_7/1",
+        "kr-depression-2024/doc_diag_2_5/3",
+        "kr-depression-2024/doc_3/9",
+        "kr-depression-2024/doc_3/5",
+        "kr-depression-2024/doc_3/31"
+      ],
+      "q-044": [
+        "kr-depression-2024/doc_3/51",
+        "kr-depression-2024/doc_3/50",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/49",
+        "kr-depression-2024/doc_terms/1",
+        "kr-depression-2024/doc_b/1",
+        "kr-depression-2024/doc_3/32",
+        "kr-depression-2024/doc_3/1",
+        "kr-depression-2024/doc_3/53"
+      ],
+      "q-047": [
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/49",
+        "kr-depression-2024/doc_3/47",
+        "kr-depression-2024/doc_3/3",
+        "kr-gad-2024/doc_3/30",
+        "kr-depression-2024/doc_terms/1",
+        "kr-gad-2024/doc_3/31",
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_3/53",
+        "kr-depression-2024/doc_3/1"
+      ],
+      "q-051": [
+        "kr-gad-2024/doc_3/38",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_crat_info_1_6/1",
+        "kr-gad-2024/doc_crat_info_1_2/1",
+        "kr-gad-2024/doc_3/37",
+        "kr-gad-2024/doc_3/1",
+        "kr-gad-2024/doc_3/4",
+        "kr-gad-2024/doc_3/34"
+      ],
+      "q-057": [
+        "kr-gad-2024/doc_diag_2_3/2",
+        "kr-gad-2024/doc_diag_2_3/3",
+        "kr-gad-2024/doc_diag_2_3/5",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-depression-2024/doc_diag_2_3/2",
+        "kr-depression-2024/doc_diag_2_3/3",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_diag_2_3/1",
+        "kr-gad-2024/doc_5/9"
+      ],
+      "q-063": [
+        "kr-depression-2024/doc_diag_2_4/2",
+        "kr-depression-2024/doc_diag_2_3/2",
+        "kr-depression-2024/doc_diag_2_3/3",
+        "kr-depression-2024/doc_diag_2_5/3",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_diag_2_4/1",
+        "kr-depression-2024/doc_3/55",
+        "kr-depression-2024/doc_diag_2_1/3",
+        "kr-depression-2024/doc_3/56",
+        "kr-depression-2024/doc_3/58"
+      ],
+      "q-064": [
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_3/23",
+        "kr-gad-2024/doc_3/11",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_b/3",
+        "kr-depression-2024/doc_b/2",
+        "kr-gad-2024/doc_3/31",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/53"
+      ],
+      "q-066": [
+        "kr-depression-2024/doc_diag_2_1/4",
+        "kr-depression-2024/doc_crat_info_1_6/1",
+        "kr-depression-2024/doc_crat_info_1_6/2",
+        "kr-depression-2024/doc_diag_2/1",
+        "kr-depression-2024/doc_diag_2_1/5",
+        "kr-depression-2024/doc_crat_info_1_1/1",
+        "kr-depression-2024/doc_3/14",
+        "kr-depression-2024/doc_diag_2/5",
+        "kr-depression-2024/doc_crat_info_1_4/1",
+        "kr-depression-2024/doc_diag_2/4"
+      ],
+      "q-068": [
+        "kr-gad-2024/doc_diag_2_4/4",
+        "kr-gad-2024/doc_diag_2_4/2",
+        "kr-gad-2024/doc_diag_2_4/3",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-depression-2024/doc_diag_2_4/2",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_diag_2_1/7",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_crat_info_1_6/1"
+      ],
+      "q-072": [
+        "kr-gad-2024/doc_diag_2_2/2",
+        "kr-gad-2024/doc_diag_2_2/1",
+        "kr-gad-2024/doc_diag_2_4/5",
+        "kr-gad-2024/doc_diag_2_1/2",
+        "kr-gad-2024/doc_diag_2_1/7",
+        "kr-gad-2024/doc_diag_2_4/2",
+        "kr-gad-2024/doc_diag_2_3/2",
+        "kr-gad-2024/doc_diag_2_2/3",
+        "kr-gad-2024/doc_diag_2_1/6",
+        "kr-gad-2024/doc_diag_2_5/1"
+      ],
+      "q-077": [
+        "kr-depression-2024/doc_3/32",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/31",
+        "kr-depression-2024/doc_3/36",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_3/35",
+        "kr-depression-2024/doc_3/26",
+        "kr-depression-2024/doc_3/30",
+        "kr-depression-2024/doc_a3/3"
+      ],
+      "q-080": [
+        "kr-depression-2024/doc_3/3",
+        "kr-gad-2024/doc_3/6",
+        "kr-gad-2024/doc_3/3",
+        "kr-depression-2024/doc_terms/1",
+        "kr-depression-2024/doc_3/20",
+        "kr-gad-2024/doc_3/31",
+        "kr-gad-2024/doc_3/5",
+        "kr-depression-2024/doc_3/21",
+        "kr-depression-2024/doc_3/45",
+        "kr-gad-2024/doc_3/11"
+      ],
+      "q-081": [
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_3/49",
+        "kr-depression-2024/doc_crat_info_1_3/1",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_3/51",
+        "kr-depression-2024/doc_3/1",
+        "kr-depression-2024/doc_3/55",
+        "kr-depression-2024/doc_3/50"
+      ],
+      "q-086": [
+        "kr-gad-2024/doc_diag_2_3/3",
+        "kr-depression-2024/doc_diag_2_3/3",
+        "kr-gad-2024/doc_diag_2_3/2",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_diag_2_3/5",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_3/36",
+        "kr-depression-2024/doc_diag_2_3/2",
+        "kr-gad-2024/doc_diag_2_3/4",
+        "kr-gad-2024/doc_crat_info_1_6/1"
+      ],
+      "q-091": [
+        "kr-gad-2024/doc_diag_2/1",
+        "kr-gad-2024/doc_crat_info_1_1/1",
+        "kr-gad-2024/doc_diag_2_1/4",
+        "kr-gad-2024/doc_crat_info_1_6/1",
+        "kr-gad-2024/doc_v/1",
+        "kr-gad-2024/doc_3/4",
+        "kr-gad-2024/doc_diag_2_1/3",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_diag_2_1/6",
+        "kr-gad-2024/doc_3/25"
+      ],
+      "q-094": [
+        "kr-gad-2024/doc_crat_info_1_6/1",
+        "kr-gad-2024/doc_crat_info_1_6/3",
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_crat_info_1_2/1",
+        "kr-gad-2024/doc_diag_2_1/7",
+        "kr-gad-2024/doc_crat_info_1_3/1",
+        "kr-gad-2024/doc_diag_2_3/1",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_crat_info_1_6/2",
+        "kr-gad-2024/doc_diag_2/1"
+      ],
+      "q-101": [
+        "kr-depression-2024/doc_3/60",
+        "kr-depression-2024/doc_3/55",
+        "kr-depression-2024/doc_4/1",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_3/59",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/58",
+        "kr-depression-2024/doc_3/1",
+        "kr-depression-2024/doc_3/21",
+        "kr-depression-2024/doc_3/7"
+      ],
+      "q-105": [
+        "kr-depression-2024/doc_3/13",
+        "kr-depression-2024/doc_crat_info_1_6/1",
+        "kr-depression-2024/doc_3/20",
+        "kr-depression-2024/doc_3/18",
+        "kr-depression-2024/doc_diag_2_1/4",
+        "kr-depression-2024/doc_3/14",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/19",
+        "kr-depression-2024/doc_crat_info_1_6/2",
+        "kr-depression-2024/doc_3/3"
+      ],
+      "q-107": [
+        "kr-gad-2024/doc_3/17",
+        "kr-gad-2024/doc_3/31",
+        "kr-gad-2024/doc_3/12",
+        "kr-gad-2024/doc_3/22",
+        "kr-gad-2024/doc_3/3",
+        "kr-depression-2024/doc_3/3",
+        "kr-gad-2024/doc_a3/2",
+        "kr-gad-2024/doc_3/18",
+        "kr-gad-2024/doc_3/36",
+        "kr-depression-2024/doc_3/12"
+      ],
+      "q-115": [
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/12",
+        "kr-depression-2024/doc_3/7",
+        "kr-gad-2024/doc_3/17",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/9",
+        "kr-depression-2024/doc_3/51",
+        "kr-depression-2024/doc_b/2",
+        "kr-depression-2024/doc_3/31",
+        "kr-gad-2024/doc_3/31"
+      ],
+      "q-116": [
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_crat_info_1_1/1",
+        "kr-gad-2024/doc_crat_info_1_2/1",
+        "kr-gad-2024/doc_crat_info_1_6/1",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_3/39",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_crat_info_1_3/1",
+        "kr-gad-2024/doc_3/4",
+        "kr-gad-2024/doc_3/23"
+      ],
+      "q-118": [
+        "kr-depression-2024/doc_3/55",
+        "kr-depression-2024/doc_3/57",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_3/56",
+        "kr-depression-2024/doc_3/5",
+        "kr-depression-2024/doc_3/60",
+        "kr-gad-2024/doc_3/32",
+        "kr-depression-2024/doc_3/58",
+        "kr-gad-2024/doc_3/1",
+        "kr-depression-2024/doc_3/3"
+      ],
+      "q-122": [
+        "kr-depression-2024/doc_3/27",
+        "kr-depression-2024/doc_3/45",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/39",
+        "kr-depression-2024/doc_3/55",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/40",
+        "kr-depression-2024/doc_3/44",
+        "kr-depression-2024/doc_3/31",
+        "kr-depression-2024/doc_3/21"
+      ],
+      "q-125": [
+        "kr-gad-2024/doc_diag_2_5/1",
+        "kr-gad-2024/doc_6/1",
+        "kr-gad-2024/doc_3/36",
+        "kr-gad-2024/doc_crat_info_1_6/1",
+        "kr-gad-2024/doc_3/3",
+        "kr-gad-2024/doc_3/1",
+        "kr-gad-2024/doc_5/4",
+        "kr-gad-2024/doc_crat_info_1_1/1",
+        "kr-gad-2024/doc_crat_info_1_2/1",
+        "kr-gad-2024/doc_crat_info_1_6/3"
+      ],
+      "q-132": [
+        "kr-depression-2024/doc_3/1",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/56",
+        "kr-depression-2024/doc_3/55",
+        "kr-depression-2024/doc_3/27",
+        "kr-depression-2024/doc_3/6",
+        "kr-depression-2024/doc_3/39",
+        "kr-depression-2024/doc_3/21",
+        "kr-depression-2024/doc_3/40",
+        "kr-depression-2024/doc_crat_info_1_5/1"
+      ],
+      "q-136": [
+        "kr-depression-2024/doc_3/73",
+        "kr-depression-2024/doc_3/76",
+        "kr-depression-2024/doc_3/67",
+        "kr-depression-2024/doc_3/71",
+        "kr-depression-2024/doc_3/55",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_diag_2_3/3",
+        "kr-gad-2024/doc_3/40",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/57"
+      ],
+      "q-144": [
+        "kr-depression-2024/doc_3/55",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_3/57",
+        "kr-gad-2024/doc_3/32",
+        "kr-depression-2024/doc_3/49",
+        "kr-depression-2024/doc_3/60",
+        "kr-depression-2024/doc_3/62",
+        "kr-depression-2024/doc_4/1",
+        "kr-depression-2024/doc_4/2"
+      ],
+      "q-150": [
+        "kr-gad-2024/doc_5/7",
+        "kr-gad-2024/doc_5/6",
+        "kr-gad-2024/doc_5/10",
+        "kr-gad-2024/doc_5/11",
+        "kr-gad-2024/doc_5/8",
+        "kr-gad-2024/doc_5/9",
+        "kr-gad-2024/doc_5/4",
+        "kr-depression-2024/doc_5/1",
+        "kr-depression-2024/doc_a3/1",
+        "kr-depression-2024/doc_diag_2_3/3"
+      ],
+      "q-151": [
+        "kr-depression-2024/doc_3/20",
+        "kr-depression-2024/doc_3/18",
+        "kr-depression-2024/doc_3/3",
+        "kr-depression-2024/doc_3/19",
+        "kr-depression-2024/doc_3/17",
+        "kr-depression-2024/doc_3/7",
+        "kr-depression-2024/doc_3/40",
+        "kr-depression-2024/doc_b/2",
+        "kr-depression-2024/doc_3/52",
+        "kr-depression-2024/doc_3/9"
+      ]
+    }
+  }
+}

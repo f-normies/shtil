@@ -1,0 +1,4 @@
+section_order: [anamnesis, diagnosis, treatment]
+detail: brief
+style: "выписка, телеграфный стиль"
+diagnosis_format: "код и текст в одной строке"

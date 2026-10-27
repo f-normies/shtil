@@ -1,0 +1,9 @@
+# Пример расписания шкал для тестов: структура как у knowledge/scale-schedule.yaml.
+version: 1
+status: reviewed
+grace_days: 3
+grace_basis: "решение медика"
+scales:
+  - scale: example-mood
+    period_days: 14
+    source: {source: example-validation, locator: "с. 1, инструкция"}

@@ -1,0 +1,28 @@
+# Алерт по пункту 9 PHQ-9: мысли о смерти или самоповреждении (#8).
+# Любой ответ, кроме «Совсем нет», — повод для оценки суицидального риска врачом, не диагноз.
+# Ответы 2–3 отдельным правилом не выделены: у alert уровень всегда mandatory, а балл
+# врач видит в evidence сигнала. Маршрутизация по тяжести PHQ-9 и GAD-7 — #35.
+id: phq9-suicidal-thoughts
+version: 2
+status: reviewed
+kind: alert
+level: mandatory
+title: "Мысли о смерти или самоповреждении (PHQ-9, пункт 9)"
+when:
+  any:
+    - {scale: phq-9, item: q9, op: ">=", value: 1}
+doctor_actions:
+  - "Связаться с пациентом сегодня"
+  - "Оценить суицидальный риск: мысли, намерения, план, прошлые попытки, доступ к средствам"
+  - "При высоком риске — психиатр или стационар"
+sources:
+  - {source: kr-depression-2024, locator: "раздел 2.5: обследование для выявления факторов риска суицида — всем пациентам, УУР B (УДД 2)"}
+  - {source: kr-depression-2024, locator: "раздел 3.1.3: высокий суицидальный риск — лечение в стационаре, УУР B (УДД 1)"}
+  - {source: kr-depression-2024, locator: "раздел 6: высокий суицидальный риск — показание к стационарному лечению"}
+  - {source: zolotareva-phq9-2023, locator: "прил., с. 121, пункт 9"}
+cases:
+  - {given: {phq-9: {q9: 0}}, fires: false, source: {source: zolotareva-phq9-2023, locator: "с. 121, пункт 9: 0 — «совсем нет»"}}
+  - {given: {phq-9: {q9: 1}}, fires: true, source: {source: zolotareva-phq9-2023, locator: "с. 121, пункт 9: 1 — «в течение нескольких дней»"}}
+  - {given: {phq-9: {q9: 3}}, fires: true, source: {source: zolotareva-phq9-2023, locator: "с. 121, пункт 9: 3 — «почти каждый день»"}}
+  - {given: {phq-9: {q9: 0, total: 20}}, fires: false, source: {source: kr-depression-2024, locator: "раздел 2.5: условие — суицидальные мысли, не тяжесть депрессии"}}
+  - {given: {}, fires: false, source: {source: kr-depression-2024, locator: "раздел 2.5: без ответа на пункт 9 сигнала нет"}}

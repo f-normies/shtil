@@ -1,0 +1,21 @@
+# Пример экрана помощи для тестов: структура как у knowledge/patient-help.yaml.
+version: 1
+status: reviewed
+checked_on: 2026-10-01
+title: "Если сейчас очень тяжело"
+text: "Позвоните по номеру 112."
+sources:
+  - {source: example-guideline, locator: "раздел 1"}
+contacts:
+  - id: emergency
+    number: "112"
+    label: "Позвонить 112"
+    primary: true
+    sources:
+      - {source: example-guideline, locator: "раздел 2"}
+  - id: ambulance
+    number: "103"
+    label: "Скорая помощь 103"
+    primary: false
+    sources:
+      - {source: example-validation, locator: "с. 3"}

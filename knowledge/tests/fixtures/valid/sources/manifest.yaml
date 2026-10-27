@@ -1,0 +1,63 @@
+# Выдуманные источники для тестов. Настоящие — в knowledge/sources/manifest.yaml.
+sources:
+  - id: example-guideline
+    title: "Пример клинических рекомендаций"
+    kind: clinical_guideline
+    publisher: "Пример издателя"
+    url: https://example.org/guideline
+    version: "1"
+    date: 2024-01-15
+    license: "свободное использование"
+    file: files/example-guideline.txt
+    supplementary: false
+    icd10: [F32, F33]
+  - id: example-validation
+    title: "Пример публикации о валидации шкалы"
+    kind: scale_validation
+    publisher: "Пример журнала"
+    url: https://example.org/validation
+    version: "1"
+    date: 2020-05-01
+    license: "только ссылка"
+    file: null
+    supplementary: false
+  - id: example-international
+    title: "Пример международного руководства"
+    kind: other
+    publisher: "Example Society"
+    url: https://example.org/international
+    version: "2"
+    date: 2023-03-01
+    license: "только ссылка"
+    file: null
+    supplementary: true
+  - id: example-label
+    title: "Пример общей характеристики лекарственного препарата"
+    kind: drug_label
+    publisher: "Пример держателя"
+    url: https://example.org/label
+    version: "1"
+    date: 2025-02-01
+    license: "только ссылка"
+    file: null
+    supplementary: false
+  - id: example-leaflet
+    title: "Пример листка-вкладыша"
+    kind: patient_leaflet
+    publisher: "Пример держателя"
+    url: https://example.org/leaflet
+    version: "1"
+    date: 2025-02-01
+    license: "только ссылка"
+    file: null
+    supplementary: false
+  - id: example-registry
+    title: "Пример снимка реестра препаратов"
+    kind: drug_registry
+    publisher: "Пример реестра"
+    url: https://example.org/registry
+    version: "2025-02-01"
+    date: 2025-02-01
+    license: "открытые данные"
+    file: files/example-registry.csv
+    supplementary: false

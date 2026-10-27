@@ -1,0 +1,4 @@
+id: test-maoi
+title: "Тестовые ингибиторы МАО"
+inn: ["моклобемид"]
+sources: [{source: test-label, locator: "4.5"}]

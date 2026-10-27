@@ -1,0 +1,4 @@
+section_order: [header_fields, complaints, examination, diagnosis, prescriptions, comment]
+detail: standard
+style: "электронная карта: поля «ключ — значение» и таблицы"
+diagnosis_format: "коды в таблице, расшифровка отдельной строкой"

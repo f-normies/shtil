@@ -1,0 +1,4 @@
+section_order: [greeting, history, somatic, scales, diagnosis, treatment, question]
+detail: detailed
+style: "письмо-консультация коллеге: обращение, связный рассказ от первого лица врача, вопрос в конце"
+diagnosis_format: "фраза «Мой диагноз:», тексты с кодами в скобках через точку"

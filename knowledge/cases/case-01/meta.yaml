@@ -1,0 +1,4 @@
+section_order: [complaints, history_of_illness, life_history, mental_status, diagnosis, treatment, recommendations]
+detail: detailed
+style: "выписной эпикриз стационара, стандартные разделы с заголовками"
+diagnosis_format: "код и полный текст в одной строке"

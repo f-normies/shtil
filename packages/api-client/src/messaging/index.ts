@@ -1,0 +1,33 @@
+export {
+  createMessagingApi,
+  createTypingRateLimiter,
+  encodeTypingCommand,
+  invalidateMessagingEvent,
+  type Message,
+  type MessageHistory,
+  type MessagingApi,
+  MessagingApiError,
+  type MessagingConversation,
+  type MessagingHistoryPage,
+  type MessagingOwner,
+  type MessagingPair,
+  type MessagingRole,
+  type MessagingStatus,
+  mergeMessagePages,
+  messagingEventQueryKeys,
+  messagingKeys,
+  type UnreadConversation,
+} from "./api";
+export { createIndexedDbMessagingPersistence } from "./indexeddb";
+export {
+  createMessagingLocalQueue,
+  type MessagingDraft,
+  MessagingLocalError,
+  type MessagingLocalQueue,
+  type MessagingOutboxItem,
+  type MessagingOwnerState,
+  type MessagingPersistence,
+  type MessagingQueueOptions,
+  type MessagingSessionMarker,
+  type MessagingTransport,
+} from "./local";

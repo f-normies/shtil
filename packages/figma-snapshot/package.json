@@ -1,0 +1,26 @@
+{
+  "name": "@compass/figma-snapshot",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --test 'src/**/*.test.ts'",
+    "snapshot": "node src/snapshot.ts"
+  },
+  "devDependencies": {
+    "@fontsource-variable/onest": "5.3.1",
+    "@tailwindcss/cli": "4.3.3",
+    "@types/node": "^24.19.2",
+    "@types/pngjs": "6.0.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "esbuild": "0.28.2",
+    "pixelmatch": "8.0.0",
+    "playwright": "1.62.1",
+    "pngjs": "7.0.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "tailwindcss": "4.3.3",
+    "typescript": "5.9.3"
+  }
+}

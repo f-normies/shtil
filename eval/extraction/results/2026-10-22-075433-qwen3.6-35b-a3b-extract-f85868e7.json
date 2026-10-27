@@ -1,0 +1,514 @@
+{
+  "date": "2026-10-22T07:54:33+00:00",
+  "model": "qwen3.6-35b-a3b",
+  "prompts": {
+    "extract": "extract-f85868e7",
+    "olmocr": "olmocr-c12f21ac"
+  },
+  "grls": "2026-10-16",
+  "cases": 20,
+  "metrics": {
+    "fields": {
+      "diagnoses": {
+        "precision": 0.971,
+        "recall": 0.971,
+        "f1": 0.971,
+        "tp": 33,
+        "fp": 1,
+        "fn": 1
+      },
+      "medications": {
+        "precision": 0.981,
+        "recall": 1.0,
+        "f1": 0.99,
+        "tp": 51,
+        "fp": 1,
+        "fn": 0
+      },
+      "anamnesis": {
+        "precision": 0.802,
+        "recall": 0.578,
+        "f1": 0.672,
+        "tp": 166,
+        "fp": 41,
+        "fn": 121
+      },
+      "risk_factors": {
+        "precision": 0.857,
+        "recall": 0.766,
+        "f1": 0.809,
+        "tp": 36,
+        "fp": 6,
+        "fn": 11
+      },
+      "all": {
+        "precision": 0.854,
+        "recall": 0.683,
+        "f1": 0.759,
+        "tp": 286,
+        "fp": 49,
+        "fn": 133
+      }
+    },
+    "dose_accuracy": 0.941,
+    "regimen_accuracy": 0.863,
+    "status_accuracy": 0.961,
+    "proposed_codes_accuracy": 0.8,
+    "proposed_codes": 5,
+    "dropped_share": 0.018,
+    "missed": {
+      "diagnoses": [
+        "case-10: I50.0"
+      ],
+      "medications": []
+    }
+  },
+  "latency": {
+    "extract": {
+      "median_s": 22.67,
+      "p95_s": 48.88
+    }
+  },
+  "per_case": {
+    "case-01": {
+      "diagnoses": [
+        1,
+        0,
+        0
+      ],
+      "medications": [
+        3,
+        0,
+        0
+      ],
+      "anamnesis": [
+        7,
+        3,
+        6
+      ],
+      "risk_factors": [
+        3,
+        0,
+        1
+      ]
+    },
+    "case-02": {
+      "diagnoses": [
+        2,
+        0,
+        0
+      ],
+      "medications": [
+        2,
+        0,
+        0
+      ],
+      "anamnesis": [
+        10,
+        6,
+        0
+      ],
+      "risk_factors": [
+        0,
+        0,
+        1
+      ]
+    },
+    "case-03": {
+      "diagnoses": [
+        1,
+        0,
+        0
+      ],
+      "medications": [
+        2,
+        0,
+        0
+      ],
+      "anamnesis": [
+        5,
+        0,
+        7
+      ],
+      "risk_factors": [
+        2,
+        0,
+        0
+      ]
+    },
+    "case-04": {
+      "diagnoses": [
+        2,
+        0,
+        0
+      ],
+      "medications": [
+        2,
+        0,
+        0
+      ],
+      "anamnesis": [
+        6,
+        2,
+        3
+      ],
+      "risk_factors": [
+        0,
+        1,
+        0
+      ]
+    },
+    "case-05": {
+      "diagnoses": [
+        1,
+        0,
+        0
+      ],
+      "medications": [
+        1,
+        0,
+        0
+      ],
+      "anamnesis": [
+        4,
+        0,
+        2
+      ],
+      "risk_factors": [
+        2,
+        0,
+        2
+      ]
+    },
+    "case-06": {
+      "diagnoses": [
+        1,
+        0,
+        0
+      ],
+      "medications": [
+        3,
+        0,
+        0
+      ],
+      "anamnesis": [
+        6,
+        0,
+        8
+      ],
+      "risk_factors": [
+        0,
+        1,
+        0
+      ]
+    },
+    "case-07": {
+      "diagnoses": [
+        1,
+        0,
+        0
+      ],
+      "medications": [
+        2,
+        0,
+        0
+      ],
+      "anamnesis": [
+        4,
+        0,
+        5
+      ],
+      "risk_factors": [
+        0,
+        0,
+        0
+      ]
+    },
+    "case-08": {
+      "diagnoses": [
+        2,
+        0,
+        0
+      ],
+      "medications": [
+        2,
+        0,
+        0
+      ],
+      "anamnesis": [
+        7,
+        0,
+        2
+      ],
+      "risk_factors": [
+        0,
+        0,
+        0
+      ]
+    },
+    "case-09": {
+      "diagnoses": [
+        1,
+        0,
+        0
+      ],
+      "medications": [
+        2,
+        0,
+        0
+      ],
+      "anamnesis": [
+        3,
+        4,
+        4
+      ],
+      "risk_factors": [
+        2,
+        0,
+        1
+      ]
+    },
+    "case-10": {
+      "diagnoses": [
+        3,
+        1,
+        1
+      ],
+      "medications": [
+        9,
+        0,
+        0
+      ],
+      "anamnesis": [
+        4,
+        1,
+        3
+      ],
+      "risk_factors": [
+        4,
+        0,
+        0
+      ]
+    },
+    "case-11": {
+      "diagnoses": [
+        1,
+        0,
+        0
+      ],
+      "medications": [
+        0,
+        0,
+        0
+      ],
+      "anamnesis": [
+        12,
+        5,
+        6
+      ],
+      "risk_factors": [
+        1,
+        0,
+        0
+      ]
+    },
+    "case-12": {
+      "diagnoses": [
+        1,
+        0,
+        0
+      ],
+      "medications": [
+        2,
+        0,
+        0
+      ],
+      "anamnesis": [
+        8,
+        2,
+        8
+      ],
+      "risk_factors": [
+        5,
+        1,
+        2
+      ]
+    },
+    "case-13": {
+      "diagnoses": [
+        1,
+        0,
+        0
+      ],
+      "medications": [
+        2,
+        0,
+        0
+      ],
+      "anamnesis": [
+        6,
+        0,
+        10
+      ],
+      "risk_factors": [
+        1,
+        1,
+        1
+      ]
+    },
+    "case-14": {
+      "diagnoses": [
+        2,
+        0,
+        0
+      ],
+      "medications": [
+        2,
+        0,
+        0
+      ],
+      "anamnesis": [
+        13,
+        6,
+        3
+      ],
+      "risk_factors": [
+        2,
+        0,
+        1
+      ]
+    },
+    "case-15": {
+      "diagnoses": [
+        3,
+        0,
+        0
+      ],
+      "medications": [
+        2,
+        0,
+        0
+      ],
+      "anamnesis": [
+        8,
+        0,
+        12
+      ],
+      "risk_factors": [
+        0,
+        0,
+        1
+      ]
+    },
+    "case-16": {
+      "diagnoses": [
+        3,
+        0,
+        0
+      ],
+      "medications": [
+        2,
+        0,
+        0
+      ],
+      "anamnesis": [
+        9,
+        2,
+        10
+      ],
+      "risk_factors": [
+        3,
+        1,
+        0
+      ]
+    },
+    "case-17": {
+      "diagnoses": [
+        1,
+        0,
+        0
+      ],
+      "medications": [
+        4,
+        1,
+        0
+      ],
+      "anamnesis": [
+        14,
+        2,
+        21
+      ],
+      "risk_factors": [
+        4,
+        1,
+        0
+      ]
+    },
+    "case-18": {
+      "diagnoses": [
+        1,
+        0,
+        0
+      ],
+      "medications": [
+        3,
+        0,
+        0
+      ],
+      "anamnesis": [
+        6,
+        0,
+        7
+      ],
+      "risk_factors": [
+        0,
+        0,
+        0
+      ]
+    },
+    "case-19": {
+      "diagnoses": [
+        3,
+        0,
+        0
+      ],
+      "medications": [
+        3,
+        0,
+        0
+      ],
+      "anamnesis": [
+        20,
+        3,
+        2
+      ],
+      "risk_factors": [
+        4,
+        0,
+        0
+      ]
+    },
+    "case-20": {
+      "diagnoses": [
+        2,
+        0,
+        0
+      ],
+      "medications": [
+        3,
+        0,
+        0
+      ],
+      "anamnesis": [
+        14,
+        5,
+        2
+      ],
+      "risk_factors": [
+        3,
+        0,
+        1
+      ]
+    }
+  }
+}

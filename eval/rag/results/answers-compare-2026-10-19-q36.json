@@ -1,0 +1,209 @@
+{
+  "date": "2026-10-19T13:52:15+00:00",
+  "runs": {
+    "answers-2026-10-19-dev-q36-quote-8.json": {
+      "summary": {
+        "questions": 123,
+        "quotes_found_share": {
+          "mean": 0.9172,
+          "ci95": [
+            0.8704,
+            0.9537
+          ]
+        },
+        "supported_share": {
+          "mean": 0.9493,
+          "ci95": [
+            0.9109,
+            0.9786
+          ]
+        },
+        "answered_share": {
+          "mean": 0.9633,
+          "ci95": [
+            0.9174,
+            0.9908
+          ]
+        },
+        "empty_on_none_share": {
+          "mean": 0.7857,
+          "ci95": [
+            0.5714,
+            1.0
+          ]
+        },
+        "latency": {
+          "median_s": 22.69,
+          "p95_s": 52.33
+        },
+        "output_tokens_median": 484
+      },
+      "vs_best": {
+        "supported_share": [
+          -0.027,
+          -0.0686,
+          0.0064
+        ],
+        "answered_share": [
+          -0.0275,
+          -0.0642,
+          0.0
+        ]
+      },
+      "equal_to_best": true
+    },
+    "answers-2026-10-19-dev-q36-quote-5.json": {
+      "summary": {
+        "questions": 123,
+        "quotes_found_share": {
+          "mean": 0.8913,
+          "ci95": [
+            0.8374,
+            0.937
+          ]
+        },
+        "supported_share": {
+          "mean": 0.9665,
+          "ci95": [
+            0.945,
+            0.9842
+          ]
+        },
+        "answered_share": {
+          "mean": 0.9633,
+          "ci95": [
+            0.9266,
+            0.9908
+          ]
+        },
+        "empty_on_none_share": {
+          "mean": 0.7143,
+          "ci95": [
+            0.4286,
+            0.9286
+          ]
+        },
+        "latency": {
+          "median_s": 16.52,
+          "p95_s": 31.84
+        },
+        "output_tokens_median": 381
+      },
+      "vs_best": {
+        "supported_share": [
+          -0.0099,
+          -0.0339,
+          0.0133
+        ],
+        "answered_share": [
+          -0.0275,
+          -0.0642,
+          0.0
+        ]
+      },
+      "equal_to_best": true
+    },
+    "answers-2026-10-19-dev-q36-sent-8.json": {
+      "summary": {
+        "questions": 123,
+        "quotes_found_share": {
+          "mean": 0.9769,
+          "ci95": [
+            0.9559,
+            0.9927
+          ]
+        },
+        "supported_share": {
+          "mean": 0.9636,
+          "ci95": [
+            0.9425,
+            0.9814
+          ]
+        },
+        "answered_share": {
+          "mean": 0.9908,
+          "ci95": [
+            0.9725,
+            1.0
+          ]
+        },
+        "empty_on_none_share": {
+          "mean": 0.8571,
+          "ci95": [
+            0.6429,
+            1.0
+          ]
+        },
+        "latency": {
+          "median_s": 21.13,
+          "p95_s": 36.69
+        },
+        "output_tokens_median": 365
+      },
+      "vs_best": {
+        "supported_share": [
+          -0.0128,
+          -0.0301,
+          0.0035
+        ],
+        "answered_share": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "equal_to_best": true
+    },
+    "answers-2026-10-19-dev-q36-sent-5.json": {
+      "summary": {
+        "questions": 123,
+        "quotes_found_share": {
+          "mean": 0.9646,
+          "ci95": [
+            0.932,
+            0.9897
+          ]
+        },
+        "supported_share": {
+          "mean": 0.9764,
+          "ci95": [
+            0.9571,
+            0.9923
+          ]
+        },
+        "answered_share": {
+          "mean": 0.9725,
+          "ci95": [
+            0.9358,
+            1.0
+          ]
+        },
+        "empty_on_none_share": {
+          "mean": 0.9286,
+          "ci95": [
+            0.7857,
+            1.0
+          ]
+        },
+        "latency": {
+          "median_s": 13.98,
+          "p95_s": 24.24
+        },
+        "output_tokens_median": 274
+      },
+      "vs_best": {
+        "supported_share": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "answered_share": [
+          -0.0183,
+          -0.0459,
+          0.0
+        ]
+      },
+      "equal_to_best": true
+    }
+  }
+}

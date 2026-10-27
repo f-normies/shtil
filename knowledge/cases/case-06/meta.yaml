@@ -1,0 +1,4 @@
+section_order: [chronological_history, diagnosis, treatment]
+detail: detailed
+style: "анамнез по годам, хронологический список"
+diagnosis_format: "текст с кодом в скобках в конце документа"

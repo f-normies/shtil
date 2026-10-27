@@ -1,0 +1,28 @@
+# Маршрутизация (#8): вероятное ГТР или тревога средней выраженности — консультация
+# психиатра «желательно». Верхняя граница HARS (24) отделяет правило от
+# routing-anxiety-severe. GAD-7 — скрининг и требует клинической диагностики.
+id: routing-anxiety-probable
+version: 2
+status: reviewed
+kind: routing
+level: desirable
+title: "Вероятное генерализованное тревожное расстройство: консультация психиатра желательна"
+when:
+  any:
+    - {scale: gad-7, score: total, op: ">=", value: 10}
+    - all:
+        - {scale: hars, score: total, op: ">=", value: 18}
+        - {scale: hars, score: total, op: "<=", value: 24}
+doctor_actions:
+  - "Рекомендовать консультацию психиатра: GAD-7 — только скрининг"
+sources:
+  - {source: kr-gad-2024, locator: "прил. Г2, пояснение: скрининговый инструмент требует дальнейшей клинической диагностики"}
+  - {source: zolotareva-gad7-2023, locator: "с. 39: GAD-7 ≥ 10 — вероятный диагноз ГТР"}
+  - {source: kr-gad-2024, locator: "прил. Г1, ключ: HARS 18–24 — средняя выраженность"}
+cases:
+  - {given: {gad-7: {total: 10}}, fires: true, source: {source: zolotareva-gad7-2023, locator: "с. 39: порог вероятного ГТР"}}
+  - {given: {gad-7: {total: 9}}, fires: false, source: {source: zolotareva-gad7-2023, locator: "с. 39: 5–9 — лёгкая тревога"}}
+  - {given: {hars: {total: 18}}, fires: true, source: {source: kr-gad-2024, locator: "прил. Г1, ключ: граница средней выраженности"}}
+  - {given: {hars: {total: 17}}, fires: false, source: {source: kr-gad-2024, locator: "прил. Г1, ключ: 8–17 — симптомы тревожного расстройства"}}
+  - {given: {hars: {total: 25}}, fires: false, source: {source: kr-gad-2024, locator: "прил. Г1, ключ: ≥ 25 — правило routing-anxiety-severe"}}
+  - {given: {}, fires: false, source: {source: kr-gad-2024, locator: "прил. Г2: без оценки по шкалам сигнала нет"}}

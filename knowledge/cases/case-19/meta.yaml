@@ -1,0 +1,4 @@
+section_order: [encounter, patient, complaints, anamnesis_morbi, social, family_history, labs, scales, diagnoses, prescriptions, referrals]
+detail: standard
+style: "выгрузка из медицинской информационной системы в формате YAML: английские ключи, русские значения, статусы назначений active и discontinued"
+diagnosis_format: "список diagnoses: code, name, role; F32.1 помечен как предварительный"

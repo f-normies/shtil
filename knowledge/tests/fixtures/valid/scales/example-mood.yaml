@@ -1,0 +1,39 @@
+id: example-mood
+version: 1
+title: "Пример шкалы настроения"
+purpose: screening
+respondent: patient
+status: reviewed
+license:
+  terms: "свободное использование"
+  allowed: true
+  source: {source: example-validation, locator: "с. 1"}
+validation:
+  - {source: example-validation, locator: "табл. 2"}
+instruction: "Отметьте, как часто за последние две недели…"
+items:
+  - id: q1
+    text: "Сниженное настроение"
+    options: &freq
+      - {value: 0, text: "Ни разу"}
+      - {value: 1, text: "Несколько дней"}
+      - {value: 2, text: "Больше половины дней"}
+      - {value: 3, text: "Почти каждый день"}
+  - id: q2
+    text: "Тревога"
+    options: *freq
+  - id: q3
+    text: "Мысли о самоповреждении"
+    options: *freq
+scores:
+  - id: total
+    items: [q1, q2, q3]
+    bands:
+      - {min: 0, max: 3, code: minimal, label: "Минимальная", source: {source: example-validation, locator: "табл. 3"}}
+      - {min: 4, max: 6, code: moderate, label: "Умеренная", source: {source: example-validation, locator: "табл. 3"}}
+      - {min: 7, max: 9, code: severe, label: "Тяжёлая", source: {source: example-validation, locator: "табл. 3"}}
+  - id: core
+    items: [q1, q2]
+    bands:
+      - {min: 0, max: 2, code: below, label: "Ниже порога", source: {source: example-validation, locator: "табл. 4"}}
+      - {min: 3, max: 6, code: above, label: "Выше порога", source: {source: example-validation, locator: "табл. 4"}}

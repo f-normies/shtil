@@ -1,0 +1,4 @@
+packages:
+  - apps/doctor
+  - apps/patient
+  - packages/*

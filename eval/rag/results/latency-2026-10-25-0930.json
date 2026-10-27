@@ -1,0 +1,159 @@
+{
+  "date": "2026-10-25",
+  "base_url": "https://<стенд команды>",
+  "endpoint": "/api/v1/knowledge/answers",
+  "questions": [
+    {
+      "id": "s-001",
+      "status": 200,
+      "seconds": 17.92,
+      "claims": 5,
+      "error": null
+    },
+    {
+      "id": "s-002",
+      "status": 200,
+      "seconds": 9.18,
+      "claims": 1,
+      "error": null
+    },
+    {
+      "id": "s-004",
+      "status": 200,
+      "seconds": 7.35,
+      "claims": 2,
+      "error": null
+    },
+    {
+      "id": "s-007",
+      "status": 200,
+      "seconds": 13.68,
+      "claims": 5,
+      "error": null
+    },
+    {
+      "id": "s-009",
+      "status": 200,
+      "seconds": 8.77,
+      "claims": 1,
+      "error": null
+    },
+    {
+      "id": "s-011",
+      "status": 200,
+      "seconds": 10.89,
+      "claims": 3,
+      "error": null
+    },
+    {
+      "id": "s-015",
+      "status": 200,
+      "seconds": 10.49,
+      "claims": 0,
+      "error": null
+    },
+    {
+      "id": "s-016",
+      "status": 200,
+      "seconds": 8.96,
+      "claims": 3,
+      "error": null
+    },
+    {
+      "id": "s-018",
+      "status": 200,
+      "seconds": 11.62,
+      "claims": 3,
+      "error": null
+    },
+    {
+      "id": "s-019",
+      "status": 200,
+      "seconds": 11.29,
+      "claims": 4,
+      "error": null
+    },
+    {
+      "id": "s-021",
+      "status": 200,
+      "seconds": 12.54,
+      "claims": 5,
+      "error": null
+    },
+    {
+      "id": "s-023",
+      "status": 200,
+      "seconds": 9.39,
+      "claims": 0,
+      "error": null
+    },
+    {
+      "id": "s-024",
+      "status": 200,
+      "seconds": 11.81,
+      "claims": 3,
+      "error": null
+    },
+    {
+      "id": "s-026",
+      "status": 200,
+      "seconds": 13.35,
+      "claims": 4,
+      "error": null
+    },
+    {
+      "id": "s-031",
+      "status": 200,
+      "seconds": 10.11,
+      "claims": 1,
+      "error": null
+    },
+    {
+      "id": "s-036",
+      "status": 200,
+      "seconds": 13.23,
+      "claims": 3,
+      "error": null
+    },
+    {
+      "id": "s-037",
+      "status": 200,
+      "seconds": 14.95,
+      "claims": 5,
+      "error": null
+    },
+    {
+      "id": "s-038",
+      "status": 200,
+      "seconds": 7.81,
+      "claims": 2,
+      "error": null
+    },
+    {
+      "id": "s-039",
+      "status": 200,
+      "seconds": 13.68,
+      "claims": 4,
+      "error": null
+    },
+    {
+      "id": "s-042",
+      "status": 200,
+      "seconds": 10.39,
+      "claims": 4,
+      "error": null
+    }
+  ],
+  "summary": {
+    "answered": 20,
+    "failed": 0,
+    "empty": 2,
+    "latency": {
+      "median_s": 11.09,
+      "p95_s": 14.95,
+      "max_s": 17.92
+    },
+    "budget_p95_s": 15.0,
+    "within_budget": true
+  }
+}

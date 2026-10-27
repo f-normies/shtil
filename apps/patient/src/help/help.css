@@ -1,0 +1,125 @@
+/* Экран помощи пациенту (спека #57, кадр «Пациент · 26»). Красный — только здесь. */
+.patient-help {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+.patient-help[open] {
+  animation: patient-help-in 250ms ease-out;
+}
+
+.patient-help::backdrop {
+  background: var(--color-canvas);
+}
+
+@keyframes patient-help-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .patient-help[open] {
+    animation: none;
+  }
+}
+
+.patient-help__frame {
+  box-sizing: border-box;
+  display: flex;
+  min-height: 100%;
+  max-width: 480px;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 6px 20px 24px;
+}
+
+.patient-help__close {
+  display: flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  margin-left: -12px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-ink);
+  cursor: pointer;
+}
+
+.patient-help__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 32px;
+}
+
+.patient-help__content h1,
+.patient-help__content p {
+  margin: 0;
+}
+
+.patient-help__badge {
+  display: flex;
+  width: 64px;
+  height: 64px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: var(--color-required-soft);
+  color: var(--color-required);
+}
+
+.patient-help__badge .consent-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.patient-help__calls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 12px;
+}
+
+.patient-help__sources {
+  color: var(--color-ink-muted);
+}
+
+.patient-help__sources summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  color: var(--color-primary-text);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.patient-help__sources ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.patient-help__sources a {
+  color: var(--color-primary-text);
+}
+
+.patient-help__back {
+  width: 100%;
+  margin-top: auto;
+}

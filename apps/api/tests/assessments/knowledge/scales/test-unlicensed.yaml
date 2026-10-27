@@ -1,0 +1,24 @@
+id: test-unlicensed
+version: 1
+title: "Недоступная тестовая шкала"
+purpose: monitoring
+respondent: patient
+status: draft
+license:
+  terms: "только тест"
+  allowed: false
+  source: {source: test-scale-validation, locator: "с. 1"}
+validation:
+  - {source: test-scale-validation, locator: "с. 2"}
+instruction: "Тестовая инструкция."
+items:
+  - id: q1
+    text: "Тестовый вопрос"
+    options:
+      - {value: 0, text: "Нет"}
+      - {value: 1, text: "Да"}
+scores:
+  - id: total
+    items: [q1]
+    bands:
+      - {min: 0, max: 1, code: low, label: "Низкий", source: {source: test-scale-validation, locator: "с. 3"}}

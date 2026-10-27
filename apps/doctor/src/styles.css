@@ -1,0 +1,172 @@
+@import "@compass/ui/styles.css";
+
+/* Классы компонентов кабинета врача. Tailwind не сканирует этот каталог сам. */
+@source "./";
+
+/* Врачебные предупреждения используют общую семантику «желательно». */
+@theme inline {
+  --color-warning: var(--color-advised);
+  --color-warning-soft: var(--color-advised-soft);
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+.doctor-login {
+  box-sizing: border-box;
+  display: flex;
+  min-height: 100dvh;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.doctor-login .doctor-login__card {
+  box-sizing: border-box;
+  width: min(400px, 100%);
+  padding: 40px;
+  border: 0;
+  border-radius: var(--radius-xl);
+  box-shadow:
+    0 12px 32px -4px rgb(16 26 32 / 12%),
+    0 2px 6px rgb(16 26 32 / 8%);
+}
+
+.doctor-login__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 32px;
+  text-align: center;
+}
+
+.doctor-login__brand .ui-brand-mark {
+  width: 48px;
+  height: 48px;
+}
+
+.doctor-login__brand h1,
+.doctor-login__brand p {
+  margin: 0;
+}
+
+.doctor-login__brand h1 {
+  color: var(--color-ink);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: -0.5px;
+}
+
+.doctor-login__brand p {
+  color: var(--color-ink-muted);
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-form__password {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.login-form--doctor {
+  gap: 16px;
+}
+
+.doctor-login .ui-field__label {
+  color: var(--color-ink);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0;
+}
+
+/* Скелетон списка появляется, только если ответа нет дольше 300 мс (кадр 02). */
+.list-skeleton {
+  animation: fade-in 0s linear 300ms both;
+}
+
+.login-form--doctor > .ui-button {
+  width: 100%;
+}
+
+/*
+ * Инспектор справа (#106, кадр 10): въезжает справа за 200 мс, смена содержимого —
+ * проявление за 150 мс. При «Уменьшить движение» — только прозрачность.
+ * Кривая близка к пружине кадра (жёсткость 400, затухание 40): без отскока.
+ * Решённое предложение (#96, кадр 04) уходит из списка за 150 мс, только прозрачностью.
+ */
+@theme {
+  --animate-inspector-in: inspector-in 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-fade-in: fade-in 150ms ease-out;
+  --animate-fade-out: fade-out 150ms ease-in forwards;
+
+  @keyframes inspector-in {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+}
+
+/*
+ * Поповер точки графика настроения (#115, кадр 06): 150 мс, прозрачность и сдвиг 4 px,
+ * плавное замедление. При «Уменьшить движение» компонент берёт `animate-fade-in`.
+ */
+@theme {
+  --animate-rise-in: rise-in 150ms ease-out;
+
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}

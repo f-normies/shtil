@@ -1,0 +1,129 @@
+<!doctype html>
+<!--
+  Страница «/» стенда (спека #15, 4.2): выбор кабинета. Без JavaScript, стили встроены.
+  Цвета — токены packages/ui/src/styles.css. Контраст: заголовок #16202a на #ffffff — 16,5:1,
+  пояснение #4a5866 на #ffffff — 7,3:1, текст ссылок #ffffff на #1f4e8c — 8,3:1,
+  на #183e70 (наведение) — 10,7:1; рамка фокуса #1f4e8c на #ffffff — 8,3:1.
+  Страница входа сама перенаправит вошедшего по роли.
+-->
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1f4e8c" />
+    <title>Клинический компас</title>
+    <style>
+      :root {
+        --color-surface: #ffffff;
+        --color-canvas: #f4f6f8;
+        --color-ink: #16202a;
+        --color-ink-muted: #4a5866;
+        --color-line: #d5dce3;
+        --color-primary: #1f4e8c;
+        --color-primary-hover: #183e70;
+        --color-primary-ink: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        color: var(--color-ink);
+        background: var(--color-canvas);
+        font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+        line-height: 1.5;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 16px;
+        background: var(--color-canvas);
+      }
+
+      main {
+        width: 100%;
+        max-width: 420px;
+        padding: 32px 24px;
+        background: var(--color-surface);
+        border: 1px solid var(--color-line);
+        border-radius: 12px;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 1.5rem;
+        line-height: 1.25;
+      }
+
+      p {
+        margin: 0 0 24px;
+        color: var(--color-ink-muted);
+      }
+
+      nav ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 12px;
+      }
+
+      nav a {
+        display: block;
+        min-height: 56px;
+        padding: 14px 20px;
+        color: var(--color-primary-ink);
+        background: var(--color-primary);
+        border-radius: 8px;
+        text-decoration: none;
+      }
+
+      nav a:hover {
+        background: var(--color-primary-hover);
+      }
+
+      nav a:focus-visible {
+        outline: 3px solid var(--color-primary);
+        outline-offset: 3px;
+      }
+
+      .role {
+        display: block;
+        font-size: 1.125rem;
+        font-weight: 600;
+      }
+
+      .hint {
+        display: block;
+        font-size: 0.875rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Клинический компас</h1>
+      <p>Выберите кабинет.</p>
+      <nav aria-label="Кабинеты">
+        <ul>
+          <li>
+            <a href="/doctor/login">
+              <span class="role">Врач</span>
+              <span class="hint">Пациенты, сигналы и назначения</span>
+            </a>
+          </li>
+          <li>
+            <a href="/patient/login">
+              <span class="role">Пациент</span>
+              <span class="hint">Опросники, дневник и связь с врачом</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </main>
+  </body>
+</html>

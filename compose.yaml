@@ -1,0 +1,399 @@
+# Локальный стенд «Штиля» на одной машине. Порядок запуска — docs/deploy.md.
+# Без профиля — приложение: Postgres, RustFS, api, worker, кабинеты, Prometheus и Grafana.
+# Профиль gpu — модели на NVIDIA GPU (docs/models.md).
+# Наружу публикуется только web (кабинеты и API) и Grafana на 127.0.0.1.
+name: shtil
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: 10m
+    max-file: "3"
+
+# api, worker, migrate и bucket — один образ и один .env.
+x-app: &app
+  image: shtil-api:local
+  build:
+    context: .
+    dockerfile: apps/api/Dockerfile
+  env_file: .env
+  depends_on:
+    postgres:
+      condition: service_healthy
+  networks: [shtil]
+  logging: *logging
+
+# Серверы моделей на llama.cpp с CUDA: embeddings, rerank, docparse (и models-fetch).
+x-llama: &llama
+  image: shtil-llama-server:local
+  build:
+    context: infra/models
+    dockerfile: llama.Dockerfile
+    target: server
+    args:
+      CUDA_DOCKER_ARCH: ${CUDA_DOCKER_ARCH:-default}
+  restart: unless-stopped
+  volumes:
+    - models:/models:ro
+  deploy:
+    resources:
+      reservations:
+        devices:
+          - driver: nvidia
+            device_ids: ["${AUX_GPU:-0}"]
+            capabilities: [gpu]
+  networks: [shtil]
+  logging: *logging
+
+services:
+  postgres:
+    image: pgvector/pgvector:0.8.7-pg18-trixie
+    restart: unless-stopped
+    # Пароль из .env применяется только при создании тома.
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?}
+      POSTGRES_DB: ${POSTGRES_DB:?}
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks: [shtil]
+    logging: *logging
+
+  # S3 для голосовых сообщений и документов пациента.
+  rustfs:
+    image: rustfs/rustfs:1.0.1
+    restart: unless-stopped
+    environment:
+      RUSTFS_VOLUMES: /data
+      RUSTFS_ADDRESS: 0.0.0.0:9000
+      RUSTFS_CONSOLE_ENABLE: "false"
+      RUSTFS_ACCESS_KEY: ${S3_ACCESS_KEY:?}
+      RUSTFS_SECRET_KEY: ${S3_SECRET_KEY:?}
+    volumes:
+      - rustfs_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail --silent http://127.0.0.1:9000/health/ready || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [shtil]
+    logging: *logging
+
+  # Создаёт бакет из COMPASS_S3_BUCKET, если его ещё нет, и завершается.
+  bucket:
+    <<: *app
+    depends_on:
+      rustfs:
+        condition: service_healthy
+    restart: "no"
+    command:
+      - python
+      - -c
+      - |
+        import boto3
+        from botocore.config import Config
+        from botocore.exceptions import ClientError
+        from clin_compass.core.config import Settings
+        s = Settings()
+        s3 = boto3.client("s3", endpoint_url=s.s3_endpoint_url, aws_access_key_id=s.s3_access_key,
+            aws_secret_access_key=s.s3_secret_key.get_secret_value(), region_name=s.s3_region,
+            config=Config(s3={"addressing_style": "path"}))
+        try:
+            s3.head_bucket(Bucket=s.s3_bucket)
+            print("бакет уже есть:", s.s3_bucket)
+        except ClientError:
+            s3.create_bucket(Bucket=s.s3_bucket)
+            print("бакет создан:", s.s3_bucket)
+
+  # Миграции. Запускается один раз до api и worker и завершается.
+  migrate:
+    <<: *app
+    restart: "no"
+    command: ["alembic", "upgrade", "head"]
+
+  # COMPASS_METRICS_PORT — сервер метрик для Prometheus, только внутри сети compose.
+  api:
+    <<: *app
+    restart: unless-stopped
+    environment:
+      COMPASS_METRICS_PORT: "9100"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      bucket:
+        condition: service_completed_successfully
+
+  worker:
+    <<: *app
+    command: ["python", "-m", "clin_compass.worker"]
+    restart: unless-stopped
+    environment:
+      COMPASS_METRICS_PORT: "9100"
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      bucket:
+        condition: service_completed_successfully
+
+  # Caddy: статика обоих кабинетов и прокси на api с одного адреса, по HTTP, без домена.
+  web:
+    image: shtil-web:local
+    build:
+      context: .
+      dockerfile: infra/web/Dockerfile
+    restart: unless-stopped
+    environment:
+      SITE_ADDRESS: ":80"
+    ports:
+      - "${WEB_PORT:-8080}:80/tcp"
+    depends_on: [api]
+    networks:
+      shtil:
+        # Равен COMPASS_TRUSTED_PROXIES в .env: api верит X-Forwarded-For только отсюда.
+        ipv4_address: 10.88.0.10
+    logging: *logging
+
+  prometheus:
+    image: shtil-prometheus:local
+    build:
+      context: .
+      dockerfile: infra/prometheus/Dockerfile
+    restart: unless-stopped
+    volumes:
+      - prometheus_data:/prometheus
+    networks: [shtil]
+    logging: *logging
+
+  # Дашборд «Штиль: быстродействие» на http://127.0.0.1:3000.
+  grafana:
+    image: shtil-grafana:local
+    build:
+      context: .
+      dockerfile: infra/grafana/Dockerfile
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?нет в .env}
+    ports:
+      - "127.0.0.1:${GRAFANA_PORT:-3000}:3000/tcp"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on: [prometheus]
+    networks: [shtil]
+    logging: *logging
+
+  # --- Модели (профиль gpu) ---------------------------------------------------
+  # Порты моделей наружу не публикуются: api и worker ходят к ним по сети compose.
+
+  # Распознавание речи: GigaAM-v3 int8 в sherpa-onnx на CPU, как на нашем стенде.
+  # Модель скачивается при сборке образа и сверяется по SHA-256 (services/asr/versions.env).
+  asr:
+    image: shtil-asr:local
+    build:
+      context: .
+      dockerfile: services/asr/Dockerfile
+    profiles: [gpu]
+    restart: unless-stopped
+    environment:
+      ASR_NUM_THREADS: "4"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8002/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+    networks: [shtil]
+    logging: *logging
+
+  # LLM: Qwen3.6-35B-A3B в 4 битах на vLLM 0.31.0 — та же версия ядра vLLM, что в vllm-metal
+  # 0.31.0 на наших Маках. Веса MLX vLLM на CUDA не читает, поэтому здесь AWQ INT4 той же модели
+  # (docs/models.md). Флаги те же, что в нашем запуске: имя модели, длина контекста,
+  # --language-model-only, --reasoning-parser qwen3.
+  # Образ на CUDA 13.0 требует драйвер NVIDIA >= 580; для 575–579 — тег v0.31.0-cu129.
+  llm:
+    image: vllm/vllm-openai:v0.31.0@sha256:c1c9f6fd5c109ba7f0546a59f5b2f15fb87f64c77782e90a27b648b42a8e67c3
+    profiles: [gpu]
+    restart: unless-stopped
+    command:
+      - QuantTrio/Qwen3.6-35B-A3B-AWQ
+      - --revision
+      - "119886a1072372348f73ef0df2d801cdcc0f455b"
+      - --served-model-name
+      - qwen3.6-35b-a3b
+      - --max-model-len
+      - "16384"
+      - --gpu-memory-utilization
+      - "${LLM_GPU_MEMORY_UTILIZATION:-0.55}"
+      - --language-model-only
+      - --reasoning-parser
+      - qwen3
+      - --host
+      - 0.0.0.0
+      - --port
+      - "8000"
+    environment:
+      HF_TOKEN: ${HF_TOKEN:-}
+    volumes:
+      - models:/root/.cache/huggingface
+    # Рекомендация vLLM для Docker: общая память хоста для обмена между процессами движка.
+    ipc: host
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["${LLM_GPU:-0}"]
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      # Первый старт скачивает ~25 ГБ весов.
+      start_period: 20m
+    networks: [shtil]
+    logging: *logging
+
+  # Скачивает GGUF ранжировщика и olmOCR в том models и сверяет SHA-256 из
+  # infra/models/versions.env. Повторный запуск пропускает уже проверенные файлы.
+  models-fetch:
+    <<: *llama
+    profiles: [gpu]
+    restart: "no"
+    deploy: {}
+    volumes:
+      - models:/models
+      - ./infra/models/versions.env:/versions.env:ro
+    entrypoint: ["/bin/bash", "-euo", "pipefail", "-c"]
+    command:
+      - |
+        source /versions.env
+        fetch() {
+          local repo=$$1 rev=$$2 file=$$3 sha=$$4 dir=/models/$$5
+          mkdir -p "$$dir"
+          if [[ -f "$$dir/$$file" ]] && echo "$$sha  $$dir/$$file" | sha256sum -c --status; then
+            echo "уже скачан: $$file"; return
+          fi
+          curl -fL --retry 3 -o "$$dir/$$file.part" "https://huggingface.co/$$repo/resolve/$$rev/$$file"
+          if ! echo "$$sha  $$dir/$$file.part" | sha256sum -c --status; then
+            rm -f "$$dir/$$file.part"; echo "SHA-256 файла $$file не совпал, файл удалён" >&2; exit 1
+          fi
+          mv "$$dir/$$file.part" "$$dir/$$file"
+        }
+        fetch "$$RERANK_REPO" "$$RERANK_REVISION" "$$RERANK_GGUF" "$$RERANK_SHA256" rerank
+        fetch "$$DOCPARSE_REPO" "$$DOCPARSE_REVISION" "$$DOCPARSE_GGUF" "$$DOCPARSE_SHA256" docparse
+        fetch "$$DOCPARSE_REPO" "$$DOCPARSE_REVISION" "$$DOCPARSE_MMPROJ" "$$DOCPARSE_MMPROJ_SHA256" docparse
+
+  # Собирает GGUF Giga-Embeddings из исходной модели, как convert.sh на нашем стенде, и
+  # сверяет его SHA-256 с нашим файлом. Конвертер берёт имя модели из имени каталога, поэтому
+  # модель скачивается в кэш Hugging Face (каталог по ревизии), без --local-dir.
+  embeddings-convert:
+    image: shtil-llama-convert:local
+    build:
+      context: infra/models
+      dockerfile: llama.Dockerfile
+      target: convert
+    profiles: [gpu]
+    restart: "no"
+    environment:
+      HF_HOME: /models/hf
+      UV_CACHE_DIR: /models/uv-cache
+      HF_TOKEN: ${HF_TOKEN:-}
+    volumes:
+      - models:/models
+      - ./infra/models/versions.env:/versions.env:ro
+    entrypoint: ["/bin/bash", "-euo", "pipefail", "-c"]
+    command:
+      - |
+        source /versions.env
+        out=/models/embeddings/$$EMBEDDINGS_GGUF
+        if [[ -f "$$out" ]] && echo "$$EMBEDDINGS_SHA256  $$out" | sha256sum -c --status; then
+          echo "уже готов: $$out"; exit 0
+        fi
+        model_dir="$$(uvx --from 'huggingface_hub>=1.0' hf download "$$EMBEDDINGS_REPO" --revision "$$EMBEDDINGS_REVISION" --quiet)"
+        mkdir -p /models/embeddings
+        rm -f "$$out" "$$out.unverified"
+        uv run --no-project --python 3.13 --exclude-newer "$$CONVERT_DEPS_EXCLUDE_NEWER" \
+          --with-requirements /llama.cpp/requirements/requirements-convert_hf_to_gguf.txt \
+          python /llama.cpp/convert_hf_to_gguf.py "$$model_dir" --outtype q8_0 --outfile "$$out.unverified"
+        actual="$$(sha256sum "$$out.unverified" | cut -d' ' -f1)"
+        if [[ "$$actual" != "$$EMBEDDINGS_SHA256" ]]; then
+          echo "SHA-256 не совпал: ожидали $$EMBEDDINGS_SHA256, получили $$actual" >&2; exit 1
+        fi
+        mv "$$out.unverified" "$$out"
+        echo "готово: $$out"
+
+  # Флаги трёх серверов — те же, что в нашем запуске на Маке; --host 0.0.0.0 внутри контейнера.
+  embeddings:
+    <<: *llama
+    profiles: [gpu]
+    depends_on:
+      embeddings-convert:
+        condition: service_completed_successfully
+    command: ["-m", "/models/embeddings/giga-embeddings-instruct-3b-0826-q8_0.gguf",
+      "--embeddings", "-ngl", "99", "-c", "8192", "-b", "8192", "-ub", "8192", "-np", "16", "-kvu",
+      "--no-slots", "-a", "giga-embeddings-3b-0826", "--host", "0.0.0.0", "--port", "8001"]
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8001/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10m
+
+  rerank:
+    <<: *llama
+    profiles: [gpu]
+    depends_on:
+      models-fetch:
+        condition: service_completed_successfully
+    command: ["-m", "/models/rerank/bge-reranker-v2-m3-FP16.gguf",
+      "--rerank", "-ngl", "99", "-c", "16384", "-b", "4096", "-ub", "4096", "-np", "4", "-kvu",
+      "--no-slots", "--alias", "bge-reranker-v2-m3", "--host", "0.0.0.0", "--port", "8004"]
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8004/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10m
+
+  # docparse стартует последним: без -ngl llama-server сам подбирает размещение под свободную
+  # видеопамять и при нехватке молча уводит часть модели на процессор.
+  docparse:
+    <<: *llama
+    profiles: [gpu]
+    depends_on:
+      models-fetch:
+        condition: service_completed_successfully
+      embeddings:
+        condition: service_healthy
+      rerank:
+        condition: service_healthy
+    command: ["-m", "/models/docparse/olmOCR-2-7B-1025-Q4_K_M.gguf",
+      "--mmproj", "/models/docparse/mmproj-olmOCR-2-7B-1025-F16.gguf",
+      "-c", "16384", "-np", "1", "--cache-ram", "0", "--no-slots",
+      "--alias", "olmocr-2", "--host", "0.0.0.0", "--port", "8003"]
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8003/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10m
+
+networks:
+  shtil:
+    # Остальные контейнеры получают адреса из ip_range, адрес web не займут.
+    ipam:
+      config:
+        - subnet: 10.88.0.0/24
+          ip_range: 10.88.0.128/25
+
+volumes:
+  postgres_data:
+  rustfs_data:
+  prometheus_data:
+  grafana_data:
+  models:

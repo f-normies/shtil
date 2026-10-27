@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@tanstack/react-query": [
+        "../../apps/patient/node_modules/@tanstack/react-query/build/modern/index"
+      ]
+    }
+  },
+  "include": [
+    "tests/**/*.spec.ts",
+    "tests/fixture/assets.d.ts",
+    "tests/fixture/main.tsx",
+    "tests/fixture/visual-review.tsx"
+  ]
+}

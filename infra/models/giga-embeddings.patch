@@ -1,0 +1,52 @@
+diff --git a/conversion/__init__.py b/conversion/__init__.py
+index c2683ae..b5fa85a 100644
+--- a/conversion/__init__.py
++++ b/conversion/__init__.py
+@@ -249,6 +249,7 @@ TEXT_MODEL_MAP: dict[str, str] = {
+     "Qwen3ASRForConditionalGeneration": "qwen3vl",
+     "Qwen3ForCausalLM": "qwen",
+     "Qwen3Model": "qwen",
++    "Qwen3BidirectionalModel": "qwen",
+     "Qwen3MoeForCausalLM": "qwen",
+     "Qwen3NextForCausalLM": "qwen",
+     "Qwen3OmniMoeForConditionalGeneration": "qwen3vl",
+diff --git a/conversion/base.py b/conversion/base.py
+index e3d2651..004d8df 100644
+--- a/conversion/base.py
++++ b/conversion/base.py
+@@ -2121,6 +2121,9 @@ class TextModel(ModelBase):
+         if chkhsh == "a9af07a84191f55098b248ae6f3dfe9e32d3190bebe8eafd91c1ddec9bc3449f":
+             # ref: https://huggingface.co/IFM/K2-Horizon-36B
+             res = "k2-horizon"
++        if chkhsh == "5c01b97b9959d897bb3670b43dd3cfe4ab93cef6280acd4d55a15e66d68213c9":
++            # ref: https://huggingface.co/ai-sage/Giga-Embeddings-instruct-3B-0826
++            res = "gpt-4o"
+ 
+         if res is None:
+             logger.warning("\n")
+diff --git a/conversion/qwen.py b/conversion/qwen.py
+index 43d2fb4..d8746e2 100644
+--- a/conversion/qwen.py
++++ b/conversion/qwen.py
+@@ -157,7 +157,7 @@ class Qwen2MoeModel(TextModel):
+                 raise ValueError(f"Unprocessed experts: {experts}")
+ 
+ 
+-@ModelBase.register("Qwen3ForCausalLM", "Qwen3Model")
++@ModelBase.register("Qwen3ForCausalLM", "Qwen3Model", "Qwen3BidirectionalModel")
+ @ModelBase.example("Qwen/Qwen3-8B")
+ class Qwen3Model(Qwen2Model):
+     model_arch = gguf.MODEL_ARCH.QWEN3
+diff --git a/convert_hf_to_gguf_update.py b/convert_hf_to_gguf_update.py
+index d49fb8f..019a782 100755
+--- a/convert_hf_to_gguf_update.py
++++ b/convert_hf_to_gguf_update.py
+@@ -203,6 +203,8 @@ pre_computed_hashes = [
+     {"name": "spark2_5", "tokt": TOKENIZER_TYPE.BPE, "repo": "https://huggingface.co/XHToken/Spark-X2.5-1.7B", "chkhsh": "0a766d034107bc736a3f2dc4968fd62e54a3570f1454443e0c5a4cc6bd7941ed"},
+     # k2-horizon variants
+     {"name": "k2-horizon", "tokt": TOKENIZER_TYPE.BPE, "repo": "https://huggingface.co/IFM/K2-Horizon-0.9B", "chkhsh": "1f9825a388f700a6b591722f17d470cbbcf10973ece35d2fd14239a14110ae1a"},
++    # Giga-Embeddings 0826 uses a GigaChat BPE vocabulary with gpt-4o's pre-tokenizer regex
++    {"name": "gpt-4o", "tokt": TOKENIZER_TYPE.BPE, "repo": "https://huggingface.co/ai-sage/Giga-Embeddings-instruct-3B-0826", "chkhsh": "5c01b97b9959d897bb3670b43dd3cfe4ab93cef6280acd4d55a15e66d68213c9"},
+ ]
+ 
+ 

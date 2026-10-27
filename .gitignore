@@ -1,0 +1,43 @@
+# macOS
+.DS_Store
+
+# Secrets (см. ~/.claude/rules/security.md)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+*_secret*
+*_token*
+.claude/
+
+# Макеты визуального помощника Superpowers
+.superpowers/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+
+# Node / фронтенд
+node_modules/
+dist/
+*.tsbuildinfo
+apps/patient/test-results/
+apps/patient/playwright-report/
+packages/ui/test-results/
+e2e/artifacts/
+
+# git worktrees для изоляции веток (CLAUDE.md, Superpowers)
+.worktrees/
+
+# Черновик вопросов eval/rag: в нём текст фрагментов рекомендаций, условия копирования не указаны
+eval/rag/questions.draft.yaml
+eval/rag/cache/
+# Ответы и сверка судей eval/rag: в цитатах тот же текст рекомендаций. В git — подбор и сравнения.
+eval/rag/results/answers-2*.json
+eval/rag/results/judge-claims-agreement-*.json

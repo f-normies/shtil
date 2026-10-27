@@ -1,0 +1,56 @@
+[project]
+name = "clin-compass-asr"
+version = "0.1.0"
+description = "Клинический компас: распознавание речи, sherpa-onnx + GigaAM-v3 (спека #17)"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "av>=19.0.1",
+    "fastapi>=0.143.2",
+    "numpy>=2.2",
+    "pydantic-settings>=2.16.0",
+    "python-multipart>=0.0.32",
+    # Замеры ADR-0007 — на 1.13.8. Две строки меняются только вместе и на одну версию.
+    # Колёса sherpa-onnx для macOS и Linux x86_64 требуют sherpa-onnx-core (в нём libonnxruntime),
+    # а sdist и колёса linux_armv7l — нет. uv берёт метаданные без этой зависимости и не ставит её,
+    # поэтому она указана явно. uv за совпадением версий не следит.
+    "sherpa-onnx==1.13.8",
+    "sherpa-onnx-core==1.13.8",
+    "structlog>=26.1.0",
+    "uvicorn>=0.54.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.0,<0.14"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "clin_compass_asr"
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "mypy>=2.4.0",
+    "pytest>=9.1.1",
+    "ruff>=0.17.1",
+]
+
+# Те же правила, что у бэкенда.
+[tool.ruff]
+extend = "../../apps/api/pyproject.toml"
+src = ["src", "tests"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+plugins = ["pydantic.mypy"]
+mypy_path = "src"
+packages = ["clin_compass_asr"]
+
+# У sherpa-onnx нет аннотаций типов. Его вызовы собраны в recognizer.py и segments.py.
+[[tool.mypy.overrides]]
+module = ["sherpa_onnx.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["model: нужна настоящая модель в ASR_MODEL_DIR и команда say (только локально)"]

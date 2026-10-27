@@ -1,0 +1,657 @@
+.patient-checkin {
+  display: flex;
+  min-height: 100dvh;
+  flex-direction: column;
+  overflow-x: clip;
+  background: var(--palette-mint-25);
+}
+
+.patient-checkin-header {
+  position: sticky;
+  z-index: 4;
+  top: 0;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 520px;
+  flex: 0 0 auto;
+  margin: 0 auto;
+  padding: 8px 20px 10px;
+  background: var(--palette-mint-25);
+}
+
+.patient-checkin-header__top {
+  display: grid;
+  min-height: 40px;
+  grid-template-columns: 40px minmax(0, 1fr) 56px;
+  align-items: center;
+  color: var(--color-ink);
+  font-size: 15px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.patient-checkin-header__edge {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  margin-left: -4px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.patient-checkin-header__edge:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.patient-checkin-header__edge:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.patient-checkin-header__edge img {
+  width: 24px;
+  height: 24px;
+}
+.patient-checkin-header__count {
+  color: var(--color-ink-muted);
+  font-size: 13px;
+  line-height: 18px;
+  text-align: right;
+}
+
+.patient-checkin-header__progress {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.patient-checkin-header__progress i {
+  height: 4px;
+  border-radius: 4px;
+  background: var(--palette-brand-100);
+}
+
+.patient-checkin-header__progress i[data-complete] {
+  background: var(--palette-brand-500);
+}
+
+.patient-checkin-error {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 8px 20px 0;
+}
+
+.patient-checkin-main,
+.patient-checkin-survey,
+.patient-checkin-complete {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 12px 20px 100px;
+}
+
+.patient-checkin-main > h1,
+.patient-checkin-survey h1,
+.patient-checkin-complete > h1 {
+  margin: 18px 0 8px;
+}
+
+.patient-checkin-subtitle {
+  margin: 0;
+  color: var(--color-ink-muted);
+}
+
+.patient-checkin-main--mood {
+  display: flex;
+  min-height: calc(100dvh - 200px);
+  flex-direction: column;
+  padding-bottom: 96px;
+}
+
+.patient-checkin-main--mood > h1 {
+  margin-top: 16px;
+}
+
+.patient-pebble {
+  display: grid;
+  min-height: 210px;
+  flex: 1 1 auto;
+  place-items: center;
+  margin: 8px 0 10px;
+}
+
+.patient-pebble img {
+  display: block;
+  width: min(48vw, 176px);
+  height: min(48vw, 176px);
+  animation: patient-pebble-enter 280ms ease-out both;
+}
+
+.patient-pebble--breathing img {
+  animation: patient-pebble-breathe 4s ease-in-out infinite;
+}
+
+.patient-checkin-main--mood .patient-mood-scale {
+  margin: 0 0 8px;
+}
+.patient-checkin-main--mood .patient-mood-scale__buttons {
+  gap: 4px;
+}
+.patient-checkin-main--mood .patient-mood-scale__button img {
+  width: 52px;
+  height: 52px;
+  flex-basis: 52px;
+}
+
+.patient-selected-mood {
+  min-height: 28px;
+  margin: 8px 0 0;
+  color: var(--color-ink);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 28px;
+  text-align: center;
+}
+
+.patient-checkin-actions {
+  position: sticky;
+  z-index: 3;
+  bottom: 0;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 520px;
+  margin: auto auto 0;
+  padding: 12px 20px calc(24px + env(safe-area-inset-bottom));
+  background: linear-gradient(180deg, transparent 0%, var(--palette-mint-25) 20%);
+}
+
+.patient-checkin-primary {
+  width: 100%;
+  min-height: 54px;
+  border-radius: 28px;
+  font-size: 17px;
+  line-height: 22px;
+}
+
+.patient-checkin-actions--split {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.patient-checkin-actions--split .ui-button {
+  min-height: 48px;
+}
+.patient-checkin-actions--split .patient-checkin-primary {
+  width: auto;
+  min-width: 132px;
+}
+.patient-checkin-actions--split .patient-checkin-skip {
+  color: var(--color-ink-muted);
+}
+
+.patient-checkin-main--story {
+  display: flex;
+  min-height: calc(100dvh - 150px);
+  flex-direction: column;
+}
+.patient-checkin-main--story > h1 {
+  margin-top: 12px;
+}
+.patient-story-label {
+  margin: 20px 0 8px;
+  color: var(--color-ink-muted);
+  font-size: 13px;
+  line-height: 18px;
+}
+.patient-story-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.patient-story-topics button {
+  min-height: 36px;
+  border: 1px solid var(--palette-mint-100);
+  border-radius: 20px;
+  padding: 7px 12px;
+  color: var(--color-ink);
+  background: var(--color-surface);
+  font: 400 13px / 18px var(--font-sans);
+}
+.patient-checkin-main--story .patient-voice-capture {
+  margin: auto 0 0;
+}
+.patient-checkin-main--story .patient-voice-status {
+  color: var(--color-ink-muted);
+}
+.patient-checkin-main--story .patient-voice-wave {
+  margin: 28px 0 4px;
+}
+.patient-checkin-main--story .patient-voice-duration {
+  margin: 0 0 10px;
+  font-size: 22px;
+  line-height: 28px;
+}
+.patient-checkin-main--story .patient-voice-controls {
+  margin-top: auto;
+  padding-top: 12px;
+}
+.patient-checkin-main--story .patient-record-button {
+  position: relative;
+  display: grid;
+  box-sizing: border-box;
+  width: 168px;
+  height: 168px;
+  flex: 0 0 168px;
+  place-items: center;
+  margin: 28px auto 0;
+}
+.patient-checkin-main--story .patient-record-button::before {
+  position: absolute;
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  background: var(--color-primary-soft);
+  content: "";
+}
+.patient-checkin-main--story .patient-record-button__inner {
+  position: relative;
+  z-index: 1;
+  width: 112px;
+  height: 112px;
+  border: 0;
+  background: var(--color-primary);
+}
+.patient-checkin-main--story
+  .patient-voice-capture[data-capture-state="idle"]
+  .patient-record-button
+  > span:last-child {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+.patient-checkin-main--story
+  .patient-voice-capture[data-capture-state="recording"]
+  .patient-record-button--active
+  > span:last-child,
+.patient-checkin-main--story
+  .patient-voice-capture[data-capture-state="paused"]
+  .patient-record-button--active
+  > span:last-child {
+  position: absolute;
+  top: calc(100% + 8px);
+  z-index: 1;
+  width: max-content;
+  color: var(--color-ink-muted);
+}
+.patient-checkin-main--story .patient-record-button--active .patient-record-button__inner {
+  width: 112px;
+  height: 112px;
+  border: 0;
+  background: var(--color-primary);
+}
+.patient-checkin-main--story .patient-record-button--active::before {
+  width: 184px;
+  height: 184px;
+}
+.patient-checkin-main--story .patient-record-button--active .patient-record-button__inner img {
+  width: 24px;
+  height: 24px;
+}
+.patient-checkin-main--story
+  .patient-record-button:not(.patient-record-button--active)
+  .patient-record-button__inner {
+  width: 112px;
+  height: 112px;
+  border-width: 16px;
+}
+.patient-checkin-main--story .patient-record-button:not(.patient-record-button--active) {
+  margin-top: auto;
+}
+
+.patient-intake-card {
+  overflow: hidden;
+  margin-top: 20px;
+  border-radius: 24px;
+  background: var(--color-surface);
+  box-shadow: 0 2px 8px rgb(46 58 50 / 8%);
+}
+
+.patient-intake-card__rows {
+  padding: 0 16px;
+}
+.patient-intake-card .patient-intake-instructions {
+  margin: 0 16px;
+}
+.patient-intake-empty {
+  margin: 0;
+  padding: 24px 20px;
+  color: var(--color-ink-muted);
+  font-size: 15px;
+  line-height: 21px;
+}
+.patient-other-medication-toggle:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+.patient-other-medication-toggle {
+  display: flex;
+  width: 100%;
+  min-height: 72px;
+  align-items: center;
+  gap: 12px;
+  border: 0;
+  padding: 12px 18px;
+  color: var(--color-primary-text);
+  background: transparent;
+  font: 500 16px / 22px var(--font-sans);
+  text-align: left;
+  cursor: pointer;
+}
+.patient-other-medication-toggle > span {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px dashed var(--color-primary-text);
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: 400;
+}
+.patient-other-medication {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 18px 18px;
+  color: var(--color-ink);
+  font-size: 13px;
+  line-height: 18px;
+}
+.patient-other-medication__label {
+  color: var(--color-ink);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: 0.1px;
+}
+.patient-other-medication__hint {
+  margin: 0;
+  color: var(--color-ink-muted);
+  font-size: 13px;
+  line-height: 18px;
+}
+.patient-other-medication textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 104px;
+  border: 1px solid var(--color-line);
+  border-radius: 16px;
+  padding: 12px;
+  color: var(--color-ink);
+  background: var(--color-surface);
+  font: 400 15px / 22px var(--font-sans);
+  resize: vertical;
+}
+.patient-other-medication textarea:focus-visible {
+  border-color: var(--color-primary);
+  outline: 3px solid var(--color-focus);
+  outline-offset: 1px;
+}
+.patient-other-medication__actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+.patient-other-medication__actions .ui-button {
+  min-height: 44px;
+  flex: 1 1 0;
+}
+.patient-other-medication__saved {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 4px 18px 16px;
+}
+.patient-other-medication__saved p {
+  min-width: 0;
+  flex: 1 1 auto;
+  margin: 0;
+  color: var(--color-ink);
+  font-size: 15px;
+  line-height: 20px;
+  overflow-wrap: anywhere;
+}
+.patient-other-medication__saved small {
+  display: block;
+  margin-top: 2px;
+  color: var(--color-ink-muted);
+  font-size: 13px;
+  line-height: 18px;
+}
+.patient-other-medication__saved .ui-button {
+  min-height: 44px;
+}
+.patient-other-medication small {
+  color: var(--color-ink-muted);
+  text-align: right;
+}
+
+.patient-checkin-survey {
+  max-width: 520px;
+  padding-top: 0;
+}
+.patient-survey-step-label {
+  margin: 8px 0 12px;
+  color: var(--color-primary-text);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 18px;
+}
+.patient-survey-unavailable {
+  border-radius: 24px;
+  padding: 20px;
+  background: var(--color-surface);
+  box-shadow: 0 2px 8px rgb(46 58 50 / 8%);
+}
+.patient-survey-unavailable h1 {
+  margin: 0 0 8px;
+}
+.patient-survey-unavailable p {
+  margin: 0;
+  color: var(--color-ink-muted);
+  font-size: 15px;
+  line-height: 21px;
+}
+.patient-survey-unavailable p + p {
+  margin-top: 12px;
+}
+.patient-assessment-embedded {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 0 24px;
+}
+.patient-assessment-embedded > section {
+  border-color: var(--color-line);
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgb(46 58 50 / 8%);
+}
+.patient-assessment-embedded fieldset {
+  margin: 0;
+  padding-top: 16px;
+}
+.patient-assessment-embedded legend {
+  max-width: 100%;
+  padding: 0;
+  font-size: 15px;
+  line-height: 21px;
+}
+.patient-assessment-embedded label {
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 19px;
+}
+.patient-assessment-embedded input[type="radio"] {
+  accent-color: var(--color-primary);
+}
+
+.patient-checkin-complete {
+  display: flex;
+  min-height: calc(100dvh - 70px);
+  flex-direction: column;
+  padding-top: 12px;
+  padding-bottom: calc(24px + env(safe-area-inset-bottom));
+}
+.patient-completion-sky {
+  width: 120px;
+  height: 120px;
+  margin: 4px 0 10px;
+}
+.patient-checkin-complete > h1 {
+  margin: 10px 0 8px;
+}
+.patient-checkin-complete > p {
+  margin: 0;
+  color: var(--color-ink-muted);
+  font-size: 15px;
+  line-height: 21px;
+}
+.patient-completion-month {
+  margin-top: 24px;
+  border-radius: 24px;
+  padding: 20px;
+  background: var(--color-surface);
+  box-shadow: 0 2px 8px rgb(46 58 50 / 8%);
+}
+.patient-completion-month > p:first-child {
+  margin: 0;
+  color: var(--color-ink-muted);
+  font-size: 15px;
+  line-height: 24px;
+}
+.patient-completion-month > p:first-child strong {
+  margin-right: 8px;
+  color: var(--color-ink);
+  font-size: 30px;
+  line-height: 36px;
+}
+.patient-completion-month .patient-bead-row {
+  display: flex;
+  min-height: 24px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin: 16px 0;
+  border-top: 1px solid var(--color-line);
+}
+.patient-completion-month .patient-bead-row i {
+  width: 16px;
+  height: 16px;
+  margin-top: -1px;
+}
+.patient-completion-month .patient-bead-row i[data-new] {
+  animation: patient-completion-bead 350ms ease-out both;
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+.patient-completion-month > p:last-child {
+  margin: 0;
+  color: var(--color-ink-muted);
+  font-size: 14px;
+  line-height: 20px;
+}
+.patient-checkin-complete > .patient-checkin-next {
+  margin: auto 0 0;
+  padding: 20px 0 12px;
+}
+.patient-checkin-complete__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 4px;
+  padding-bottom: 8px;
+}
+.patient-checkin-complete__actions .ui-button {
+  min-height: 54px;
+  border-radius: 28px;
+  font-size: 17px;
+}
+.patient-checkin-complete__actions a {
+  color: var(--color-primary-text);
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+}
+
+@keyframes patient-pebble-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes patient-pebble-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes patient-completion-bead {
+  from {
+    transform: scale(0.72);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .patient-pebble img {
+    animation: none;
+  }
+  .patient-completion-month .patient-bead-row i[data-new] {
+    animation: none;
+  }
+}
+
+@media (max-width: 359px) {
+  .patient-checkin-header,
+  .patient-checkin-main,
+  .patient-checkin-survey,
+  .patient-checkin-complete {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+  .patient-checkin-actions {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+  .patient-checkin-main--mood .patient-mood-scale__button img {
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
+  }
+}

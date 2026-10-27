@@ -1,0 +1,22 @@
+{
+  "case-01": {
+    "history_sha256": "3243c2ef4ca0aef5ce9a963c108099fa89746f9724261f74793c42f674ba0635",
+    "pdf": "case-01.pdf",
+    "png": "case-01.png"
+  },
+  "case-08": {
+    "history_sha256": "4c93be135ce9464dc1644355de9955be9fd556a99b129393ec0cc69bff48b0d1",
+    "pdf": "case-08.pdf",
+    "png": "case-08.png"
+  },
+  "case-12": {
+    "history_sha256": "2d7b27c0ea75a6867d07d1c036f4d249a78aed7d36af205e0d5d54b0119ef5f2",
+    "pdf": "case-12.pdf",
+    "png": "case-12.png"
+  },
+  "case-17": {
+    "history_sha256": "6f9ef6c79a0657b3f8ddb9053e33b382e0aa66ddedcb0f21769d79e09ad048ae",
+    "pdf": "case-17.pdf",
+    "png": "case-17.png"
+  }
+}

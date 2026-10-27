@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "baseUrl": ".",
+    "paths": { "/patient/src/*": ["src/*"] }
+  },
+  "include": ["e2e/**/*.ts", "playwright.config.ts", "playwright.production.config.ts"]
+}

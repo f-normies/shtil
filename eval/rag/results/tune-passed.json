@@ -1,0 +1,38 @@
+{
+  "routing": {
+    "embeddings": "giga-3b",
+    "abbreviations": false,
+    "routing": "bonus",
+    "parts": false,
+    "context": false,
+    "reranker": null,
+    "rerank_depth": 40
+  },
+  "parts": {
+    "embeddings": "giga-3b",
+    "abbreviations": false,
+    "routing": "off",
+    "parts": true,
+    "context": false,
+    "reranker": null,
+    "rerank_depth": 40
+  },
+  "ctx": {
+    "embeddings": "giga-3b",
+    "abbreviations": false,
+    "routing": "off",
+    "parts": false,
+    "context": true,
+    "reranker": null,
+    "rerank_depth": 40
+  },
+  "reranker": {
+    "embeddings": "giga-3b",
+    "abbreviations": false,
+    "routing": "off",
+    "parts": false,
+    "context": false,
+    "reranker": "bge-v2-m3",
+    "rerank_depth": 20
+  }
+}

@@ -1,0 +1,4 @@
+section_order: [diagnosis, justification, current_treatment, purpose]
+detail: brief
+style: "бланк направления, короткие поля"
+diagnosis_format: "только код МКБ-10 без текста; текст в эталоне проставлен медиком"

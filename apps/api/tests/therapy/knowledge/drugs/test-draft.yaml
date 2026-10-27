@@ -1,0 +1,22 @@
+id: test-draft
+version: 1
+status: draft
+trade_name: "Черновин"
+inn: "черновин"
+registration: {number: "ЛП-000200", source: {source: test-registry, locator: "ЛП-000200"}}
+label: test-label
+forms:
+  - {id: tab-5, title: "таблетки, 5 мг", strength_mg: 5}
+age_min: {years: 18, source: {source: test-label, locator: "4.1"}}
+indications:
+  - id: anxiety
+    title: "Тестовое тревожное расстройство"
+    icd10: [F41.1]
+    source: {source: test-label, locator: "4.1"}
+    regimen:
+      form: tab-5
+      dose_mg: 5
+      times_per_day: 1
+      schedule: "утром"
+      duration: {text: "определяет врач"}
+      source: {source: test-label, locator: "4.2"}

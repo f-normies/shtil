@@ -1,0 +1,14 @@
+# Встроенные правила gitleaks плюс исключения ложных срабатываний.
+# Исключаем только точные значения, которые не являются секретами.
+[extend]
+useDefault = true
+
+[[rules]]
+id = "generic-api-key"
+
+  [[rules.allowlists]]
+  # Ключ файла Figma — идентификатор из адреса файла. Доступа он не даёт:
+  # открыть файл можно только с правами в Figma. Его пишут packages/figma-snapshot
+  # и docs/design/figma/frames.json.
+  description = "Ключ файла Figma с макетами"
+  regexes = ['''^Izz3l5Cmyyd82Ts1znaLaQ$''']

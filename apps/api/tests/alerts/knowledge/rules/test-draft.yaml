@@ -1,0 +1,16 @@
+id: test-draft
+version: 1
+status: draft
+kind: alert
+level: mandatory
+title: "Тест: черновик правила"
+when:
+  any:
+    - {scale: test-mood, item: q1, op: ">=", value: 0}
+doctor_actions:
+  - "Не должно сработать: правило в черновике"
+sources:
+  - {source: test-guideline, locator: "раздел 1"}
+cases:
+  - {given: {test-mood: {q1: 0}}, fires: true, source: {source: test-guideline, locator: "раздел 1"}}
+  - {given: {}, fires: false, source: {source: test-guideline, locator: "раздел 1"}}

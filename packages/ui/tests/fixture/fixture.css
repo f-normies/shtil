@@ -1,0 +1,59 @@
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+.ui-fixture {
+  display: flex;
+  max-width: 1184px;
+  min-height: 100vh;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.ui-fixture h1 {
+  margin: 0;
+}
+
+.ui-fixture__section {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.ui-fixture__section[aria-label="Поля"] {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 320px));
+  align-items: start;
+}
+
+.ui-fixture__section[aria-label="Поля"] .ui-field {
+  max-width: 320px;
+}
+
+@media (width <= 480px) {
+  .ui-fixture {
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .ui-fixture__section {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .ui-fixture__section[aria-label="Поля"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

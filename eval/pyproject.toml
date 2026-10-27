@@ -1,0 +1,33 @@
+[project]
+name = "clin-compass-eval"
+version = "0.1.0"
+description = "Клинический компас: эталонные наборы и оценка AI-задач"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    # asr/bench.py: кодирование записей и запросы к сервису ASR.
+    "av>=19.0.1",
+    "clin-compass-api",
+    "httpx>=0.28.1",
+    "numpy>=2.2",
+]
+
+[dependency-groups]
+# Только для embeddings/make_reference.py: эталон sentence-transformers fp32 (~12 ГБ памяти).
+# Удалённый код Giga-Embeddings рассчитан на transformers 4.57 (config.json модели).
+reference = [
+    "sentence-transformers>=5.3,<6",
+    "torch>=2.8",
+    "transformers>=4.57,<5",
+]
+
+[tool.uv]
+# Скрипты, а не пакет: зависимости ставятся, сам проект не собирается.
+package = false
+
+[tool.uv.sources]
+clin-compass-api = { workspace = true }
+
+# Те же правила, что у бэкенда. Скрипты набора импортируют соседний common.py.
+[tool.ruff]
+extend = "../apps/api/pyproject.toml"
+src = ["embeddings", "extraction", "freetext", "rag"]

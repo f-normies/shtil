@@ -1,0 +1,16 @@
+id: example-self-harm
+version: 1
+status: reviewed
+kind: alert
+level: mandatory
+title: "Мысли о самоповреждении"
+when:
+  any:
+    - {scale: example-mood, item: q3, op: ">=", value: 1}
+doctor_actions:
+  - "Связаться с пациентом в тот же день"
+sources:
+  - {source: example-guideline, locator: "раздел 2"}
+cases:
+  - {given: {example-mood: {q3: 1}}, fires: true, source: {source: example-guideline, locator: "раздел 2"}}
+  - {given: {example-mood: {q3: 0}}, fires: false, source: {source: example-guideline, locator: "раздел 2"}}

@@ -1,0 +1,32 @@
+sources:
+  - id: test-guideline
+    title: "Тестовые рекомендации по тревоге"
+    kind: clinical_guideline
+    publisher: "Тест"
+    url: https://example.org/guideline
+    version: "1"
+    date: 2025-01-01
+    license: "только тест"
+    file: null
+    supplementary: false
+    icd10: [F41.1]
+  - id: test-label
+    title: "Тестовая инструкция"
+    kind: drug_label
+    publisher: "Тест"
+    url: https://example.org/label
+    version: "1"
+    date: 2025-01-01
+    license: "только тест"
+    file: null
+    supplementary: false
+  - id: test-registry
+    title: "Тестовый снимок реестра"
+    kind: drug_registry
+    publisher: "Тест"
+    url: https://example.org/registry
+    version: "2025-01-01"
+    date: 2025-01-01
+    license: "только тест"
+    file: files/registry.csv
+    supplementary: false

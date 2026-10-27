@@ -1,0 +1,16 @@
+id: test-high-mood
+version: 1
+status: reviewed
+kind: routing
+level: desirable
+title: "Тест: высокий балл настроения"
+when:
+  all:
+    - {scale: test-mood, score: total, op: ">=", value: 4}
+doctor_actions:
+  - "Предложить консультацию психиатра"
+sources:
+  - {source: test-guideline, locator: "раздел 1"}
+cases:
+  - {given: {test-mood: {total: 4}}, fires: true, source: {source: test-guideline, locator: "раздел 1"}}
+  - {given: {test-mood: {total: 3}}, fires: false, source: {source: test-guideline, locator: "раздел 1"}}

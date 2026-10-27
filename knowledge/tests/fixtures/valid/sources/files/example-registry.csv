@@ -1,0 +1,3 @@
+reg_number,trade_name,inn,status
+ЛП-000100,Пример®,Примерин,active
+ЛП-000101,Отозванин,Отозванин,inactive

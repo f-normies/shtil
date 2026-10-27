@@ -1,0 +1,3 @@
+# Корень uv workspace. Сам не является пакетом.
+[tool.uv.workspace]
+members = ["apps/api", "eval", "knowledge", "services/asr"]

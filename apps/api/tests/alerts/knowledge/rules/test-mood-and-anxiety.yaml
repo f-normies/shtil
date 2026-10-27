@@ -1,0 +1,17 @@
+id: test-mood-and-anxiety
+version: 1
+status: reviewed
+kind: routing
+level: mandatory
+title: "Тест: высокие баллы по двум шкалам"
+when:
+  all:
+    - {scale: test-mood, score: total, op: ">=", value: 4}
+    - {scale: test-anxiety, score: total, op: ">=", value: 4}
+doctor_actions:
+  - "Направить к психиатру"
+sources:
+  - {source: test-guideline, locator: "раздел 1"}
+cases:
+  - {given: {test-mood: {total: 4}, test-anxiety: {total: 4}}, fires: true, source: {source: test-guideline, locator: "раздел 1"}}
+  - {given: {test-mood: {total: 4}}, fires: false, source: {source: test-guideline, locator: "раздел 1"}}

@@ -213,6 +213,25 @@ test("scales: levels, a gap from the schedule and a popover with item answers", 
   await expect(phq).toContainText("Отметки не было");
   await expect(phq).toContainText("12 октября, понедельник, отметки не было");
 
+  // Опросы пациента (#180): частота каждой шкалы и кто её изменил.
+  const surveys = page.getByRole("region", { name: "Опросы пациента" });
+  await expect(surveys).toContainText("Изменено: ");
+  await expect(surveys.getByRole("checkbox", { name: "Опрашивать PHQ-9" })).toBeChecked();
+  await expect(
+    surveys.getByRole("radiogroup", { name: "Частота PHQ-9" }).getByLabel("Раз в неделю"),
+  ).toBeChecked();
+  await expect(
+    surveys.getByRole("radiogroup", { name: "Частота GAD-7" }).getByLabel("Раз в две недели"),
+  ).toBeChecked();
+  const saved = page.waitForRequest(
+    (r) => r.method() === "PUT" && r.url().endsWith("/assessments/settings/gad-7"),
+  );
+  await surveys
+    .getByRole("radiogroup", { name: "Частота GAD-7" })
+    .getByLabel("Раз в неделю")
+    .click();
+  expect((await saved).postDataJSON()).toEqual({ enabled: true, period_days: 7 });
+
   const clinician = page.getByRole("region", { name: "Шкалы врача" });
   await expect(clinician).toContainText("HAMD-17");
   await expect(clinician).toContainText("шкала 0–52, ещё не заполняли");

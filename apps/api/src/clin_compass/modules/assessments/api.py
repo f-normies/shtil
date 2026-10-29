@@ -9,7 +9,7 @@ from fastapi.responses import JSONResponse
 from clin_compass.core.deps import AppSettings, DbSession
 from clin_compass.core.errors import PROBLEM_JSON, ProblemOut, ValidationProblemOut, problem
 from clin_compass.modules.alerts.deps import AlertRules
-from clin_compass.modules.assessments import schedule, service
+from clin_compass.modules.assessments import schedule, service, settings
 from clin_compass.modules.assessments.schemas import (
     AssessmentCreatedOut,
     AssessmentCreateIn,
@@ -20,6 +20,9 @@ from clin_compass.modules.assessments.schemas import (
     PatientScheduleOut,
     ScaleCatalogOut,
     ScaleDefinitionOut,
+    ScaleSettingIn,
+    ScaleSettingOut,
+    ScaleSettingsOut,
     ScheduleOut,
 )
 from clin_compass.modules.assessments.service import ScaleCatalog
@@ -273,3 +276,52 @@ async def get_patient_schedule(
     return await schedule.patient_schedule(
         session, catalog, patient, settings.timezone, scale_id=scale_id
     )
+
+
+@patient_history_router.get(
+    "/patients/{patient_id}/assessments/settings",
+    response_model=ScaleSettingsOut,
+    responses={
+        **_AUTH_PROBLEM_RESPONSES,
+        404: {"description": "Patient not found", "content": _PROBLEM_CONTENT},
+    },
+)
+async def get_scale_settings(
+    patient: Annotated[PatientSummary, Depends(owned_patient("assessments.settings", deputy=True))],
+    session: DbSession,
+    catalog: Catalog,
+) -> ScaleSettingsOut:
+    """Какие шкалы расписания пациент заполняет и как часто (спека #180)."""
+    return await settings.patient_settings(session, catalog, patient)
+
+
+@patient_history_router.put(
+    "/patients/{patient_id}/assessments/settings/{scale_id}",
+    response_model=ScaleSettingOut,
+    responses={
+        **_AUTH_PROBLEM_RESPONSES,
+        404: {
+            "description": "Patient not found or scale is not in the schedule",
+            "content": _PROBLEM_CONTENT,
+        },
+        422: {
+            "description": "Period is not allowed or request is invalid",
+            "content": _VALIDATION_PROBLEM_CONTENT,
+        },
+    },
+)
+async def update_scale_setting(
+    scale_id: str,
+    body: ScaleSettingIn,
+    patient: Annotated[PatientSummary, Depends(owned_patient("assessments.settings.update"))],
+    doctor: DoctorUser,
+    session: DbSession,
+    catalog: Catalog,
+) -> ScaleSettingOut | JSONResponse:
+    """Ведущий врач включает шкалу и выбирает период; кто и когда — в строке (спека #180)."""
+    try:
+        result = await settings.update_setting(session, catalog, patient, doctor, scale_id, body)
+    except service.AssessmentError as error:
+        return _problem(error)
+    await session.commit()
+    return result

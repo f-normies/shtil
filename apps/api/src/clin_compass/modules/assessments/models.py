@@ -4,7 +4,7 @@ from datetime import datetime
 from typing import Any
 from uuid import UUID
 
-from sqlalchemy import ForeignKey, Index, String, Text, UniqueConstraint
+from sqlalchemy import CheckConstraint, ForeignKey, Index, String, Text, UniqueConstraint
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -44,3 +44,24 @@ class AssessmentResult(Base):
     sources_snapshot: Mapped[list[dict[str, Any]]] = mapped_column(JSONB)
     # Врач, внёсший результат шкалы врача (#94); NULL — самоотчёт пациента.
     recorded_by: Mapped[UUID | None] = mapped_column(ForeignKey("identity.users.id"))
+
+
+class PatientScaleSetting(Base):
+    """Настройка опроса шкалы у пациента: включена ли и период (спека #180).
+
+    Строка появляется при первом изменении врачом; нет строки — значение из
+    `knowledge/scale-schedule.yaml`. `updated_by` и `updated_at` — кто и когда изменил.
+    """
+
+    __tablename__ = "patient_scale_settings"
+    __table_args__ = (
+        CheckConstraint("period_days >= 1", name="period_positive"),
+        {"schema": SCHEMA},
+    )
+
+    patient_id: Mapped[UUID] = mapped_column(ForeignKey("identity.users.id"), primary_key=True)
+    scale_id: Mapped[str] = mapped_column(String(200), primary_key=True)
+    enabled: Mapped[bool]
+    period_days: Mapped[int]
+    updated_by: Mapped[UUID] = mapped_column(ForeignKey("identity.users.id"))
+    updated_at: Mapped[datetime] = timestamp()

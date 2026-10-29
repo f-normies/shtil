@@ -14,15 +14,18 @@ import {
   useScaleDefinitionStates,
   useScaleSchedule,
 } from "../../../../../card/queries";
+import { commonPeriod } from "../../../../../card/surveys";
 import { buildTrack, missedOf, windowOf } from "../../../../../card/track";
 import { ClinicianScales } from "../../../../../components/scales/ClinicianScales";
+import { PatientSurveys } from "../../../../../components/scales/PatientSurveys";
 import { ScaleTrack } from "../../../../../components/scales/ScaleTrack";
 import { Section } from "../../../../../components/signals/Section";
 
 /**
  * Раздел «Шкалы» карточки (спека #13, раздел 10.4; кадры «Врач v4 · 09», «09б», «09в»):
  * графики шкал пациента с общей осью дат и пропусками по расписанию (#111), ниже —
- * шкалы врача строками. Кнопки «Таблицей» и процента от первого результата нет.
+ * опросы пациента (#180), шкалы врача строками. Кнопки «Таблицей» и процента от первого
+ * результата нет.
  */
 export const Route = createFileRoute("/_doctor/patients/$patientId/scales/")({
   component: Scales,
@@ -75,7 +78,8 @@ function Scales() {
   const retryDefinitions = () => {
     for (const t of failed) void definitions.get(t.id)?.refetch();
   };
-  const period = plans[0]?.period_days;
+  // У шкал может быть разный период пациента (#180): подпись — только при общем.
+  const period = commonPeriod(plans);
   // Графики — когда есть и история, и расписание: иначе пропуски появлялись бы позже точек.
   const loading = history.isPending || (schedule.isPending && !schedule.isError);
   const ready = history.isSuccess && !loading;
@@ -154,6 +158,7 @@ function Scales() {
           </div>
         )}
       </Section>
+      <PatientSurveys patientId={patientId} />
       <ClinicianScales patientId={patientId} history={history.data ?? []} />
     </>
   );

@@ -17,6 +17,7 @@ def test_scale_schedule_is_loaded() -> None:
     assert schedule is not None
     assert schedule.grace_days == 3
     assert [(s.scale, s.period_days) for s in schedule.scales] == [("example-mood", 14)]
+    assert schedule.allowed_period_days == (7, 14)
 
 
 def test_missing_file_is_not_an_error(tree: Path) -> None:
@@ -81,6 +82,27 @@ CASES: list[tuple[str, Any, str]] = [
         "grace_basis_required",
         lambda d: d.pop("grace_basis"),
         "grace_basis: обязательное поле",
+    ),
+    # Спека #180, «Данные knowledge/»: частоту врач выбирает из допустимых периодов.
+    (
+        "allowed_period_longer_than_grace",
+        lambda d: d.update(allowed_period_days=[3, 14]),
+        "allowed_period_days[0]: 3 не больше срока пропуска grace_days 3",
+    ),
+    (
+        "allowed_period_listed_once",
+        lambda d: d.update(allowed_period_days=[7, 14, 7]),
+        "allowed_period_days[2]: повторяется 7",
+    ),
+    (
+        "default_period_is_allowed",
+        lambda d: d["scales"][0].update(period_days=10),
+        "scales[0].period_days: 10 нет среди allowed_period_days",
+    ),
+    (
+        "allowed_period_basis_required",
+        lambda d: d.pop("allowed_period_basis"),
+        "allowed_period_basis: обязательное поле",
     ),
     (
         "extra_field_is_reported",

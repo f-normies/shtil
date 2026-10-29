@@ -24,9 +24,20 @@ def check_scale_schedule(kn: "Knowledge") -> Iterator[Issue]:
     yield from _check_unique(
         FILE, ((f"scales[{i}].scale", s.scale) for i, s in enumerate(data.scales))
     )
+    yield from _check_unique(
+        FILE,
+        ((f"allowed_period_days[{i}]", str(d)) for i, d in enumerate(data.allowed_period_days)),
+    )
+    for i, days in enumerate(data.allowed_period_days):
+        if days <= data.grace_days:
+            msg = f"{days} не больше срока пропуска grace_days {data.grace_days}"
+            yield Issue(FILE, f"allowed_period_days[{i}]", msg)
     for i, entry in enumerate(data.scales):
         if entry.period_days <= data.grace_days:
             msg = f"{entry.period_days} не больше срока пропуска grace_days {data.grace_days}"
+            yield Issue(FILE, f"scales[{i}].period_days", msg)
+        elif entry.period_days not in data.allowed_period_days:
+            msg = f"{entry.period_days} нет среди allowed_period_days"
             yield Issue(FILE, f"scales[{i}].period_days", msg)
         yield from _check_primary(kn, FILE, f"scales[{i}].source", (entry.source,))
         scale = kn.scales.get(entry.scale)

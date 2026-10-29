@@ -21,3 +21,11 @@ def test_phq9_and_gad7_every_14_days_missed_after_3() -> None:
     assert schedule is not None
     assert schedule.grace_days == 3
     assert {s.scale: s.period_days for s in schedule.scales} == {"phq-9": 14, "gad-7": 14}
+
+
+def test_doctor_chooses_weekly_or_biweekly() -> None:
+    # Спека #180: врач на апробации предложил опрос раз в неделю (feedback.md, пункт 4).
+    schedule = KNOWLEDGE.scale_schedule
+
+    assert schedule is not None
+    assert schedule.allowed_period_days == (7, 14)

@@ -1039,6 +1039,46 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/patients/{patient_id}/assessments/settings": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Scale Settings
+         * @description Какие шкалы расписания пациент заполняет и как часто (спека #180).
+         */
+        get: operations["get_scale_settings_api_v1_patients__patient_id__assessments_settings_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/patients/{patient_id}/assessments/settings/{scale_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /**
+         * Update Scale Setting
+         * @description Ведущий врач включает шкалу и выбирает период; кто и когда — в строке (спека #180).
+         */
+        put: operations["update_scale_setting_api_v1_patients__patient_id__assessments_settings__scale_id__put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/patients/{patient_id}/diagnoses": {
         parameters: {
             query?: never;
@@ -4464,6 +4504,48 @@ export interface components {
             planned: components["schemas"]["PlannedDateOut"][];
             /** Scale Id */
             scale_id: string;
+        };
+        /**
+         * ScaleSettingIn
+         * @description Настройка опроса шкалы у пациента: включена ли и период из допустимых (спека #180).
+         */
+        ScaleSettingIn: {
+            /** Enabled */
+            enabled: boolean;
+            /** Period Days */
+            period_days: number;
+        };
+        /**
+         * ScaleSettingOut
+         * @description Действующая настройка шкалы; `updated_*` пусты, пока врач её не менял.
+         */
+        ScaleSettingOut: {
+            /** Default Period Days */
+            default_period_days: number;
+            /** Enabled */
+            enabled: boolean;
+            /** Period Days */
+            period_days: number;
+            /** Scale Id */
+            scale_id: string;
+            /** Scale Title */
+            scale_title: string;
+            /** Updated At */
+            updated_at: string | null;
+            /** Updated By */
+            updated_by: string | null;
+            /** Updated By Name */
+            updated_by_name: string | null;
+        };
+        /**
+         * ScaleSettingsOut
+         * @description Настройки шкал расписания пациента и периоды, из которых выбирает врач.
+         */
+        ScaleSettingsOut: {
+            /** Allowed Period Days */
+            allowed_period_days: number[];
+            /** Items */
+            items: components["schemas"]["ScaleSettingOut"][];
         };
         /**
          * ScheduleItem
@@ -8038,6 +8120,251 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_scale_settings_api_v1_patients__patient_id__assessments_settings_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ScaleSettingsOut"];
+                };
+            };
+            /** @description Authentication is required */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": {
+                        /** Code */
+                        code?: string | null;
+                        /** Current Version */
+                        current_version?: number | null;
+                        /** Detail */
+                        detail?: string | null;
+                        /** Retry After */
+                        retry_after?: number | null;
+                        /** Status */
+                        status: number;
+                        /** Title */
+                        title: string;
+                        /** Type */
+                        type: string;
+                    };
+                };
+            };
+            /** @description The authenticated role is not allowed */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": {
+                        /** Code */
+                        code?: string | null;
+                        /** Current Version */
+                        current_version?: number | null;
+                        /** Detail */
+                        detail?: string | null;
+                        /** Retry After */
+                        retry_after?: number | null;
+                        /** Status */
+                        status: number;
+                        /** Title */
+                        title: string;
+                        /** Type */
+                        type: string;
+                    };
+                };
+            };
+            /** @description Patient not found */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": {
+                        /** Code */
+                        code?: string | null;
+                        /** Current Version */
+                        current_version?: number | null;
+                        /** Detail */
+                        detail?: string | null;
+                        /** Retry After */
+                        retry_after?: number | null;
+                        /** Status */
+                        status: number;
+                        /** Title */
+                        title: string;
+                        /** Type */
+                        type: string;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_scale_setting_api_v1_patients__patient_id__assessments_settings__scale_id__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                scale_id: string;
+                patient_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ScaleSettingIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ScaleSettingOut"];
+                };
+            };
+            /** @description Authentication is required */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": {
+                        /** Code */
+                        code?: string | null;
+                        /** Current Version */
+                        current_version?: number | null;
+                        /** Detail */
+                        detail?: string | null;
+                        /** Retry After */
+                        retry_after?: number | null;
+                        /** Status */
+                        status: number;
+                        /** Title */
+                        title: string;
+                        /** Type */
+                        type: string;
+                    };
+                };
+            };
+            /** @description The authenticated role is not allowed */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": {
+                        /** Code */
+                        code?: string | null;
+                        /** Current Version */
+                        current_version?: number | null;
+                        /** Detail */
+                        detail?: string | null;
+                        /** Retry After */
+                        retry_after?: number | null;
+                        /** Status */
+                        status: number;
+                        /** Title */
+                        title: string;
+                        /** Type */
+                        type: string;
+                    };
+                };
+            };
+            /** @description Patient not found or scale is not in the schedule */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": {
+                        /** Code */
+                        code?: string | null;
+                        /** Current Version */
+                        current_version?: number | null;
+                        /** Detail */
+                        detail?: string | null;
+                        /** Retry After */
+                        retry_after?: number | null;
+                        /** Status */
+                        status: number;
+                        /** Title */
+                        title: string;
+                        /** Type */
+                        type: string;
+                    };
+                };
+            };
+            /** @description Period is not allowed or request is invalid */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/problem+json": {
+                        /** Code */
+                        code?: string | null;
+                        /** Current Version */
+                        current_version?: number | null;
+                        /** Detail */
+                        detail?: string | null;
+                        /** Retry After */
+                        retry_after?: number | null;
+                        /** Status */
+                        status: number;
+                        /** Title */
+                        title: string;
+                        /** Type */
+                        type: string;
+                    } | {
+                        /** Code */
+                        code?: string | null;
+                        /** Current Version */
+                        current_version?: number | null;
+                        /** Detail */
+                        detail?: string | null;
+                        /** Errors */
+                        errors: {
+                            [key: string]: unknown;
+                        }[];
+                        /** Retry After */
+                        retry_after?: number | null;
+                        /** Status */
+                        status: number;
+                        /** Title */
+                        title: string;
+                        /** Type */
+                        type: string;
+                    };
                 };
             };
         };

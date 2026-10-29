@@ -92,12 +92,14 @@ class Session:
         gevent.spawn(self._loop)
 
     def _loop(self) -> None:
+        # Схема сокета — по адресу стенда: локальный стенд работает по HTTP.
         scheme, host = self.user.host.split("://", 1)
+        ws_scheme = "wss" if scheme == "https" else "ws"
         while self.user.running:
             started = time.perf_counter()
             try:
                 self.ws = websocket.create_connection(
-                    f"{'wss' if scheme == 'https' else 'ws'}://{host}/api/v1/ws",
+                    f"{ws_scheme}://{host}/api/v1/ws",
                     header=[f"Cookie: {COOKIE}={self.token}"],
                     origin=self.user.host,
                     sslopt={"cert_reqs": ssl.CERT_NONE, "check_hostname": False},

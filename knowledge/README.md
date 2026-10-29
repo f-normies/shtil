@@ -79,9 +79,9 @@ sources:
 
 ## Расписание опросов → `scale-schedule.yaml`
 
-Когда пациенту положен опрос и когда врач видит пропуск ([спека #111](../docs/superpowers/specs/2026-10-21-111-scale-schedule-design.md)). Поля: `version`, `status`, `grace_days` (через сколько дней после планового дня без ответа — пропуск), `grace_basis` (обоснование срока), `scales` — шкалы с `scale`, `period_days` и `source`. Первый опрос — в день регистрации, следующий — через `period_days` после ответа. Правило целиком — в спеке.
+Когда пациенту положен опрос и когда врач видит пропуск ([спека #111](../docs/superpowers/specs/2026-10-21-111-scale-schedule-design.md)). Поля: `version`, `status`, `grace_days` (через сколько дней после планового дня без ответа — пропуск), `grace_basis` (обоснование срока), `allowed_period_days` и `allowed_period_basis` (из каких периодов врач выбирает частоту опроса своего пациента и почему, [спека #180](../docs/superpowers/specs/2026-10-29-180-personal-scales-design.md)), `scales` — шкалы с `scale`, `period_days` и `source`. Первый опрос — в день регистрации, следующий — через `period_days` после ответа. Правило целиком — в спеке.
 
-Проверки: шкала есть и её заполняет пациент, повторов нет, `period_days` больше `grace_days`, источник есть в манифесте и он основной. Загрузчик без файла не падает; наличие и статус `reviewed` в репозитории проверяет `tests/test_repository_scale_schedule.py`. Пример: `tests/fixtures/valid/scale-schedule.yaml`.
+Проверки: шкала есть и её заполняет пациент, повторов нет, `period_days` и каждый допустимый период больше `grace_days`, `period_days` входит в `allowed_period_days`, источник есть в манифесте и он основной. Загрузчик без файла не падает; наличие и статус `reviewed` в репозитории проверяет `tests/test_repository_scale_schedule.py`. Пример: `tests/fixtures/valid/scale-schedule.yaml`.
 
 ## Экран помощи пациенту → `patient-help.yaml`
 

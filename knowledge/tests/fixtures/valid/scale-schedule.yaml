@@ -3,6 +3,8 @@ version: 1
 status: reviewed
 grace_days: 3
 grace_basis: "решение медика"
+allowed_period_days: [7, 14]
+allowed_period_basis: "решение медика"
 scales:
   - scale: example-mood
     period_days: 14

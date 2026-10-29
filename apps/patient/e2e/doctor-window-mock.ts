@@ -262,6 +262,17 @@ export const DECISIONS = {
 };
 
 /** Расписание шкал (#111): у PHQ-9 пропущена плановая дата 12 октября. */
+/** Опросы пациента (#180): PHQ-9 раз в неделю по выбору врача, GAD-7 по умолчанию. */
+const survey = (scale_id: string, period_days: number, updated_at: string | null) => ({
+  ...{ scale_id, scale_title: scale_id.toUpperCase(), enabled: true, period_days },
+  ...{ default_period_days: 14, updated_at, updated_by: updated_at && DOCTOR.id },
+  updated_by_name: updated_at && DOCTOR.full_name,
+});
+export const SURVEY_SETTINGS = {
+  allowed_period_days: [7, 14],
+  items: [survey("gad-7", 14, null), survey("phq-9", 7, "2026-10-12T09:00:00Z")],
+};
+
 export const SCHEDULE = {
   today: "2026-10-19",
   items: [
@@ -331,6 +342,10 @@ export async function mockWindow(context: BrowserContext) {
           return ALERTS.filter((a) => a.patient_id === id);
         case "proposals":
           return PROPOSALS.filter((p) => p.patient_id === id);
+        case "assessments/settings/gad-7":
+          return { ...SURVEY_SETTINGS.items[0], period_days: 7 };
+        case "assessments/settings":
+          return id === LEBEDEVA ? SURVEY_SETTINGS : { allowed_period_days: [7, 14], items: [] };
         case "assessments/schedule":
           return id === LEBEDEVA ? SCHEDULE : { today: "2026-10-19", items: [] };
         case "assessments":

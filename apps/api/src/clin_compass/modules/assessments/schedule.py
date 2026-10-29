@@ -1,7 +1,8 @@
 """Расписание опросов пациента: плановые даты шкалы и пропуски (спека #111).
 
 Расписание не хранится: оно вычисляется из дня регистрации и ответов по данным
-`knowledge/scale-schedule.yaml`. Отдельно от `service.py`: тот уже около 400 строк.
+`knowledge/scale-schedule.yaml` и выбору врача из `settings.py` (спека #180).
+Отдельно от `service.py`: тот уже около 400 строк.
 """
 
 from collections.abc import Sequence
@@ -15,6 +16,7 @@ from clin_compass_knowledge.schemas.scale_schedule import ScheduledScale
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from clin_compass.modules.assessments import settings
 from clin_compass.modules.assessments.models import AssessmentResult
 from clin_compass.modules.assessments.schemas import (
     PatientScheduleOut,
@@ -56,28 +58,38 @@ def plan(
     period_days: int,
     grace_days: int,
     today: date,
+    since: date | None = None,
 ) -> list[Planned]:
     """Плановые даты от регистрации до ближайшей будущей, правило спеки #111.
 
     `answers` — в порядке `completed_at`. Ответ относится к последней плановой дате
     не позже него, даже после срока пропуска. Ответ раньше плановой даты только
     сдвигает цепочку. Следующая дата — через `period_days` после ответа.
+
+    `since` — день, когда врач изменил настройки шкалы (спека #180). Плановая дата
+    раньше него не становится пропуском, а цепочка не начинается раньше него.
     """
     period = timedelta(days=period_days)
     result: list[Planned] = []
     current = registered_on
     for answer in answers:
+        if since is not None and answer.on >= since:
+            current = max(current, since)
         if answer.on >= current:
             skipped = (answer.on - current).days // period_days
             result += [Planned(current + k * period, "missed") for k in range(skipped)]
             result.append(Planned(current + skipped * period, "done", answer.id))
         current = answer.on + period
+    if since is not None:
+        current = max(current, since)
     while current <= today:
         late = (today - current).days > grace_days
         result.append(Planned(current, "missed" if late else "due"))
         current += period
     result.append(Planned(current, "upcoming"))
-    return result
+    if since is None:
+        return result
+    return [item for item in result if item.status != "missed" or item.planned_on >= since]
 
 
 def due_on(planned: Sequence[Planned]) -> date:
@@ -95,16 +107,13 @@ def local_day(moment: datetime, zone: ZoneInfo) -> date:
     return moment.astimezone(zone).date()
 
 
-def _scheduled(catalog: ScaleCatalog) -> list[ScheduledScale]:
-    """Шкалы расписания, которые выдаются пациенту. Черновик расписания не действует."""
-    schedule = catalog.schedule
-    if schedule is None or schedule.status != "reviewed":
-        return []
-    return [
-        entry
-        for entry in schedule.scales
-        if entry.scale in catalog.scales and catalog.is_available(catalog.scales[entry.scale])
-    ]
+@dataclass(frozen=True)
+class ScalePlan:
+    """Плановые даты шкалы пациента с действующим у него периодом."""
+
+    entry: ScheduledScale
+    period_days: int
+    planned: list[Planned]
 
 
 async def _plans(
@@ -114,8 +123,14 @@ async def _plans(
     registered: datetime,
     zone: ZoneInfo,
     today: date,
-) -> list[tuple[ScheduledScale, list[Planned]]]:
-    entries = _scheduled(catalog)
+) -> list[ScalePlan]:
+    """Плановые даты включённых шкал с периодом пациента (спеки #111 и #180)."""
+    chosen = await settings.rows_for(session, patient_id)
+    entries = [
+        entry
+        for entry in settings.scheduled(catalog)
+        if entry.scale not in chosen or chosen[entry.scale].enabled
+    ]
     if not entries or catalog.schedule is None:
         return []
     rows = await session.execute(
@@ -130,19 +145,20 @@ async def _plans(
     for scale_id, completed_at, result_id in rows:
         answers.setdefault(scale_id, []).append(Answer(local_day(completed_at, zone), result_id))
     grace = catalog.schedule.grace_days
-    return [
-        (
-            entry,
-            plan(
-                local_day(registered, zone),
-                answers.get(entry.scale, []),
-                period_days=entry.period_days,
-                grace_days=grace,
-                today=today,
-            ),
+    result: list[ScalePlan] = []
+    for entry in entries:
+        row = chosen.get(entry.scale)
+        period = settings.period_of(catalog, entry, row)
+        planned = plan(
+            local_day(registered, zone),
+            answers.get(entry.scale, []),
+            period_days=period,
+            grace_days=grace,
+            today=today,
+            since=local_day(row.updated_at, zone) if row else None,
         )
-        for entry in entries
-    ]
+        result.append(ScalePlan(entry, period, planned))
+    return result
 
 
 async def own_schedule(
@@ -161,11 +177,11 @@ async def own_schedule(
         today=today,
         items=[
             ScaleDueOut(
-                scale_id=entry.scale,
-                scale_title=catalog.scales[entry.scale].title,
-                due_on=due_on(planned),
+                scale_id=item.entry.scale,
+                scale_title=catalog.scales[item.entry.scale].title,
+                due_on=due_on(item.planned),
             )
-            for entry, planned in plans
+            for item in plans
         ],
     )
 
@@ -189,12 +205,12 @@ async def patient_schedule(
         today=today,
         items=[
             ScalePlanOut(
-                scale_id=entry.scale,
-                period_days=entry.period_days,
+                scale_id=item.entry.scale,
+                period_days=item.period_days,
                 grace_days=grace,
-                planned=[PlannedDateOut.model_validate(item) for item in planned],
+                planned=[PlannedDateOut.model_validate(planned) for planned in item.planned],
             )
-            for entry, planned in plans
-            if scale_id is None or entry.scale == scale_id
+            for item in plans
+            if scale_id is None or item.entry.scale == scale_id
         ],
     )

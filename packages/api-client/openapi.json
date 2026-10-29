@@ -6883,6 +6883,123 @@
         "title": "ScalePlanOut",
         "type": "object"
       },
+      "ScaleSettingIn": {
+        "additionalProperties": false,
+        "description": "Настройка опроса шкалы у пациента: включена ли и период из допустимых (спека #180).",
+        "properties": {
+          "enabled": {
+            "title": "Enabled",
+            "type": "boolean"
+          },
+          "period_days": {
+            "title": "Period Days",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "enabled",
+          "period_days"
+        ],
+        "title": "ScaleSettingIn",
+        "type": "object"
+      },
+      "ScaleSettingOut": {
+        "description": "Действующая настройка шкалы; `updated_*` пусты, пока врач её не менял.",
+        "properties": {
+          "default_period_days": {
+            "title": "Default Period Days",
+            "type": "integer"
+          },
+          "enabled": {
+            "title": "Enabled",
+            "type": "boolean"
+          },
+          "period_days": {
+            "title": "Period Days",
+            "type": "integer"
+          },
+          "scale_id": {
+            "title": "Scale Id",
+            "type": "string"
+          },
+          "scale_title": {
+            "title": "Scale Title",
+            "type": "string"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          },
+          "updated_by": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated By"
+          },
+          "updated_by_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated By Name"
+          }
+        },
+        "required": [
+          "scale_id",
+          "scale_title",
+          "enabled",
+          "period_days",
+          "default_period_days",
+          "updated_at",
+          "updated_by",
+          "updated_by_name"
+        ],
+        "title": "ScaleSettingOut",
+        "type": "object"
+      },
+      "ScaleSettingsOut": {
+        "description": "Настройки шкал расписания пациента и периоды, из которых выбирает врач.",
+        "properties": {
+          "allowed_period_days": {
+            "items": {
+              "type": "integer"
+            },
+            "title": "Allowed Period Days",
+            "type": "array"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ScaleSettingOut"
+            },
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "allowed_period_days",
+          "items"
+        ],
+        "title": "ScaleSettingsOut",
+        "type": "object"
+      },
       "ScheduleItem": {
         "description": "Строка схемы приёма для пациента: без проверок и служебных полей.\n\n`reactions` — перечень реакций из инструкции для отметки (спека #29).",
         "properties": {
@@ -14950,6 +15067,717 @@
           }
         },
         "summary": "Get Patient Schedule",
+        "tags": [
+          "assessments"
+        ]
+      }
+    },
+    "/api/v1/patients/{patient_id}/assessments/settings": {
+      "get": {
+        "description": "Какие шкалы расписания пациент заполняет и как часто (спека #180).",
+        "operationId": "get_scale_settings_api_v1_patients__patient_id__assessments_settings_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "patient_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Patient Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScaleSettingsOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Тело ошибки RFC 9457; `code`, `current_version` и `retry_after` — расширения для клиента.",
+                  "properties": {
+                    "code": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Code"
+                    },
+                    "current_version": {
+                      "anyOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Current Version"
+                    },
+                    "detail": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Detail"
+                    },
+                    "retry_after": {
+                      "anyOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Retry After"
+                    },
+                    "status": {
+                      "title": "Status",
+                      "type": "integer"
+                    },
+                    "title": {
+                      "title": "Title",
+                      "type": "string"
+                    },
+                    "type": {
+                      "title": "Type",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "title",
+                    "status"
+                  ],
+                  "title": "ProblemOut",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Authentication is required"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Тело ошибки RFC 9457; `code`, `current_version` и `retry_after` — расширения для клиента.",
+                  "properties": {
+                    "code": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Code"
+                    },
+                    "current_version": {
+                      "anyOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Current Version"
+                    },
+                    "detail": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Detail"
+                    },
+                    "retry_after": {
+                      "anyOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Retry After"
+                    },
+                    "status": {
+                      "title": "Status",
+                      "type": "integer"
+                    },
+                    "title": {
+                      "title": "Title",
+                      "type": "string"
+                    },
+                    "type": {
+                      "title": "Type",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "title",
+                    "status"
+                  ],
+                  "title": "ProblemOut",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The authenticated role is not allowed"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Тело ошибки RFC 9457; `code`, `current_version` и `retry_after` — расширения для клиента.",
+                  "properties": {
+                    "code": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Code"
+                    },
+                    "current_version": {
+                      "anyOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Current Version"
+                    },
+                    "detail": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Detail"
+                    },
+                    "retry_after": {
+                      "anyOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Retry After"
+                    },
+                    "status": {
+                      "title": "Status",
+                      "type": "integer"
+                    },
+                    "title": {
+                      "title": "Title",
+                      "type": "string"
+                    },
+                    "type": {
+                      "title": "Type",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "title",
+                    "status"
+                  ],
+                  "title": "ProblemOut",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Patient not found"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Scale Settings",
+        "tags": [
+          "assessments"
+        ]
+      }
+    },
+    "/api/v1/patients/{patient_id}/assessments/settings/{scale_id}": {
+      "put": {
+        "description": "Ведущий врач включает шкалу и выбирает период; кто и когда — в строке (спека #180).",
+        "operationId": "update_scale_setting_api_v1_patients__patient_id__assessments_settings__scale_id__put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "scale_id",
+            "required": true,
+            "schema": {
+              "title": "Scale Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "patient_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Patient Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScaleSettingIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScaleSettingOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Тело ошибки RFC 9457; `code`, `current_version` и `retry_after` — расширения для клиента.",
+                  "properties": {
+                    "code": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Code"
+                    },
+                    "current_version": {
+                      "anyOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Current Version"
+                    },
+                    "detail": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Detail"
+                    },
+                    "retry_after": {
+                      "anyOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Retry After"
+                    },
+                    "status": {
+                      "title": "Status",
+                      "type": "integer"
+                    },
+                    "title": {
+                      "title": "Title",
+                      "type": "string"
+                    },
+                    "type": {
+                      "title": "Type",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "title",
+                    "status"
+                  ],
+                  "title": "ProblemOut",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Authentication is required"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Тело ошибки RFC 9457; `code`, `current_version` и `retry_after` — расширения для клиента.",
+                  "properties": {
+                    "code": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Code"
+                    },
+                    "current_version": {
+                      "anyOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Current Version"
+                    },
+                    "detail": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Detail"
+                    },
+                    "retry_after": {
+                      "anyOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Retry After"
+                    },
+                    "status": {
+                      "title": "Status",
+                      "type": "integer"
+                    },
+                    "title": {
+                      "title": "Title",
+                      "type": "string"
+                    },
+                    "type": {
+                      "title": "Type",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "title",
+                    "status"
+                  ],
+                  "title": "ProblemOut",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "The authenticated role is not allowed"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "additionalProperties": false,
+                  "description": "Тело ошибки RFC 9457; `code`, `current_version` и `retry_after` — расширения для клиента.",
+                  "properties": {
+                    "code": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Code"
+                    },
+                    "current_version": {
+                      "anyOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Current Version"
+                    },
+                    "detail": {
+                      "anyOf": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Detail"
+                    },
+                    "retry_after": {
+                      "anyOf": [
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ],
+                      "title": "Retry After"
+                    },
+                    "status": {
+                      "title": "Status",
+                      "type": "integer"
+                    },
+                    "title": {
+                      "title": "Title",
+                      "type": "string"
+                    },
+                    "type": {
+                      "title": "Type",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "type",
+                    "title",
+                    "status"
+                  ],
+                  "title": "ProblemOut",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Patient not found or scale is not in the schedule"
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "additionalProperties": false,
+                      "description": "Тело ошибки RFC 9457; `code`, `current_version` и `retry_after` — расширения для клиента.",
+                      "properties": {
+                        "code": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "title": "Code"
+                        },
+                        "current_version": {
+                          "anyOf": [
+                            {
+                              "type": "integer"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "title": "Current Version"
+                        },
+                        "detail": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "title": "Detail"
+                        },
+                        "retry_after": {
+                          "anyOf": [
+                            {
+                              "type": "integer"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "title": "Retry After"
+                        },
+                        "status": {
+                          "title": "Status",
+                          "type": "integer"
+                        },
+                        "title": {
+                          "title": "Title",
+                          "type": "string"
+                        },
+                        "type": {
+                          "title": "Type",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "title",
+                        "status"
+                      ],
+                      "title": "ProblemOut",
+                      "type": "object"
+                    },
+                    {
+                      "additionalProperties": false,
+                      "description": "Структурная ошибка запроса с деталями проверки полей.",
+                      "properties": {
+                        "code": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "title": "Code"
+                        },
+                        "current_version": {
+                          "anyOf": [
+                            {
+                              "type": "integer"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "title": "Current Version"
+                        },
+                        "detail": {
+                          "anyOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "title": "Detail"
+                        },
+                        "errors": {
+                          "items": {
+                            "additionalProperties": true,
+                            "type": "object"
+                          },
+                          "title": "Errors",
+                          "type": "array"
+                        },
+                        "retry_after": {
+                          "anyOf": [
+                            {
+                              "type": "integer"
+                            },
+                            {
+                              "type": "null"
+                            }
+                          ],
+                          "title": "Retry After"
+                        },
+                        "status": {
+                          "title": "Status",
+                          "type": "integer"
+                        },
+                        "title": {
+                          "title": "Title",
+                          "type": "string"
+                        },
+                        "type": {
+                          "title": "Type",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "type",
+                        "title",
+                        "status",
+                        "errors"
+                      ],
+                      "title": "ValidationProblemOut",
+                      "type": "object"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Period is not allowed or request is invalid"
+          }
+        },
+        "summary": "Update Scale Setting",
         "tags": [
           "assessments"
         ]

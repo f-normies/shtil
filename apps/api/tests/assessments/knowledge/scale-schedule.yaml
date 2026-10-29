@@ -3,6 +3,8 @@ version: 1
 status: reviewed
 grace_days: 3
 grace_basis: "только тест"
+allowed_period_days: [7, 14]
+allowed_period_basis: "только тест"
 scales:
   - scale: test-eligible
     period_days: 14

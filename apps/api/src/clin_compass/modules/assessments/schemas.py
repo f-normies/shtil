@@ -5,7 +5,7 @@ from typing import Literal
 from uuid import UUID
 
 from clin_compass_knowledge.schemas.scale import Scale
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field, StrictInt
+from pydantic import AwareDatetime, BaseModel, ConfigDict, Field, StrictBool, StrictInt
 
 
 class SourceOut(BaseModel):
@@ -194,3 +194,36 @@ class PatientScheduleOut(BaseModel):
 
     today: date
     items: list[ScalePlanOut]
+
+
+class ScaleSettingIn(BaseModel):
+    """Настройка опроса шкалы у пациента: включена ли и период из допустимых (спека #180)."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    enabled: StrictBool
+    period_days: StrictInt
+
+
+class ScaleSettingOut(BaseModel):
+    """Действующая настройка шкалы; `updated_*` пусты, пока врач её не менял."""
+
+    model_config = ConfigDict(frozen=True)
+
+    scale_id: str
+    scale_title: str
+    enabled: bool
+    period_days: int
+    default_period_days: int
+    updated_at: datetime | None
+    updated_by: UUID | None
+    updated_by_name: str | None
+
+
+class ScaleSettingsOut(BaseModel):
+    """Настройки шкал расписания пациента и периоды, из которых выбирает врач."""
+
+    model_config = ConfigDict(frozen=True)
+
+    allowed_period_days: list[int]
+    items: list[ScaleSettingOut]

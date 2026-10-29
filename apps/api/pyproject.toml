@@ -175,6 +175,7 @@ protected_modules = [
     "clin_compass.modules.assessments.catalog",
     "clin_compass.modules.assessments.recording",
     "clin_compass.modules.assessments.schedule",
+    "clin_compass.modules.assessments.settings",
 ]
 allowed_importers = ["clin_compass.modules.assessments", "clin_compass.schema", "clin_compass.main"]
 

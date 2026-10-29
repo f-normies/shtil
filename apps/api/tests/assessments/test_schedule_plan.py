@@ -166,3 +166,85 @@ def test_plan(
 def test_day_is_taken_in_configured_timezone(moment: datetime, expected: date) -> None:
     # Спека #111, «Календарный день»: даты правила — по московскому времени.
     assert local_day(moment, ZoneInfo("Europe/Moscow")) == expected
+
+
+# Настройки пациента (спека #180): период врача и день изменения `since`.
+# (id, источник, период, ответы, день изменения, сегодня, плановые даты, день опроса пациента)
+SINCE_CASES = [
+    (
+        "weekly_from_change_day_without_past_misses",
+        "спека #180, «Расписание с настройками пациента»",
+        7,
+        [(1, A1)],
+        16,
+        16,
+        [done(0, A1), due(16), upcoming(23)],
+        16,
+    ),
+    (
+        "reenabled_scale_is_due_on_change_day",
+        "спека #180, «Расписание с настройками пациента»",
+        P,
+        [(1, A1)],
+        45,
+        46,
+        [done(0, A1), due(45), upcoming(59)],
+        45,
+    ),
+    (
+        "answer_after_change_follows_new_period",
+        "спека #180; спека #111, правила 4 и 6",
+        7,
+        [(1, A1), (17, A2)],
+        16,
+        20,
+        [done(0, A1), done(16, A2), upcoming(24)],
+        24,
+    ),
+    (
+        "misses_after_change_are_kept",
+        "спека #180; спека #111, правило 3",
+        7,
+        [],
+        3,
+        20,
+        [missed(3), missed(10), due(17), upcoming(24)],
+        17,
+    ),
+    (
+        "change_before_next_date_keeps_chain",
+        "спека #180; спека #111, правило 6",
+        7,
+        [(1, A1)],
+        5,
+        6,
+        [done(0, A1), upcoming(8)],
+        8,
+    ),
+]
+
+
+@pytest.mark.parametrize(
+    ("period", "answers", "since", "today", "expected", "patient_day"),
+    [c[2:] for c in SINCE_CASES],
+    ids=[c[0] for c in SINCE_CASES],
+)
+def test_plan_since_settings_change(
+    period: int,
+    answers: list[tuple[int, UUID]],
+    since: int,
+    today: int,
+    expected: list[Planned],
+    patient_day: int,
+) -> None:
+    planned = plan(
+        R,
+        [Answer(day(offset), answer_id) for offset, answer_id in answers],
+        period_days=period,
+        grace_days=G,
+        today=day(today),
+        since=day(since),
+    )
+
+    assert planned == expected
+    assert due_on(planned) == day(patient_day)
